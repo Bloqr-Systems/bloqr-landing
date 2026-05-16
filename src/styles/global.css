@@ -27,6 +27,16 @@
   --color-error-dim:   rgba(248, 113, 113, 0.10);
   --color-error-border: rgba(239, 68, 68, 0.35);
 
+  /* ── Persona accent colors (Builder / Developer, Ally / Partner) ────── */
+  /* These are distinct from --code-* syntax tokens — do not conflate.    */
+  /* The same palette values appear in Audiences.svelte persona badges.   */
+  --persona-dev:              #C3E88D;
+  --persona-dev-dim:          rgba(195, 232, 141, 0.08);
+  --persona-dev-border:       rgba(195, 232, 141, 0.25);
+  --persona-partner:          #FFCB6B;
+  --persona-partner-dim:      rgba(255, 203, 107, 0.08);
+  --persona-partner-border:   rgba(255, 203, 107, 0.25);
+
   /* ── Code syntax colors (used by custom code demos in components) ── */
   /* Shiki provides --shiki-* tokens for .astro-code blocks.           */
   /* These --code-* tokens are for hand-rolled inline code demos only. */

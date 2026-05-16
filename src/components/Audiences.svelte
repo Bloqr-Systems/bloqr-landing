@@ -563,15 +563,15 @@
   }
 
   .persona-badge.dev {
-    background: rgba(195,232,141,0.08);
-    border-color: rgba(195,232,141,0.25);
-    color: var(--code-string);
+    background: var(--persona-dev-dim);
+    border-color: var(--persona-dev-border);
+    color: var(--persona-dev);
   }
 
   .persona-badge.partner {
-    background: rgba(255,203,107,0.08);
-    border-color: rgba(255,203,107,0.25);
-    color: var(--code-template);
+    background: var(--persona-partner-dim);
+    border-color: var(--persona-partner-border);
+    color: var(--persona-partner);
   }
 
   .panel-copy h3 {
@@ -662,7 +662,7 @@
     line-height: 1.6;
   }
 
-  .partner-cta strong { color: var(--code-template); }
+  .partner-cta strong { color: var(--persona-partner); }
 
   /* ── Mock card (UI mockup) ───────────────────────────── */
   .panel-visual { position: relative; }
