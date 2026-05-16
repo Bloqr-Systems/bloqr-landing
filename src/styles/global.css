@@ -14,6 +14,38 @@
   --border:       #1E2D40;
   --border-2:     #2A3F5A;
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Semantic status colors ──────────────────────────── */
+  /* Use these instead of hardcoded hex values in components. */
+  --color-success:     #4ade80;
+  --color-success-dim: rgba(74, 222, 128, 0.10);
+  --color-success-border: rgba(74, 222, 128, 0.25);
+  --color-warning:     #fbbf24;
+  --color-warning-dim: rgba(251, 191, 36, 0.08);
+  --color-warning-border: rgba(251, 191, 36, 0.25);
+  --color-error:       #f87171;
+  --color-error-dim:   rgba(248, 113, 113, 0.10);
+  --color-error-border: rgba(239, 68, 68, 0.35);
+
+  /* ── Persona accent colors (Builder / Developer, Ally / Partner) ────── */
+  /* These are distinct from --code-* syntax tokens — do not conflate.    */
+  /* The same palette values appear in Audiences.svelte persona badges.   */
+  --persona-dev:              #C3E88D;
+  --persona-dev-dim:          rgba(195, 232, 141, 0.08);
+  --persona-dev-border:       rgba(195, 232, 141, 0.25);
+  --persona-partner:          #FFCB6B;
+  --persona-partner-dim:      rgba(255, 203, 107, 0.08);
+  --persona-partner-border:   rgba(255, 203, 107, 0.25);
+
+  /* ── Code syntax colors (used by custom code demos in components) ── */
+  /* Shiki provides --shiki-* tokens for .astro-code blocks.           */
+  /* These --code-* tokens are for hand-rolled inline code demos only. */
+  --code-keyword: #C792EA;
+  --code-string:  #C3E88D;
+  --code-type:    #00D4FF;
+  --code-enum:    #FF5500;
+  --code-template:#FFCB6B;
+  --code-comment: #546E7A;
   /* Font fallbacks — the Astro Fonts API (<Font> tags, typically via
      BaseHead) injects the actual @font-face rules and CSS custom property
      values at build time. These fallbacks ensure text still renders
@@ -84,6 +116,13 @@ body {
   background: var(--orange-hover);
   box-shadow: 0 0 32px rgba(255,85,0,0.45);
   transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: none;
+  }
 }
 
 .btn-outline {

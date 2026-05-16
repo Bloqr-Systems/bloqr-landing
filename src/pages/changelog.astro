@@ -24,17 +24,33 @@ const sections = changelogEntries
     content:  entry.data.content,
   }));
 
-// Minimal markdown-to-html — only what changelogs actually use
+// Minimal markdown-to-html — only what changelogs actually use.
+// HTML-escapes raw content first to prevent injection from the external source.
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function simpleMarkdown(md: string): string {
-  return md
+  const escaped = escapeHtml(md);
+  return escaped
     // ### heading
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     // **bold**
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     // `code`
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // [text](url)
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="noopener noreferrer" target="_blank">$1</a>')
+    // [text](url) — only allow safe protocols to prevent javascript: injection
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, url) => {
+      const trimmedUrl = url.trim();
+      const safe = /^(https?:\/\/|mailto:|#|\/(?!\/))/.test(trimmedUrl);
+      if (!safe) return text; // strip unsafe links; render the label only
+      return `<a href="${trimmedUrl}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    })
     // - list item
     .replace(/^- (.+)$/gm, '<li>$1</li>')
     // wrap consecutive <li> in <ul>

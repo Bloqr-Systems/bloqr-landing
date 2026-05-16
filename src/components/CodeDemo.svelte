@@ -373,12 +373,12 @@ console.log(\`Compiled \${result.rules.length} rules\`);
   }
 
   /* Syntax colours (applied via {@html}) */
-  :global(.c)    { color: #546E7A; }           /* comment */
-  :global(.s)    { color: #C3E88D; }           /* string */
-  :global(.kw)   { color: #C792EA; }           /* keyword */
-  :global(.t)    { color: #00D4FF; }           /* type */
-  :global(.en)   { color: #FF5500; }           /* enum member */
-  :global(.tmpl) { color: #FFCB6B; }           /* template expr */
+  :global(.c)    { color: var(--code-comment); }  /* comment */
+  :global(.s)    { color: var(--code-string); }   /* string */
+  :global(.kw)   { color: var(--code-keyword); }  /* keyword */
+  :global(.t)    { color: var(--code-type); }     /* type */
+  :global(.en)   { color: var(--code-enum); }     /* enum member */
+  :global(.tmpl) { color: var(--code-template); } /* template expr */
 
   /* UI Mockup */
   .ui-mockup {

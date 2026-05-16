@@ -233,7 +233,7 @@
     letter-spacing: -0.03em;
   }
 
-  .bad-time  { color: #f87171; }
+  .bad-time  { color: var(--color-error); }
   .good-time { color: var(--cyan); }
 
   /* ── Waterfall bars ── */
