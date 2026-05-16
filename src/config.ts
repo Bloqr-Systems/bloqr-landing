@@ -50,6 +50,8 @@ export const SITE_URL: string =
  * the script src. Centralised here so a proxy migration only needs one edit.
  */
 export const PLAUSIBLE_HOST = 'https://plausible.io';
+/** Bare hostname extracted from PLAUSIBLE_HOST — used for dns-prefetch hints. */
+export const PLAUSIBLE_HOSTNAME = new URL(PLAUSIBLE_HOST).hostname;
 
 /**
  * POSTHOG_HOST — subdomain reverse-proxy for PostHog analytics.

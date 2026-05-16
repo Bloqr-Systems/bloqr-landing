@@ -10,7 +10,7 @@
  */
 import { ClientRouter } from 'astro:transitions'; // Astro 6 replacement for ViewTransitions
 import Font from 'astro/components/Font.astro';
-import { PLAUSIBLE_HOST, SITE_URL } from '../config';
+import { PLAUSIBLE_HOST, PLAUSIBLE_HOSTNAME, SITE_URL } from '../config';
 import Analytics from './Analytics.astro';
 import ApolloTracker from './ApolloTracker.astro';
 import CloudflareAnalytics from './CloudflareAnalytics.astro';
@@ -97,7 +97,7 @@ const canonical = canonicalURL.toString();
 <!-- Preconnect to third-party analytics origins to reduce connection latency -->
 <!-- Note: PostHog is proxied through /ingest on this origin — no external preconnect needed -->
 <link rel="preconnect" href={PLAUSIBLE_HOST} />
-<link rel="dns-prefetch" href={`//${new URL(PLAUSIBLE_HOST).hostname}`} />
+<link rel="dns-prefetch" href={`//${PLAUSIBLE_HOSTNAME}`} />
 <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
 <link rel="dns-prefetch" href="//static.cloudflareinsights.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
