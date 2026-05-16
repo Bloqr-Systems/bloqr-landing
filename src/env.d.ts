@@ -21,6 +21,8 @@ interface ImportMetaEnv {
   readonly PUBLIC_PLAUSIBLE_DOMAIN?: string;
   readonly PUBLIC_POSTHOG_KEY?: string;
   readonly PUBLIC_CF_BEACON_TOKEN?: string;
+  /** Google Analytics 4 Measurement ID (e.g. G-XXXXXXXXXX). Leave empty to disable GA4. */
+  readonly PUBLIC_GA_MEASUREMENT_ID?: string;
 }
 
 interface ImportMeta {
@@ -31,4 +33,6 @@ interface Window {
   posthog?: import('posthog-js').PostHog;
   /** Guard flag set by PostHog.astro to prevent double-init on ClientRouter soft navigations. */
   __posthogInitialized?: boolean;
+  /** GA4 data layer. Populated by GoogleAnalytics.astro. */
+  dataLayer?: unknown[];
 }
