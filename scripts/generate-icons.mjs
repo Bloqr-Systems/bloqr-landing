@@ -10,6 +10,7 @@
  */
 
 import sharp from 'sharp';
+import { writeFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 
@@ -59,8 +60,30 @@ async function generateIcon(size, filename) {
 
 async function generateFaviconIco() {
   const svgBuffer = Buffer.from(svgTemplate(32));
+  const pngBuffer = await sharp(svgBuffer).png().toBuffer();
+  const iconDirSize = 6;
+  const iconEntrySize = 16;
+  const imageOffset = iconDirSize + iconEntrySize;
+  const iconBuffer = Buffer.alloc(imageOffset + pngBuffer.length);
+
+  // ICONDIR header
+  iconBuffer.writeUInt16LE(0, 0); // reserved
+  iconBuffer.writeUInt16LE(1, 2); // type = ICO
+  iconBuffer.writeUInt16LE(1, 4); // images count
+
+  // ICONDIRENTRY
+  iconBuffer.writeUInt8(32, 6); // width
+  iconBuffer.writeUInt8(32, 7); // height
+  iconBuffer.writeUInt8(0, 8); // color count
+  iconBuffer.writeUInt8(0, 9); // reserved
+  iconBuffer.writeUInt16LE(1, 10); // color planes
+  iconBuffer.writeUInt16LE(32, 12); // bits per pixel
+  iconBuffer.writeUInt32LE(pngBuffer.length, 14); // image data size
+  iconBuffer.writeUInt32LE(imageOffset, 18); // image data offset
+  pngBuffer.copy(iconBuffer, imageOffset);
+
   const outputPath = join(publicDir, 'favicon.ico');
-  await sharp(svgBuffer).toFile(outputPath);
+  await writeFile(outputPath, iconBuffer);
   console.log('✓ Generated favicon.ico (32×32)');
 }
 
