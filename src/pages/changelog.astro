@@ -46,9 +46,10 @@ function simpleMarkdown(md: string): string {
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     // [text](url) — only allow safe protocols to prevent javascript: injection
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, url) => {
-      const safe = /^(https?:\/\/|mailto:|\/|#)/.test(url.trim());
+      const trimmedUrl = url.trim();
+      const safe = /^(https?:\/\/|mailto:|#|\/(?!\/))/.test(trimmedUrl);
       if (!safe) return text; // strip unsafe links; render the label only
-      return `<a href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+      return `<a href="${trimmedUrl}" rel="noopener noreferrer" target="_blank">${text}</a>`;
     })
     // - list item
     .replace(/^- (.+)$/gm, '<li>$1</li>')
