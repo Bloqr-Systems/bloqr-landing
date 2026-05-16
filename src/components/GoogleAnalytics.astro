@@ -1,0 +1,33 @@
+---
+/**
+ * GoogleAnalytics.astro — Google Analytics 4 (gtag.js) integration.
+ *
+ * Only renders in production and only when PUBLIC_GA_MEASUREMENT_ID is set.
+ * The gtag script is loaded with `async` to avoid blocking rendering.
+ *
+ * To enable:
+ *   1. Set PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX in your Cloudflare Pages
+ *      environment variables (Settings → Environment variables).
+ *   2. For local testing, add it to .env: PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+ *
+ * Privacy note: GA4 collects page-view and event data. Bloqr does not send
+ * any DNS query data or filter-list contents to Google. See /privacy.
+ */
+const isProd = import.meta.env.PROD;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+{isProd && gaMeasurementId && (
+  <>
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+      is:inline
+    ></script>
+    <script define:vars={{ gaMeasurementId }} is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', gaMeasurementId);
+    </script>
+  </>
+)}

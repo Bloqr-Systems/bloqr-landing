@@ -6,7 +6,7 @@
  * canonical link, RSS link, favicon, PWA manifest, theme-color, font preloads
  * (via Astro 6 Fonts API), OG image preload, ClientRouter (View Transitions),
  * Plausible analytics, PostHog analytics, Cloudflare Web Analytics,
- * and Apollo.io website tracker.
+ * Google Analytics 4, and Apollo.io website tracker.
  */
 import { ClientRouter } from 'astro:transitions'; // Astro 6 replacement for ViewTransitions
 import Font from 'astro/components/Font.astro';
@@ -14,6 +14,7 @@ import { SITE_URL } from '../config';
 import Analytics from './Analytics.astro';
 import ApolloTracker from './ApolloTracker.astro';
 import CloudflareAnalytics from './CloudflareAnalytics.astro';
+import GoogleAnalytics from './GoogleAnalytics.astro';
 import PostHog from './PostHog.astro';
 
 interface Props {
@@ -97,6 +98,9 @@ const canonical = canonicalURL.toString();
 <!-- Note: PostHog is proxied through /ingest on this origin — no external preconnect needed -->
 <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin />
 <link rel="dns-prefetch" href="//static.cloudflareinsights.com" />
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
 <link rel="dns-prefetch" href="//assets.apollo.io" />
 
 <!-- Astro 6 Fonts API — self-hosted via fontsource, with preload links -->
@@ -109,4 +113,5 @@ const canonical = canonicalURL.toString();
 <Analytics />
 <PostHog />
 <CloudflareAnalytics />
+<GoogleAnalytics />
 <ApolloTracker />
