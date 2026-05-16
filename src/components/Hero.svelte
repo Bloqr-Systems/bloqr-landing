@@ -188,6 +188,10 @@
     50%       { opacity: 0.5; transform: scale(0.8); }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .badge-dot { animation: none; }
+  }
+
   h1 {
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 800;

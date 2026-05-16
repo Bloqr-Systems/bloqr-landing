@@ -172,6 +172,10 @@
     50%       { opacity: 0.45; transform: scale(0.75); }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .pulse { animation: none; }
+  }
+
   /* ─── Headline ───────────────────────────────────────── */
   .headline {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
@@ -240,7 +244,7 @@
 
   .error-msg {
     font-size: 13px;
-    color: #f87171;
+    color: var(--color-error);
     margin: -8px 0 0;
   }
 

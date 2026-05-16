@@ -309,7 +309,7 @@
 
   .error-msg {
     font-size: 13px;
-    color: #f87171;
+    color: var(--color-error);
     margin-top: 4px;
     margin-bottom: 0;
   }

@@ -44,6 +44,16 @@ export const SITE_URL: string =
     : undefined) ?? EXTERNAL_URLS.landing;
 
 /**
+ * PLAUSIBLE_HOST — canonical Plausible Analytics script host.
+ *
+ * Used by BaseHead.astro for the preconnect hint and by Analytics.astro for
+ * the script src. Centralised here so a proxy migration only needs one edit.
+ */
+export const PLAUSIBLE_HOST = 'https://plausible.io';
+/** Bare hostname extracted from PLAUSIBLE_HOST — used for dns-prefetch hints. */
+export const PLAUSIBLE_HOSTNAME = new URL(PLAUSIBLE_HOST).hostname;
+
+/**
  * POSTHOG_HOST — subdomain reverse-proxy for PostHog analytics.
  *
  * All PostHog event/decide/asset requests are routed through this first-party
