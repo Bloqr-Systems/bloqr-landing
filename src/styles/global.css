@@ -1,5 +1,6 @@
 /* Brand tokens — mirrors /brand/tokens.css */
 :root {
+  color-scheme: dark;
   --bg-base:      #070B14;
   --bg-surface:   #0E1829;
   --bg-elevated:  #162035;
@@ -52,6 +53,72 @@
      correctly on any future custom-head page that omits those <Font> tags. */
   --font-display: system-ui, sans-serif;
   --font-mono:    monospace;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-base:      #F8FAFC;
+  --bg-surface:   #F1F5F9;
+  --bg-elevated:  #E2E8F0;
+  --orange:       #E54A00;
+  --orange-hover: #FF5500;
+  --orange-dim:   rgba(229,74,0,0.08);
+  --cyan:         #0099BB;
+  --cyan-dim:     rgba(0,153,187,0.08);
+  --text-1:       #0F172A;
+  --text-2:       #334155;
+  --text-3:       #64748B;
+  --border:       #E2E8F0;
+  --border-2:     #CBD5E1;
+  --color-success:        #16a34a;
+  --color-success-dim:    rgba(22,163,74,0.10);
+  --color-success-border: rgba(22,163,74,0.25);
+  --color-warning:        #d97706;
+  --color-warning-dim:    rgba(217,119,6,0.08);
+  --color-warning-border: rgba(217,119,6,0.25);
+  --color-error:          #dc2626;
+  --color-error-dim:      rgba(220,38,38,0.10);
+  --color-error-border:   rgba(220,38,38,0.30);
+  --persona-dev:            #4d7c0f;
+  --persona-dev-dim:        rgba(77,124,15,0.08);
+  --persona-dev-border:     rgba(77,124,15,0.25);
+  --persona-partner:        #b45309;
+  --persona-partner-dim:    rgba(180,83,9,0.08);
+  --persona-partner-border: rgba(180,83,9,0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']):not([data-theme='light']) {
+    color-scheme: light;
+    --bg-base:      #F8FAFC;
+    --bg-surface:   #F1F5F9;
+    --bg-elevated:  #E2E8F0;
+    --orange:       #E54A00;
+    --orange-hover: #FF5500;
+    --orange-dim:   rgba(229,74,0,0.08);
+    --cyan:         #0099BB;
+    --cyan-dim:     rgba(0,153,187,0.08);
+    --text-1:       #0F172A;
+    --text-2:       #334155;
+    --text-3:       #64748B;
+    --border:       #E2E8F0;
+    --border-2:     #CBD5E1;
+    --color-success:        #16a34a;
+    --color-success-dim:    rgba(22,163,74,0.10);
+    --color-success-border: rgba(22,163,74,0.25);
+    --color-warning:        #d97706;
+    --color-warning-dim:    rgba(217,119,6,0.08);
+    --color-warning-border: rgba(217,119,6,0.25);
+    --color-error:          #dc2626;
+    --color-error-dim:      rgba(220,38,38,0.10);
+    --color-error-border:   rgba(220,38,38,0.30);
+    --persona-dev:            #4d7c0f;
+    --persona-dev-dim:        rgba(77,124,15,0.08);
+    --persona-dev-border:     rgba(77,124,15,0.25);
+    --persona-partner:        #b45309;
+    --persona-partner-dim:    rgba(180,83,9,0.08);
+    --persona-partner-border: rgba(180,83,9,0.25);
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -191,7 +258,7 @@ body {
 /* on the rendered code elements, so syntax highlighting is not fully         */
 /* CSP-independent and may still require `style-src` to allow inline styles.  */
 /* Dark theme colours are shown by default; light theme activates via         */
-/* `@media (prefers-color-scheme: light)`.                                    */
+/* `[data-theme='light']` or, when no explicit theme is set, the user's OS.   */
 
 /* Default: dark theme (houston) */
 .astro-code {
@@ -205,13 +272,24 @@ body {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* Light theme override */
+:root[data-theme='light'] .astro-code {
+  background-color: var(--shiki-light-bg) !important;
+}
+:root[data-theme='light'] .astro-code,
+:root[data-theme='light'] .astro-code span {
+  color: var(--shiki-light) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
+}
+
+/* Light theme override when no explicit theme is set */
 @media (prefers-color-scheme: light) {
-  .astro-code {
+  :root:not([data-theme='dark']):not([data-theme='light']) .astro-code {
     background-color: var(--shiki-light-bg) !important;
   }
-  .astro-code,
-  .astro-code span {
+  :root:not([data-theme='dark']):not([data-theme='light']) .astro-code,
+  :root:not([data-theme='dark']):not([data-theme='light']) .astro-code span {
     color: var(--shiki-light) !important;
     font-style: var(--shiki-light-font-style) !important;
     font-weight: var(--shiki-light-font-weight) !important;

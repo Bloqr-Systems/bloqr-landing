@@ -1,26 +1,39 @@
-<script>
-  import { onMount, tick } from 'svelte';
+<script lang="ts">
   import { LINKS } from '../config';
+
+  type Theme = 'dark' | 'light';
+
+  const THEME_STORAGE_KEY = 'theme';
+  const THEME_MEDIA_QUERY = '(prefers-color-scheme: light)';
 
   let scrolled    = $state(false);
   let menuOpen    = $state(false);
   let currentPath = $state('/');
+  let theme       = $state<Theme>('dark');
 
   /** Bound to the hamburger <button> so focus can return there on menu close. */
-  let hamburgerEl = $state(null);
+  let hamburgerEl = $state<HTMLButtonElement | null>(null);
   /** Bound to the mobile-menu <div> for focus-trap queries. */
-  let menuEl      = $state(null);
+  let menuEl      = $state<HTMLDivElement | null>(null);
 
-  onMount(() => {
+  $effect(() => {
+    if (typeof window === 'undefined') return;
+
     currentPath = window.location.pathname;
-    const handleScroll = () => { scrolled = window.scrollY > 10; };
-    const handlePageLoad = () => {
+    scrolled = window.scrollY > 10;
+    applyTheme(getPreferredTheme());
+
+    const handleScroll = (): void => { scrolled = window.scrollY > 10; };
+    const handlePageLoad = (): void => {
       currentPath = window.location.pathname;
       scrolled    = window.scrollY > 10;  // re-sync scroll state — View Transitions don't fire a scroll event
       menuOpen    = false;                 // always close mobile menu after navigation
+      applyTheme(getPreferredTheme());
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('astro:page-load', handlePageLoad);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('astro:page-load', handlePageLoad);
@@ -30,9 +43,9 @@
   // Focus trap: while the mobile menu is open, keep Tab focus inside it.
   // On close (by any means), return focus to the hamburger button.
   $effect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen || typeof document === 'undefined') return;
 
-    const handleKeydown = (e) => {
+    const handleKeydown = (e: KeyboardEvent): void => {
       if (e.key === 'Escape') {
         closeMenu();
         return;
@@ -40,7 +53,7 @@
       if (e.key !== 'Tab' || !menuEl) return;
 
       const focusable = Array.from(
-        menuEl.querySelectorAll('a:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+        menuEl.querySelectorAll<HTMLElement>('a, button:not([disabled]), [tabindex]:not([tabindex="-1"])')
       );
       if (focusable.length === 0) return;
 
@@ -59,8 +72,8 @@
     document.addEventListener('keydown', handleKeydown);
 
     // Move focus to first focusable item in the menu
-    tick().then(() => {
-      menuEl?.querySelector('a, button')?.focus();
+    queueMicrotask((): void => {
+      menuEl?.querySelector<HTMLElement>('a, button')?.focus();
     });
 
     return () => {
@@ -70,10 +83,33 @@
     };
   });
 
-  function closeMenu() { menuOpen = false; }
-  function toggleMenu() { menuOpen = !menuOpen; }
+  function getPreferredTheme(): Theme {
+    if (typeof window === 'undefined') return 'dark';
 
-  function isActive(href) {
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (storedTheme === 'dark' || storedTheme === 'light') return storedTheme;
+
+    return window.matchMedia(THEME_MEDIA_QUERY).matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(nextTheme: Theme, persist = false): void {
+    theme = nextTheme;
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', nextTheme);
+    }
+    if (persist && typeof window !== 'undefined') {
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    }
+  }
+
+  function toggleTheme(): void {
+    applyTheme(theme === 'dark' ? 'light' : 'dark', true);
+  }
+
+  function closeMenu(): void { menuOpen = false; }
+  function toggleMenu(): void { menuOpen = !menuOpen; }
+
+  function isActive(href: string): boolean {
     if (!href || href.startsWith('/#')) return false;
     return currentPath === href || currentPath.startsWith(href + '/');
   }
@@ -107,6 +143,17 @@
       <li><a href={LINKS.about} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
       <li><a href="/#waitlist" class="nav-highlight">Early Access</a></li>
     </ul>
+
+    <button
+      type="button"
+      class="theme-toggle theme-toggle--desktop"
+      onclick={toggleTheme}
+      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={theme === 'light'}
+    >
+      <span class="theme-toggle__icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+      <span class="sr-only">{theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+    </button>
 
     <!-- Desktop CTA -->
     <div class="nav-cta">
@@ -159,6 +206,16 @@
         <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join Early Access →</a></li>
       </ul>
       <div class="mobile-footer">
+        <button
+          type="button"
+          class="theme-toggle theme-toggle--mobile"
+          onclick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          aria-pressed={theme === 'light'}
+        >
+          <span class="theme-toggle__icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+          <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
+        </button>
         <a href={LINKS.docs} class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>Docs</a>
         <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>
           Launch App →
@@ -199,7 +256,7 @@
   nav.scrolled,
   nav.menu-open {
     border-bottom-color: var(--border);
-    background: rgba(7, 11, 20, 0.95);
+    background: color-mix(in srgb, var(--bg-base) 95%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
@@ -322,6 +379,34 @@
     flex-shrink: 0;
   }
 
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: color 150ms, border-color 150ms, background 150ms;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text-1);
+    border-color: var(--border-2);
+    background: var(--bg-surface);
+  }
+
+  .theme-toggle__icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
   /* ── Hamburger button ── */
   .hamburger {
     display: none;
@@ -351,7 +436,7 @@
   .mobile-backdrop {
     position: fixed;
     inset: 64px 0 0 0;
-    background: rgba(7, 11, 20, 0.6);
+    background: color-mix(in srgb, var(--bg-base) 60%, transparent);
     backdrop-filter: blur(2px);
     z-index: 98;
     /* button reset */
@@ -367,7 +452,7 @@
     top: 64px;
     left: 0;
     right: 0;
-    background: rgba(7, 11, 20, 0.98);
+    background: color-mix(in srgb, var(--bg-base) 98%, transparent);
     border-bottom: 1px solid var(--border);
     padding: 16px 24px 24px;
     z-index: 99;
@@ -397,7 +482,7 @@
   .mobile-links a:hover,
   .mobile-links a:active {
     color: var(--text-1);
-    background: rgba(255, 255, 255, 0.05);
+    background: color-mix(in srgb, var(--text-1) 5%, transparent);
   }
 
   .mobile-highlight {
@@ -416,7 +501,8 @@
     gap: 12px;
   }
 
-  .mobile-footer .btn {
+  .mobile-footer .btn,
+  .mobile-footer .theme-toggle {
     flex: 1;
     justify-content: center;
   }
@@ -424,7 +510,8 @@
   /* ── Responsive breakpoint ── */
   @media (max-width: 860px) {
     .nav-links,
-    .nav-cta { display: none; }
+    .nav-cta,
+    .theme-toggle--desktop { display: none; }
     .hamburger { display: flex; }
   }
 
