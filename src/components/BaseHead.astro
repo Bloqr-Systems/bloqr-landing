@@ -50,13 +50,28 @@ const {
 
 const canonical = canonicalURL.toString();
 ---
+<script is:inline>
+  (function () {
+    var theme = null;
 
+    try {
+      var storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') theme = storedTheme;
+    } catch {}
+
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  })();
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="author" content={author} />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="dark light" />
 
 <!-- Open Graph -->
 <meta property="og:site_name"    content="Bloqr AI" />
