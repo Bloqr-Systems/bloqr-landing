@@ -56,7 +56,7 @@ const canonical = canonicalURL.toString();
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="author" content={author} />
-<meta name="color-scheme" content="dark light" />
+<meta name="color-scheme" content="dark" />
 
 <!-- Open Graph -->
 <meta property="og:site_name"    content="Bloqr AI" />
@@ -86,13 +86,18 @@ const canonical = canonicalURL.toString();
 <link rel="alternate" type="application/rss+xml" title="Bloqr AI Blog" href="/rss.xml" />
 
 <!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
 <link rel="apple-touch-icon" href="/icon-192.png" />
 
 <!-- PWA / Theme -->
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#FF5500" />
+<meta name="msapplication-TileColor" content="#070B14" />
+<meta name="msapplication-TileImage" content="/icon-192.png" />
+<meta name="msapplication-config" content="none" />
 
 <!-- Preconnect to third-party analytics origins to reduce connection latency -->
 <!-- Note: PostHog is proxied through /ingest on this origin — no external preconnect needed -->
