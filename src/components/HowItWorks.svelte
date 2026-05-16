@@ -632,7 +632,7 @@
     flex-shrink: 0;
   }
 
-  .status-dot.green { background: #4ade80; }
+  .status-dot.green { background: var(--color-success); }
 
   @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -640,6 +640,10 @@
   }
 
   .status-dot.pulse { animation: blink 2s infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status-dot.pulse { animation: none; }
+  }
 
   .status-icon { font-size: 12px; }
   .status-text { color: var(--text-2); }
@@ -669,9 +673,9 @@
 
   /* Syntax */
   .k { color: var(--cyan); }
-  .s { color: #C3E88D; }
+  .s { color: var(--code-string); }
   .p { color: var(--text-1); }
   .c { color: var(--text-3); }
   .m { color: var(--orange); }
-  .t { color: #FFCB6B; }
+  .t { color: var(--code-template); }
 </style>
