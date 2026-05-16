@@ -565,13 +565,13 @@
   .persona-badge.dev {
     background: rgba(195,232,141,0.08);
     border-color: rgba(195,232,141,0.25);
-    color: #C3E88D;
+    color: var(--code-string);
   }
 
   .persona-badge.partner {
     background: rgba(255,203,107,0.08);
     border-color: rgba(255,203,107,0.25);
-    color: #FFCB6B;
+    color: var(--code-template);
   }
 
   .panel-copy h3 {
@@ -662,7 +662,7 @@
     line-height: 1.6;
   }
 
-  .partner-cta strong { color: #FFCB6B; }
+  .partner-cta strong { color: var(--code-template); }
 
   /* ── Mock card (UI mockup) ───────────────────────────── */
   .panel-visual { position: relative; }
@@ -843,8 +843,8 @@
     flex-shrink: 0;
   }
 
-  .inst-dot.green { background: #4ade80; }
-  .inst-dot.amber { background: #fbbf24; }
+  .inst-dot.green { background: var(--color-success); }
+  .inst-dot.amber { background: var(--color-warning); }
 
   .inst-meta {
     font-size: 11px;
@@ -906,7 +906,7 @@
     text-transform: uppercase;
   }
 
-  .green-text { color: #4ade80; }
+  .green-text { color: var(--color-success); }
 
   /* Dev panel visual */
   .dev-visual {
@@ -959,7 +959,7 @@
   }
 
   .ck { color: var(--cyan); }
-  .cs { color: #C3E88D; }
+  .cs { color: var(--code-string); }
   .cp { color: var(--text-1); }
 
   .api-pills {
@@ -1009,8 +1009,8 @@
   }
 
   .vendor-row.connected {
-    border-color: rgba(74,222,128,0.25);
-    background: rgba(74,222,128,0.04);
+    border-color: var(--color-success-border);
+    background: var(--color-success-dim);
   }
 
   .vr-logo { font-size: 18px; flex-shrink: 0; }
@@ -1034,16 +1034,16 @@
     font-family: var(--font-mono);
   }
 
-  .connected-status { color: #4ade80; }
+  .connected-status { color: var(--color-success); }
 
   .vr-badge {
     font-size: 10px;
     font-weight: 700;
     padding: 2px 8px;
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.25);
+    background: var(--color-success-dim);
+    border: 1px solid var(--color-success-border);
     border-radius: 9999px;
-    color: #4ade80;
+    color: var(--color-success);
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }

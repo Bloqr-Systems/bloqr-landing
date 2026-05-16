@@ -24,9 +24,20 @@ const sections = changelogEntries
     content:  entry.data.content,
   }));
 
-// Minimal markdown-to-html — only what changelogs actually use
+// Minimal markdown-to-html — only what changelogs actually use.
+// HTML-escapes raw content first to prevent injection from the external source.
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function simpleMarkdown(md: string): string {
-  return md
+  const escaped = escapeHtml(md);
+  return escaped
     // ### heading
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     // **bold**

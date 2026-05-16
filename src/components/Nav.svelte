@@ -1,10 +1,15 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { LINKS } from '../config';
 
-  let scrolled  = $state(false);
-  let menuOpen  = $state(false);
+  let scrolled    = $state(false);
+  let menuOpen    = $state(false);
   let currentPath = $state('/');
+
+  /** Bound to the hamburger <button> so focus can return there on menu close. */
+  let hamburgerEl = $state(null);
+  /** Bound to the mobile-menu <div> for focus-trap queries. */
+  let menuEl      = $state(null);
 
   onMount(() => {
     currentPath = window.location.pathname;
@@ -19,6 +24,49 @@
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('astro:page-load', handlePageLoad);
+    };
+  });
+
+  // Focus trap: while the mobile menu is open, keep Tab focus inside it.
+  // On close (by any means), return focus to the hamburger button.
+  $effect(() => {
+    if (!menuOpen) return;
+
+    const handleKeydown = (e) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        return;
+      }
+      if (e.key !== 'Tab' || !menuEl) return;
+
+      const focusable = Array.from(
+        menuEl.querySelectorAll('a:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeydown);
+
+    // Move focus to first focusable item in the menu
+    tick().then(() => {
+      menuEl?.querySelector('a, button')?.focus();
+    });
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+      // Return focus to the trigger button when the menu closes by any means
+      hamburgerEl?.focus();
     };
   });
 
@@ -72,6 +120,7 @@
 
     <!-- Hamburger button (mobile only) -->
     <button
+      bind:this={hamburgerEl}
       class="hamburger"
       onclick={toggleMenu}
       aria-expanded={menuOpen}
@@ -95,7 +144,7 @@
       aria-label="Close navigation menu"
       tabindex="-1"
     ></button>
-    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <div bind:this={menuEl} id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <ul class="mobile-links" role="list">
         <li><a href="/#why"           onclick={closeMenu}>Why Bloqr AI</a></li>
         <li><a href="/#how"           onclick={closeMenu}>How it works</a></li>
