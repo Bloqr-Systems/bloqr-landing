@@ -52,9 +52,18 @@ const canonical = canonicalURL.toString();
 ---
 <script is:inline>
   (function () {
-    var theme = localStorage.getItem('theme');
-    if (!theme) theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
+    var theme = null;
+
+    try {
+      var storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') theme = storedTheme;
+    } catch {}
+
+    if (theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
   })();
 </script>
 <meta charset="UTF-8" />
