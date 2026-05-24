@@ -44,7 +44,7 @@
       });
       const contentType = res.headers.get('content-type') || '';
       const data =
-        contentType.includes('application/json')
+        !res.ok && contentType.includes('application/json')
           ? await res.json().catch((parseError) => {
             const parseErrorMessage = parseError instanceof Error ? parseError.message : String(parseError);
             console.warn(`waitlist response JSON parse failed (${res.status}, ${contentType}): ${parseErrorMessage}`);
@@ -158,7 +158,7 @@
                 : status === 'success'
                   ? 'Successfully joined the waitlist.'
                 : status === 'error'
-                  ? `There was a problem joining the waitlist. ${errorMsg || 'Please try again.'}`
+                  ? 'There was a problem joining the waitlist. Please try again.'
                   : ''}
             </p>
 
