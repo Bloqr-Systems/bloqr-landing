@@ -43,7 +43,7 @@
         body:    JSON.stringify({ email: email.trim(), segment: segment || null }),
       });
       const contentType = res.headers.get('content-type') || '';
-      const data =
+      const errorData =
         !res.ok && contentType.includes('application/json')
           ? await res.json().catch((parseError) => {
             const parseErrorMessage = parseError instanceof Error ? parseError.message : String(parseError);
@@ -63,9 +63,9 @@
         status = 'duplicate';
       } else {
         status = 'error';
-        errorMsg = data?.error ?? 'Something went wrong.';
+        errorMsg = errorData?.error ?? 'Something went wrong.';
         if (ph) {
-          ph.capture('waitlist_signup_failed', { error: data?.error ?? 'unknown', segment: segment || null });
+          ph.capture('waitlist_signup_failed', { error: errorData?.error ?? 'unknown', segment: segment || null });
         }
       }
     } catch {
@@ -155,8 +155,6 @@
             <p id="waitlist-feedback" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
               {status === 'submitting'
                 ? 'Submitting your waitlist request.'
-                : status === 'success'
-                  ? 'Successfully joined the waitlist.'
                 : status === 'error'
                   ? 'There was a problem joining the waitlist. Please try again.'
                   : ''}
