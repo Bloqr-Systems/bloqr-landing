@@ -25,11 +25,22 @@
     syncTheme();
 
     const mediaQuery = window.matchMedia(THEME_MEDIA_QUERY);
+    let scrollRafId: number | null = null;
 
-    const handleScroll = (): void => { scrolled = window.scrollY > 10; };
+    const updateScrolledState = (): void => {
+      const nextScrolled = window.scrollY > 10;
+      if (nextScrolled !== scrolled) scrolled = nextScrolled;
+    };
+    const handleScroll = (): void => {
+      if (scrollRafId !== null) return;
+      scrollRafId = window.requestAnimationFrame(() => {
+        scrollRafId = null;
+        updateScrolledState();
+      });
+    };
     const handlePageLoad = (): void => {
       currentPath = window.location.pathname;
-      scrolled    = window.scrollY > 10;  // re-sync scroll state — View Transitions don't fire a scroll event
+      updateScrolledState(); // re-sync scroll state — View Transitions don't fire a scroll event
       menuOpen    = false;                 // always close mobile menu after navigation
       syncTheme();
     };
@@ -42,6 +53,7 @@
     mediaQuery.addEventListener('change', handleThemeChange);
 
     return () => {
+      if (scrollRafId !== null) window.cancelAnimationFrame(scrollRafId);
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('astro:page-load', handlePageLoad);
       mediaQuery.removeEventListener('change', handleThemeChange);
