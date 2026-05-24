@@ -6,6 +6,7 @@
 
   const THEME_STORAGE_KEY = 'theme';
   const THEME_MEDIA_QUERY = '(prefers-color-scheme: light)';
+  const SCROLL_THRESHOLD = 10;
 
   let scrolled    = $state(false);
   let menuOpen    = $state(false);
@@ -21,15 +22,26 @@
     if (typeof window === 'undefined') return;
 
     currentPath = window.location.pathname;
-    scrolled = window.scrollY > 10;
+    scrolled = window.scrollY > SCROLL_THRESHOLD;
     syncTheme();
 
     const mediaQuery = window.matchMedia(THEME_MEDIA_QUERY);
+    let scrollRafId: number | null = null;
 
-    const handleScroll = (): void => { scrolled = window.scrollY > 10; };
+    const updateScrolledState = (): void => {
+      const nextScrolled = window.scrollY > SCROLL_THRESHOLD;
+      if (nextScrolled !== scrolled) scrolled = nextScrolled;
+    };
+    const handleScroll = (): void => {
+      if (scrollRafId !== null) return;
+      scrollRafId = window.requestAnimationFrame(() => {
+        scrollRafId = null;
+        updateScrolledState();
+      });
+    };
     const handlePageLoad = (): void => {
       currentPath = window.location.pathname;
-      scrolled    = window.scrollY > 10;  // re-sync scroll state — View Transitions don't fire a scroll event
+      updateScrolledState(); // re-sync scroll state — View Transitions don't fire a scroll event
       menuOpen    = false;                 // always close mobile menu after navigation
       syncTheme();
     };
@@ -42,6 +54,7 @@
     mediaQuery.addEventListener('change', handleThemeChange);
 
     return () => {
+      if (scrollRafId !== null) window.cancelAnimationFrame(scrollRafId);
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('astro:page-load', handlePageLoad);
       mediaQuery.removeEventListener('change', handleThemeChange);

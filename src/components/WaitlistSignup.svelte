@@ -42,7 +42,15 @@
         },
         body:    JSON.stringify({ email: email.trim(), segment: segment || null }),
       });
-      const data = await res.json();
+      const contentType = res.headers.get('content-type') || '';
+      const errorData =
+        !res.ok && contentType.includes('application/json')
+          ? await res.json().catch((parseError) => {
+            const parseErrorMessage = parseError instanceof Error ? parseError.message : String(parseError);
+            console.warn(`waitlist response JSON parse failed (${res.status}, ${contentType}): ${parseErrorMessage}`);
+            return null;
+          })
+          : null;
 
       if (res.ok) {
         status = 'success';
@@ -55,9 +63,9 @@
         status = 'duplicate';
       } else {
         status = 'error';
-        errorMsg = data.error ?? 'Something went wrong.';
+        errorMsg = errorData?.error ?? 'Something went wrong.';
         if (ph) {
-          ph.capture('waitlist_signup_failed', { error: data.error ?? 'unknown', segment: segment || null });
+          ph.capture('waitlist_signup_failed', { error: errorData?.error ?? 'unknown', segment: segment || null });
         }
       }
     } catch {
@@ -105,7 +113,7 @@
             <p>You're already on the list — we'll be in touch soon.</p>
           </div>
         {:else}
-          <form onsubmit={submit} novalidate>
+          <form onsubmit={submit} novalidate aria-busy={status === 'submitting'}>
             <p class="form-label">Who are you? <span class="optional">(optional)</span></p>
             <div class="pills" role="group" aria-label="Select your role">
               {#each segments as seg}
@@ -130,6 +138,9 @@
                 placeholder="you@example.com"
                 required
                 autocomplete="email"
+                inputmode="email"
+                aria-invalid={status === 'error'}
+                aria-describedby="waitlist-feedback"
                 disabled={status === 'submitting'}
               />
               <button
@@ -140,6 +151,14 @@
                 {status === 'submitting' ? 'Joining…' : 'Join waitlist →'}
               </button>
             </div>
+
+            <p id="waitlist-feedback" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+              {status === 'submitting'
+                ? 'Submitting your waitlist request.'
+                : status === 'error'
+                  ? 'There was a problem joining the waitlist. Please try again.'
+                  : ''}
+            </p>
 
             {#if status === 'error'}
               <p class="error-msg" role="alert">{errorMsg}</p>
@@ -312,6 +331,18 @@
     color: var(--color-error);
     margin-top: 4px;
     margin-bottom: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .fine-print {
