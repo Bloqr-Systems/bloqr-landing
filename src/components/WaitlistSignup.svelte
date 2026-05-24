@@ -42,11 +42,12 @@
         },
         body:    JSON.stringify({ email: email.trim(), segment: segment || null }),
       });
-      const contentType = res.headers.get('content-type') ?? '';
+      const contentType = res.headers.get('content-type') || '';
       const data =
         contentType.includes('application/json')
           ? await res.json().catch((parseError) => {
-            console.warn(`waitlist response JSON parse failed (${res.status}, ${contentType})`, parseError);
+            const parseErrorMessage = parseError instanceof Error ? parseError.message : String(parseError);
+            console.warn(`waitlist response JSON parse failed (${res.status}, ${contentType}): ${parseErrorMessage}`);
             return null;
           })
           : null;
@@ -157,7 +158,7 @@
                 : status === 'success'
                   ? 'Successfully joined the waitlist.'
                 : status === 'error'
-                  ? 'There was a problem joining the waitlist. Please try again.'
+                  ? `There was a problem joining the waitlist. ${errorMsg || 'Please try again.'}`
                   : ''}
             </p>
 
