@@ -45,7 +45,10 @@
       const contentType = res.headers.get('content-type') ?? '';
       const data =
         contentType.includes('application/json')
-          ? await res.json().catch(() => null)
+          ? await res.json().catch((parseError) => {
+            console.warn('waitlist response JSON parse failed', parseError);
+            return null;
+          })
           : null;
 
       if (res.ok) {
@@ -152,7 +155,7 @@
               {status === 'submitting'
                 ? 'Submitting your waitlist request.'
                 : status === 'error'
-                  ? errorMsg
+                  ? 'There was a problem joining the waitlist. Please try again.'
                   : ''}
             </p>
 
