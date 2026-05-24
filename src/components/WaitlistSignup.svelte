@@ -46,7 +46,7 @@
       const data =
         contentType.includes('application/json')
           ? await res.json().catch((parseError) => {
-            console.warn('waitlist response JSON parse failed', parseError);
+            console.warn(`waitlist response JSON parse failed (${res.status}, ${contentType})`, parseError);
             return null;
           })
           : null;
@@ -154,6 +154,8 @@
             <p id="waitlist-feedback" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
               {status === 'submitting'
                 ? 'Submitting your waitlist request.'
+                : status === 'success'
+                  ? 'Successfully joined the waitlist.'
                 : status === 'error'
                   ? 'There was a problem joining the waitlist. Please try again.'
                   : ''}
