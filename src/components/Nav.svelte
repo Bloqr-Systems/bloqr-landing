@@ -6,6 +6,7 @@
 
   const THEME_STORAGE_KEY = 'theme';
   const THEME_MEDIA_QUERY = '(prefers-color-scheme: light)';
+  const SCROLL_THRESHOLD = 10;
 
   let scrolled    = $state(false);
   let menuOpen    = $state(false);
@@ -21,14 +22,14 @@
     if (typeof window === 'undefined') return;
 
     currentPath = window.location.pathname;
-    scrolled = window.scrollY > 10;
+    scrolled = window.scrollY > SCROLL_THRESHOLD;
     syncTheme();
 
     const mediaQuery = window.matchMedia(THEME_MEDIA_QUERY);
     let scrollRafId: number | null = null;
 
     const updateScrolledState = (): void => {
-      const nextScrolled = window.scrollY > 10;
+      const nextScrolled = window.scrollY > SCROLL_THRESHOLD;
       if (nextScrolled !== scrolled) scrolled = nextScrolled;
     };
     const handleScroll = (): void => {

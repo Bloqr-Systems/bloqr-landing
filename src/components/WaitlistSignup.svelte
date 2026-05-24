@@ -149,8 +149,11 @@
             </div>
 
             <p id="waitlist-feedback" class="sr-only" role="status" aria-live="polite" aria-atomic="true">
-              {status === 'submitting' ? 'Submitting your waitlist request.' : ''}
-              {status === 'error' ? errorMsg : ''}
+              {status === 'submitting'
+                ? 'Submitting your waitlist request.'
+                : status === 'error'
+                  ? errorMsg
+                  : ''}
             </p>
 
             {#if status === 'error'}
