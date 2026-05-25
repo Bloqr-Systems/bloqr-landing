@@ -188,6 +188,16 @@
       <li><a href="/#waitlist" class="nav-highlight">Early Access</a></li>
     </ul>
 
+    <!-- Desktop CTA -->
+    <div class="nav-cta">
+      <a href={LINKS.vpnMyths} class="nav-myths" class:active={isActive(LINKS.vpnMyths)} aria-current={isActive(LINKS.vpnMyths) ? 'page' : undefined}>VPN Myths</a>
+      <a href={LINKS.blog} class="nav-news" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a>
+      <a href={LINKS.docs} class="btn btn-ghost btn-sm" rel="noopener noreferrer" target="_blank">Docs</a>
+      <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank">
+        Launch App <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
     <button
       type="button"
       class="theme-toggle theme-toggle--desktop"
@@ -198,16 +208,6 @@
       <span class="theme-toggle__icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
       <span class="sr-only">{theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}</span>
     </button>
-
-    <!-- Desktop CTA -->
-    <div class="nav-cta">
-      <a href={LINKS.vpnMyths} class="nav-myths" class:active={isActive(LINKS.vpnMyths)} aria-current={isActive(LINKS.vpnMyths) ? 'page' : undefined}>VPN Myths</a>
-      <a href={LINKS.blog} class="nav-news" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a>
-      <a href={LINKS.docs} class="btn btn-ghost btn-sm" rel="noopener noreferrer" target="_blank">Docs</a>
-      <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank">
-        Launch App <span aria-hidden="true">→</span>
-      </a>
-    </div>
 
     <!-- Hamburger button (mobile only) -->
     <button
@@ -430,6 +430,10 @@
     cursor: pointer;
     transition: color 150ms, border-color 150ms, background 150ms;
     flex-shrink: 0;
+  }
+
+  .theme-toggle--desktop {
+    margin-left: 4px;
   }
 
   .theme-toggle:hover {
