@@ -173,7 +173,6 @@
       </div>
       <div class="logo-text">
         <span class="logo-name">BLOQR<span class="logo-ai">AI</span></span>
-        <span class="logo-sub">Internet Hygiene:<br/><span class="logo-sub-auto">Automated</span></span>
       </div>
     </a>
 
@@ -366,14 +365,6 @@
     opacity: 0.9;
   }
 
-  .logo-sub {
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--text-3);
-    text-transform: uppercase;
-  }
-
   /* ── Desktop nav links ── */
   .nav-links {
     display: flex;
@@ -560,9 +551,7 @@
     .hamburger { display: flex; }
   }
 
-  @media (max-width: 380px) {
-    .logo-sub { display: none; }
-  }
+
 
   .nav-news,
   .nav-myths {
@@ -579,11 +568,4 @@
 
   .nav-news.active { opacity: 0.75; }
   .nav-myths.active { opacity: 0.75; }
-
-  .logo-sub-auto {
-    color: var(--cyan);
-    display: block;
-    font-style: normal;
-    letter-spacing: 0.08em;
-  }
 </style>
