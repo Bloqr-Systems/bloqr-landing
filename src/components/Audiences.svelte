@@ -152,7 +152,7 @@
           <div class="persona-badge byo">Bring your own vendor</div>
           <h3>Keep what you've built. Finally make it scale.</h3>
           <p class="panel-lead">
-            Already using AdGuard, NextDNS, or Pi-hole? Good. Keep it.
+            Already using AdGuard, NextDNS, Pi-hole, Control D, or any other DNS provider? Good. Keep it.
             Bloqr becomes the intelligence layer on top — so you stop doing
             the same thing in twelve places.
           </p>
@@ -348,7 +348,7 @@
           <div class="persona-badge partner">Partner program</div>
           <h3>We're your intelligence layer, not your competition.</h3>
           <p class="panel-lead">
-            AdGuard, NextDNS, Pi-hole, uBlock — your filtering engine is excellent.
+            AdGuard, NextDNS, Pi-hole, Control D, Technitium, uBlock — your filtering engine is excellent.
             Bloqr is the AI list intelligence and management layer that makes it
             even more valuable to your users. We send you users. You protect them.
           </p>

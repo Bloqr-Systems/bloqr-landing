@@ -34,7 +34,7 @@
         <span class="byo-icon" aria-hidden="true">🔌</span>
         <div class="byo-tile__text">
           <strong>Bring your own vendor.</strong>
-          Already on AdGuard, NextDNS, or Pi-hole? Keep it.
+          Already on your own DNS provider? Keep it.
           Bloqr layers on top. Or let us handle everything — your choice, always.
         </div>
         <button
@@ -101,7 +101,7 @@
         <p class="byo-detail__footer">
           Choose us as your vendor and you get Cloudflare's security posture
           behind every DNS query — no enterprise contract required.
-          Or bring AdGuard, NextDNS, or Pi-hole and Bloqr stays in the
+          Or bring your own provider and Bloqr stays in the
           intelligence layer only. Either way, you're in control.
         </p>
       </div>
