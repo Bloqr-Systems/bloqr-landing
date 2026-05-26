@@ -14,8 +14,8 @@
     <p class="section-label">Ready for better internet hygiene?</p>
     <h2 class="section-title">Set it. Bloqr it. Done.<br />No tunnel required.</h2>
     <p class="section-desc">
-      Tiered plans for list makers, privacy vendors, and everyone who's done
-      paying monthly for a service that doesn't do what it claims.
+      We're in closed beta — account creation is open today, and we're shipping the full product in
+      Q3 '26. Pick the plan that fits, lock in early access.
     </p>
     <div class="tiers">
       <div class="tier">
@@ -34,8 +34,8 @@
       </div>
     </div>
     <div class="actions">
-      <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('launch_the_app')}>
-        Launch the app <span aria-hidden="true">→</span>
+      <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('join_the_beta')}>
+        Join the beta <span aria-hidden="true">→</span>
       </a>
       <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('view_docs')}>
         View docs

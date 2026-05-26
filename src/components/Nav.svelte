@@ -185,7 +185,7 @@
       <li><a href={LINKS.pricing} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
       <li><a href={LINKS.changelog} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
       <li><a href={LINKS.about} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
-      <li><a href="/#waitlist" class="nav-highlight">Early Access</a></li>
+      <li><a href="/#waitlist" class="nav-highlight">Closed Beta</a></li>
     </ul>
 
     <!-- Desktop CTA -->
@@ -194,7 +194,7 @@
       <a href={LINKS.blog} class="nav-news" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a>
       <a href={LINKS.docs} class="btn btn-ghost btn-sm" rel="noopener noreferrer" target="_blank">Docs</a>
       <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank">
-        Launch App <span aria-hidden="true">→</span>
+        Join Beta <span aria-hidden="true">→</span>
       </a>
     </div>
 
@@ -247,7 +247,7 @@
         <li><a href={LINKS.changelog} onclick={closeMenu} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
         <li><a href={LINKS.about}     onclick={closeMenu} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
         <li class="mobile-divider" aria-hidden="true"></li>
-        <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join Early Access →</a></li>
+        <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join the Beta →</a></li>
       </ul>
       <div class="mobile-footer">
         <button
@@ -262,7 +262,7 @@
         </button>
         <a href={LINKS.docs} class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>Docs</a>
         <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>
-          Launch App →
+          Join Beta →
         </a>
       </div>
     </div>
