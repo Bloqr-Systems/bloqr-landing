@@ -20,6 +20,7 @@ import Pricing from '../components/Pricing.svelte';
 import FounderNote from '../components/FounderNote.svelte';
 import FAQ from '../components/FAQ.svelte';
 import CtaBanner from '../components/CtaBanner.svelte';
+import AudienceWizard from '../components/AudienceWizard.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
@@ -142,6 +143,7 @@ const homeSchema = {
   <Nav client:idle transition:persist="nav" />
   <main id="main-content">
     <Hero client:idle />
+    <AudienceWizard client:load />
     <ComingSoon client:visible />
     <div class="divider-glow"></div>
     <Problem />
@@ -149,7 +151,9 @@ const homeSchema = {
     <HowItWorks client:visible />
     <Audiences client:visible />
     <div class="animate-on-scroll"><Features /></div>
-    <DynamicWorkers />
+    <div class="section--dev-only">
+      <DynamicWorkers />
+    </div>
     <WhyCloudflare />
     <div class="animate-on-scroll"><PrivacyCommitments /></div>
     <div class="animate-on-scroll"><Pricing /></div>
@@ -161,7 +165,9 @@ const homeSchema = {
     <div class="animate-on-scroll"><FounderNote /></div>
     <FAQ client:visible />
     <WaitlistSignup client:visible />
-    <CodeDemo client:visible />
+    <div class="section--dev-only section--dev-highlight">
+      <CodeDemo client:visible />
+    </div>
     <div class="animate-on-scroll"><CtaBanner /></div>
   </main>
   <Footer />
