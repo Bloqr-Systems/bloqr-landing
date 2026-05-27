@@ -192,7 +192,7 @@
       <!-- ── Step 3 ────────────────────────────────── -->
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Deploy to your vendor</h3>
+        <h3>Deploy to your provider</h3>
         <p>
           Push to your filtering service in one click. Or call the API.
           Or embed the library. Changes propagate to every device instantly.
@@ -216,7 +216,7 @@
         {#if !showCode[2]}
           <div class="ui-mock" aria-label="UI mockup: Deploy">
             <div class="mock-field-group">
-              <label class="mock-label">Deploy to vendor</label>
+              <label class="mock-label">Deploy to provider</label>
               <div class="mock-select-full">
                 🛡️ &nbsp;DNS provider — Home network ▾
               </div>
@@ -251,7 +251,7 @@
             <span class="k">import</span> <span class="p">&#123;</span> <span class="t">FilterCompiler</span> <span class="p">&#125;</span><br />
             &nbsp;&nbsp;<span class="k">from</span> <span class="s">"@bloqr/compiler"</span>
           </div>
-          <p class="code-note">Bring your own vendor or deploy to ours. Same API either way.</p>
+          <p class="code-note">Bring your own provider or deploy to ours. Same API either way.</p>
         {/if}
       </div>
 

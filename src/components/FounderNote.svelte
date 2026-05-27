@@ -18,7 +18,7 @@
 
         <p class="body-text">
           I built the first version of this for myself — a custom filter list on GitHub,
-          synced to self-hosted DNS filtering servers, layered on top of encrypted DNS. It worked
+          synced to a self-hosted DNS filtering server, layered on top of encrypted DNS. It worked
           perfectly. It also took a week to set up and required a Linux server in
           my living room.
         </p>
