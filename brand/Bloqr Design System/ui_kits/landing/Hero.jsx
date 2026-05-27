@@ -54,7 +54,7 @@ function Hero({ onWaitlist }) {
           fontSize: '0.92rem', color: 'var(--fg-2)', lineHeight: 1.5, textAlign: 'left',
         }}>
           <span aria-hidden style={{ fontSize: 16 }}>🔌</span>
-          <span><strong style={{ color: 'var(--fg-1)' }}>Bring your own vendor.</strong> Already on AdGuard, NextDNS, or Pi-hole? Keep it. Bloqr layers on top. Or let us handle everything — your choice, always.</span>
+          <span><strong style={{ color: 'var(--fg-1)' }}>Bring your own vendor.</strong> Happy with your current DNS setup? Keep it. Bloqr works alongside whatever you're already running. Starting fresh? We've got you covered. Bring your own. Or use ours.</span>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 64 }}>
