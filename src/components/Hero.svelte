@@ -15,6 +15,9 @@
   <div class="glow" aria-hidden="true"></div>
 
   <div class="container">
+    <div class="badge beta-status">
+      🔒 Closed beta — Q3 '26 launch
+    </div>
     <div class="badge">
       <span class="badge-dot" aria-hidden="true"></span>
       Set it. Bloqr it. Forget it.
@@ -109,8 +112,8 @@
     <!-- ─────────────────────────────────────────────────────────────────── -->
 
     <div class="actions">
-      <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackHeroCta('get_started_free')}>
-        Get started free <span aria-hidden="true">→</span>
+      <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackHeroCta('join_the_beta')}>
+        Join the beta <span aria-hidden="true">→</span>
       </a>
       <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank" onclick={() => trackHeroCta('read_the_docs')}>
         Read the docs
@@ -119,6 +122,7 @@
         See how it works
       </a>
     </div>
+    <p class="beta-note"><em>Account creation is open. Some features are still in development.</em></p>
 
     <!-- Stats bar -->
     <div class="stats" role="list">
@@ -172,6 +176,17 @@
     letter-spacing: 0.08em;
     color: var(--orange);
     text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .beta-status {
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    font-size: 13px;
+  }
+
+  .badge:last-of-type {
     margin-bottom: 32px;
   }
 
@@ -355,7 +370,14 @@
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 72px;
+    margin-bottom: 16px;
+  }
+
+  .beta-note {
+    font-size: 0.88rem;
+    color: var(--text-3);
+    margin: 0 auto 56px;
+    text-align: center;
   }
 
   /* ── Stats bar ────────────────────────────────────────────────────────── */

@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Hero from '../components/Hero.svelte';
 import SocialProof from '../components/SocialProof.svelte';
 import ComingSoon from '../components/ComingSoon.svelte';
@@ -137,6 +138,7 @@ const homeSchema = {
   <SchemaOrg schema={homeSchema} />
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
   <main id="main-content">
     <Hero client:idle />

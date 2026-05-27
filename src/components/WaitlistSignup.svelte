@@ -84,14 +84,14 @@
 
       <!-- Left: copy -->
       <div class="copy">
-        <p class="section-label">Early access</p>
+        <p class="section-label">Closed beta</p>
         <h2 class="section-title">Be first in line.</h2>
         <p class="section-desc">
           We're onboarding list makers and privacy vendors first — the people who
-          set the standard for everyone else. Get early access, shape the roadmap,
+          set the standard for everyone else. Get beta access, shape the roadmap,
           and lock in founding-member pricing.
         </p>
-        <ul class="perks" aria-label="Early access perks">
+        <ul class="perks" aria-label="Closed beta perks">
           <li><span class="perk-dot" aria-hidden="true"></span>Founding-member subscription pricing</li>
           <li><span class="perk-dot" aria-hidden="true"></span>Direct access to the roadmap</li>
           <li><span class="perk-dot" aria-hidden="true"></span>Priority onboarding &amp; support</li>
