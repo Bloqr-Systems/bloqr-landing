@@ -94,7 +94,7 @@
     height: 28px;
     padding: 0;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid color-mix(in srgb, var(--bg-surface) 45%, transparent);
     border-radius: 6px;
     color: var(--bg-surface);
     font-size: 18px;
@@ -105,7 +105,7 @@
   }
 
   .beta-banner__close:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.55);
+    background: color-mix(in srgb, var(--bg-surface) 18%, transparent);
+    border-color: color-mix(in srgb, var(--bg-surface) 70%, var(--border));
   }
 </style>
