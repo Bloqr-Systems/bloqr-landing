@@ -44,10 +44,12 @@
   };
 
   $effect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as Persona;
-    if (saved && saved !== audienceStore.persona) {
-      audienceStore.persona = saved;
-      document.body.dataset.persona = saved;
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const validPersonas: Persona[] = ['consumer', 'poweruser', 'developer', 'vendor'];
+    const validSaved: Persona = validPersonas.includes(saved as Persona) ? (saved as Persona) : null;
+    if (validSaved && validSaved !== audienceStore.persona) {
+      audienceStore.persona = validSaved;
+      document.body.dataset.persona = validSaved;
       dismissed = true;
     }
   });

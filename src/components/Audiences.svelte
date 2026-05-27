@@ -8,11 +8,15 @@
     vendor:    3,
   };
 
-  let activeTab = $state(audienceStore.persona ? (personaTabMap[audienceStore.persona] ?? 0) : 0);
+  function personaToTab(p: string | null): number {
+    return p ? (personaTabMap[p] ?? 0) : 0;
+  }
+
+  let activeTab = $state(personaToTab(audienceStore.persona));
 
   $effect(() => {
     if (audienceStore.persona !== null) {
-      activeTab = personaTabMap[audienceStore.persona] ?? 0;
+      activeTab = personaToTab(audienceStore.persona);
     }
   });
 
