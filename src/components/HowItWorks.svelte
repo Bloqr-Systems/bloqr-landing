@@ -251,7 +251,7 @@
             <span class="k">import</span> <span class="p">&#123;</span> <span class="t">FilterCompiler</span> <span class="p">&#125;</span><br />
             &nbsp;&nbsp;<span class="k">from</span> <span class="s">"@bloqr/compiler"</span>
           </div>
-          <p class="code-note">Bring your own provider or deploy to ours. Same API either way.</p>
+          <p class="code-note">Bring your own. Or use ours. Same API either way.</p>
         {/if}
       </div>
 
