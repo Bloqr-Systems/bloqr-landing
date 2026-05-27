@@ -218,7 +218,7 @@
             <div class="mock-field-group">
               <label class="mock-label">Deploy to vendor</label>
               <div class="mock-select-full">
-                🛡️ &nbsp;AdGuard DNS — Home network ▾
+                🛡️ &nbsp;DNS provider — Home network ▾
               </div>
             </div>
             <button class="mock-deploy-btn">

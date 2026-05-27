@@ -57,7 +57,7 @@ The schemas are exported from the JSR package if you want to validate on the cli
 
 **0.82** — Clerk removal, AI threat list GA, natural language rule builder (beta).
 
-**0.83** — Self-hosted deployment guide for Pi-hole and AdGuard Home integration, DNS-over-HTTPS endpoint.
+**0.83** — Self-hosted deployment guide for DNS filtering service integration, DNS-over-HTTPS endpoint.
 
 ---
 
