@@ -42,7 +42,7 @@
           <li>Genuinely no-log — we examine traffic to apply your rules, then discard it</li>
           <li>Zero traffic rerouting. Threats blocked at the DNS level.</li>
           <li>AI-powered threat lists that update in real time</li>
-          <li>Drop-in integration for Pi-hole, NextDNS, AdGuard, uBlock</li>
+          <li>Drop-in integration for Pi-hole, NextDNS, AdGuard, uBlock, and more</li>
         </ul>
       </div>
     </div><!-- /grid -->
