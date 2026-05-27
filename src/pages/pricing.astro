@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
@@ -99,6 +100,7 @@ const pricingSchema = {
   <SchemaOrg schema={pricingSchema} />
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content">
@@ -113,7 +115,7 @@ const pricingSchema = {
           for the life of the account. No crypto. No wallet. Just a card.
         </p>
         <div class="header-cta">
-          <a href="/#waitlist" class="btn btn-primary">Join Early Access →</a>
+          <a href="/#waitlist" class="btn btn-primary">Join the beta →</a>
           <a href="#compare"   class="btn btn-outline">Compare all plans</a>
         </div>
       </div>
@@ -139,7 +141,7 @@ const pricingSchema = {
               Your session token covers multiple API calls, so you're not re-entering payment
               details every time. The mechanism is automatic and invisible — you just call the API.
             </p>
-            <a href="/#waitlist" class="btn btn-outline">Get early access</a>
+            <a href="/#waitlist" class="btn btn-outline">Join the waitlist</a>
           </div>
 
           <!-- CSS-only flow diagram -->
@@ -299,7 +301,7 @@ const pricingSchema = {
         <h2>Internet Hygiene. Automated.</h2>
         <p>Set it. Bloqr it. Forget it.</p>
         <div class="cta-actions">
-          <a href="/#waitlist" class="btn btn-primary">Join Early Access →</a>
+          <a href="/#waitlist" class="btn btn-primary">Join the beta →</a>
           <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank">
             Read the docs
           </a>

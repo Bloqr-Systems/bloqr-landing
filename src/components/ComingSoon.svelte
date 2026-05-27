@@ -68,13 +68,13 @@
       {:else}
         <!-- ─── Default: capture form ─── -->
         <div class="badge-row">
-          <span class="badge" aria-label="Limited early access available">
+          <span class="badge" aria-label="Closed beta — Q3 2026 launch">
             <span class="pulse" aria-hidden="true"></span>
-            Early access — limited spots
+            Closed beta — Q3 '26
           </span>
         </div>
 
-        <p class="headline">Be first in line when we launch.</p>
+        <p class="headline">We're in closed beta. Full launch Q3 '26.</p>
 
         <form class="form" onsubmit={submit} novalidate>
           <label for="cs-email" class="visually-hidden">Email address</label>
@@ -100,7 +100,7 @@
           <p class="error-msg" role="alert">{errorMsg}</p>
         {/if}
 
-        <p class="fine-print">One email when you're in. No spam, ever.</p>
+        <p class="fine-print">One email when you're in. Full launch Q3 '26. No spam.</p>
       {/if}
 
     </div>

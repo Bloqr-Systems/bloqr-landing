@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
@@ -58,6 +59,7 @@ const aboutSchema = {
   <SchemaOrg schema={aboutSchema} />
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content" class="about-page">
@@ -260,10 +262,10 @@ const aboutSchema = {
         </p>
         <div class="cta-actions">
           <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank">
-            Get started free →
+            Join the beta →
           </a>
           <a href="/#waitlist" class="btn btn-outline">
-            Join the early access list
+            Join the waitlist
           </a>
         </div>
       </div>

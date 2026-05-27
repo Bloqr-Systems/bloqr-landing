@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
@@ -48,6 +49,7 @@ const privacySchema = {
   <SchemaOrg schema={privacySchema} />
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content" class="legal-page">

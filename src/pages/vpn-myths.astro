@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
@@ -288,6 +289,7 @@ const vpnMythsSchema = {
   <SchemaOrg schema={vpnMythsSchema} />
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content" class="myths-page">
@@ -476,7 +478,7 @@ const vpnMythsSchema = {
               </p>
               <div class="cta-actions">
                 <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank">
-                  Launch the app →
+                  Join the beta →
                 </a>
                 <a href="/" class="btn btn-outline">
                   Learn more

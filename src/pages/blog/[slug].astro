@@ -3,6 +3,7 @@ export const prerender = true;
 
 import '../../styles/global.css';
 import Nav from '../../components/Nav.svelte';
+import ClosedBetaBanner from '../../components/ClosedBetaBanner.svelte';
 import Footer from '../../components/Footer.svelte';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import BaseHead from '../../components/BaseHead.astro';
@@ -151,6 +152,7 @@ const blogPostSchema = {
   </script>
 </head>
 <body>
+  <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content" class="post-page">
