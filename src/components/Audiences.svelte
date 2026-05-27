@@ -1,5 +1,24 @@
-<script>
-  let activeTab = $state(0);
+<script lang="ts">
+  import { audienceStore } from '../lib/audience.svelte.ts';
+
+  const personaTabMap: Record<string, number> = {
+    consumer:  0,
+    poweruser: 1,
+    developer: 2,
+    vendor:    3,
+  };
+
+  function personaToTab(p: string | null): number {
+    return p ? (personaTabMap[p] ?? 0) : 0;
+  }
+
+  let activeTab = $state(personaToTab(audienceStore.persona));
+
+  $effect(() => {
+    if (audienceStore.persona !== null) {
+      activeTab = personaToTab(audienceStore.persona);
+    }
+  });
 
   const tabs = [
     { id: 'consumers',  label: 'Just starting out', short: 'Consumers',  icon: '🛡️' },

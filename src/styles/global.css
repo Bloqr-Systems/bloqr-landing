@@ -349,3 +349,16 @@ body {
     animation: none;
   }
 }
+
+/* ── Persona adaptations (set via AudienceWizard on body[data-persona]) ── */
+
+/* Consumer: hide deeply technical sections */
+body[data-persona="consumer"] .section--dev-only {
+  display: none;
+}
+
+/* Developer: give CodeDemo a subtle highlight */
+body[data-persona="developer"] .section--dev-highlight {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 1px var(--cyan), 0 20px 60px rgba(0, 212, 255, 0.08);
+}
