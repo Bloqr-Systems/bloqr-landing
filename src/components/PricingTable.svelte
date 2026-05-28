@@ -1,21 +1,9 @@
 <!-- Feature comparison table for /pricing page -->
 
 <script lang="ts">
-  const features = [
-    { label: 'Monthly price',           free: '$0',        payg: 'Usage-based', pro: '~$9/mo',   vendor: 'Custom' },
-    { label: 'Compiles/day',            free: '1,000',     payg: '500',           pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'Rules per compile',       free: '10,000',    payg: '50,000',        pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'Filter sources/compile',  free: '3',         payg: '5',             pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'AST storage',             free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Batch API',               free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Multi-format translation',free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Output retention',        free: '90 days',   payg: '7 days',        pro: '90 days',   vendor: '365 days' },
-    { label: 'Custom pipelines',        free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Priority queue',          free: false,       payg: false,           pro: false,       vendor: true },
-    { label: 'SLA',                     free: false,       payg: false,           pro: false,       vendor: true },
-    { label: 'API marketplace listing', free: 'Coming soon', payg: 'Coming soon', pro: 'Coming soon', vendor: 'Coming soon' },
-    { label: 'Support',                 free: 'Community', payg: 'Community',     pro: 'Email',     vendor: 'Dedicated' },
-  ];
+  import { PRICING_FEATURE_ROWS } from '../lib/pricing';
+
+  const features = PRICING_FEATURE_ROWS;
 </script>
 
 <section class="pricing-table-section">
