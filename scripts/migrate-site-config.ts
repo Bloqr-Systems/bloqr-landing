@@ -16,18 +16,27 @@
 
 import { neon } from '@neondatabase/serverless';
 
+// Type alias for globalThis augmented with the Deno runtime object.
+// TypeScript does not know about Deno globals, so we cast once here and
+// reference the alias throughout the file.
+type GlobalWithDeno = typeof globalThis & {
+  Deno: {
+    env: { get(k: string): string | undefined };
+    exit(code: number): never;
+  };
+};
+const globalWithDeno = globalThis as unknown as GlobalWithDeno;
+
 // Support both Deno and Node.js runtimes
-const isDeno = typeof globalThis.Deno !== 'undefined';
+const isDeno = typeof globalWithDeno.Deno !== 'undefined';
 
 function getEnv(key: string): string | undefined {
-  return isDeno
-    ? globalThis.Deno.env.get(key)
-    : process.env[key];
+  return isDeno ? globalWithDeno.Deno.env.get(key) : process.env[key];
 }
 
 function exit(code: number): never {
   if (isDeno) {
-    globalThis.Deno.exit(code);
+    globalWithDeno.Deno.exit(code);
   } else {
     process.exit(code);
   }

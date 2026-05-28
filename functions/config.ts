@@ -47,7 +47,7 @@ export async function handleGet(_request: Request, env: Env): Promise<Response> 
   const sql = neon(env.DATABASE_URL);
 
   try {
-    const rows = await sql<SiteConfigRow[]>`SELECT key, value FROM site_config ORDER BY key`;
+    const rows = (await sql`SELECT key, value FROM site_config ORDER BY key`) as SiteConfigRow[];
     const config: Record<string, string> = {};
     for (const row of rows) {
       config[row.key] = row.value;
