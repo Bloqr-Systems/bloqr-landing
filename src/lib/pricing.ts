@@ -14,8 +14,22 @@
 
 import { LINKS } from '../config';
 
+export type PricingTierId = 'personal' | 'payg' | 'power' | 'dev';
+export type PricingComparisonPlanId = 'free' | 'payg' | 'pro' | 'vendor';
+export type MappedPricingComparisonPlanId = Exclude<PricingComparisonPlanId, 'vendor'>;
+
+/**
+ * Explicit mapping between pricing-table columns and card-tier IDs.
+ * `vendor` is intentionally omitted because it represents a separate enterprise offering.
+ */
+export const PRICING_COMPARISON_TO_TIER_ID: Record<MappedPricingComparisonPlanId, PricingTierId> = {
+  free: 'dev', // "Free" comparison column represents the Developer / Self-Hosted offering.
+  payg: 'payg',
+  pro: 'power', // "Pro" comparison column corresponds to the Power User tier.
+};
+
 export interface PricingTier {
-  id: 'personal' | 'payg' | 'power' | 'dev';
+  id: PricingTierId;
   name: string;
   price: string;
   period: string;
@@ -29,13 +43,9 @@ export interface PricingTier {
   items: string[];
 }
 
-export interface PricingFeatureRow {
+export type PricingFeatureRow = {
   label: string;
-  free: string | boolean;
-  payg: string | boolean;
-  pro: string | boolean;
-  vendor: string | boolean;
-}
+} & Record<PricingComparisonPlanId, string | boolean>;
 
 export const PRICING_TIERS: PricingTier[] = [
   {
