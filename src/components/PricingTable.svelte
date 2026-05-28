@@ -2,19 +2,30 @@
 
 <script lang="ts">
   const features = [
-    { label: 'Monthly price',           free: '$0',        payg: '$0.01/compile', pro: '~$9/mo',   vendor: 'Custom' },
-    { label: 'Compiles/day',            free: '1,000',     payg: '500',           pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'Rules per compile',       free: '10,000',    payg: '50,000',        pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'Filter sources/compile',  free: '3',         payg: '5',             pro: 'Unlimited', vendor: 'Unlimited' },
-    { label: 'AST storage',             free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Batch API',               free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Multi-format translation',free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Output retention',        free: '90 days',   payg: '7 days',        pro: '90 days',   vendor: '365 days' },
-    { label: 'Custom pipelines',        free: false,       payg: false,           pro: true,        vendor: true },
-    { label: 'Priority queue',          free: false,       payg: false,           pro: false,       vendor: true },
-    { label: 'SLA',                     free: false,       payg: false,           pro: false,       vendor: true },
-    { label: 'API marketplace listing', free: 'Coming soon', payg: 'Coming soon', pro: 'Coming soon', vendor: 'Coming soon' },
-    { label: 'Support',                 free: 'Community', payg: 'Community',     pro: 'Email',     vendor: 'Dedicated' },
+    { label: 'Monthly price (personal)',    starter: '$3.99',   devPro: '$24.99',    vendor: '$29.99',    enterprise: 'Custom' },
+    { label: 'Monthly price (business)',    starter: '$5.99',   devPro: '$29.99',    vendor: '$39.99',    enterprise: 'Custom' },
+    { label: 'Deployment model',            starter: 'SaaS',    devPro: 'SaaS + SDK', vendor: 'SaaS + SDK + Edge', enterprise: 'All' },
+    { label: 'Compiles/day',                starter: '50',      devPro: '5,000',     vendor: '10,000',    enterprise: 'Unlimited' },
+    { label: 'Rules per compile',           starter: '2,000',   devPro: '100,000',   vendor: '100,000',   enterprise: 'Unlimited' },
+    { label: 'Filter sources/compile',      starter: '2',       devPro: 'Unlimited', vendor: 'Unlimited', enterprise: 'Unlimited' },
+    { label: 'REST API',                    starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Streaming API',               starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Async / batch API',           starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'CLI build tools',             starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'SDK license (local embed)',   starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Web APIs from local SDK',     starter: false,     devPro: '+ usage',   vendor: '+ usage',   enterprise: '+ usage' },
+    { label: 'Custom pipelines',            starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Natural language rules',      starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Priority threat intel',       starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'AST storage',                 starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'Output retention',            starter: '30 days', devPro: '1 year',    vendor: '2 years',   enterprise: 'Custom' },
+    { label: 'Multi-instance management',   starter: false,     devPro: false,       vendor: true,        enterprise: true },
+    { label: 'Cloudflare edge deploy',      starter: false,     devPro: false,       vendor: 'Add-on',    enterprise: true },
+    { label: 'Priority queue',              starter: false,     devPro: true,        vendor: true,        enterprise: true },
+    { label: 'SLA',                         starter: false,     devPro: false,       vendor: '99.9%',     enterprise: 'Custom' },
+    { label: 'API marketplace listing',     starter: false,     devPro: 'Coming soon', vendor: 'Coming soon', enterprise: 'Coming soon' },
+    { label: 'Invoice billing',             starter: false,     devPro: false,       vendor: true,        enterprise: true },
+    { label: 'Support',                     starter: 'Community', devPro: 'Priority email', vendor: 'Dedicated', enterprise: 'Dedicated + Slack' },
   ];
 </script>
 
@@ -23,6 +34,10 @@
     <div class="section-header">
       <p class="section-label">Compare Plans</p>
       <h2 class="section-title">Everything, side by side.</h2>
+      <p class="section-sub">
+        All usage above plan limits is billed per-call. Web API calls from the local SDK
+        always incur usage charges regardless of plan.
+      </p>
     </div>
 
     <div class="table-wrap">
@@ -30,25 +45,30 @@
         <thead>
           <tr>
             <th scope="col" class="feature-col">Feature</th>
-            <th scope="col">Free</th>
-            <th scope="col" class="col-payg">Pay As You Go</th>
-            <th scope="col" class="col-pro">Pro</th>
-            <th scope="col">Vendor / Enterprise</th>
+            <th scope="col">Starter<br /><span class="price-hint">from $3.99</span></th>
+            <th scope="col" class="col-pro">Dev Pro<br /><span class="price-hint">from $24.99</span></th>
+            <th scope="col">Vendor<br /><span class="price-hint">from $29.99</span></th>
+            <th scope="col">Enterprise<br /><span class="price-hint">Custom</span></th>
           </tr>
         </thead>
         <tbody>
           {#each features as row}
             <tr>
               <th scope="row" class="feature-label">{row.label}</th>
-              <td>{@render cell(row.free)}</td>
-              <td class="col-payg">{@render cell(row.payg)}</td>
-              <td class="col-pro">{@render cell(row.pro)}</td>
+              <td>{@render cell(row.starter)}</td>
+              <td class="col-pro">{@render cell(row.devPro)}</td>
               <td>{@render cell(row.vendor)}</td>
+              <td>{@render cell(row.enterprise)}</td>
             </tr>
           {/each}
         </tbody>
       </table>
     </div>
+
+    <p class="table-note">
+      Business entity pricing is slightly higher than personal pricing.
+      All add-ons are available à la carte — see the pricing section above.
+    </p>
   </div>
 </section>
 
@@ -93,6 +113,15 @@
     font-weight: 700;
     color: var(--text-1);
     line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   .table-wrap {
@@ -119,15 +148,22 @@
     color: var(--text-2);
     border-bottom: 1px solid var(--border);
     white-space: nowrap;
+    line-height: 1.5;
+  }
+
+  .price-hint {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-3);
+    margin-top: 2px;
   }
 
   thead th.feature-col {
     text-align: left;
     color: var(--text-3);
-  }
-
-  thead th.col-payg {
-    color: var(--cyan);
   }
 
   thead th.col-pro {
@@ -171,6 +207,14 @@
   .cross {
     color: var(--text-3);
     font-size: 0.8rem;
+  }
+
+  .table-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.6;
   }
 
   @media (max-width: 700px) {

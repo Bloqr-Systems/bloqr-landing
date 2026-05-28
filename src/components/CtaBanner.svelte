@@ -20,17 +20,17 @@
     <div class="tiers">
       <div class="tier">
         <span class="tier-name">Personal</span>
-        <span class="tier-desc">For households who just want it handled</span>
+        <span class="tier-desc">From $3.99/mo · SaaS, fully managed</span>
       </div>
       <div class="tier-sep" aria-hidden="true">·</div>
       <div class="tier">
-        <span class="tier-name">Power User</span>
-        <span class="tier-desc">AI threat feeds + custom pipelines</span>
+        <span class="tier-name">Developer</span>
+        <span class="tier-desc">From $9.99/mo · SDK + pipelines + APIs</span>
       </div>
       <div class="tier-sep" aria-hidden="true">·</div>
       <div class="tier">
-        <span class="tier-name">Developer / Self-Hosted</span>
-        <span class="tier-desc">Self-hosted · GPL-3.0 · Free forever</span>
+        <span class="tier-name">Vendor</span>
+        <span class="tier-desc">From $29.99/mo · Multi-instance + edge</span>
       </div>
     </div>
     <div class="actions">

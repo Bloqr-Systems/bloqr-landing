@@ -165,7 +165,7 @@
             {/if}
 
             <p class="fine-print">No spam. One email when you're in.</p>
-            <p class="price-hint">Free tier at launch. Pro tier under <span class="price-figure">$5/month</span>. No two-year contracts.</p>
+            <p class="price-hint">Starting at <span class="price-figure">$3.99/month</span>. No free tier. No two-year contracts.</p>
           </form>
         {/if}
       </div>

@@ -18,11 +18,11 @@
     },
     {
       q: 'What happens to my data if I cancel?',
-      a: 'You can export your full configuration (lists, rules, settings) as JSON at any time. If you cancel, your data is deleted within 30 days. No hostage data. The GPL-3.0 open-source version means you can always self-host and never be locked out.',
+      a: 'You can export your full configuration (lists, rules, settings) as JSON at any time. If you cancel, your data is deleted within 30 days. No hostage data. Your compiled output files are yours to keep.',
     },
     {
-      q: 'Is the compiler itself open source?',
-      a: 'Yes. The adblock filter list compiler at the core of Bloqr is GPL-3.0 licensed and available on GitHub. The managed platform (AI features, vendor integrations, dashboard) is a paid product, but the engine is yours to run, fork, and audit.',
+      q: 'Is the compiler open source?',
+      a: 'No. The core Bloqr compiler library is proprietary and available only via a commercial license. SDK wrapper packages are distributed to licensed subscribers. There is no GPL or open-source version of the core engine.',
     },
     {
       q: 'What does "AI-powered" actually mean here?',
