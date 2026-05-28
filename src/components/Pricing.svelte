@@ -263,6 +263,7 @@
           class:active={activeAudience === aud.id}
           aria-selected={activeAudience === aud.id}
           onclick={() => { activeAudience = aud.id; }}
+          onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activeAudience = aud.id; } }}
         >
           {aud.label}
         </button>

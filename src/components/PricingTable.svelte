@@ -13,7 +13,7 @@
     { label: 'Async / batch API',           starter: false,     devPro: true,        vendor: true,        enterprise: true },
     { label: 'CLI build tools',             starter: false,     devPro: true,        vendor: true,        enterprise: true },
     { label: 'SDK license (local embed)',   starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Web APIs from local SDK',     starter: false,     devPro: '+ usage',   vendor: '+ usage',   enterprise: '+ usage' },
+    { label: 'Web APIs from local SDK',     starter: false,     devPro: 'Yes (usage fees apply)',   vendor: 'Yes (usage fees apply)',   enterprise: 'Yes (usage fees apply)' },
     { label: 'Custom pipelines',            starter: false,     devPro: true,        vendor: true,        enterprise: true },
     { label: 'Natural language rules',      starter: false,     devPro: true,        vendor: true,        enterprise: true },
     { label: 'Priority threat intel',       starter: false,     devPro: true,        vendor: true,        enterprise: true },
