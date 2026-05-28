@@ -294,7 +294,7 @@ export async function handleSendTest(request: Request, env: Env): Promise<Respon
       email:   parsed.to, // use recipient as the default footer email
       segment: null,
       ...parsed.params,
-    });
+    }) as Record<string, unknown>;
   } catch (err) {
     if (err instanceof ZodError) {
       return json({ error: 'Invalid template params.', details: err.issues }, 400);

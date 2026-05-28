@@ -7,6 +7,7 @@
  * Requires DATABASE_URL in environment (from .dev.vars or process.env).
  */
 
+// @ts-ignore — dotenv/config is a side-effect import; type declarations are not required
 import 'dotenv/config'; // optional, for .env support locally
 import { neon } from '@neondatabase/serverless';
 

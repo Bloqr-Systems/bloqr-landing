@@ -220,9 +220,9 @@ export async function getConfig(databaseUrl?: string): Promise<SiteConfig> {
   try {
     const { neon } = await import('@neondatabase/serverless');
     const sql = neon(url);
-    const rows = await sql<{ key: string; value: string }[]>`
+    const rows = (await sql`
       SELECT key, value FROM site_config
-    `;
+    `) as { key: string; value: string }[];
     const config = { ...DEFAULTS };
     for (const row of rows) {
       if (row.key in config) {

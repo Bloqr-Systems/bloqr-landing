@@ -155,7 +155,7 @@ function getOrCreateAuth(env: Env) {
     const oldestKey = authInstanceCache.keys().next().value!;
     authInstanceCache.delete(oldestKey);
   }
-  authInstanceCache.set(cacheKey, auth);
+  authInstanceCache.set(cacheKey, auth as ReturnType<typeof betterAuth>);
   return auth;
 }
 

@@ -67,12 +67,12 @@ function buildFrontmatter(post: BlogPostRow): string {
 async function syncPosts() {
   console.log('Syncing blog posts from Neon to src/content/blog/…');
 
-  const posts = await sql<BlogPostRow[]>`
+  const posts = (await sql`
     SELECT slug, title, description, content, pub_date, updated_date,
            author, category, tags, draft, og_image
     FROM blog_posts
     ORDER BY pub_date DESC
-  `;
+  `) as BlogPostRow[];
 
   mkdirSync(BLOG_DIR, { recursive: true });
 

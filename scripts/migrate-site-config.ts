@@ -17,17 +17,17 @@
 import { neon } from '@neondatabase/serverless';
 
 // Support both Deno and Node.js runtimes
-const isDeno = typeof globalThis.Deno !== 'undefined';
+const isDeno = typeof (globalThis as unknown as Record<string, unknown>).Deno !== 'undefined';
 
 function getEnv(key: string): string | undefined {
   return isDeno
-    ? globalThis.Deno.env.get(key)
+    ? (globalThis as unknown as Record<string, { env: { get(k: string): string | undefined } }>).Deno.env.get(key)
     : process.env[key];
 }
 
 function exit(code: number): never {
   if (isDeno) {
-    globalThis.Deno.exit(code);
+    (globalThis as unknown as Record<string, { exit(code: number): never }>).Deno.exit(code);
   } else {
     process.exit(code);
   }
