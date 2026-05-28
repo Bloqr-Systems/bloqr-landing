@@ -138,13 +138,13 @@ const whyNotPrivateSchema = {
 
           <div class="primer-card primer-card--problem" role="listitem">
             <div class="primer-icon" aria-hidden="true">📬</div>
-            <h3>DNS</h3>
+            <h3>Website lookups</h3>
             <p class="primer-headline">Shouts the address out loud.</p>
             <p>
               Before your browser opens that sealed envelope, it has to ask
               "where does this website live?" That question travels unencrypted —
-              like a postcard, not a letter. Your router owner, your ISP, and your
-              DNS server all see it.
+              like a postcard, not a letter. Your router owner, your internet provider, and your
+              website lookup service all see it.
             </p>
           </div>
 
@@ -152,12 +152,12 @@ const whyNotPrivateSchema = {
 
           <div class="primer-card primer-card--solution" role="listitem">
             <div class="primer-icon" aria-hidden="true">🔒</div>
-            <h3>DNS + Encryption</h3>
+            <h3>Private website lookups</h3>
             <p class="primer-headline">Seals both.</p>
             <p>
-              Encrypted DNS wraps that address lookup in the same kind of protection
+              Encrypted website lookups (also called encrypted DNS) wrap that address lookup in the same kind of protection
               HTTPS gives your page content. This is what Bloqr enables — so your
-              router and ISP see that you made a request, but not what it was for.
+              router and internet provider see that you made a request, but not what it was for.
             </p>
           </div>
 
@@ -177,9 +177,9 @@ const whyNotPrivateSchema = {
         </p>
 
         <!-- Without Bloqr flow -->
-        <div class="flow-diagram" aria-label="DNS lookup flow diagram — without encryption">
+        <div class="flow-diagram" aria-label="Website lookup flow diagram — without encryption">
           <div class="flow-label bad-flow-label">
-            <span class="flow-tag bad-tag">Without encrypted DNS</span>
+            <span class="flow-tag bad-tag">Without private lookup protection</span>
           </div>
           <div class="flow-row" role="list">
             <div class="flow-node" role="listitem">
@@ -201,7 +201,7 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-node bad-node" role="listitem">
               <span class="node-icon" aria-hidden="true">🏢</span>
-              <span class="node-name">Your ISP</span>
+              <span class="node-name">Your internet provider</span>
               <div class="node-badge bad-badge">Can read &amp; sell it</div>
             </div>
             <div class="flow-arrow" aria-hidden="true">
@@ -210,14 +210,14 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-node bad-node" role="listitem">
               <span class="node-icon" aria-hidden="true">📖</span>
-              <span class="node-name">DNS Server</span>
+              <span class="node-name">Website lookup service</span>
               <div class="node-badge bad-badge">Logs your queries</div>
             </div>
           </div>
         </div>
 
         <!-- With Bloqr flow -->
-        <div class="flow-diagram flow-diagram--good" aria-label="DNS lookup flow diagram — with Bloqr encrypted DNS">
+        <div class="flow-diagram flow-diagram--good" aria-label="Website lookup flow diagram — with Bloqr private lookups">
           <div class="flow-label good-flow-label">
             <span class="flow-tag good-tag">✓ With Bloqr</span>
           </div>
@@ -241,7 +241,7 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-node good-node" role="listitem">
               <span class="node-icon" aria-hidden="true">🏢</span>
-              <span class="node-name">Your ISP</span>
+              <span class="node-name">Your internet provider</span>
               <div class="node-badge good-badge">✓ Can't read it</div>
             </div>
             <div class="flow-arrow good-arrow" aria-hidden="true">
@@ -266,10 +266,10 @@ const whyNotPrivateSchema = {
     <!-- ── Who can see your DNS lookups ── -->
     <section class="who-sees">
       <div class="container">
-        <p class="section-label">Who can see your DNS lookups right now</p>
+        <p class="section-label">Who can see your website lookups right now</p>
         <h2 class="section-title">More people than you'd expect.</h2>
         <p class="section-desc">
-          Unless you've changed your DNS settings — and most people haven't — here's
+          Unless you've changed how your device looks up websites — and most people haven't — here's
           who can see every website your device looks up.
         </p>
 
@@ -287,10 +287,10 @@ const whyNotPrivateSchema = {
 
           <article class="who-card">
             <div class="who-icon" aria-hidden="true">🏢</div>
-            <h3>Your ISP</h3>
+            <h3>Your internet provider</h3>
             <p>
               Your internet provider sees every lookup your home network makes. In many
-              countries, ISPs are legally permitted to sell this data to advertisers —
+              countries, providers are legally permitted to sell this data to advertisers —
               and several major US providers have done exactly that. This data is a
               detailed map of your household's interests, routines, and concerns.
             </p>
@@ -298,12 +298,13 @@ const whyNotPrivateSchema = {
 
           <article class="who-card">
             <div class="who-icon" aria-hidden="true">📖</div>
-            <h3>Your DNS server</h3>
+            <h3>Your website lookup service</h3>
             <p>
-              Google's 8.8.8.8, Cloudflare's 1.1.1.1, or your ISP's default — whichever
-              server handles your lookups logs them. Most people have never changed their
-              DNS settings. That means their ISP's DNS server is handling every lookup
-              by default, and logging it.
+              The service your device uses to find websites logs those lookups.
+              That might be your internet provider's default service, or services like
+              Google's 8.8.8.8 or Cloudflare's 1.1.1.1. Most people never change these
+              privacy settings, so their internet provider handles and logs every lookup
+              by default.
             </p>
           </article>
         </div>
@@ -311,9 +312,9 @@ const whyNotPrivateSchema = {
         <div class="reassurance-note" role="note">
           <span class="note-icon" aria-hidden="true">💡</span>
           <p>
-            Most people have never changed their DNS settings. That means their ISP's
-            DNS server is handling every lookup — and logging it. Changing this takes
-            about two minutes with Bloqr.
+            Most people have never changed how their devices look up websites. That means
+            their internet provider usually handles every lookup — and can log it.
+            Changing this takes about two minutes with Bloqr.
           </p>
         </div>
       </div>
@@ -328,10 +329,11 @@ const whyNotPrivateSchema = {
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon" aria-hidden="true">🔒</div>
-            <h3>Encrypted DNS lookups</h3>
+            <h3>Private website lookups</h3>
             <p>
-              We send your address lookups over an encrypted channel, so your router
-              and ISP see that you made a request — not what it was for.
+              We send your website lookups over an encrypted channel (encrypted DNS),
+              so your router and internet provider see that you made a request — not
+              what it was for.
             </p>
           </div>
 
@@ -363,7 +365,7 @@ const whyNotPrivateSchema = {
         <div class="cta-inner">
           <h2 class="cta-heading">Now you know why it matters.</h2>
           <p class="cta-sub">
-            Encrypted DNS, network-wide blocking, and AI-curated filter lists —
+            Private website lookups, network-wide blocking, and automatically curated filter lists —
             set up in minutes, not a week.
           </p>
           <div class="cta-actions">

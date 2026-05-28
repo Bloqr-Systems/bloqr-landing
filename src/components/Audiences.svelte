@@ -36,7 +36,7 @@
       <p class="section-label">Who it's for</p>
       <h2 class="section-title">Find your fit.<br />We'll meet you there.</h2>
       <p class="section-desc">
-        Whether you've never heard of a blocklist or you've been writing them since Perl was cool —
+        Whether you're just getting started or already customizing your setup —
         Bloqr works the way you work.
       </p>
     </div>
@@ -74,23 +74,23 @@
           <h3>The internet you thought you already had.</h3>
           <p class="panel-lead">
             Create an account. Tell us what annoys you. We handle everything else —
-            forever. You will never write a rule, configure a server, or read a log.
+            forever. You will never write a rule, adjust system settings, or read a log.
           </p>
           <ul class="benefit-list">
             <li>
               <span class="bl-icon">🤖</span>
               <div>
                 <strong>AI builds your list for you.</strong>
-                Real-time threat intelligence, curated and updated automatically.
-                No maintenance. No decisions.
+                We keep your blocking list updated automatically based on emerging threats.
+                No maintenance. No guesswork.
               </div>
             </li>
             <li>
               <span class="bl-icon">🔗</span>
               <div>
                 <strong>We connect to your filtering service.</strong>
-                Pick from our curated list of trusted vendors — or let us choose.
-                We hook into their API so you never have to open their settings page.
+                Pick from our curated list of trusted services — or let us choose.
+                We connect everything for you so you never have to open advanced settings.
               </div>
             </li>
             <li>
@@ -111,7 +111,7 @@
             </li>
           </ul>
           <div class="panel-note">
-            💡 Not sure which vendor to use? We'll walk you through it. No technical
+            💡 Not sure which service to use? We'll walk you through it. No technical
             knowledge required — we promise.
           </div>
         </div>
@@ -171,7 +171,8 @@
           <div class="persona-badge byo">Bring your own vendor</div>
           <h3>Keep what you've built. Finally make it scale.</h3>
           <p class="panel-lead">
-            Already using AdGuard, NextDNS, Pi-hole, Control D, or any other DNS provider? Good. Keep it.
+            Already using a privacy or blocking service you trust? Good. Keep it.
+            AdGuard, NextDNS, Pi-hole, Control D, or another setup you already know —
             Bloqr becomes the intelligence layer on top — so you stop doing
             the same thing in twelve places.
           </p>

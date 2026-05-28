@@ -37,7 +37,7 @@
         <span class="byo-icon" aria-hidden="true">🔌</span>
         <div class="byo-tile__text">
           <strong>Bring your own vendor.</strong>
-          Already on your own DNS provider? Keep it.
+          Already using a privacy or filtering service? Keep it.
           Bloqr layers on top. Or let us handle everything — your choice, always.
         </div>
         <button
@@ -62,8 +62,8 @@
           <div class="byo-detail__item">
             <span class="byo-detail__icon" aria-hidden="true">⚡</span>
             <div>
-              <strong>Cloudflare Workers — everywhere, instantly.</strong>
-              Your rules run inside Cloudflare's global edge network — the same
+              <strong>Your rules work everywhere, instantly.</strong>
+              Behind the scenes, your rules run inside Cloudflare Workers across Cloudflare's global edge network — the same
               infrastructure that handles ~20&nbsp;% of all internet traffic.
               Each request executes in an isolated V8 sandbox: no shared memory,
               no persistent state between runs, no blast radius if something
@@ -73,7 +73,7 @@
           <div class="byo-detail__item">
             <span class="byo-detail__icon" aria-hidden="true">🔒</span>
             <div>
-              <strong>Zero Trust Architecture, not bolt-on security.</strong>
+              <strong>Enterprise-grade security, built in from day one.</strong>
               Bloqr's managed hosting is built on Cloudflare One — enterprise
               Zero Trust from day one. Every device is verified before it touches
               the network. Policy enforcement happens at the edge, not at your
@@ -83,7 +83,7 @@
           <div class="byo-detail__item">
             <span class="byo-detail__icon" aria-hidden="true">🌐</span>
             <div>
-              <strong>Device meshing &amp; enterprise-grade blocking.</strong>
+              <strong>Every device, covered by the same rules.</strong>
               Laptops, phones, tablets, servers — all enrolled, all covered by
               the same policy. Cloudflare's threat intelligence blocks known
               malware, phishing, and C2 domains before a connection is even
@@ -93,7 +93,7 @@
           <div class="byo-detail__item">
             <span class="byo-detail__icon" aria-hidden="true">🛠️</span>
             <div>
-              <strong>Dynamic workflows, fully sandboxed.</strong>
+              <strong>Rule updates run safely in isolation.</strong>
               List compilation, rule transformation, and sync jobs run as
               isolated Cloudflare Workflows — durable, retriable, and scoped
               strictly to your account. No code from another tenant ever touches
@@ -102,9 +102,9 @@
           </div>
         </div>
         <p class="byo-detail__footer">
-          Choose us as your vendor and you get Cloudflare's security posture
-          behind every DNS query — no enterprise contract required.
-          Or bring your own provider and Bloqr stays in the
+          Choose us as your vendor and you get Cloudflare-backed protection
+          behind every website lookup — no enterprise contract required.
+          Or bring your own service and Bloqr stays in the
           intelligence layer only. Either way, you're in control.
         </p>
       </div>
