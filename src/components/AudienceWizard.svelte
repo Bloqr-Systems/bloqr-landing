@@ -16,7 +16,7 @@
       icon: '⚡',
       label: 'Power user',
       tagline: 'Keep your vendor. Stop doing it in 12 places.',
-      sub: 'Already on AdGuard, NextDNS, or Pi-hole? Great. Stay.',
+      sub: 'Already on a DNS filtering provider? Great. Stay.',
     },
     {
       persona: 'developer',
