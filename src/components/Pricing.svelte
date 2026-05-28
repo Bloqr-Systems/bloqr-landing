@@ -1,14 +1,15 @@
 <!-- Pricing section -->
 
-<script>
-  import { LINKS } from '../config';
+<script lang="ts">
+  import { PRICING_TIERS } from '../lib/pricing';
 
-  function trackPricingCta(tierName, cta) {
+  function trackPricingCta(tierName: string, cta: string): void {
     if (typeof window !== 'undefined' && window.posthog) {
       window.posthog.capture('pricing_cta_clicked', { tier: tierName, cta });
     }
   }
 
+<<<<<<< HEAD
   /** Which audience track is currently shown */
   let activeAudience = $state('personal');
 
@@ -234,6 +235,9 @@
   const addonGroups = [...new Set(addons.map(a => a.group))];
 
 
+=======
+  const tiers = PRICING_TIERS;
+>>>>>>> origin/main
 </script>
 
 <section class="pricing" id="pricing">

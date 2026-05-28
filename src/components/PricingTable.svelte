@@ -1,6 +1,7 @@
 <!-- Feature comparison table for /pricing page -->
 
 <script lang="ts">
+<<<<<<< HEAD
   const features = [
     { label: 'Monthly price (personal)',    starter: '$3.99',   devPro: '$24.99',    vendor: '$29.99',    enterprise: 'Custom' },
     { label: 'Monthly price (business)',    starter: '$5.99',   devPro: '$29.99',    vendor: '$39.99',    enterprise: 'Custom' },
@@ -27,6 +28,11 @@
     { label: 'Invoice billing',             starter: false,     devPro: false,       vendor: true,        enterprise: true },
     { label: 'Support',                     starter: 'Community', devPro: 'Priority email', vendor: 'Dedicated', enterprise: 'Dedicated + Slack' },
   ];
+=======
+  import { PRICING_FEATURE_ROWS } from '../lib/pricing';
+
+  const features = PRICING_FEATURE_ROWS;
+>>>>>>> origin/main
 </script>
 
 <section class="pricing-table-section">
