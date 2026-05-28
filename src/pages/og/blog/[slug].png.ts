@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 
 export const GET: APIRoute = async ({ props }) => {
   const buffer = await generateOgImage(props.title, props.description);
-  return new Response(buffer as unknown as BodyInit, {
+  return new Response(new Uint8Array(buffer), {
     headers: {
       'Content-Type':  'image/png',
       // 1 day — same policy as page OG images; allows copy/brand updates to propagate.

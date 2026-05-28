@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   const meta   = PAGE_META[page as keyof typeof PAGE_META];
   const buffer = await generateOgImage(meta.title, meta.description);
-  return new Response(buffer as unknown as BodyInit, {
+  return new Response(new Uint8Array(buffer), {
     headers: {
       'Content-Type':  'image/png',
       // 1 day — short enough that title/description updates reach crawlers
