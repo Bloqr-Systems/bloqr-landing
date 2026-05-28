@@ -8,7 +8,6 @@ import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import Pricing from '../components/Pricing.svelte';
 import PricingTable from '../components/PricingTable.svelte';
-import ConversionCalculator from '../components/ConversionCalculator.svelte';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
 
 const meta = {
@@ -51,15 +50,7 @@ const pricingSchema = {
     {
       "@type": "Offer",
       "name": "Pay As You Go",
-      "description": "Try the full Bloqr compilation pipeline. Pay per compile via Stripe.",
-      "price": "0.01",
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "0.01",
-        "priceCurrency": "USD",
-        "unitText": "compile"
-      },
+      "description": "Try the full Bloqr compilation pipeline. Billed by API and resource consumption via Stripe — no subscription required.",
       "url": `${meta.url}#payg`
     },
     {
@@ -111,7 +102,7 @@ const pricingSchema = {
         <div class="header-label">Pricing</div>
         <h1>Simple pricing.<br /><em>No surprises.</em></h1>
         <p class="header-sub">
-          Start for free, pay per compile, or subscribe. Early access locks in your rate
+          Start for free, pay as you go, or subscribe. Early access locks in your rate
           for the life of the account. No crypto. No wallet. Just a card.
         </p>
         <div class="header-cta">
@@ -130,11 +121,12 @@ const pricingSchema = {
         <div class="payg-grid">
           <div class="payg-content">
             <p class="section-label">Pay As You Go</p>
-            <h2 id="payg-heading">Try before you subscribe.<br />Pay per compile.</h2>
+            <h2 id="payg-heading">Try before you subscribe.<br />No subscription needed.</h2>
             <p>
               Pay As You Go lets you use the full Bloqr compilation pipeline without signing
-              up for a subscription. Add a card via Stripe, get charged $0.01 per compile call.
-              When your monthly usage crosses the cost of a Pro subscription, we'll show you
+              up for a subscription. Add a card via Stripe and you're charged based on your
+              actual API and resource consumption — not at a fixed rate per compile call.
+              When your monthly usage approaches the cost of a Pro subscription, we'll show you
               exactly how much you'd save — one click to switch.
             </p>
             <p>
@@ -179,9 +171,6 @@ const pricingSchema = {
     <div id="compare">
       <PricingTable />
     </div>
-
-    <!-- ── Conversion calculator ── -->
-    <ConversionCalculator client:visible />
 
     <!-- ── API Marketplace section ── -->
     <section class="marketplace-section" aria-labelledby="marketplace-heading">
@@ -244,9 +233,10 @@ const pricingSchema = {
           <details class="faq-item">
             <summary>How does Pay As You Go billing work?</summary>
             <div class="faq-answer">
-              Add a card via Stripe once. Each compile call costs $0.01 and is charged
-              automatically. You receive an itemised receipt after each session. There's no
-              minimum spend and no monthly fee — you only pay for what you use.
+              Add a card via Stripe once. Usage is billed automatically based on your API
+              and underlying Cloudflare resource consumption. You receive an itemised receipt
+              after each session. There's no minimum spend and no monthly fee — you only pay
+              for what you use.
             </div>
           </details>
 

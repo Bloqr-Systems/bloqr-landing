@@ -29,10 +29,10 @@
     },
     {
       name:     'Pay As You Go',
-      price:    '$0.01',
-      period:   '/compile',
+      price:    'Usage-based',
+      period:   '',
       aside:    'No subscription. No commitment.',
-      tagline:  'Try the full pipeline before you commit. Pay per use via Stripe.',
+      tagline:  'Try the full pipeline before you commit. Pay for what you use — billed by API and resource consumption via Stripe.',
       cta:      'Start now — no signup',
       href:     `${LINKS.pricing}#payg`,
       featured: false,

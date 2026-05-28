@@ -2,7 +2,7 @@
 
 <script lang="ts">
   const features = [
-    { label: 'Monthly price',           free: '$0',        payg: '$0.01/compile', pro: '~$9/mo',   vendor: 'Custom' },
+    { label: 'Monthly price',           free: '$0',        payg: 'Usage-based', pro: '~$9/mo',   vendor: 'Custom' },
     { label: 'Compiles/day',            free: '1,000',     payg: '500',           pro: 'Unlimited', vendor: 'Unlimited' },
     { label: 'Rules per compile',       free: '10,000',    payg: '50,000',        pro: 'Unlimited', vendor: 'Unlimited' },
     { label: 'Filter sources/compile',  free: '3',         payg: '5',             pro: 'Unlimited', vendor: 'Unlimited' },
