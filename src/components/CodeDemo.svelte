@@ -7,7 +7,7 @@
   let copyTimeout;
 
   const code = `// SDK access requires Dev Pro or above — see /pricing
-// deno add @jk-com/adblock-compiler
+// Once subscribed: deno add @jk-com/adblock-compiler
 import {
   FilterCompiler,
   TransformationType,
