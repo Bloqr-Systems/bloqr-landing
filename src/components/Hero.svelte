@@ -73,7 +73,7 @@
           <div class="byo-detail__item">
             <span class="byo-detail__icon" aria-hidden="true">🔒</span>
             <div>
-              <strong>Enterprise-grade security, built in from day one.</strong>
+              <strong>Strong security, built in from day one.</strong>
               Bloqr's managed hosting is built on Cloudflare One — enterprise
               Zero Trust from day one. Every device is verified before it touches
               the network. Policy enforcement happens at the edge, not at your
