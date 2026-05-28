@@ -1,91 +1,15 @@
 <!-- Pricing section -->
 
-<script>
-  import { LINKS } from '../config';
+<script lang="ts">
+  import { PRICING_TIERS } from '../lib/pricing';
 
-  function trackPricingCta(tierName, cta) {
+  function trackPricingCta(tierName: string, cta: string): void {
     if (typeof window !== 'undefined' && window.posthog) {
       window.posthog.capture('pricing_cta_clicked', { tier: tierName, cta });
     }
   }
 
-  const tiers = [
-    {
-      name:     'Personal',
-      price:    '~$5',
-      period:   '/month',
-      aside:    'Roughly the price of a decent coffee.',
-      tagline:  'For households who just want it handled.',
-      cta:      'Join the waitlist',
-      href:     '/#waitlist',
-      featured: false,
-      items: [
-        'AI-curated filter list, maintained for you',
-        'Works with NextDNS, AdGuard, Pi-hole & more',
-        'Multi-device coverage (whole network)',
-        'Weekly threat list updates',
-        'Email notifications for major incidents',
-      ],
-    },
-    {
-      name:     'Pay As You Go',
-      price:    'Usage-based',
-      period:   '',
-      aside:    'No subscription. No commitment.',
-      tagline:  'Try the full pipeline before you commit. Pay for what you use — billed by API and resource consumption via Stripe.',
-      cta:      'Start now — no signup',
-      href:     `${LINKS.pricing}#payg`,
-      featured: false,
-      payg:     true,
-      items: [
-        'No account required to start',
-        'Up to 50,000 rules per compile',
-        'Up to 5 filter sources per job',
-        '500 compiles/day max',
-        '7-day output retention',
-        'Charged via Stripe — no crypto',
-        'Auto-upsell to Pro when it saves you money',
-      ],
-    },
-    {
-      name:     'Power User',
-      price:    '~$9',
-      period:   '/month',
-      aside:    'Less than one mediocre cocktail.',
-      tagline:  'For people who have opinions about Hagezi vs. OISD.',
-      cta:      'Join the waitlist',
-      href:     '/#waitlist',
-      featured: true,
-      items: [
-        'Everything in Personal',
-        'Custom transformation pipelines',
-        'Natural language rule builder',
-        'Multi-instance management',
-        'API access + JSR package',
-        'Priority threat intelligence feed',
-        'Full config export (JSON/YAML, version-controllable)',
-      ],
-    },
-    {
-      name:     'Developer / Self-Hosted',
-      price:    'Free',
-      period:   'open-source',
-      aside:    'GPL-3.0. It\'s yours.',
-      tagline:  'Run it yourself. We won\'t be weird about it.',
-      cta:      'View on GitHub',
-      href:     'https://github.com/jaypatrick/adblock-compiler',
-      featured: false,
-      external: true,
-      items: [
-        'Full compiler source on GitHub',
-        'Deno + Node.js + Cloudflare Workers compatible',
-        'Self-host anywhere',
-        'JSR package: @jk-com/adblock-compiler',
-        'OpenAPI spec included',
-        'Community support',
-      ],
-    },
-  ];
+  const tiers = PRICING_TIERS;
 </script>
 
 <section class="pricing" id="pricing">
