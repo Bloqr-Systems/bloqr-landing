@@ -15,6 +15,7 @@
   --border:       #1E2D40;
   --border-2:     #2A3F5A;
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --text-on-accent: #fff;
 
   /* ── Semantic status colors ──────────────────────────── */
   /* Use these instead of hardcoded hex values in components. */

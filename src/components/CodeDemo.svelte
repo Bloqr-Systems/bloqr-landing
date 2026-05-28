@@ -6,7 +6,8 @@
   let showCode = $state(true);  // Default to code view
   let copyTimeout;
 
-  const code = `// Install: deno add @jk-com/adblock-compiler
+  const code = `// SDK access requires Dev Pro or above — see /pricing
+// deno add @jk-com/adblock-compiler
 import {
   FilterCompiler,
   TransformationType,
@@ -74,9 +75,9 @@ console.log(\`Compiled \${result.rules.length} rules\`);
         <p class="section-label">Get started</p>
         <h2 class="section-title">Up and running<br />in minutes.</h2>
         <p class="section-desc">
-          Install from JSR, configure your sources, and compile. Or deploy the
-          full Worker and call it over HTTP. Either way, you're done before your
-          VPN subscription renews.
+          Access the SDK via your subscription, configure your sources, and
+          compile. Or call it over HTTP using the Web API. Either way, you're
+          done before your VPN subscription renews.
         </p>
 
         <div class="links">
@@ -84,12 +85,11 @@ console.log(\`Compiled \${result.rules.length} rules\`);
             View full docs <span aria-hidden="true">→</span>
           </a>
           <a
-            href={LINKS.jsr}
+            href={LINKS.pricing}
             class="btn btn-outline"
             rel="noopener noreferrer"
-            target="_blank"
           >
-            JSR package
+            Get SDK access
           </a>
         </div>
 

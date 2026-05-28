@@ -33,7 +33,7 @@
 
       <!-- Right: "built in public" card -->
       <div class="card-wrap">
-        <div class="public-card" aria-label="Built in public — open source links">
+        <div class="public-card" aria-label="Built in public">
           <p class="card-label">Built in public</p>
 
           <ul class="links-list" aria-label="Public project links">
@@ -43,11 +43,11 @@
                 class="public-link"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Open source compiler on GitHub (opens in new tab)"
+                aria-label="Compiler on GitHub (opens in new tab)"
               >
                 <span class="link-icon" aria-hidden="true">⌥</span>
                 <span class="link-body">
-                  <span class="link-title">Open source compiler</span>
+                  <span class="link-title">Compiler</span>
                   <span class="link-sub">GitHub</span>
                 </span>
                 <span class="link-arrow" aria-hidden="true">↗</span>
@@ -72,8 +72,8 @@
           </ul>
 
           <p class="card-note">
-            The core of what Bloqr does is open source and auditable. Not as a
-            marketing claim — as a technical fact.
+            The compiler is commercially licensed. SDK access is available to
+            Dev Pro and above subscribers.
           </p>
         </div>
       </div>

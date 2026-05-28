@@ -8,7 +8,6 @@ import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import Pricing from '../components/Pricing.svelte';
 import PricingTable from '../components/PricingTable.svelte';
-import ConversionCalculator from '../components/ConversionCalculator.svelte';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
 
 const meta = {
@@ -176,9 +175,6 @@ const pricingSchema = {
     <div id="compare">
       <PricingTable />
     </div>
-
-    <!-- ── Conversion calculator ── -->
-    <ConversionCalculator client:visible />
 
     <!-- ── API Marketplace section ── -->
     <section class="marketplace-section" aria-labelledby="marketplace-heading">

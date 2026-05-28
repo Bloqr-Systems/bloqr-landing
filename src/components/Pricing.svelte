@@ -85,14 +85,13 @@
         price:    '$9.99',
         period:   '/month',
         aside:    'Build without limits on calls.',
-        tagline:  'CLI, REST API, and JSR SDK — all unlocked.',
+        tagline:  'CLI and REST API — all unlocked.',
         cta:      'Start building',
         href:     LINKS.app,
         featured: false,
         items: [
           'Web API/SaaS + CLI build tools',
           'REST API access',
-          'JSR / npm SDK package access',
           '1,000 compiles/day · 50,000 rules/compile',
           '10 filter sources',
           'Basic custom pipelines',
@@ -217,7 +216,6 @@
     { group: 'Compiler',         name: 'Natural language rules',    price: '$3.99/mo' },
     { group: 'Compiler',         name: 'Custom pipelines',          price: '$4.99/mo' },
     { group: 'Compiler',         name: 'Priority threat intel',     price: '$4.99/mo' },
-    { group: 'Compiler',         name: 'AST storage',               price: '$2.99/mo' },
     { group: 'Infrastructure',   name: 'Priority queue',            price: '$2.99/mo' },
     { group: 'Infrastructure',   name: '1-year output retention',   price: '$2.99/mo' },
     { group: 'Infrastructure',   name: 'Multi-instance mgmt',       price: '$3.99/mo' },
@@ -262,6 +260,8 @@
           class="tab-btn"
           class:active={activeAudience === aud.id}
           aria-selected={activeAudience === aud.id}
+          id={`tab-${aud.id}`}
+          aria-controls="pricing-tiers-panel"
           onclick={() => { activeAudience = aud.id; }}
           onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activeAudience = aud.id; } }}
         >
@@ -271,7 +271,7 @@
     </div>
 
     <!-- Tiers for selected audience -->
-    <div class="tiers" role="tabpanel">
+    <div class="tiers" role="tabpanel" id="pricing-tiers-panel" aria-labelledby={`tab-${activeAudience}`}>
       {#each tiersByAudience[activeAudience] as tier}
         <div class="tier" class:featured={tier.featured}>
           {#if tier.featured}
@@ -424,7 +424,7 @@
   .tab-btn.active {
     background: var(--orange);
     border-color: var(--orange);
-    color: #fff;
+    color: var(--text-on-accent);
   }
 
   /* ── Tiers grid ── */
