@@ -153,7 +153,7 @@ export const PAGE_META = {
   },
   pricing: {
     title:       'Pricing — Bloqr AI',
-    description: 'Simple, transparent pricing for individuals, developers, and enterprise teams. Free tier, monthly subscriptions, and Pay As You Go — charged via Stripe. No crypto required.',
+    description: 'Transparent subscription pricing for every audience — personal, developer, and vendor. Starting at $3.99/month. Usage above plan limits billed via Stripe.',
   },
 } as const;
 

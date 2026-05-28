@@ -45,9 +45,9 @@ const homeSchema = {
       "operatingSystem": "Web, iOS, Android, macOS, Windows",
       "offers": {
         "@type": "Offer",
-        "price": "0",
+        "price": "3.99",
         "priceCurrency": "USD",
-        "description": "Free tier available on waitlist"
+        "description": "Starting at $3.99/month — no free tier"
       },
       "featureList": "DNS-level ad blocking, AI-powered filter lists, Encrypted DNS (DoH/DoT), Network-wide protection, Real-time threat intelligence, Bring-your-own DNS provider support"
     },
@@ -102,15 +102,15 @@ const homeSchema = {
           "name": "What happens to my data if I cancel?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can export your full configuration (lists, rules, settings) as JSON at any time. If you cancel, your data is deleted within 30 days. No hostage data. The GPL-3.0 open-source version means you can always self-host and never be locked out."
+            "text": "You can export your full configuration (lists, rules, settings) as JSON at any time. If you cancel, your data is deleted within 30 days. No hostage data. Your compiled output files are yours to keep."
           }
         },
         {
           "@type": "Question",
-          "name": "Is the compiler itself open source?",
+          "name": "Is the compiler open source?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The adblock filter list compiler at the core of Bloqr is GPL-3.0 licensed and available on GitHub. The managed platform (AI features, vendor integrations, dashboard) is a paid product, but the engine is yours to run, fork, and audit."
+            "text": "No. The core Bloqr compiler library is proprietary and available only via a commercial license. SDK wrapper packages are distributed to licensed subscribers. There is no GPL or open-source version of the core engine."
           }
         },
         {
@@ -156,7 +156,7 @@ const homeSchema = {
     </div>
     <WhyCloudflare />
     <div class="animate-on-scroll"><PrivacyCommitments /></div>
-    <div class="animate-on-scroll"><Pricing /></div>
+    <div class="animate-on-scroll"><Pricing client:visible /></div>
     <div class="pricing-more">
       <a href={LINKS.pricing} class="pricing-more__link">
         See full pricing details and comparison table →

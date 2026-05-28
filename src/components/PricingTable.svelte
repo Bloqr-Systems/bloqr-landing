@@ -11,6 +11,10 @@
     <div class="section-header">
       <p class="section-label">Compare Plans</p>
       <h2 class="section-title">Everything, side by side.</h2>
+      <p class="section-sub">
+        All usage above plan limits is billed per-call. Web API calls from the local SDK
+        always incur usage charges regardless of plan.
+      </p>
     </div>
 
     <div class="table-wrap">
@@ -18,25 +22,30 @@
         <thead>
           <tr>
             <th scope="col" class="feature-col">Feature</th>
-            <th scope="col">Free</th>
-            <th scope="col" class="col-payg">Pay As You Go</th>
-            <th scope="col" class="col-pro">Pro</th>
-            <th scope="col">Vendor / Enterprise</th>
+            <th scope="col">Starter<br /><span class="price-hint">from $3.99</span></th>
+            <th scope="col" class="col-pro">Dev Pro<br /><span class="price-hint">from $24.99</span></th>
+            <th scope="col">Vendor<br /><span class="price-hint">from $29.99</span></th>
+            <th scope="col">Enterprise<br /><span class="price-hint">Custom</span></th>
           </tr>
         </thead>
         <tbody>
           {#each features as row}
             <tr>
               <th scope="row" class="feature-label">{row.label}</th>
-              <td>{@render cell(row.free)}</td>
-              <td class="col-payg">{@render cell(row.payg)}</td>
-              <td class="col-pro">{@render cell(row.pro)}</td>
+              <td>{@render cell(row.starter)}</td>
+              <td class="col-pro">{@render cell(row.devPro)}</td>
               <td>{@render cell(row.vendor)}</td>
+              <td>{@render cell(row.enterprise)}</td>
             </tr>
           {/each}
         </tbody>
       </table>
     </div>
+
+    <p class="table-note">
+      Business entity pricing is slightly higher than personal pricing.
+      All add-ons are available à la carte — see the pricing section above.
+    </p>
   </div>
 </section>
 
@@ -81,6 +90,15 @@
     font-weight: 700;
     color: var(--text-1);
     line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   .table-wrap {
@@ -107,15 +125,22 @@
     color: var(--text-2);
     border-bottom: 1px solid var(--border);
     white-space: nowrap;
+    line-height: 1.5;
+  }
+
+  .price-hint {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-3);
+    margin-top: 2px;
   }
 
   thead th.feature-col {
     text-align: left;
     color: var(--text-3);
-  }
-
-  thead th.col-payg {
-    color: var(--cyan);
   }
 
   thead th.col-pro {
@@ -159,6 +184,14 @@
   .cross {
     color: var(--text-3);
     font-size: 0.8rem;
+  }
+
+  .table-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.6;
   }
 
   @media (max-width: 700px) {

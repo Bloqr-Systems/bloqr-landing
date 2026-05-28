@@ -35,13 +35,13 @@ const pricingSchema = {
     },
     {
       "@type": "Offer",
-      "name": "Personal",
-      "description": "AI-curated filter list for households who just want it handled.",
-      "price": "5.00",
+      "name": "Starter (Personal)",
+      "description": "Fully managed Web API/SaaS for households who just want it handled.",
+      "price": "3.99",
       "priceCurrency": "USD",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "5.00",
+        "price": "3.99",
         "priceCurrency": "USD",
         "unitText": "MONTH"
       },
@@ -49,19 +49,13 @@ const pricingSchema = {
     },
     {
       "@type": "Offer",
-      "name": "Pay As You Go",
-      "description": "Try the full Bloqr compilation pipeline. Billed by API and resource consumption via Stripe — no subscription required.",
-      "url": `${meta.url}#payg`
-    },
-    {
-      "@type": "Offer",
-      "name": "Pro (Power User)",
-      "description": "Custom transformation pipelines, natural language rule builder, API access, and more.",
-      "price": "9.00",
+      "name": "Dev Pro",
+      "description": "SDK license, full pipeline, streaming API, and local library embedding with web API access.",
+      "price": "24.99",
       "priceCurrency": "USD",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "9.00",
+        "price": "24.99",
         "priceCurrency": "USD",
         "unitText": "MONTH"
       },
@@ -69,11 +63,23 @@ const pricingSchema = {
     },
     {
       "@type": "Offer",
-      "name": "Developer / Self-Hosted",
-      "description": "GPL-3.0 open-source compiler — run it yourself, forever free.",
-      "price": "0",
+      "name": "Vendor",
+      "description": "Multi-instance management, resource-based consumption, API marketplace listing.",
+      "price": "29.99",
       "priceCurrency": "USD",
-      "url": LINKS.github
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "29.99",
+        "priceCurrency": "USD",
+        "unitText": "MONTH"
+      },
+      "url": meta.url
+    },
+    {
+      "@type": "Offer",
+      "name": "Enterprise",
+      "description": "Unlimited scale, custom SLA, dedicated infrastructure, white-label options.",
+      "url": meta.url
     }
   ]
 };
@@ -100,67 +106,65 @@ const pricingSchema = {
     <header class="page-header">
       <div class="container">
         <div class="header-label">Pricing</div>
-        <h1>Simple pricing.<br /><em>No surprises.</em></h1>
+        <h1>Transparent pricing.<br /><em>No free tier.</em></h1>
         <p class="header-sub">
-          Start for free, pay as you go, or subscribe. Early access locks in your rate
-          for the life of the account. No crypto. No wallet. Just a card.
+          Subscription plans for every audience — personal, developer, and vendor.
+          Usage above your plan's limits is always billed via Stripe.
+          Early access locks in your rate for the life of the account.
         </p>
         <div class="header-cta">
-          <a href="/#waitlist" class="btn btn-primary">Join the beta →</a>
-          <a href="#compare"   class="btn btn-outline">Compare all plans</a>
+          <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank">Get started →</a>
+          <a href="#compare" class="btn btn-outline">Compare all plans</a>
         </div>
       </div>
     </header>
 
     <!-- ── Pricing tiers (reused component) ── -->
-    <Pricing />
+    <Pricing client:load />
 
-    <!-- ── PAYG detail section ── -->
-    <section class="payg-section" id="payg" aria-labelledby="payg-heading">
+    <!-- ── Licensing & access model ── -->
+    <section class="access-section" id="access" aria-labelledby="access-heading">
       <div class="container">
-        <div class="payg-grid">
-          <div class="payg-content">
-            <p class="section-label">Pay As You Go</p>
-            <h2 id="payg-heading">Try before you subscribe.<br />No subscription needed.</h2>
+        <div class="access-grid">
+          <div class="access-content">
+            <p class="section-label">Access Models</p>
+            <h2 id="access-heading">Three ways to use Bloqr.<br />One billing model.</h2>
             <p>
-              Pay As You Go lets you use the full Bloqr compilation pipeline without signing
-              up for a subscription. Add a card via Stripe and you're charged based on your
-              actual API and resource consumption — not at a fixed rate per compile call.
-              When your monthly usage approaches the cost of a Pro subscription, we'll show you
-              exactly how much you'd save — one click to switch.
+              The core compiler library is available exclusively via a commercial licensing
+              agreement — either as part of a subscription plan or a standalone SDK license.
+              There is no free or open-source version of the core library.
             </p>
             <p>
-              Your session token covers multiple API calls, so you're not re-entering payment
-              details every time. The mechanism is automatic and invisible — you just call the API.
+              Regardless of how you deploy — SaaS, local SDK, or CLI — any web API call you
+              make is checked for entitlements at the API gateway and billed as usage above
+              your plan's included limits. Your license tier determines which API modes and
+              features are available.
             </p>
             <a href="/#waitlist" class="btn btn-outline">Join the waitlist</a>
           </div>
 
-          <!-- CSS-only flow diagram -->
-          <div class="payg-flow" aria-label="Pay As You Go flow: Add card, API call, Session issued, N calls covered, Auto-upsell at threshold">
-            <div class="flow-step">
-              <div class="flow-icon" aria-hidden="true">💳</div>
-              <div class="flow-label">Add card</div>
+          <!-- Access model cards -->
+          <div class="access-cards">
+            <div class="access-card">
+              <div class="access-icon" aria-hidden="true">☁️</div>
+              <div class="access-body">
+                <strong>Web API / SaaS</strong>
+                <p>Fully managed, hosted by Bloqr. No local install required. All plans.</p>
+              </div>
             </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step">
-              <div class="flow-icon" aria-hidden="true">⚡</div>
-              <div class="flow-label">API call</div>
+            <div class="access-card">
+              <div class="access-icon" aria-hidden="true">📦</div>
+              <div class="access-body">
+                <strong>Local SDK embedding</strong>
+                <p>Embed the compiler locally via licensed SDKs (JSR / npm). Web API calls from the SDK are usage-billed and entitlement-checked. Dev Pro and above, and Vendor plans.</p>
+              </div>
             </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step">
-              <div class="flow-icon" aria-hidden="true">🔑</div>
-              <div class="flow-label">Session issued</div>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step">
-              <div class="flow-icon" aria-hidden="true">🔁</div>
-              <div class="flow-label">N calls covered</div>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step flow-step--highlight">
-              <div class="flow-icon" aria-hidden="true">📈</div>
-              <div class="flow-label">Auto-upsell at threshold</div>
+            <div class="access-card">
+              <div class="access-icon" aria-hidden="true">⚙️</div>
+              <div class="access-body">
+                <strong>CLI build tools</strong>
+                <p>Use the compiler as part of local CI/CD pipelines and build processes. Available as a standalone add-on or included in Dev and developer plans.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -182,8 +186,8 @@ const pricingSchema = {
           </h2>
           <p class="section-sub">
             On marketplace platforms that handle billing, your existing account covers
-            everything. On discovery platforms, Pay As You Go lets you start without a
-            separate signup.
+            Bloqr usage. Subscription entitlements are verified at every API call
+            regardless of which platform you use.
           </p>
         </div>
 
@@ -205,8 +209,52 @@ const pricingSchema = {
               <span class="coming-soon-badge">Coming soon</span>
             </div>
             <p>
-              Discover and test Bloqr's API directly in Postman. Start with Pay As You Go —
-              no separate account needed.
+              Discover and test Bloqr's API directly in Postman. Authenticate with your
+              Bloqr subscription key — no separate account needed.
+            </p>
+          </div>
+
+          <div class="marketplace-card">
+            <div class="marketplace-header">
+              <span class="marketplace-name">AWS Marketplace</span>
+              <span class="coming-soon-badge">Coming soon</span>
+            </div>
+            <p>
+              Subscribe and bill through AWS Marketplace for seamless enterprise procurement.
+              Ideal for teams already using AWS infrastructure.
+            </p>
+          </div>
+
+          <div class="marketplace-card">
+            <div class="marketplace-header">
+              <span class="marketplace-name">Azure API Management</span>
+              <span class="coming-soon-badge">Coming soon</span>
+            </div>
+            <p>
+              Integrate Bloqr into your Azure API Management pipeline for centralised
+              governance, rate limiting, and audit logs.
+            </p>
+          </div>
+
+          <div class="marketplace-card">
+            <div class="marketplace-header">
+              <span class="marketplace-name">JSR / npm</span>
+              <span class="coming-soon-badge">Coming soon</span>
+            </div>
+            <p>
+              SDK packages published to JSR and npm. Install the licensed SDK wrapper and
+              authenticate with your subscription key to unlock the local embedding model.
+            </p>
+          </div>
+
+          <div class="marketplace-card">
+            <div class="marketplace-header">
+              <span class="marketplace-name">Apilayer</span>
+              <span class="coming-soon-badge">Coming soon</span>
+            </div>
+            <p>
+              Discover and subscribe to Bloqr on Apilayer for quick integration into
+              existing API pipelines with built-in usage monitoring.
             </p>
           </div>
         </div>
@@ -223,62 +271,100 @@ const pricingSchema = {
 
         <div class="faq-list">
           <details class="faq-item">
-            <summary>Do I need a credit card to try Bloqr?</summary>
+            <summary>Is there a free tier?</summary>
             <div class="faq-answer">
-              No. The free tier requires no payment information. Create an account and start
-              compiling immediately — no card, no commitment.
+              No. The core compiler library is only available via a commercial licensing
+              agreement — either as part of a subscription or a standalone SDK license.
+              All plans start at $3.99/month (personal Starter). There is a 30-day
+              money-back guarantee on all paid plans.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>How does Pay As You Go billing work?</summary>
+            <summary>What counts as "usage" above my plan limit?</summary>
             <div class="faq-answer">
-              Add a card via Stripe once. Usage is billed automatically based on your API
-              and underlying Cloudflare resource consumption. You receive an itemised receipt
-              after each session. There's no minimum spend and no monthly fee — you only pay
-              for what you use.
+              Each compile call above your daily limit is billed at $0.002/compile.
+              Rules above your per-compile limit are billed at $0.001/1,000 rules.
+              Web API calls made from the local SDK are always billed as usage and
+              require verified entitlements regardless of plan.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Can I switch from Pay As You Go to a subscription?</summary>
+            <summary>Can I use web APIs with the local SDK?</summary>
             <div class="faq-answer">
-              Yes — one click. When your usage approaches the cost of a Pro subscription,
-              Bloqr shows you the exact savings. Switch at any time from your account dashboard.
-              Your existing usage in the current period is credited.
+              Yes. The local SDK can call Bloqr's web APIs, but every call is checked
+              at the API gateway to verify you have the right entitlements for that API
+              mode (REST, streaming, async, etc.) and is billed as usage. This applies
+              to all plans — there is no free pass for locally-embedded SDK callers.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>What happens if I hit the daily Pay As You Go limit?</summary>
+            <summary>How does SDK licensing work?</summary>
             <div class="faq-answer">
-              Requests are queued until the next calendar day (UTC). No surprise charges —
-              the cap is absolute. If you regularly hit the 500/day limit, upgrading to Pro
-              removes it entirely.
+              The SDK license is included in Dev Pro, Vendor, and Enterprise plans, and
+              available as a $9.99/month add-on to other plans. Your subscription key
+              unlocks the SDK at runtime — revoked or expired subscriptions immediately
+              disable SDK functionality. The license is non-transferable and tied to
+              your Bloqr account.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Is there a free trial for Pro?</summary>
+            <summary>Can I switch plans mid-month?</summary>
             <div class="faq-answer">
-              All paid tiers include a 30-day money-back guarantee, no questions asked.
-              Cancel within 30 days and you'll receive a full refund.
+              Yes — upgrades take effect immediately and are prorated. Downgrades take
+              effect at the end of your current billing period. Usage charges from the
+              current period are never refunded, but subscription fees are.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is there a free trial for paid plans?</summary>
+            <div class="faq-answer">
+              All paid plans include a 30-day money-back guarantee, no questions asked.
+              Cancel within 30 days and you'll receive a full refund on subscription
+              fees. Usage charges are non-refundable.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What API modes are available and how are they priced?</summary>
+            <div class="faq-answer">
+              REST API ($2.99/mo add-on), Streaming API ($4.99/mo add-on), and
+              Async/batch API ($3.99/mo add-on) are the three modes. Dev Pro and above
+              include all three. Each mode can also be added individually to Starter or
+              Dev plans. Usage above plan limits is billed per-call regardless of mode.
             </div>
           </details>
 
           <details class="faq-item">
             <summary>Can my company pay by invoice?</summary>
             <div class="faq-answer">
-              Vendor and Enterprise plans support invoice billing and purchase order workflows.
-              <a href="/#waitlist">Contact us</a> to discuss your requirements.
+              Vendor and Enterprise plans support invoice billing and purchase order
+              workflows. <a href="/#waitlist">Contact us</a> to discuss your requirements.
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>Is Bloqr available on RapidAPI?</summary>
+            <summary>What license does Bloqr use for its libraries?</summary>
             <div class="faq-answer">
-              A RapidAPI listing is coming soon. When live, your existing RapidAPI account
-              will cover Bloqr usage — no separate Bloqr account or payment method required.
+              The core compiler library is proprietary and commercial. SDK wrapper packages
+              are distributed under a commercial license — you need an active Bloqr
+              subscription to use them in production. The license is enforced at runtime
+              via your subscription key. Source code for the SDK wrappers may be reviewed
+              but not redistributed without a separate agreement.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is Bloqr available on RapidAPI or other API marketplaces?</summary>
+            <div class="faq-answer">
+              Listings on RapidAPI, Postman API Network, AWS Marketplace, Azure API
+              Management, and Apilayer are coming soon. When live, your existing
+              marketplace account will cover Bloqr usage — entitlements are synced
+              automatically.
             </div>
           </details>
         </div>
@@ -289,9 +375,9 @@ const pricingSchema = {
     <section class="pricing-cta" aria-label="Get started with Bloqr">
       <div class="container">
         <h2>Internet Hygiene. Automated.</h2>
-        <p>Set it. Bloqr it. Forget it.</p>
+        <p>Pick a plan. Set it. Forget it.</p>
         <div class="cta-actions">
-          <a href="/#waitlist" class="btn btn-primary">Join the beta →</a>
+          <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank">Get started →</a>
           <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank">
             Read the docs
           </a>
@@ -405,25 +491,24 @@ const pricingSchema = {
     margin-bottom: 48px;
   }
 
-  /* ── PAYG detail section ── */
-  .payg-section {
+  /* ── Access model section ── */
+  .access-section {
     padding: 80px 0;
     border-top: 1px solid var(--border);
-    background: rgba(0, 212, 255, 0.02);
   }
 
-  .payg-grid {
+  .access-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;
-    align-items: center;
+    align-items: start;
   }
 
   @media (max-width: 800px) {
-    .payg-grid { grid-template-columns: 1fr; gap: 40px; }
+    .access-grid { grid-template-columns: 1fr; gap: 40px; }
   }
 
-  .payg-content h2 {
+  .access-content h2 {
     font-size: clamp(1.5rem, 3.5vw, 2.25rem);
     font-weight: 800;
     line-height: 1.2;
@@ -431,60 +516,49 @@ const pricingSchema = {
     margin-bottom: 20px;
   }
 
-  .payg-content p {
+  .access-content p {
     font-size: 0.97rem;
     color: var(--text-2);
     line-height: 1.75;
     margin-bottom: 16px;
   }
 
-  /* ── CSS-only flow diagram ── */
-  .payg-flow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 24px;
-  }
-
-  .flow-step {
+  .access-cards {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    background: var(--bg-elevated);
+    gap: 12px;
+  }
+
+  .access-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    min-width: 90px;
-    text-align: center;
+    border-radius: 12px;
+    padding: 20px 22px;
   }
 
-  .flow-step--highlight {
-    border-color: var(--orange);
-    background: rgba(255, 85, 0, 0.06);
-  }
-
-  .flow-icon {
-    font-size: 1.4rem;
+  .access-icon {
+    font-size: 1.5rem;
     line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
-  .flow-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-2);
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  .flow-arrow {
-    color: var(--text-3);
+  .access-body strong {
+    display: block;
+    font-size: 0.9375rem;
     font-weight: 700;
-    font-size: 1.1rem;
+    color: var(--text-1);
+    margin-bottom: 4px;
+  }
+
+  .access-body p {
+    font-size: 0.875rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* ── API Marketplace section ── */
@@ -495,11 +569,15 @@ const pricingSchema = {
 
   .marketplace-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
+    .marketplace-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
     .marketplace-grid { grid-template-columns: 1fr; }
   }
 
@@ -507,14 +585,15 @@ const pricingSchema = {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 28px 24px;
+    padding: 24px 20px;
   }
 
   .marketplace-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
   }
 
   .marketplace-name {
@@ -537,7 +616,7 @@ const pricingSchema = {
   }
 
   .marketplace-card p {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-2);
     line-height: 1.6;
     margin: 0;

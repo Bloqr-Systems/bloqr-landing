@@ -1,7 +1,8 @@
 <!-- Pricing section -->
 
 <script lang="ts">
-  import { PRICING_TIERS } from '../lib/pricing';
+  import { PRICING_AUDIENCES, PRICING_TIERS_BY_AUDIENCE, PRICING_ADDONS } from '../lib/pricing';
+  import type { AudienceId } from '../lib/pricing';
 
   function trackPricingCta(tierName: string, cta: string): void {
     if (typeof window !== 'undefined' && window.posthog) {
@@ -9,7 +10,15 @@
     }
   }
 
-  const tiers = PRICING_TIERS;
+  /** Which audience track is currently shown */
+  let activeAudience = $state<AudienceId>('personal');
+
+  const audiences = PRICING_AUDIENCES;
+  const tiersByAudience = PRICING_TIERS_BY_AUDIENCE;
+  const addons = PRICING_ADDONS;
+
+  /** Group add-ons for display */
+  const addonGroups = [...new Set(addons.map(a => a.group))];
 </script>
 
 <section class="pricing" id="pricing">
@@ -18,31 +27,49 @@
     <div class="section-header">
       <p class="section-label">Pricing</p>
       <h2 class="section-title">
-        Less than your worst<br />
-        impulse purchase.
+        Pick your plan.<br />
+        <em>No free tier. No surprises.</em>
       </h2>
       <p class="section-sub">
-        Simple, transparent pricing. Start for free, pay as you go, or subscribe.
-        Early access subscribers lock in a discount that stays for the life of the account.
-        No crypto. No wallet setup. Just a card.
+        Transparent subscription pricing for every audience. Usage above your plan's
+        limits is always billed separately via Stripe. Early access locks in your
+        rate for the life of the account. No crypto. No wallet. Just a card.
       </p>
     </div>
 
-    <div class="tiers">
-      {#each tiers as tier}
-        <div class="tier" class:featured={tier.featured} class:payg={tier.payg}>
+    <!-- Audience selector tabs -->
+    <div class="audience-tabs" role="tablist" aria-label="Audience">
+      {#each audiences as aud}
+        <button
+          role="tab"
+          class="tab-btn"
+          class:active={activeAudience === aud.id}
+          aria-selected={activeAudience === aud.id}
+          id={`tab-${aud.id}`}
+          aria-controls="pricing-tiers-panel"
+          onclick={() => { activeAudience = aud.id; }}
+          onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activeAudience = aud.id; } }}
+        >
+          {aud.label}
+        </button>
+      {/each}
+    </div>
+
+    <!-- Tiers for selected audience -->
+    <div class="tiers" role="tabpanel" id="pricing-tiers-panel" aria-labelledby={`tab-${activeAudience}`}>
+      {#each tiersByAudience[activeAudience] as tier}
+        <div class="tier" class:featured={tier.featured}>
           {#if tier.featured}
             <div class="featured-badge">Most popular</div>
-          {/if}
-          {#if tier.payg}
-            <div class="payg-badge">No subscription</div>
           {/if}
 
           <div class="tier-header">
             <div class="tier-name">{tier.name}</div>
             <div class="tier-price">
               <span class="price">{tier.price}</span>
-              <span class="period">{tier.period}</span>
+              {#if tier.period}
+                <span class="period">{tier.period}</span>
+              {/if}
             </div>
             <div class="tier-aside">{tier.aside}</div>
             <p class="tier-tagline">{tier.tagline}</p>
@@ -62,22 +89,51 @@
             class="tier-cta"
             class:primary={tier.featured}
             class:outline={!tier.featured}
-            rel={tier.external ? 'noopener noreferrer' : undefined}
-            target={tier.external ? '_blank' : undefined}
             onclick={() => trackPricingCta(tier.name, tier.cta)}
           >
             {tier.cta}
           </a>
-          {#if tier.payg}
-            <p class="stripe-note">Powered by Stripe</p>
-          {/if}
+          <p class="stripe-note">Powered by Stripe</p>
         </div>
       {/each}
     </div>
 
+    <!-- Usage note -->
+    <p class="usage-note">
+      ⚡ Usage above plan limits billed at <strong>$0.002/compile</strong> and
+      <strong>$0.001/1,000 rules</strong>. Web API calls via the local SDK always
+      incur usage charges and require verified entitlements.
+    </p>
+
+    <!-- Add-ons -->
+    <div class="addons-section">
+      <div class="addons-header">
+        <p class="section-label">Add-ons</p>
+        <h3 class="addons-title">Every extra, individually priced.</h3>
+        <p class="addons-sub">Available to any plan. Some are bundled in higher tiers — check the comparison table for what's included.</p>
+      </div>
+
+      <div class="addons-grid">
+        {#each addonGroups as group}
+          <div class="addon-group">
+            <p class="addon-group-label">{group}</p>
+            <ul class="addon-list">
+              {#each addons.filter(a => a.group === group) as addon}
+                <li class="addon-item">
+                  <span class="addon-name">{addon.name}</span>
+                  <span class="addon-price">{addon.price}</span>
+                </li>
+              {/each}
+            </ul>
+          </div>
+        {/each}
+      </div>
+    </div>
+
     <p class="fine-print">
-      All paid tiers include a 30-day money-back guarantee, no questions asked.
-      Cancel anytime. The GPL-3.0 open-source version will remain free forever.
+      All paid plans include a 30-day money-back guarantee, no questions asked.
+      Cancel anytime. Usage charges are non-refundable.
+      Business entity pricing is slightly higher — see the comparison table.
     </p>
 
   </div>
@@ -93,7 +149,7 @@
   .section-header {
     text-align: center;
     max-width: 600px;
-    margin: 0 auto 64px;
+    margin: 0 auto 48px;
   }
 
   .section-label {
@@ -113,20 +169,56 @@
     margin-bottom: 16px;
   }
 
+  .section-title em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
   .section-sub {
     font-size: 1rem;
     color: var(--text-2);
     line-height: 1.7;
-    margin-bottom: 20px;
+  }
+
+  /* ── Audience tabs ── */
+  .audience-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 150ms;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--border-2);
+    color: var(--text-1);
+  }
+
+  .tab-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--text-on-accent);
   }
 
   /* ── Tiers grid ── */
   .tiers {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     align-items: start;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -168,31 +260,6 @@
     padding: 4px 14px;
     border-radius: 20px;
     white-space: nowrap;
-  }
-
-  .payg-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--cyan);
-    color: #000;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-
-  .tier.payg {
-    border-color: var(--cyan);
-    background: linear-gradient(
-      160deg,
-      rgba(0, 212, 255, 0.05) 0%,
-      var(--bg-surface) 60%
-    );
   }
 
   .stripe-note {
@@ -270,8 +337,6 @@
     margin-top: 1px;
   }
 
-  .featured .check { color: var(--orange); }
-
   /* ── CTA buttons ── */
   .tier-cta {
     display: block;
@@ -306,25 +371,110 @@
     background: rgba(255, 255, 255, 0.04);
   }
 
+  /* ── Usage note ── */
+  .usage-note {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--text-2);
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.65;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 20px;
+  }
+
+  /* ── Add-ons ── */
+  .addons-section {
+    margin-top: 72px;
+  }
+
+  .addons-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .addons-title {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 8px;
+  }
+
+  .addons-sub {
+    font-size: 0.9375rem;
+    color: var(--text-2);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .addon-group {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .addon-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+
+  .addon-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .addon-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .addon-name {
+    font-size: 0.875rem;
+    color: var(--text-2);
+  }
+
+  .addon-price {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-1);
+    white-space: nowrap;
+  }
+
   /* ── Fine print ── */
   .fine-print {
     text-align: center;
     margin-top: 40px;
     font-size: 13px;
     color: var(--text-3);
-    max-width: 480px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.65;
   }
 
   /* ── Responsive ── */
-  @media (max-width: 1100px) {
-    .tiers {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   @media (max-width: 900px) {
     .tiers {
       grid-template-columns: 1fr;
@@ -335,5 +485,6 @@
 
   @media (max-width: 600px) {
     .pricing { padding: 64px 0; }
+    .addons-grid { grid-template-columns: 1fr; }
   }
 </style>

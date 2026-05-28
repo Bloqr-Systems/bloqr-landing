@@ -304,7 +304,7 @@
             <li>
               <span class="bl-icon">📋</span>
               <div>
-                <strong>List makers: free verified tier.</strong>
+                <strong>List makers: included in Vendor plans.</strong>
                 Automate your build. Keep your curation process.
                 Publish under your own name. Your reputation stays yours.
               </div>
