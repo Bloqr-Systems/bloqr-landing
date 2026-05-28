@@ -45,7 +45,7 @@ const myths: Myth[] = [
 
 The more durable tracking mechanisms — browser fingerprinting, first-party cookies, advertiser pixels, login sessions — operate completely independently of your IP. Log into Gmail from a VPN and Google knows exactly who you are. Browse Amazon without logging in and Amazon can still identify your device with high confidence from your browser's fingerprint alone. A VPN doesn't touch any of this.
 
-More importantly: a VPN doesn't hide you from the VPN provider. You've simply moved your visibility from your ISP to a third-party company whose entire business model depends on you believing you're invisible.`,
+More importantly: a VPN doesn't hide you from the VPN provider. You've simply moved your visibility from your internet provider to a third-party company whose entire business model depends on you believing you're invisible.`,
     note: 'True anonymity — hiding your identity from everyone, including the tools you use — requires routing through multiple independent parties with no single point of knowledge. That\'s what Tor does. Bloqr is a privacy tool. Tor is an anonymity tool. They solve different problems.',
     highlight: {
       icon: '🍪',
@@ -113,11 +113,11 @@ A VPN solves this by routing your lookups through the VPN's server instead. But 
     claim: 'Using a VPN means my internet provider can\'t see what I do.',
     verdict: 'True — but you\'ve relocated the problem, not solved it. And DNS is still the gap.',
     verdictClass: 'partial',
-    reality: `This one is technically accurate, and it's also the entire VPN sales pitch. What it leaves out: you haven't eliminated surveillance — you've moved it from your ISP to your VPN provider. You've traded one large company with a regulatory body for a smaller company often incorporated in a jurisdiction chosen specifically to avoid oversight. The EFF says it plainly: "you should be sure you trust your VPN provider."
+    reality: `This one is technically accurate, and it's also the entire VPN sales pitch. What it leaves out: you haven't eliminated surveillance — you've moved it from your internet provider to your VPN provider. You've traded one large company with a regulatory body for a smaller company often incorporated in a jurisdiction chosen specifically to avoid oversight. The EFF says it plainly: "you should be sure you trust your VPN provider."
 
 But there's a larger problem this framing sidesteps entirely: the thing that makes you most trackable isn't your IP address. It's your DNS lookups.
 
-DNS is the internet's address book. Every time you visit a website, your device asks a server: "what's the address for this domain?" That question travels in plain text — unencrypted, readable by your ISP, your router, every network hop between you and the answer. HTTPS encrypts the actual conversation once you get there. It doesn't encrypt the lookup that got you there.
+DNS is the internet's address book. Every time you visit a website, your device asks a server: "what's the address for this domain?" That question travels in plain text — unencrypted, readable by your internet provider, your router, every network hop between you and the answer. HTTPS encrypts the actual conversation once you get there. It doesn't encrypt the lookup that got you there.
 
 This is the last major plaintext protocol in everyday internet use. The web moved to HTTPS. Email moved to TLS. Messaging moved to end-to-end encryption. DNS was designed in 1987 and the encryption couldn't be retrofitted into the original protocol — which is why encrypted DNS (DoH, DoT) exists as a separate layer rather than an update to the standard.
 
@@ -145,13 +145,13 @@ Bloqr runs on Cloudflare's network — the same infrastructure that handles roug
 
 Latency gets worse. If you're in Chicago connecting through a VPN server in Amsterdam to reach a US website, your data physically travels Chicago → Amsterdam → US → Amsterdam → Chicago for every single request. This is called the trombone effect. It's unavoidable geometry.
 
-Here's what the ads don't mention: if blocking trackers and ads is your actual goal, DNS-level filtering doesn't add latency — it removes it. Your browser normally has to wait for every tracker, ad script, analytics beacon, and A/B testing framework to load before the page is considered finished. These aren't decoration. They're blocking calls. A page that loads 40 external trackers waits for all 40 before it's complete — and some are slow servers in foreign countries.
+Here's what the ads don't mention: if blocking trackers and ads is your actual goal, blocking at the website lookup layer doesn't add latency — it removes it. Your browser normally has to wait for every tracker, ad script, analytics beacon, and A/B testing framework to load before the page is considered finished. These aren't decoration. They're blocking calls. A page that loads 40 external trackers waits for all 40 before it's complete — and some are slow servers in foreign countries.
 
 When Bloqr blocks those domains at the network level, your browser doesn't wait for them. The request never leaves your device. Pages load faster as a direct byproduct of better privacy hygiene. Speed is the dividend of filtering, not a tradeoff against it.`,
     highlight: {
       icon: '⚡',
       title: 'Filtering doesn\'t slow your internet. It unclogs it.',
-      body: 'Independent testing consistently shows that DNS-level ad and tracker blocking reduces page load times by 20–40% on media-heavy websites. The resources that aren\'t blocked don\'t have to wait for the ones that are. Every tracker that never loads is milliseconds back in your life — multiplied by every page, every day. A VPN adds a toll booth. Good hygiene removes the traffic jam.',
+      body: 'Independent testing consistently shows that ad and tracker blocking at the website lookup layer reduces page load times by 20–40% on media-heavy websites. The resources that aren\'t blocked don\'t have to wait for the ones that are. Every tracker that never loads is milliseconds back in your life — multiplied by every page, every day. A VPN adds a toll booth. Good hygiene removes the traffic jam.',
       variant: 'bloqr',
     },
     sources: [
@@ -181,7 +181,7 @@ If what you actually want is enterprise-grade network security — zero-trust ac
     claim: 'A VPN gives me full control over my privacy settings.',
     verdict: 'The opposite. You get their rules, their servers, their decisions — and often their contract.',
     verdictClass: 'false',
-    reality: `Take NordVPN as an example — the most-marketed consumer VPN on the market. Their "Threat Protection" feature does DNS-level blocking of ads, trackers, and malware domains. Sounds useful. Here's what you don't get: you cannot see which domains are blocked. You cannot add your own block rules. You cannot whitelist a domain that was incorrectly blocked. You cannot use a different DNS provider. You cannot bring your own filter lists. There is no transparency into what "threat" means in their system. It's their definition, updated on their schedule, with no audit trail visible to you.
+    reality: `Take NordVPN as an example — the most-marketed consumer VPN on the market. Their "Threat Protection" feature blocks ads, trackers, and malware at the website lookup layer. Sounds useful. Here's what you don't get: you cannot see which domains are blocked. You cannot add your own block rules. You cannot whitelist a domain that was incorrectly blocked. You cannot use a different privacy or filtering service. You cannot bring your own filter lists. There is no transparency into what "threat" means in their system. It's their definition, updated on their schedule, with no audit trail visible to you.
 
 This isn't an oversight. It's the model. Opacity prevents churn. If you can't see what's blocked, you can't compare it to anything else. If you can't import your own rules, you can't leave without losing your configuration. If you're on an annual contract — which their marketing aggressively pushes with discounts — you're legally obligated to keep paying.
 
@@ -382,7 +382,7 @@ const vpnMythsSchema = {
                     </div>
                     <div class="diagram-node isp">
                       <span class="node-icon">🏢</span>
-                      <span class="node-name">Your ISP</span>
+                      <span class="node-name">Your internet provider</span>
                       <div class="node-sees">Can read &amp; sell it</div>
                     </div>
                     <div class="diagram-arrow">
@@ -391,11 +391,11 @@ const vpnMythsSchema = {
                     </div>
                     <div class="diagram-node dns">
                       <span class="node-icon">📖</span>
-                      <span class="node-name">DNS Server</span>
+                      <span class="node-name">Website lookup service</span>
                       <div class="node-sees">Logs your queries</div>
                     </div>
                   </div>
-                  <div class="diagram-note">HTTPS encrypts your actual browsing (the page content). It does not encrypt the lookup that gets you there. Encrypted DNS — which Bloqr enables — seals that envelope.</div>
+                  <div class="diagram-note">HTTPS encrypts your actual browsing (the page content). It does not encrypt the lookup that gets you there. Bloqr keeps those website lookups private by enabling encrypted DNS in the background.</div>
                 </div>
               )}
 
@@ -447,13 +447,13 @@ const vpnMythsSchema = {
         <div class="conclusion-inner">
           <div class="conclusion-text">
             <p class="section-label">So what actually works?</p>
-            <h2>DNS-level filtering.<br />AI-powered lists.<br />No rerouting.</h2>
+            <h2>Smarter blocking.<br />Automatic lists.<br />No slowdowns.</h2>
             <p>
-              For blocking ads, trackers, and malware domains — the use case most
-              consumer VPN buyers actually have — DNS-level filtering is more effective,
-              faster, and more transparent than a proxy. You don't need to route
-              your traffic through a server you don't control. You need better
-              filters applied closer to the source.
+              If your goal is to block ads, trackers, and malicious websites,
+              Bloqr does that directly at the lookup step — so pages load faster
+              and you keep visibility into what's being blocked. You don't need to
+              reroute all your traffic through a third-party server to get better
+              protection.
             </p>
             <p>
               For genuine anonymity — hiding from governments, bypassing censorship,
@@ -472,8 +472,9 @@ const vpnMythsSchema = {
               <p class="cta-label">Good internet hygiene.</p>
               <h3>Set it.<br />Bloqr it.<br />Forget it.</h3>
               <p class="cta-desc">
-                Bring your existing DNS provider or use ours. AI-curated threat lists,
-                DNS-level blocking, full rule transparency, instant propagation to every device.
+                Keep your current privacy or blocking service — or use ours.
+                You get automatically updated lists, clear visibility into every blocked site,
+                and instant updates across every device.
                 No traffic rerouting. No guessing what's blocked. No contracts.
               </p>
               <div class="cta-actions">
