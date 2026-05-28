@@ -1,38 +1,9 @@
 <!-- Feature comparison table for /pricing page -->
 
 <script lang="ts">
-<<<<<<< HEAD
-  const features = [
-    { label: 'Monthly price (personal)',    starter: '$3.99',   devPro: '$24.99',    vendor: '$29.99',    enterprise: 'Custom' },
-    { label: 'Monthly price (business)',    starter: '$5.99',   devPro: '$29.99',    vendor: '$39.99',    enterprise: 'Custom' },
-    { label: 'Deployment model',            starter: 'SaaS',    devPro: 'SaaS + SDK', vendor: 'SaaS + SDK + Edge', enterprise: 'All' },
-    { label: 'Compiles/day',                starter: '50',      devPro: '5,000',     vendor: '10,000',    enterprise: 'Unlimited' },
-    { label: 'Rules per compile',           starter: '2,000',   devPro: '100,000',   vendor: '100,000',   enterprise: 'Unlimited' },
-    { label: 'Filter sources/compile',      starter: '2',       devPro: 'Unlimited', vendor: 'Unlimited', enterprise: 'Unlimited' },
-    { label: 'REST API',                    starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Streaming API',               starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Async / batch API',           starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'CLI build tools',             starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'SDK license (local embed)',   starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Web APIs from local SDK',     starter: false,     devPro: 'Yes (usage fees apply)',   vendor: 'Yes (usage fees apply)',   enterprise: 'Yes (usage fees apply)' },
-    { label: 'Custom pipelines',            starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Natural language rules',      starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Priority threat intel',       starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'AST storage',                 starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'Output retention',            starter: '30 days', devPro: '1 year',    vendor: '2 years',   enterprise: 'Custom' },
-    { label: 'Multi-instance management',   starter: false,     devPro: false,       vendor: true,        enterprise: true },
-    { label: 'Cloudflare edge deploy',      starter: false,     devPro: false,       vendor: 'Add-on',    enterprise: true },
-    { label: 'Priority queue',              starter: false,     devPro: true,        vendor: true,        enterprise: true },
-    { label: 'SLA',                         starter: false,     devPro: false,       vendor: '99.9%',     enterprise: 'Custom' },
-    { label: 'API marketplace listing',     starter: false,     devPro: 'Coming soon', vendor: 'Coming soon', enterprise: 'Coming soon' },
-    { label: 'Invoice billing',             starter: false,     devPro: false,       vendor: true,        enterprise: true },
-    { label: 'Support',                     starter: 'Community', devPro: 'Priority email', vendor: 'Dedicated', enterprise: 'Dedicated + Slack' },
-  ];
-=======
   import { PRICING_FEATURE_ROWS } from '../lib/pricing';
 
   const features = PRICING_FEATURE_ROWS;
->>>>>>> origin/main
 </script>
 
 <section class="pricing-table-section">

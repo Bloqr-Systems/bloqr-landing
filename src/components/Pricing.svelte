@@ -1,7 +1,8 @@
 <!-- Pricing section -->
 
 <script lang="ts">
-  import { PRICING_TIERS } from '../lib/pricing';
+  import { PRICING_AUDIENCES, PRICING_TIERS_BY_AUDIENCE, PRICING_ADDONS } from '../lib/pricing';
+  import type { AudienceId } from '../lib/pricing';
 
   function trackPricingCta(tierName: string, cta: string): void {
     if (typeof window !== 'undefined' && window.posthog) {
@@ -9,235 +10,15 @@
     }
   }
 
-<<<<<<< HEAD
   /** Which audience track is currently shown */
-  let activeAudience = $state('personal');
+  let activeAudience = $state<AudienceId>('personal');
 
-  const audiences = [
-    { id: 'personal', label: 'Personal' },
-    { id: 'developer', label: 'Developer' },
-    { id: 'vendor',  label: 'Vendor / Business' },
-  ];
-
-  const tiersByAudience = {
-    personal: [
-      {
-        name:     'Starter',
-        price:    '$3.99',
-        period:   '/month',
-        aside:    'Less than a streaming rental.',
-        tagline:  'For households who just want it handled.',
-        cta:      'Get started',
-        href:     LINKS.app,
-        featured: false,
-        items: [
-          'Web API / SaaS — fully managed',
-          'AI-curated filter list maintained for you',
-          'Works with NextDNS, AdGuard, Pi-hole & more',
-          '50 compiles/day · 2,000 rules/compile',
-          '2 filter sources',
-          '30-day output retention',
-          'Weekly threat list updates',
-          'Community support',
-        ],
-      },
-      {
-        name:     'Plus',
-        price:    '$7.99',
-        period:   '/month',
-        aside:    'Roughly the price of a decent coffee.',
-        tagline:  'More sources, more DNS integrations, more control.',
-        cta:      'Get started',
-        href:     LINKS.app,
-        featured: false,
-        items: [
-          'Everything in Starter',
-          '200 compiles/day · 10,000 rules/compile',
-          '5 filter sources',
-          '3 DNS provider integrations',
-          '90-day output retention',
-          'Email notifications for major incidents',
-          'Email support',
-        ],
-      },
-      {
-        name:     'Premium',
-        price:    '$14.99',
-        period:   '/month',
-        aside:    'The full personal experience.',
-        tagline:  'Natural language rules + REST API included.',
-        cta:      'Get started',
-        href:     LINKS.app,
-        featured: true,
-        items: [
-          'Everything in Plus',
-          '500 compiles/day · 25,000 rules/compile',
-          '10 filter sources',
-          'Natural language rule builder included',
-          'REST API access included',
-          'Full config export (JSON/YAML)',
-          'Priority email support',
-        ],
-      },
-    ],
-    developer: [
-      {
-        name:     'Dev',
-        price:    '$9.99',
-        period:   '/month',
-        aside:    'Build without limits on calls.',
-        tagline:  'CLI and REST API — all unlocked.',
-        cta:      'Start building',
-        href:     LINKS.app,
-        featured: false,
-        items: [
-          'Web API/SaaS + CLI build tools',
-          'REST API access',
-          '1,000 compiles/day · 50,000 rules/compile',
-          '10 filter sources',
-          'Basic custom pipelines',
-          '90-day output retention',
-          'Email support',
-        ],
-      },
-      {
-        name:     'Dev Pro',
-        price:    '$24.99',
-        period:   '/month',
-        aside:    'The full pipeline — locally and in the cloud.',
-        tagline:  'SDK license + streaming + async API included.',
-        cta:      'Start building',
-        href:     LINKS.app,
-        featured: true,
-        items: [
-          'Everything in Dev',
-          'SDK license for local library embedding',
-          'Web APIs callable from local SDK (usage billed)',
-          'Streaming API + async/batch API included',
-          '5,000 compiles/day · 100,000 rules/compile',
-          'Unlimited filter sources',
-          'Full transformation pipeline suite',
-          'Priority queue · priority threat intelligence',
-          '1-year output retention',
-          'Priority email support',
-        ],
-      },
-      {
-        name:     'Dev Enterprise',
-        price:    '$49.99',
-        period:   '/month',
-        aside:    'Unlimited scale. Guaranteed uptime.',
-        tagline:  'Full suite, SLA, and dedicated support.',
-        cta:      'Contact us',
-        href:     '/#waitlist',
-        featured: false,
-        items: [
-          'Everything in Dev Pro',
-          'Unlimited compiles/day',
-          'Unlimited rules per compile',
-          'All API modes (REST, streaming, async, batch)',
-          'SLA — 99.9% uptime guaranteed',
-          '2-year output retention',
-          'Dedicated support channel (Slack or email)',
-          'Custom pipeline consulting',
-        ],
-      },
-    ],
-    vendor: [
-      {
-        name:     'Vendor',
-        price:    '$29.99',
-        period:   '/month',
-        aside:    'Pipeline-first for teams and products.',
-        tagline:  'Multi-instance, resource consumption, API marketplace.',
-        cta:      'Contact us',
-        href:     '/#waitlist',
-        featured: false,
-        items: [
-          'All Dev features',
-          'Resource-based consumption (Cloudflare usage included)',
-          'Multi-instance management',
-          'REST + async API included',
-          'API marketplace listing (when live)',
-          'Invoice billing available',
-          'Priority queue',
-          '90-day output retention',
-          'Email support',
-        ],
-      },
-      {
-        name:     'Vendor Pro',
-        price:    '$79.99',
-        period:   '/month',
-        aside:    'The full stack — edge-deployed and SLA-backed.',
-        tagline:  'Cloudflare edge + full pipeline suite + dedicated support.',
-        cta:      'Contact us',
-        href:     '/#waitlist',
-        featured: true,
-        items: [
-          'Everything in Vendor',
-          'Cloudflare edge deployment',
-          'Streaming API + full pipeline suite',
-          'SDK license for local embedding',
-          'Web APIs from SDK (usage billed)',
-          'Priority threat intelligence feed',
-          '2-year output retention',
-          'SLA — 99.9% uptime',
-          'Dedicated support channel',
-        ],
-      },
-      {
-        name:     'Enterprise',
-        price:    'Custom',
-        period:   '',
-        aside:    'White-label. Custom SLA. Dedicated infra.',
-        tagline:  'For high-volume vendors and OEM integrators.',
-        cta:      'Talk to us',
-        href:     '/#waitlist',
-        featured: false,
-        items: [
-          'Everything in Vendor Pro',
-          'Unlimited compiles + custom rate limits',
-          'White-label / OEM options',
-          'Custom integrations',
-          'Dedicated infrastructure',
-          'Custom SLA negotiated',
-          'Dedicated account manager',
-        ],
-      },
-    ],
-  };
-
-  const addons = [
-    { group: 'API access',       name: 'REST API',                  price: '$2.99/mo' },
-    { group: 'API access',       name: 'Streaming API',             price: '$4.99/mo' },
-    { group: 'API access',       name: 'Async / batch API',         price: '$3.99/mo' },
-    { group: 'Compiler',         name: 'SDK license (local embed)', price: '$9.99/mo' },
-    { group: 'Compiler',         name: 'CLI build tools',           price: '$1.99/mo' },
-    { group: 'Compiler',         name: 'Natural language rules',    price: '$3.99/mo' },
-    { group: 'Compiler',         name: 'Custom pipelines',          price: '$4.99/mo' },
-    { group: 'Compiler',         name: 'Priority threat intel',     price: '$4.99/mo' },
-    { group: 'Infrastructure',   name: 'Priority queue',            price: '$2.99/mo' },
-    { group: 'Infrastructure',   name: '1-year output retention',   price: '$2.99/mo' },
-    { group: 'Infrastructure',   name: 'Multi-instance mgmt',       price: '$3.99/mo' },
-    { group: 'Infrastructure',   name: 'Cloudflare edge deploy',    price: '$9.99/mo' },
-    { group: 'DNS integrations', name: 'NextDNS',                   price: '$1.99/mo' },
-    { group: 'DNS integrations', name: 'AdGuard Home',              price: '$1.99/mo' },
-    { group: 'DNS integrations', name: 'Pi-hole',                   price: '$1.99/mo' },
-    { group: 'DNS integrations', name: 'Cloudflare Gateway',        price: '$2.99/mo' },
-    { group: 'DNS integrations', name: 'Custom DNS provider',       price: '$2.99/mo' },
-    { group: 'Support',          name: 'Priority email support',    price: '$4.99/mo' },
-    { group: 'Support',          name: 'SLA (99.9% uptime)',        price: '$9.99/mo' },
-    { group: 'Support',          name: 'Dedicated support channel', price: '$19.99/mo' },
-  ];
+  const audiences = PRICING_AUDIENCES;
+  const tiersByAudience = PRICING_TIERS_BY_AUDIENCE;
+  const addons = PRICING_ADDONS;
 
   /** Group add-ons for display */
   const addonGroups = [...new Set(addons.map(a => a.group))];
-
-
-=======
-  const tiers = PRICING_TIERS;
->>>>>>> origin/main
 </script>
 
 <section class="pricing" id="pricing">
