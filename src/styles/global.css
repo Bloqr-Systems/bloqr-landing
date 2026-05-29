@@ -28,6 +28,7 @@
   --color-error:       #f87171;
   --color-error-dim:   rgba(248, 113, 113, 0.10);
   --color-error-border: rgba(239, 68, 68, 0.35);
+  --cyan-border:       rgba(0, 212, 255, 0.25);
 
   /* ── Persona accent colors (Builder / Developer, Ally / Partner) ────── */
   /* These are distinct from --code-* syntax tokens — do not conflate.    */
@@ -80,6 +81,7 @@
   --color-error:          #dc2626;
   --color-error-dim:      rgba(220,38,38,0.10);
   --color-error-border:   rgba(220,38,38,0.30);
+  --cyan-border:          rgba(0, 153, 187, 0.25);
   --persona-dev:            #4d7c0f;
   --persona-dev-dim:        rgba(77,124,15,0.08);
   --persona-dev-border:     rgba(77,124,15,0.25);
@@ -119,6 +121,7 @@
     --color-error:          #dc2626;
     --color-error-dim:      rgba(220,38,38,0.10);
     --color-error-border:   rgba(220,38,38,0.30);
+    --cyan-border:          rgba(0, 153, 187, 0.25);
     --persona-dev:            #4d7c0f;
     --persona-dev-dim:        rgba(77,124,15,0.08);
     --persona-dev-border:     rgba(77,124,15,0.25);
