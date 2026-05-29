@@ -15,7 +15,7 @@ Those requests are called DNS lookups, and by default:
 - Your ISP can see every single one — even when you're on HTTPS
 - Ad networks, trackers, and malware distributors operate on domains that respond to those lookups
 
-Browsing hygiene means blocking the bad domains before your device ever connects to them.
+Browsing Hygiene means blocking the bad domains before your device ever connects to them.
 No request = no tracker. No connection = no malware.
 
 The problem: setting this up has always required technical expertise. Custom lists. Self-hosted servers. Manual updates.
