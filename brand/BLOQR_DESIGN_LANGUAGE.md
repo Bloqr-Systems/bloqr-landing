@@ -10,9 +10,9 @@ These phrases anchor everything we write and build:
 
 - **"Set it. Bloqr it. Forget it."** — The consumer promise. Zero ongoing maintenance.
 - **"Bring your own. Or use ours."** — The vendor philosophy. No lock-in, ever.
-- **"The privacy you didn't know you needed."** — The acquisition hook. Education-first marketing.
-- **"Internet Hygiene. Automated."** — The tagline. Simple, direct, applies to all personas.
-- **Browsing Hygiene** — Our coined concept for what we deliver. Not security, not anonymity — hygiene. Preventive, routine, invisible.
+- **"The privacy you didn't know you needed."** — The tagline. Simple, direct, applies to all personas.
+- **"Internet Hygiene. Automated."** — Legacy tagline. Retired.
+- **"Browsing Hygiene"** — Our coined concept for what we deliver. Not security, not anonymity — hygiene. Preventive, routine, invisible.
 
 ---
 

@@ -128,7 +128,7 @@ export const CHANGELOG_URL =
  */
 export const PAGE_META = {
   home: {
-    title:       'Bloqr AI — Internet Hygiene. Automated.',
+    title:       "Bloqr AI — The privacy you didn't know you needed.",
     description: 'AI-powered adblock list management and real-time threat intelligence. Block ads, trackers, and malware at the network level — without routing your traffic anywhere.',
   },
   about: {
@@ -205,7 +205,7 @@ export async function getConfig(databaseUrl?: string): Promise<SiteConfig> {
     GITHUB_URL:      'https://github.com/jaypatrick/adblock-compiler',
     AUTHOR_URL:      'https://jaysonknight.com',
     PRODUCT_NAME:    'Bloqr AI',
-    PRODUCT_TAGLINE: 'Internet Hygiene. Automated.',
+    PRODUCT_TAGLINE: "The privacy you didn't know you needed.",
     OG_IMAGE_PATH:   '/og-image.png',
   };
 

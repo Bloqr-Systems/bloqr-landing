@@ -23,7 +23,7 @@
       Set it. Bloqr it. Forget it.
     </div>
 
-    <h1>Internet Hygiene:<br /><em>Automated.</em></h1>
+    <h1>The privacy you didn't<br /><em>know you needed.</em></h1>
 
     <p class="sub">
       Bloqr blocks ads, trackers, and malware at the network level — across every

@@ -70,7 +70,7 @@ const MANIFEST_FALLBACK = JSON.stringify({
   orientation: 'any',
   name: 'Bloqr',
   short_name: 'Bloqr',
-  description: 'Internet Hygiene: Automated. DNS-level ad blocking, AI-powered filter lists, and encrypted DNS for every device.',
+  description: "The privacy you didn't know you needed. DNS-level ad blocking, AI-powered filter lists, and encrypted DNS for every device.",
   start_url: '/',
   display: 'standalone',
   background_color: '#070B14',

@@ -80,4 +80,4 @@ If you're on Free, you'll still get access to Mesh for 2 devices. We'll announce
 
 We'll post updates here as the roadmap moves. Full changelog at [bloqr.ai/changelog](/changelog). Questions or early feedback? Reach us at the link in the footer.
 
-"Internet Hygiene. Automated." — everywhere you go.
+"The privacy you didn't know you needed." — everywhere you go.
