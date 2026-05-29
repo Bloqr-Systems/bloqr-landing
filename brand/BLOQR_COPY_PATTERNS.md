@@ -14,8 +14,8 @@
 |---|---|
 | Set it. Bloqr it. Forget it. | Primary consumer CTA headline |
 | Bring your own. Or use ours. | Vendor/integration sections |
-| Internet Hygiene. Automated.     | Tagline — footers, meta titles, universal |
-| The privacy you didn't know you needed. | Acquisition hook, top-of-funnel ads |
+| The privacy you didn't know you needed. | Tagline — footers, meta titles, universal |
+| Internet Hygiene. Automated.     | Legacy tagline — retired |
 | Browsing Hygiene | The concept we coined — always use this term, always capitalised |
 
 ---
@@ -142,7 +142,7 @@ Bloqr — [Page purpose, ≤50 chars].
 ```
 
 Examples:
-- `Bloqr — Internet Hygiene: Automated.`
+- `Bloqr — The privacy you didn't know you needed.`
 - `Bloqr — Block Ads at the Network Level.`
 - `Bloqr — Do VPNs Actually Protect Your Privacy?`
 

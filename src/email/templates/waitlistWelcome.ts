@@ -33,6 +33,8 @@ export function renderWaitlistWelcome(
     "We'll reach out when your spot opens. No spam. One email when it's ready.",
     '',
     "The privacy you didn't know you needed.",
+    '',
+    `— The Bloqr team`,
     `${SITE_URL}`,
   ].join('\n');
 

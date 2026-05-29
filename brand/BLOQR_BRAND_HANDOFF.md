@@ -33,7 +33,7 @@
 
 ### Tagline (canonical)
 
-> Internet Hygiene. Automated.
+> The privacy you didn't know you needed.
 
 ### Domain
 
