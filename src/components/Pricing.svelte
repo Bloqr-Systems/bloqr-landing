@@ -100,8 +100,8 @@
 
     <!-- Usage note -->
     <p class="usage-note">
-      ⚡ Usage above plan limits billed at <strong>$0.002/compile</strong> and
-      <strong>$0.001/1,000 rules</strong>. Web API calls via the local SDK always
+      ⚡ Usage above plan limits billed at <strong>$0.20/compile</strong> and
+      <strong>$0.10/1,000 rules</strong>. Web API calls via the local SDK always
       incur usage charges and require verified entitlements.
     </p>
 
