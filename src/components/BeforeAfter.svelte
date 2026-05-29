@@ -6,13 +6,15 @@
   let visible = $state(true);
   let sectionVisible = $state(false);
   let modalStep = $state(0);
+  /** Set to true the first time the user manually clicks Back/Next/dot — stops auto-advance */
+  let userTookControl = $state(false);
 
   /** @type {HTMLDialogElement | null} */
   let dialogEl = null;
   /** @type {ReturnType<typeof setTimeout> | null} */
   let autoTimer = null;
 
-  const STEP_MS = 1900;
+  const STEP_MS = 3500;
 
   onMount(() => {
     visible = false;
@@ -43,6 +45,7 @@
 
   function openModal() {
     modalStep = 0;
+    userTookControl = false;
     if (!dialogEl?.showModal) return;
 
     dialogEl.showModal();
@@ -56,7 +59,7 @@
 
   function scheduleTick() {
     if (autoTimer) clearTimeout(autoTimer);
-    if (modalStep < modalSteps.length - 1) {
+    if (!userTookControl && modalStep < modalSteps.length - 1) {
       autoTimer = setTimeout(() => {
         modalStep++;
         scheduleTick();
@@ -64,11 +67,15 @@
     }
   }
 
-  /** @param {number} n */
-  function goStep(n) {
+  /**
+   * @param {number} n
+   * @param {boolean} [manual] - true when triggered by a user click
+   */
+  function goStep(n, manual = false) {
     if (autoTimer) clearTimeout(autoTimer);
+    if (manual) userTookControl = true;
     modalStep = Math.max(0, Math.min(n, modalSteps.length - 1));
-    scheduleTick();
+    if (!userTookControl) scheduleTick();
   }
 
   function handleDialogClose() {
@@ -112,23 +119,23 @@
     {
       icon: '🌐',
       title: 'You visit a site',
-      desc: 'Browser gets the page — plus a list of 18 things to load',
+      desc: 'Your browser loads the page — then discovers a list of 18 extra things to fetch: images, fonts, ads, scripts, trackers.',
     },
     {
       icon: '📞',
-      title: '"Where is each thing?"',
-      desc: 'DNS lookup — like calling directory assistance for every address',
+      title: '"Where does each thing live?"',
+      desc: 'Your browser asks the DNS phone book for the address of every single item — one lookup per resource.',
     },
     {
       icon: '🌊',
-      title: 'Everything floods in',
-      desc: '5 trackers, 4 ad auctions, 3 suspicious scripts — nobody says no',
+      title: 'The whole list floods in',
+      desc: '5 trackers silently logging your session. 4 ad-auction scripts bidding on your attention. 3 suspicious domains nobody invited.',
       variant: 'warn',
     },
     {
       icon: '⏱️',
-      title: '4.2 seconds',
-      desc: 'Slow. Watched. Exposed.',
+      title: '4.2 seconds to load',
+      desc: 'Slow because your browser waited for all of it. Watched because trackers got everything they wanted.',
       variant: 'bad',
     },
   ];
@@ -137,24 +144,24 @@
     {
       icon: '🌐',
       title: 'You visit a site',
-      desc: 'Same start — browser gets the page',
+      desc: 'Same page, same browser — Bloqr is running quietly in the background.',
     },
     {
       icon: '🛡️',
-      title: 'Bloqr answers the phone first',
-      desc: 'Sits right at that moment of asking — checks every domain before the call connects',
+      title: 'Bloqr answers the phone book first',
+      desc: 'At the DNS lookup step, Bloqr intercepts every address request and checks it against known threats — before the connection is ever opened.',
       variant: 'shield',
     },
     {
       icon: '🚫',
-      title: '12 bad actors — never called',
-      desc: 'Blocked at DNS. Zero bytes downloaded. Zero milliseconds waited.',
+      title: '12 bad actors turned away at the door',
+      desc: 'Blocked at DNS. No connection opened. No bytes downloaded. No milliseconds wasted waiting for them.',
       variant: 'blocked',
     },
     {
       icon: '⚡',
-      title: '1.1 seconds',
-      desc: 'Fast. Private. Clean.',
+      title: '1.1 seconds to load',
+      desc: 'Fast because your browser never waited for junk. Private because trackers were never given the chance.',
       variant: 'good',
     },
   ];
@@ -165,47 +172,47 @@
     {
       icon: '🌐',
       title: 'You open a website',
-      body: 'Your browser fetches the page and finds a shopping list of 18 things to load — images, fonts, scripts, and more. Each one lives at a different address.',
+      body: 'You click a link and your browser starts loading the page. But getting a webpage isn\'t just one download — your browser discovers a list of 18 separate things it needs to fetch: images, fonts, layout files, and scripts. Each one lives at a completely different address on the internet.',
       variant: 'neutral',
       items: null,
       stats: null,
     },
     {
       icon: '📋',
-      title: 'Every item needs a phone number',
-      body: 'Your browser asks "where is each thing?" — a process called a DNS lookup. Like calling directory assistance to get a phone number. Your browser does this for every single item.',
+      title: 'Every item needs an address lookup',
+      body: 'Before your browser can fetch anything, it has to ask: "Where does this live?" That\'s called a DNS lookup — think of it as the internet\'s phone book. Your browser looks up the address for every single item on that list. This happens in milliseconds, but each lookup is a door that can be opened to things you never wanted.',
       variant: 'neutral',
       items: null,
       stats: null,
     },
     {
       icon: '⚠️',
-      title: 'Without protection, everyone answers',
-      body: 'Trackers that log everything you read. Ad auction scripts that run a bidding war and slow your page. Malware that could record passwords or mine crypto. All of them get through.',
+      title: 'Without protection, everyone gets in',
+      body: 'Of those 18 items, only 6 are things you actually asked for. The other 12 are uninvited: trackers that build a profile of what you read, ad-auction scripts that run a real-time bidding war in the background, and malware that could record your keystrokes or silently mine cryptocurrency using your device\'s power.',
       variant: 'bad',
-      items: ['👁️  analytics.js — logs what you read', '💰  doubleclick.js — runs an ad auction', '☠️  cryptominer.js — mines on your device'],
+      items: ['👁️  analytics.js — logs your reading habits', '💰  doubleclick.js — runs a background ad auction', '☠️  cryptominer.js — burns your CPU to mine crypto'],
       stats: null,
     },
     {
       icon: '🛡️',
-      title: 'Bloqr sits right at the phone',
-      body: 'Before your browser can even dial "analytics.js", Bloqr intercepts. It checks: "Is this a known bad actor?" If yes — the call is cancelled. The request never starts.',
+      title: 'Bloqr steps in at the phone book',
+      body: 'Bloqr works at the DNS layer — right at that address-lookup step. Before your browser can even open a connection to analytics.js, Bloqr checks: "Is this a known bad actor?" If it is, the lookup fails instantly. No connection is opened. The request simply never happens — in under a millisecond.',
       variant: 'shield',
       items: null,
       stats: null,
     },
     {
       icon: '🚫',
-      title: '12 domains. Zero bytes. Zero wait.',
-      body: 'analytics.js, fb-pixel.js, doubleclick.js, hotjar.js, prebid.js, cryptominer.js — all stopped. Your browser never waited. They were never even asked.',
+      title: '12 domains blocked. Zero bytes. Zero wait.',
+      body: 'Because Bloqr said no during the lookup phase, your browser never opened a connection to any of them. It didn\'t download a single byte from trackers, ad scripts, or malware. And since it never waited for those 12 requests, your page loads as if they were never on the list.',
       variant: 'blocked',
       items: ['🚫  analytics.js', '🚫  fb-pixel.js', '🚫  doubleclick.js', '🚫  hotjar.js', '🚫  prebid.js', '🚫  cryptominer.js'],
       stats: null,
     },
     {
       icon: '⚡',
-      title: '74% faster. Every page.',
-      body: "Not a side effect of better privacy — privacy is the performance boost. Every blocked domain is loading time you get back.",
+      title: '74% faster. Every page. No trade-off.',
+      body: 'Privacy and performance aren\'t opposites — they\'re the same thing here. Every domain Bloqr blocks is load time you get back, CPU cycles saved, and data you keep to yourself. It happens automatically, on every page, every visit. You don\'t configure anything. You don\'t click anything. It just works.',
       variant: 'result',
       items: null,
       stats: [
@@ -474,7 +481,7 @@
     <div class="modal-nav">
       <button
         class="modal-nav__btn"
-        onclick={() => goStep(modalStep - 1)}
+        onclick={() => goStep(modalStep - 1, true)}
         disabled={modalStep === 0}
         aria-label="Previous step"
       >← Back</button>
@@ -484,7 +491,7 @@
           <button
             class="modal-dot"
             class:modal-dot--active={i === modalStep}
-            onclick={() => goStep(i)}
+            onclick={() => goStep(i, true)}
             aria-pressed={i === modalStep}
             aria-label={`Go to step ${i + 1}`}
           ></button>
@@ -494,7 +501,7 @@
       {#if modalStep < modalSteps.length - 1}
         <button
           class="modal-nav__btn modal-nav__btn--next"
-          onclick={() => goStep(modalStep + 1)}
+          onclick={() => goStep(modalStep + 1, true)}
           aria-label="Next step"
         >Next →</button>
       {:else}
