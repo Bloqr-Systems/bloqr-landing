@@ -472,10 +472,11 @@
     top: 1px;
   }
 
-  .legend-swatch--content { background: color-mix(in srgb, var(--text-2) 50%, transparent); }
-  .legend-swatch--tracker { background: color-mix(in srgb, var(--color-error) 50%, transparent); }
-  .legend-swatch--ad      { background: color-mix(in srgb, var(--color-warning) 60%, transparent); }
-  .legend-swatch--malware { background: color-mix(in srgb, var(--color-error) 65%, transparent); }
+  /* Each severity tier maps to a distinct semantic token; all at 50% for consistency. */
+  .legend-swatch--content { background: color-mix(in srgb, var(--text-2)          50%, transparent); }
+  .legend-swatch--tracker { background: color-mix(in srgb, var(--color-warning)    50%, transparent); }
+  .legend-swatch--ad      { background: color-mix(in srgb, var(--orange)           50%, transparent); }
+  .legend-swatch--malware { background: color-mix(in srgb, var(--color-error)      50%, transparent); }
 
   .legend-label {
     font-weight: 600;
