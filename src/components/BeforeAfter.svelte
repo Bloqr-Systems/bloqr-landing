@@ -26,10 +26,10 @@
     B -- "Known troublemaker\\n🚫 tracker · ad · threat" --> C["Blocked instantly\\nYour device never waits\\nfor something it shouldn't load"]:::blocked
     B -- "Trusted address\\n✅ real content" --> D["Lookup goes through\\nnormally"]:::node
     D --> E["📄 Your article loads\\nclean and fast — nothing extra"]:::good
-    classDef node    fill:#1e2738,stroke:#334155,color:#e2e8f0
-    classDef bloqr   fill:#7c2d00,stroke:#ff5500,color:#fff7ed
-    classDef blocked fill:#0c2a33,stroke:#00d4ff,color:#ecfeff
-    classDef good    fill:#14532d,stroke:#22c55e,color:#dcfce7`;
+    classDef node    fill:var(--bg-elevated),stroke:var(--border-2),color:var(--text-1)
+    classDef bloqr   fill:var(--orange-dim),stroke:var(--orange),color:var(--orange)
+    classDef blocked fill:var(--cyan-dim),stroke:var(--cyan-border),color:var(--cyan)
+    classDef good    fill:var(--color-success-dim),stroke:var(--color-success-border),color:var(--color-success)
 
   onMount(() => {
     // Reset so waterfall animation plays on mount
