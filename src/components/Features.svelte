@@ -62,7 +62,7 @@
           <div class="cell-icon">{f.icon}</div>
           <h4>{f.title}</h4>
           <p>{f.desc}</p>
-          {#if f.link}
+          {#if f.link && f.linkText}
             <a class="cell-link" href={f.link} target="_blank" rel="noopener noreferrer">{f.linkText}</a>
           {/if}
         </div>
