@@ -1063,7 +1063,7 @@
   .modal-step--bad    .modal-step__title { color: var(--color-error); }
   .modal-step--shield .modal-step__title { color: var(--cyan); }
   .modal-step--blocked .modal-step__title { color: var(--cyan); }
-  .modal-step--result .modal-step__title { color: var(--color-success, #4ade80); }
+  .modal-step--result .modal-step__title { color: var(--color-success); }
 
   .modal-step__body {
     font-size: 0.92rem;
