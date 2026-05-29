@@ -1,1 +1,47 @@
-IyBCbG9xciBBSSDigJQgU29jaWFsIE1lZGlhIFBvc3RzCgpUaGlzIGRpcmVjdG9yeSBjb250YWlucyBhbGwgc29jaWFsIG1lZGlhIHBvc3RzIGZvciBCbG9xciBBSSwgb3JnYW5pemVkIG9uZSBwb3N0IHBlciBzdWJkaXJlY3RvcnkuCgpFYWNoIHN1YmRpcmVjdG9yeSBjb250YWluczoKLSBgcG9zdC5tZGAgLS0gTWFya2Rvd24gdmVyc2lvbiB3aXRoIGZvcm1hdHRpbmcsIGxpbmtzLCBhbmQgaGFzaHRhZyBibG9ja3MKLSBgcG9zdC50eHRgIC0tIFBsYWluIHRleHQgdmVyc2lvbiBmb3IgZGlyZWN0IGNvcHkvcGFzdGUgaW50byBwbGF0Zm9ybSBjb21wb3NlcnMKCkNvbnRlbnQgaXMgKipwbGF0Zm9ybS1hZ25vc3RpYyoqIOKAlCBpZGVudGljYWwgY29weSBmb3IgSW5zdGFncmFtLCBGYWNlYm9vaywgYW5kIFJlZGRpdC4KQWRhcHQgaGFzaHRhZyB1c2FnZSBwZXIgcGxhdGZvcm0gYmVmb3JlIHB1Ymxpc2hpbmcgKHNlZSBub3RlcyBiZWxvdykuCgojIyBQbGF0Zm9ybXMKCnwgUGxhdGZvcm0gfCBIYXNodGFncyB8IExpbmtzIHwgSW1hZ2UgfAp8LS0tfC0tLXwtLS18LS0tfAp8IEluc3RhZ3JhbSB8IFVzZSBhbGwgaGFzaHRhZ3MgZnJvbSBwb3N0IHwgTGluayBpbiBiaW8gb25seSB8IEF0dGFjaCBzdWdnZXN0ZWQgaW1hZ2UgfAp8IEZhY2Vib29rIHwgVXNlIDPigJM1IGhhc2h0YWdzIG1heCB8IElubGluZSBsaW5rcyB3b3JrIHwgQXR0YWNoIHN1Z2dlc3RlZCBpbWFnZSB8CnwgUmVkZGl0IHwgTm8gaGFzaHRhZ3MgfCBJbmxpbmUgbGlua3Mgd29yayB8IFVzZSBpbWFnZSBwb3N0IG9yIGxpbmsgcG9zdCB8CgojIyBQb3N0cwoKfCBEaXJlY3RvcnkgfCBTdGF0dXMgfCBUb3BpYyB8CnwtLS18LS0tfC0tLXwKfCBgMDAtcGlubmVkLWludHJvL2AgfCDwn5SLICoqUElOIFRISVMqKiB8IFdoYXQgaXMgQmxvcXIgQUkg4oCUIGhpZ2gtbGV2ZWwgb3ZlcnZpZXcgfAp8IGAwMS1icm93c2luZy1oeWdpZW5lL2AgfCBSZWFkeSB8IFdoYXQgaXMgYnJvd3NpbmcgaHlnaWVuZSBhbmQgd2h5IGl0IG1hdHRlcnMgfAp8IGAwMi1haS1wb3dlcmVkLWxpc3RzL2AgfCBSZWFkeSB8IEFJIGJ1aWxkcyBhbmQgbWFpbnRhaW5zIHlvdXIgZmlsdGVyIGxpc3RzIHwKfCBgMDMtbm8tY29kZS1yZXF1aXJlZC9gIHwgUmVhZHkgfCBBbnlvbmUgY2FuIHVzZSBCbG9xciBidXQgbm8gdGVjaCBza2lsbHMgbmVlZGVkIHwKfCBgMDQtdnBuLXZzLWJsb3FyL2AgfCBSZWFkeSB8IFdoeSBETlMgZmlsdGVyaW5nIGJlYXRzIGEgY29uc3VtZXIgVlBOIGZvciBtb3N0IHBlb3BsZSB8CgojIyBJbWFnZSBBc3NldHMKClN1Z2dlc3RlZCBpbWFnZXMgYXJlIHJlZmVyZW5jZWQgaW4gZWFjaCBwb3N0LiBTb3VyY2UgZnJvbSBgL3B1YmxpYy9gIGluIHRoZSBsYW5kaW5nIHJlcG8Kb3IgZnJvbSB0aGUgT0cgaW1hZ2UgZ2VuZXJhdG9yIGF0IGBodHRwczovL2Jsb3FyLmRldi9vZy1pbWFnZS5wbmdgLgoKLS0tCgoqTWFpbnRhaW5lZCBieSB0aGUgQmxvcXIgdGVhbS4gQWRkIG5ldyBwb3N0cyBhcyBuZXcgc3ViZGlyZWN0b3JpZXMgd2l0aCBzZXF1ZW50aWFsIG51bWJlcmluZy4qCg==
+# Bloqr AI — Social Media Posts
+
+This directory contains all social media posts for Bloqr AI, organized one post per subdirectory.
+
+Each subdirectory contains:
+- `post.md` — Markdown version with formatting, links, and hashtag blocks
+- `post.txt` — Plain text version for direct copy/paste into platform composers
+
+Content is **platform-agnostic** — identical copy for Instagram, Facebook, Threads, and Reddit.
+Adapt hashtag usage per platform before publishing (see notes below).
+
+## Official Accounts
+
+| Platform | URL | Handle |
+|---|---|---|
+| Instagram | https://www.instagram.com/bloqr.ai | @bloqr.ai |
+| Facebook | https://www.facebook.com/ | ⚠️ Handle TBD — update when available |
+| Threads | https://www.threads.com/@bloqr.ai | @bloqr.ai |
+| Website | https://bloqr.dev | — |
+
+## Platform Publishing Notes
+
+| Platform | Hashtags | Links | Image |
+|---|---|---|---|
+| Instagram | Use all hashtags from post | Link in bio only | Attach suggested image |
+| Facebook | Use 3–5 hashtags max | Inline links work | Attach suggested image |
+| Threads | Use 3–5 hashtags max | Inline links work | Attach suggested image |
+| Reddit | No hashtags | Inline links work | Use image post or link post |
+
+## Posts
+
+| Directory | Status | Topic |
+|---|---|---|
+| `00-pinned-intro/` | 📌 **PIN THIS** | What is Bloqr AI — high-level overview |
+| `01-browsing-hygiene/` | Ready | What is browsing hygiene and why it matters |
+| `02-ai-powered-lists/` | Ready | AI builds and maintains your filter lists |
+| `03-no-code-required/` | Ready | Anyone can use Bloqr — no tech skills needed |
+| `04-vpn-vs-bloqr/` | Ready | Why DNS filtering beats a consumer VPN for most people |
+
+## Image Assets
+
+Suggested images are referenced in each post. Source from `/public/` in the landing repo
+or from the OG image generator at `https://bloqr.dev/og-image.png`.
+
+---
+
+*Maintained by the Bloqr team. Add new posts as new subdirectories with sequential numbering.*
