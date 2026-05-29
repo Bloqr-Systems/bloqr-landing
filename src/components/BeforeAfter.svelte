@@ -44,8 +44,10 @@
 
   function openModal() {
     modalStep = 0;
+    if (!dialogEl?.showModal) return;
+
     modalOpen = true;
-    dialogEl?.showModal();
+    dialogEl.showModal();
     scheduleTick();
   }
 
