@@ -3,9 +3,8 @@
   import { onMount } from 'svelte';
 
   // ── Reactive state ──────────────────────────────────────────────────────────
-  let visible = $state(false);
+  let visible = $state(true);
   let sectionVisible = $state(false);
-  let modalOpen = $state(false);
   let modalStep = $state(0);
 
   /** @type {HTMLDialogElement | null} */
@@ -46,14 +45,12 @@
     modalStep = 0;
     if (!dialogEl?.showModal) return;
 
-    modalOpen = true;
     dialogEl.showModal();
     scheduleTick();
   }
 
   function closeModal() {
     if (autoTimer) clearTimeout(autoTimer);
-    modalOpen = false;
     if (dialogEl?.open && typeof dialogEl.close === 'function') dialogEl.close();
   }
 
@@ -76,7 +73,6 @@
 
   function handleDialogClose() {
     if (autoTimer) clearTimeout(autoTimer);
-    modalOpen = false;
   }
 
   // ── Waterfall data ─────────────────────────────────────────────────────────
@@ -630,8 +626,8 @@
     text-transform: uppercase;
   }
 
-  .flow-pill--bad  { background: rgba(239,68,68,0.12);  color: var(--color-error);   border: 1px solid rgba(239,68,68,0.2); }
-  .flow-pill--good { background: rgba(0,212,255,0.1);   color: var(--cyan);           border: 1px solid rgba(0,212,255,0.2); }
+  .flow-pill--bad  { background: var(--color-error-dim); color: var(--color-error); border: 1px solid var(--color-error-border); }
+  .flow-pill--good { background: var(--cyan-dim); color: var(--cyan); border: 1px solid color-mix(in srgb, var(--cyan) 25%, transparent); }
 
   /* ── Flow step card ───────────────────────────────────────────────────────── */
 
@@ -1170,7 +1166,7 @@
   .modal-nav__btn--next:hover { opacity: 0.9; }
 
   .modal-nav__btn--done {
-    background: var(--color-success, #4ade80);
+    background: var(--color-success);
     color: var(--bg-base);
     border-color: transparent;
   }
