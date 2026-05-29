@@ -653,11 +653,11 @@
     transform: none;
   }
 
-  .flow-step--warn    { border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.07); }
-  .flow-step--bad     { border-color: rgba(239,68,68,0.35); background: rgba(239,68,68,0.09); }
-  .flow-step--shield  { border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.08); }
-  .flow-step--blocked { border-color: rgba(0,212,255,0.2);  background: rgba(0,212,255,0.05); }
-  .flow-step--good    { border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.08); }
+  .flow-step--warn    { border-color: var(--color-warning-border); background: var(--color-warning-dim); }
+  .flow-step--bad     { border-color: var(--color-error-border); background: var(--color-error-dim); }
+  .flow-step--shield  { border-color: color-mix(in srgb, var(--cyan) 35%, transparent); background: var(--cyan-dim); }
+  .flow-step--blocked { border-color: color-mix(in srgb, var(--cyan) 20%, transparent); background: color-mix(in srgb, var(--cyan) 8%, transparent); }
+  .flow-step--good    { border-color: var(--color-success-border); background: var(--color-success-dim); }
 
   .flow-step__icon {
     font-size: 1.5rem;
