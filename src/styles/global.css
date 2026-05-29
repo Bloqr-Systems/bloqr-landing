@@ -97,6 +97,7 @@
 }
 
 @media (prefers-color-scheme: light) {
+  /* Intentional duplication of :root[data-theme='light'] for OS-preference support. */
   :root:not([data-theme='dark']):not([data-theme='light']) {
     color-scheme: light;
     --bg-base:      #F8FAFC;
@@ -201,8 +202,20 @@ body {
   transform: translateY(-1px);
 }
 
+.btn-cyan {
+  color: #062432;
+  background: var(--cyan);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--cyan) 25%, transparent);
+}
+.btn-cyan:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 32px color-mix(in srgb, var(--cyan) 40%, transparent);
+  transform: translateY(-1px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn-primary:hover,
+  .btn-cyan:hover,
   .btn-outline:hover {
     transform: none;
   }
@@ -247,11 +260,28 @@ body {
   line-height: 1.65;
 }
 
+.section-header {
+  margin-bottom: 48px;
+}
+
+.section-header--centered {
+  text-align: center;
+}
+
+.section-header--centered .section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ─── UTILITY ─── */
 .divider-glow {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--orange) 50%, transparent);
   opacity: 0.3;
+}
+
+.divider-glow--cyan {
+  background: linear-gradient(90deg, transparent, var(--cyan) 50%, transparent);
 }
 
 /* ─── FOCUS STYLES (accessibility) ─── */

@@ -37,7 +37,7 @@
       <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('join_the_beta')}>
         Join the beta <span aria-hidden="true">→</span>
       </a>
-      <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('view_docs')}>
+      <a href={LINKS.docs} class="btn btn-outline cta-secondary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('view_docs')}>
         View docs
       </a>
     </div>
@@ -100,5 +100,10 @@
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
+  }
+
+  .cta-secondary {
+    color: var(--cyan);
+    border-color: color-mix(in srgb, var(--cyan) 30%, var(--border-2));
   }
 </style>

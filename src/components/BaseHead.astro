@@ -72,6 +72,7 @@ const canonical = canonicalURL.toString();
 <meta name="description" content={description} />
 <meta name="author" content={author} />
 <meta name="color-scheme" content="dark light" />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
 <!-- Open Graph -->
 <meta property="og:site_name"    content="Bloqr AI" />
@@ -109,7 +110,7 @@ const canonical = canonicalURL.toString();
 
 <!-- PWA / Theme -->
 <link rel="manifest" href="/site.webmanifest" />
-<meta name="theme-color" content="#FF5500" />
+<meta name="theme-color" content="#070B14" />
 <meta name="msapplication-TileColor" content="#070B14" />
 <meta name="msapplication-TileImage" content="/icon-192.png" />
 <meta name="msapplication-config" content="none" />
@@ -128,8 +129,6 @@ const canonical = canonicalURL.toString();
 <!-- Astro 6 Fonts API — self-hosted via fontsource, with preload links -->
 <Font cssVariable="--font-display" preload />
 <Font cssVariable="--font-mono" preload />
-
-{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <ClientRouter />
 <Analytics />

@@ -5,17 +5,15 @@ import Nav from '../components/Nav.svelte';
 import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Hero from '../components/Hero.svelte';
 import SocialProof from '../components/SocialProof.svelte';
-import ComingSoon from '../components/ComingSoon.svelte';
 import Problem from '../components/Problem.svelte';
 import BeforeAfter from '../components/BeforeAfter.svelte';
 import HowItWorks from '../components/HowItWorks.svelte';
-import Audiences from '../components/Audiences.svelte';
+import AudiencesTeaser from '../components/AudiencesTeaser.svelte';
 import Features from '../components/Features.svelte';
 import WaitlistSignup from '../components/WaitlistSignup.svelte';
 import CodeDemo from '../components/CodeDemo.svelte';
-import DynamicWorkers from '../components/DynamicWorkers.svelte';
-import WhyCloudflare from '../components/WhyCloudflare.svelte';
-import PrivacyCommitments from '../components/PrivacyCommitments.svelte';
+import WhyCloudflareTeaser from '../components/WhyCloudflareTeaser.svelte';
+import PrivacyStrip from '../components/PrivacyStrip.svelte';
 import Pricing from '../components/Pricing.svelte';
 import FounderNote from '../components/FounderNote.svelte';
 import FAQ from '../components/FAQ.svelte';
@@ -25,6 +23,7 @@ import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
+import { PRICING_TIERS_BY_AUDIENCE } from '../lib/pricing';
 
 const meta = {
   title:       PAGE_META.home.title,
@@ -32,6 +31,10 @@ const meta = {
   url:         SITE_URL,
   image:       `${SITE_URL}/og/home.png`,  // dynamically generated at build time
 };
+
+const defaultSoftwarePrice = '3.99';
+const personalTierPriceLabel = PRICING_TIERS_BY_AUDIENCE.personal[0]?.price ?? `$${defaultSoftwarePrice}`;
+const softwarePrice = personalTierPriceLabel.match(/\d+(?:\.\d+)?/)?.[0] ?? defaultSoftwarePrice;
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -45,9 +48,9 @@ const homeSchema = {
       "operatingSystem": "Web, iOS, Android, macOS, Windows",
       "offers": {
         "@type": "Offer",
-        "price": "3.99",
+        "price": softwarePrice,
         "priceCurrency": "USD",
-        "description": "Starting at $3.99/month — no free tier"
+        "description": `Starting at $${softwarePrice}/month — no free tier`
       },
       "featureList": "DNS-level ad blocking, AI-powered filter lists, Encrypted DNS (DoH/DoT), Network-wide protection, Real-time threat intelligence, Bring-your-own DNS provider support"
     },
@@ -64,6 +67,7 @@ const homeSchema = {
       "@type": "WebSite",
       "name": "Bloqr",
       "url": SITE_URL,
+      "dateModified": new Date().toISOString(),
       "potentialAction": {
         "@type": "SearchAction",
         "target": `${SITE_URL}/blog?q={search_term_string}`,
@@ -143,27 +147,26 @@ const homeSchema = {
   <Nav client:idle transition:persist="nav" />
   <main id="main-content">
     <Hero client:idle />
-    <AudienceWizard client:load />
-    <ComingSoon client:visible />
-    <div class="divider-glow"></div>
+    <section id="audience-wizard">
+      <AudienceWizard client:idle />
+    </section>
+    <SocialProof client:idle />
+    <div class="divider-glow divider-glow--cyan"></div>
     <Problem />
     <BeforeAfter client:visible />
     <HowItWorks client:visible />
-    <Audiences client:visible />
+    <AudiencesTeaser />
     <div class="animate-on-scroll"><Features /></div>
-    <div class="section--dev-only">
-      <DynamicWorkers />
-    </div>
-    <WhyCloudflare />
-    <div class="animate-on-scroll"><PrivacyCommitments /></div>
+    <WhyCloudflareTeaser />
+    <PrivacyStrip />
     <div class="animate-on-scroll"><Pricing client:visible /></div>
     <div class="pricing-more">
       <a href={LINKS.pricing} class="pricing-more__link">
         See full pricing details and comparison table →
       </a>
     </div>
-    <div class="animate-on-scroll"><FounderNote /></div>
     <FAQ client:visible />
+    <div class="animate-on-scroll"><FounderNote /></div>
     <WaitlistSignup client:visible />
     <div class="section--dev-only section--dev-highlight">
       <CodeDemo client:visible />
