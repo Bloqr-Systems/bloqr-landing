@@ -28,12 +28,14 @@
       <p class="section-label">Pricing</p>
       <h2 class="section-title">
         Pick your plan.<br />
-        <em>No free tier. No surprises.</em>
+        <em>Packed plans. Pay for what you use.</em>
       </h2>
       <p class="section-sub">
-        Transparent subscription pricing for every audience. Usage above your plan's
-        limits is always billed separately via Stripe. Early access locks in your
-        rate for the life of the account. No crypto. No wallet. Just a card.
+        Every tier ships with a meaningful set of features at a flat monthly rate —
+        managed compilation, curated threat intelligence, DNS integrations, and more.
+        Go beyond your plan's included limits and usage-based pricing kicks in
+        automatically: pay only for the extra compiles and rules you actually need.
+        Early access locks in your rate for the life of the account.
       </p>
     </div>
 
@@ -100,17 +102,18 @@
 
     <!-- Usage note -->
     <p class="usage-note">
-      ⚡ Usage above plan limits billed at <strong>$0.20/compile</strong> and
-      <strong>$0.10/1,000 rules</strong>. Web API calls via the local SDK always
-      incur usage charges and require verified entitlements.
+      ⚡ <strong>Pay-as-you-go beyond your plan:</strong> $0.20/compile and
+      $0.10/1,000 rules above your daily limit. SDK users calling web APIs are
+      billed per-call and require verified entitlements — scale without upgrading
+      until you're ready. All billed via Stripe.
     </p>
 
     <!-- Add-ons -->
     <div class="addons-section">
       <div class="addons-header">
         <p class="section-label">Add-ons</p>
-        <h3 class="addons-title">Every extra, individually priced.</h3>
-        <p class="addons-sub">Available to any plan. Some are bundled in higher tiers — check the comparison table for what's included.</p>
+        <h3 class="addons-title">Extend any plan with exactly what you need.</h3>
+        <p class="addons-sub">Each add-on unlocks a specific capability à la carte. Many are already bundled into higher tiers — check the comparison table to see what's included before adding.</p>
       </div>
 
       <div class="addons-grid">

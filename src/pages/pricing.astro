@@ -106,11 +106,12 @@ const pricingSchema = {
     <header class="page-header">
       <div class="container">
         <div class="header-label">Pricing</div>
-        <h1>Transparent pricing.<br /><em>No free tier.</em></h1>
+        <h1>Transparent pricing.<br /><em>Value you can measure.</em></h1>
         <p class="header-sub">
-          Subscription plans for every audience — personal, developer, and vendor.
-          Usage above your plan's limits is always billed via Stripe.
-          Early access locks in your rate for the life of the account.
+          Every plan is built around real capabilities — managed compilation,
+          AI-curated threat intelligence, DNS integrations, and developer tooling.
+          Go beyond your plan's limits and usage-based pricing adds only what you
+          use, billed automatically via Stripe. Early access locks in your rate for life.
         </p>
         <div class="header-cta">
           <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank">Get started →</a>
@@ -130,9 +131,10 @@ const pricingSchema = {
             <p class="section-label">Access Models</p>
             <h2 id="access-heading">Three ways to use Bloqr.<br />One billing model.</h2>
             <p>
-              The core compiler library is available exclusively via a commercial licensing
-              agreement — either as part of a subscription plan or a standalone SDK license.
-              There is no free or open-source version of the core library.
+              The core compiler library is commercial-grade software — purpose-built,
+              actively maintained, and backed by a subscription that covers hosting,
+              AI-curated threat intelligence updates, and ongoing development. That
+              commitment requires a subscription rather than a free tier.
             </p>
             <p>
               Regardless of how you deploy — SaaS, local SDK, or CLI — any web API call you
@@ -273,20 +275,26 @@ const pricingSchema = {
           <details class="faq-item">
             <summary>Is there a free tier?</summary>
             <div class="faq-answer">
-              No. The core compiler library is only available via a commercial licensing
-              agreement — either as part of a subscription or a standalone SDK license.
-              All plans start at $3.99/month (personal Starter). There is a 30-day
-              money-back guarantee on all paid plans.
+              Bloqr doesn't offer a free tier because what you get — fully managed
+              filter compilation, AI-curated threat intelligence, DNS provider
+              integrations, and ongoing updates — has real infrastructure and
+              maintenance cost. Rather than offering a degraded free experience,
+              every paid plan starts with a meaningful set of capabilities at
+              $3.99/month (personal Starter). All paid plans include a 30-day
+              money-back guarantee, no questions asked.
             </div>
           </details>
 
           <details class="faq-item">
             <summary>What counts as "usage" above my plan limit?</summary>
             <div class="faq-answer">
-              Each compile call above your daily limit is billed at $0.20/compile.
-              Rules above your per-compile limit are billed at $0.10/1,000 rules.
-              Web API calls made from the local SDK are always billed as usage and
-              require verified entitlements regardless of plan.
+              Usage-based pricing lets you go beyond your plan's included limits
+              without a forced upgrade. Each compile call above your daily limit is
+              billed at $0.20/compile. Rules above your per-compile limit are billed
+              at $0.10/1,000 rules. Web API calls made from the local SDK are always
+              billed as usage and require verified entitlements regardless of plan.
+              You only pay for what you actually use — Stripe charges are calculated
+              automatically at the end of each billing period.
             </div>
           </details>
 
