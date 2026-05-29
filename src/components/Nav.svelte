@@ -180,7 +180,7 @@
     <ul class="nav-links" role="list">
       <li><a href="/#why">Why</a></li>
       <li><a href="/#how">How</a></li>
-      <li><a href="/#audiences">Who</a></li>
+      <li><a href="/#personas">Who</a></li>
       <li><a href="/#features">Features</a></li>
       <li><a href={LINKS.pricing} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
       <li><a href={LINKS.changelog} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
@@ -239,7 +239,7 @@
       <ul class="mobile-links" role="list">
         <li><a href="/#why"           onclick={closeMenu}>Why Bloqr AI</a></li>
         <li><a href="/#how"           onclick={closeMenu}>How it works</a></li>
-        <li><a href="/#audiences"     onclick={closeMenu}>Who it's for</a></li>
+        <li><a href="/#personas"      onclick={closeMenu}>Who it's for</a></li>
         <li><a href="/#features"      onclick={closeMenu}>Features</a></li>
         <li><a href={LINKS.pricing} onclick={closeMenu} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
         <li><a href={LINKS.vpnMyths}  onclick={closeMenu} class:active={isActive(LINKS.vpnMyths)} aria-current={isActive(LINKS.vpnMyths) ? 'page' : undefined}>VPN Myths</a></li>
@@ -572,4 +572,11 @@
 
   .nav-news.active { opacity: 0.75; }
   .nav-myths.active { opacity: 0.75; }
+
+  .nav-cta .btn-primary:hover,
+  .mobile-footer .btn-primary:hover {
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--orange) 35%, transparent),
+      0 0 18px color-mix(in srgb, var(--cyan) 25%, transparent);
+  }
 </style>

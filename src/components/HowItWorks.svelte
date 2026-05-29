@@ -325,7 +325,10 @@
     gap: 0;
   }
 
-  .step:hover { border-color: var(--border-2); }
+  .step:hover {
+    border-color: var(--border-2);
+    border-left-color: var(--cyan);
+  }
 
   .step-num {
     width: 36px; height: 36px;

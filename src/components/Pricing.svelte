@@ -147,9 +147,9 @@
 
   /* ── Header ── */
   .section-header {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 48px;
+    text-align: left;
+    max-width: 680px;
+    margin: 0 0 48px;
   }
 
   .section-label {
