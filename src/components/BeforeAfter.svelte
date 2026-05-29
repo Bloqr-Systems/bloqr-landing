@@ -52,7 +52,7 @@
   function closeModal() {
     if (autoTimer) clearTimeout(autoTimer);
     modalOpen = false;
-    if (dialogEl?.open) dialogEl.close();
+    if (dialogEl?.open && typeof dialogEl.close === 'function') dialogEl.close();
   }
 
   function scheduleTick() {
