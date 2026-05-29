@@ -154,7 +154,7 @@ export const PRICING_TIERS_BY_AUDIENCE: Record<AudienceId, AudienceTier[]> = {
         'SDK license for local library embedding',
         'Web APIs callable from local SDK (usage billed)',
         'Streaming API + async/batch API included',
-        '5,000 compiles/day · 100,000 rules/compile',
+        '200 compiles/day · 100,000 rules/compile',
         'Unlimited filter sources',
         'Full transformation pipeline suite',
         'Priority queue · priority threat intelligence',
@@ -195,6 +195,7 @@ export const PRICING_TIERS_BY_AUDIENCE: Record<AudienceId, AudienceTier[]> = {
       featured: false,
       items: [
         'All Dev features',
+        '500 compiles/day',
         'Resource-based consumption (Cloudflare usage included)',
         'Multi-instance management',
         'REST + async API included',
@@ -276,10 +277,10 @@ export const PRICING_ADDONS: PricingAddon[] = [
 // ── Feature comparison table ──────────────────────────────────────────────────
 
 export const PRICING_FEATURE_ROWS: PricingFeatureRow[] = [
-  { label: 'Monthly price (personal)',    starter: '$3.99',     devPro: '$24.99',                      vendor: '$29.99',                      enterprise: 'Custom' },
+  { label: 'Monthly price (personal)',    starter: '$3.99',     devPro: '$24.99',                      vendor: false,                         enterprise: false },
   { label: 'Monthly price (business)',    starter: '$5.99',     devPro: '$29.99',                      vendor: '$39.99',                      enterprise: 'Custom' },
   { label: 'Deployment model',            starter: 'SaaS',      devPro: 'SaaS + SDK',                  vendor: 'SaaS + SDK + Edge',           enterprise: 'All' },
-  { label: 'Compiles/day',                starter: '50',        devPro: '5,000',                       vendor: '10,000',                      enterprise: 'Unlimited' },
+  { label: 'Compiles/day',                starter: '50',        devPro: '200',                         vendor: '500',                         enterprise: 'Unlimited' },
   { label: 'Rules per compile',           starter: '2,000',     devPro: '100,000',                     vendor: '100,000',                     enterprise: 'Unlimited' },
   { label: 'Filter sources/compile',      starter: '2',         devPro: 'Unlimited',                   vendor: 'Unlimited',                   enterprise: 'Unlimited' },
   { label: 'REST API',                    starter: false,       devPro: true,                          vendor: true,                          enterprise: true },
