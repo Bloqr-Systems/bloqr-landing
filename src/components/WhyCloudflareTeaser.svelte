@@ -29,7 +29,7 @@
       <button class="cf-teaser__link" type="button" onclick={openDetails}>
         Why we chose Cloudflare →
       </button>
-      <a class="cf-teaser__link" href={`${LINKS.about}#cloudflare`}>Learn more on /about →</a>
+      <a class="cf-teaser__link" href={LINKS.about}>Learn more on /about →</a>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
         <li>Zero Trust defaults align with Bloqr's privacy-first architecture.</li>
       </ul>
       <div class="cf-dialog__actions">
-        <a href={`${LINKS.about}#cloudflare`} class="btn btn-outline">Read the full breakdown</a>
+        <a href={LINKS.about} class="btn btn-outline">Read the full breakdown</a>
         <button type="button" class="btn btn-cyan" onclick={closeDetails}>Close</button>
       </div>
     </article>

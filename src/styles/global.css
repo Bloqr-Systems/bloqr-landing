@@ -200,7 +200,7 @@ body {
 }
 
 .btn-cyan {
-  color: var(--bg-base);
+  color: #062432;
   background: var(--cyan);
   box-shadow: 0 0 20px color-mix(in srgb, var(--cyan) 25%, transparent);
 }
