@@ -3,7 +3,7 @@ title: "Bloqr Mesh: A Private Network for Every Device You Own"
 description: "We're building Bloqr Mesh — a device-native private network powered by Cloudflare Mesh that brings your adblocking, filter policies, and privacy rules with you everywhere. Here's what it is, how it compares to NordVPN Meshnet, and where we are today."
 pubDate: 2026-05-29
 author: "Bloqr Team"
-category: "industry"
+category: "release"
 tags: ["mesh", "privacy", "cloudflare", "roadmap", "networking", "coming-soon"]
 draft: false
 ---
