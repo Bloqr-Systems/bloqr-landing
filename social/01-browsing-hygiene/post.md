@@ -11,7 +11,7 @@ platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 You wash your hands before eating.
 You don't drink water straight from a river.
 
-Browsing hygiene is the same idea — applied to your internet connection.
+Browsing Hygiene is the same idea — applied to your internet connection.
 
 **Here's the part most people don't know:**
 
