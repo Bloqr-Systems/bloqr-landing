@@ -126,12 +126,12 @@
 
   .cell-icon--cyan {
     background: var(--cyan-dim);
-    border-color: rgba(0,212,255,0.2);
+    border-color: color-mix(in srgb, var(--cyan) 20%, transparent);
   }
 
   .cell-icon--orange {
     background: var(--orange-dim);
-    border-color: rgba(255,85,0,0.2);
+    border-color: color-mix(in srgb, var(--orange) 20%, transparent);
   }
 
   h4 {

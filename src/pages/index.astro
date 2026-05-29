@@ -32,7 +32,9 @@ const meta = {
   image:       `${SITE_URL}/og/home.png`,  // dynamically generated at build time
 };
 
-const softwarePrice = PRICING_TIERS_BY_AUDIENCE.personal[0]?.price.replace(/[^\d.]/g, '') ?? '3.99';
+const defaultSoftwarePrice = '3.99';
+const personalTierPriceLabel = PRICING_TIERS_BY_AUDIENCE.personal[0]?.price ?? `$${defaultSoftwarePrice}`;
+const softwarePrice = personalTierPriceLabel.match(/\d+(?:\.\d+)?/)?.[0] ?? defaultSoftwarePrice;
 
 const homeSchema = {
   "@context": "https://schema.org",

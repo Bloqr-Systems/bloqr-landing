@@ -575,6 +575,8 @@
 
   .nav-cta .btn-primary:hover,
   .mobile-footer .btn-primary:hover {
-    box-shadow: 0 0 24px rgba(255,85,0,0.35), 0 0 18px rgba(0,212,255,0.25);
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--orange) 35%, transparent),
+      0 0 18px color-mix(in srgb, var(--cyan) 25%, transparent);
   }
 </style>

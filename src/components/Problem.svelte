@@ -106,7 +106,7 @@
   .bad-icon  { background: rgba(239,68,68,0.12); }
   .good-icon {
     background: var(--cyan-dim);
-    border: 1px solid rgba(0,212,255,0.2);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
   }
 
   h3 {

@@ -202,11 +202,11 @@ body {
 .btn-cyan {
   color: var(--bg-base);
   background: var(--cyan);
-  box-shadow: 0 0 20px rgba(0,212,255,0.25);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--cyan) 25%, transparent);
 }
 .btn-cyan:hover {
   opacity: 0.9;
-  box-shadow: 0 0 32px rgba(0,212,255,0.4);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--cyan) 40%, transparent);
   transform: translateY(-1px);
 }
 
