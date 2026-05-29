@@ -1113,8 +1113,8 @@
     text-align: center;
   }
 
-  .modal-stat--bad  { border-color: rgba(239,68,68,0.3);   background: rgba(239,68,68,0.07); }
-  .modal-stat--good { border-color: rgba(0,212,255,0.3);   background: rgba(0,212,255,0.07); }
+  .modal-stat--bad  { border-color: var(--color-error-border); background: var(--color-error-dim); }
+  .modal-stat--good { border-color: color-mix(in srgb, var(--cyan) 30%, transparent); background: var(--cyan-dim); }
 
   .modal-stat__label {
     display: block;
