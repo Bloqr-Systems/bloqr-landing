@@ -36,30 +36,27 @@
     visible = false;
     const t = setTimeout(() => { visible = true; }, 120);
 
-    // Load Mermaid from CDN and render the diagrams (progressive enhancement)
+    // Load Mermaid (bundled) and render the diagrams (progressive enhancement)
     (async () => {
       try {
-        interface MermaidAPI {
-          initialize(config: Record<string, unknown>): void;
-          run(opts: { querySelector: string }): Promise<void>;
-        }
-        const mod = await import(
-          /* @vite-ignore */
-          'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
-        ) as unknown as { default: MermaidAPI };
+        const mod = await import('mermaid');
+        // Resolve design tokens at runtime so the diagram palette adapts to
+        // the active colour theme (dark / light / OS preference).
+        const style = getComputedStyle(document.documentElement);
+        const v = (name: string) => style.getPropertyValue(name).trim();
         mod.default.initialize({
           startOnLoad: false,
           theme: 'base',
           themeVariables: {
-            background: '#0d1117',
-            primaryColor: '#1e2738',
-            primaryTextColor: '#e2e8f0',
-            primaryBorderColor: '#334155',
-            lineColor: '#475569',
-            secondaryColor: '#1a2035',
-            tertiaryColor: '#131929',
-            titleColor: '#f1f5f9',
-            edgeLabelBackground: '#1e2738',
+            background:          v('--bg-base'),
+            primaryColor:        v('--bg-elevated'),
+            primaryTextColor:    v('--text-1'),
+            primaryBorderColor:  v('--border-2'),
+            lineColor:           v('--text-3'),
+            secondaryColor:      v('--bg-surface'),
+            tertiaryColor:       v('--bg-base'),
+            titleColor:          v('--text-1'),
+            edgeLabelBackground: v('--bg-elevated'),
             fontFamily: 'system-ui, -apple-system, sans-serif',
             fontSize: '13px',
           },
@@ -388,15 +385,15 @@
   }
 
   .bad-tag {
-    background: rgba(239, 68, 68, 0.12);
+    background: var(--color-error-dim);
     color: var(--color-error);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--color-error-border);
   }
 
   .good-tag {
-    background: rgba(0, 212, 255, 0.1);
+    background: var(--cyan-dim);
     color: var(--cyan);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid var(--cyan-dim);
   }
 
   /* Pre-render state: mermaid source is readable plain text before JS runs */
