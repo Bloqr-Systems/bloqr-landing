@@ -1,0 +1,32 @@
+🤖 YOUR FILTER LIST, MAINTAINED BY AI
+
+Public adblock lists are built by volunteers.
+They're incredible. They're also updated manually, on someone else's schedule.
+
+A new tracking domain goes live at 9am.
+Your list might catch it next Tuesday.
+
+Bloqr AI's threat lists work differently.
+
+Our AI watches threat feeds, newly registered domains, and behavioral signals — continuously.
+When a new tracker or malware domain appears, it goes into your list.
+No waiting. No manual updates. No stale rules.
+
+And if you want to go further:
+
+→ Type what you want blocked in plain English: "Block everything related to crypto ads"
+→ Bloqr AI turns it into validated filter rules — instantly
+→ You never write a single line of syntax
+
+Your lists. Your rules. Maintained automatically.
+That's what AI-first internet hygiene looks like.
+
+Website:   https://bloqr.dev
+Instagram: https://www.instagram.com/bloqr.ai
+Threads:   https://www.threads.com/@bloqr.ai
+
+---
+Hashtags (trim for platform — omit entirely on Reddit):
+#BloqrAI #AIPrivacy #ThreatIntelligence #AdBlock #FilterList #DNS
+#InternetHygiene #BrowsingHygiene #CyberSecurity #PrivacyTools #AITools
+#RealTimeThreat #BlockAds #BlockTrackers #DigitalPrivacy
