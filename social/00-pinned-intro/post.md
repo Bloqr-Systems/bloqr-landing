@@ -1,1 +1,51 @@
-LS0tCnRpdGxlOiAiV2VsY29tZSB0byBCbG9xciBBSSDigJQgSW50ZXJuZXQgSHlnaWVuZS4gQXV0b21hdGVkLiIKc3RhdHVzOiBwaW5uZWQKdGFyZ2V0X3BlcnNvbmFzOiBbIkV2ZXJ5ZGF5IENvbnN1bWVyIiwgIlBvd2VyIFVzZXIiLCAiRGV2ZWxvcGVyIiwgIlZlbmRvciJdCnN1Z2dlc3RlZF9pbWFnZTogImh0dHBzOi8vYmxvcXIuZGV2L29nLWltYWdlLnBuZyIKcGxhdGZvcm1zOiBbIkluc3RhZ3JhbSIsICJGYWNlYm9vayIsICJSZWRkaXQiXQotLS0KCiMg8J+UiyBXZWxjb21lIHRvIEJsb3FyIEFJIOKAlCBJbnRlcm5ldCBIeWdpZW5lLiBBdXRvbWF0ZWQuCgpIZXkgLS0gd2UncmUgKipCbG9xciBBSSoqLCBhbmQgd2UncmUgYnVpbGRpbmcgdGhlIGludGVybmV0IHByaXZhY3kgbGF5ZXIgdGhhdCBzaG91bGQgaGF2ZSBleGlzdGVkIGZvciB0aGUgcGFzdCBkZWNhZGUuCgpIZXJlJ3Mgd2hhdCB0aGF0IG1lYW5zOgoKWW91ciBicm93c2VyIGVuY3J5cHRzIHdoYXQgeW91ICpyZWFkKiBvbiBhIHBhZ2UuCkJ1dCBpdCBkb2Vzbid0IGVuY3J5cHQg4oCUIm9yIGZpbHRlciAtLSB0aGUgKnJlcXVlc3RzIHlvdXIgZGV2aWNlIG1ha2VzKiBiZWZvcmUgeW91IGV2ZW4gZ2V0IHRoZXJlLgoKRXZlcnkgYWQgbmV0d29yay4gRXZlcnkgdHJhY2tlci4gRXZlcnkgbWFsd2FyZS1sb2FkZWQgZG9tYWluLgpZb3VyIGRldmljZSByZWFjaGVzIG91dCB0byB0aGVtIHVubGVzcyBzb21ldGhpbmcgc3RvcHMgaXQuCgpUaGF0IHNvbWV0aGluZyBpcyBETlMtbGV2ZWwgZmlsdGVyaW5nLiBJdCBibG9ja3MgdGhlIGJhZCBzdHVmZiBiZWZvcmUgdGhlIGNvbm5lY3Rpb24gZXZlbiBvcGVucy4KRXhwZXJ0cyBoYXZlIGJlZW4gZG9pbmcgaXQgZm9yIHllYXJzIOKAlCB3aXRoIGN1c3RvbSBsaXN0cywgc2VsZi1ob3N0ZWQgc2VydmVycywgYW5kIGEgbG90IG9mIG1hbnVhbCB3b3JrLgoKKipCbG9xciBBSSBhdXRvbWF0ZXMgYWxsIG9mIGl0LioqCgrin6IgQUkgYnVpbGRzIGFuZCBtYWludGFpbnMgeW91ciBmaWx0ZXIgbGlzdCAtLSB1cGRhdGVkIGluIHJlYWwgdGltZSBhcyBuZXcgdGhyZWF0cyBlbWVyZ2UKLeKfoiBXb3JrcyB3aXRoIHlvdXIgZXhpc3RpbmcgRE5TIHByb3ZpZGVyIChBZEd1YXJkLCBOZXh0RE5TLCBQaS1ob2xlKSBvciBvdXJzCuKfoiBPbmUgYWNjb3VudC4gT25lIGNoYW5nZS4gRXZlcnkgZGV2aWNlLiBJbnN0YW50bHkuCuKfoiBObyBjb2RlLiBObyBzZXR1cC4gTm8gb25nb2luZyBtYWludGVuYW5jZS4K4p+iIE5vdGhpbmcgd2UgbG9nLiBOb3RoaW5nIHdlIHNlbGwuIE5vdGhpbmcgd2UgaGlkZS4KCldoZXRoZXIgeW91IGhhdmUgbm8gaWRlYSB3aGF0IEROUyBpcyBvciB5b3UncmUgYWxyZWFkeSBydW5uaW5nIGEgUGktaG9sZSBjbHVzdGVyIC0tIEJsb3FyIEFJIG1lZXRzIHlvdSB3aGVyZSB5b3UgYXJlLgoKV2UncmUgaW4gZWFybHkgYWNjZXNzLiBDb21lIGJ1aWxkIHRoaXMgd2l0aCB1cy4KCvCfkYsgW2Jsb3FyLmRldl0oaHR0cHM6Ly9ibG9xci5kZXYpCgotLS0KCipTZXQgaXQuIEJsb3FyIGl0LiBGb3JnZXQgaXQuKgoKLS0tCgoqKkhhc2h0YWdzOioqCmBgYAojQmxvcXJBSSAjSW50ZXJuZXRQcml2YWN5ICNCcm93c2luZ0h5Z2llbmUgI0ROUyAjQWRCbG9jayAjQ3liZXJTZWN1cml0eQojUHJpdmFjeVRvb2xzICNOb1RyYWNrZXJzICNBSVByaXZhY3kgI0ludGVybmV0SHlnaWVuZSAjRGlnaXRhbFByaXZhY3kKI0FkR3VhcmQgI05leHRETlMgI1BpSG9sZSAjQmxvY2tBZHMgI1RocmVhdEludGVsbGlnZW5jZQpgYGAK
+---
+title: "Welcome to Bloqr AI — Internet Hygiene. Automated."
+status: pinned
+target_personas: ["Everyday Consumer", "Power User", "Developer", "Vendor"]
+suggested_image: "https://bloqr.dev/og-image.png"
+platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
+---
+
+# 📌 Welcome to Bloqr AI — Internet Hygiene. Automated.
+
+Hey — we're **Bloqr AI**, and we're building the internet privacy layer that should have existed for the past decade.
+
+Here's what that means:
+
+Your browser encrypts what you *read* on a page.
+But it doesn't encrypt — or filter — the *requests your device makes* before you even get there.
+
+Every ad network. Every tracker. Every malware-loaded domain.
+Your device reaches out to them unless something stops it.
+
+That something is DNS-level filtering. It blocks the bad stuff before the connection even opens.
+Experts have been doing it for years — with custom lists, self-hosted servers, and a lot of manual work.
+
+**Bloqr AI automates all of it.**
+
+→ AI builds and maintains your filter list — updated in real time as new threats emerge
+→ Works with your existing DNS provider (AdGuard, NextDNS, Pi-hole) or ours
+→ One account. One change. Every device. Instantly.
+→ No code. No setup. No ongoing maintenance.
+→ Nothing we log. Nothing we sell. Nothing we hide.
+
+Whether you have no idea what DNS is or you're already running a Pi-hole cluster — Bloqr AI meets you where you are.
+
+We're in early access. Come build this with us.
+
+🌐 [bloqr.dev](https://bloqr.dev)
+📸 [instagram.com/bloqr.ai](https://www.instagram.com/bloqr.ai)
+🧵 [threads.com/@bloqr.ai](https://www.threads.com/@bloqr.ai)
+
+---
+
+*Set it. Bloqr it. Forget it.*
+
+---
+
+**Hashtags:**
+```
+#BloqrAI #InternetPrivacy #BrowsingHygiene #DNS #AdBlock #CyberSecurity
+#PrivacyTools #NoTrackers #AIPrivacy #InternetHygiene #DigitalPrivacy
+#AdGuard #NextDNS #PiHole #BlockAds #ThreatIntelligence
+```
