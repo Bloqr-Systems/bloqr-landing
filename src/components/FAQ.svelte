@@ -41,8 +41,10 @@
 
 <section class="faq" id="faq" aria-labelledby="faq-heading">
   <div class="container">
-    <p class="section-label">FAQ</p>
-    <h2 class="section-title" id="faq-heading">Straight answers.</h2>
+    <div class="section-header">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title" id="faq-heading">Straight answers.</h2>
+    </div>
 
     <dl class="accordion" role="list">
       {#each faqs as item, i}
@@ -98,7 +100,6 @@
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 1.1;
-    margin-bottom: 48px;
   }
 
   .accordion {

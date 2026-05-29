@@ -145,7 +145,7 @@
               />
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-cyan"
                 disabled={status === 'submitting' || !email.trim()}
               >
                 {status === 'submitting' ? 'Joining…' : 'Join waitlist →'}

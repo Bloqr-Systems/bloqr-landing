@@ -11,7 +11,7 @@ const blog = defineCollection({
     pubDate:     z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author:      z.string().default('Bloqr Team'),
-    category:    z.enum(['education', 'industry', 'release']),
+    category:    z.enum(['education', 'industry', 'release', 'product']),
     tags:        z.array(z.string()).default([]),
     draft:       z.boolean().default(false),
     // Accept either a public/-relative path (/images/foo.png) or an https:// URL.

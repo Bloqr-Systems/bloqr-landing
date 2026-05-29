@@ -130,11 +130,11 @@
         <span class="stat-value">AI<span>-focused</span></span>
         <span class="stat-label">Plain English rules</span>
       </div>
-      <div class="stat" role="listitem">
+      <div class="stat stat--cyan" role="listitem">
         <span class="stat-value"><span>BYO</span></span>
         <span class="stat-label">Vendor-agnostic · No lock-in</span>
       </div>
-      <div class="stat" role="listitem">
+      <div class="stat stat--cyan" role="listitem">
         <span class="stat-value">Real<span>time</span></span>
         <span class="stat-label">AI-powered threat intelligence</span>
       </div>
@@ -220,7 +220,7 @@
 
   h1 em {
     font-style: normal;
-    background: linear-gradient(135deg, var(--orange) 0%, #FF8833 100%);
+    background: linear-gradient(135deg, var(--orange) 0%, #FF8833 60%, var(--cyan) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -403,6 +403,7 @@
   }
 
   .stat-value span { color: var(--orange); }
+  .stat--cyan .stat-value span { color: var(--cyan); }
 
   .stat-label {
     font-size: 12px;

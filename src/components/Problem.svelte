@@ -5,7 +5,7 @@
 
 <section class="problem" id="why">
   <div class="container">
-    <div class="header">
+    <div class="header section-header">
       <p class="section-label">The problem</p>
       <h2 class="section-title">You don't need a tunnel.<br />You need better filters.</h2>
       <p class="section-desc">
@@ -60,11 +60,10 @@
   .problem { padding: 80px 0; }
 
   .header {
-    text-align: center;
-    margin-bottom: 48px;
+    text-align: left;
   }
 
-  .header .section-desc { max-width: 560px; margin: 0 auto; }
+  .header .section-desc { max-width: 640px; }
 
   .grid {
     display: grid;
@@ -94,7 +93,7 @@
   }
 
   .bad .card-label  { color: var(--text-3); }
-  .good .card-label { color: var(--orange); }
+  .good .card-label { color: var(--cyan); }
 
   .icon {
     width: 40px; height: 40px;
@@ -105,7 +104,10 @@
   }
 
   .bad-icon  { background: rgba(239,68,68,0.12); }
-  .good-icon { background: var(--orange-dim); }
+  .good-icon {
+    background: var(--cyan-dim);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+  }
 
   h3 {
     font-size: 1.15rem;
@@ -135,7 +137,7 @@
   }
 
   .bad  li::before { content: '—'; color: var(--text-3); }
-  .good li::before { content: '✓'; color: var(--orange); }
+  .good li::before { content: '✓'; color: var(--cyan); }
 
   .myth-link {
     display: inline-block;

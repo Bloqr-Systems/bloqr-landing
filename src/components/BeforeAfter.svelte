@@ -527,13 +527,12 @@
   }
 
   .section-header {
-    text-align: center;
-    margin-bottom: 48px;
+    text-align: left;
+    margin-bottom: 56px;
   }
 
   .section-header .section-desc {
-    max-width: 520px;
-    margin: 0 auto;
+    max-width: 640px;
   }
 
   /* ── How blocking works ───────────────────────────────────────────────────── */

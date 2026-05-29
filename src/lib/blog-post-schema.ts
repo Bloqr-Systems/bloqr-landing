@@ -16,7 +16,7 @@ export const BlogPostSchema = z.object({
   pubDate:     z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
   author:      z.string().default('Jayson Knight'),
-  category:    z.enum(['education', 'industry', 'release']),
+  category:    z.enum(['education', 'industry', 'release', 'product']),
   tags:        z.array(z.string()).default([]),
   draft:       z.boolean().default(true),
   image:       z.string().optional(),
