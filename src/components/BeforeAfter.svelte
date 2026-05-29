@@ -357,7 +357,7 @@
   }
 
   .diagram-panel--good {
-    border-color: rgba(0, 212, 255, 0.2);
+    border-color: var(--cyan-border);
   }
 
   .diagram-panel-header {
@@ -393,7 +393,7 @@
   .good-tag {
     background: var(--cyan-dim);
     color: var(--cyan);
-    border: 1px solid var(--cyan-dim);
+    border: 1px solid var(--cyan-border);
   }
 
   /* Pre-render state: mermaid source is readable plain text before JS runs */
@@ -472,10 +472,10 @@
     top: 1px;
   }
 
-  .legend-swatch--content { background: rgba(148, 163, 184, 0.5); }
-  .legend-swatch--tracker { background: rgba(239, 68,  68,  0.5); }
-  .legend-swatch--ad      { background: rgba(251, 146, 60,  0.6); }
-  .legend-swatch--malware { background: rgba(220, 38,  38,  0.65); }
+  .legend-swatch--content { background: color-mix(in srgb, var(--text-2) 50%, transparent); }
+  .legend-swatch--tracker { background: color-mix(in srgb, var(--color-error) 50%, transparent); }
+  .legend-swatch--ad      { background: color-mix(in srgb, var(--color-warning) 60%, transparent); }
+  .legend-swatch--malware { background: color-mix(in srgb, var(--color-error) 65%, transparent); }
 
   .legend-label {
     font-weight: 600;
@@ -511,7 +511,7 @@
     overflow: hidden;
   }
 
-  .panel--good { border-color: rgba(0, 212, 255, 0.2); }
+  .panel--good { border-color: var(--cyan-border); }
 
   /* ── Panel header ── */
   .panel-header {
@@ -536,8 +536,8 @@
     justify-content: center;
     width: 18px; height: 18px;
     border-radius: 50%;
-    background: rgba(0, 212, 255, 0.15);
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    background: var(--cyan-dim);
+    border: 1px solid var(--cyan-border);
     color: var(--cyan);
     font-size: 10px;
     font-weight: 800;
