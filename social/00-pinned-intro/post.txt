@@ -19,7 +19,7 @@ Bloqr AI automates all of it.
 → Works with your existing DNS provider (AdGuard, NextDNS, Pi-hole) or ours
 → One account. One change. Every device. Instantly.
 → No code. No setup. No ongoing maintenance.
-→ Nothing we log. Nothing we sell. Nothing we hide.
+→ We don't log DNS queries or browsing profiles; we store account email, subscription status, and configuration.
 
 Whether you have no idea what DNS is or you're already running a Pi-hole cluster — Bloqr AI meets you where you are.
 
