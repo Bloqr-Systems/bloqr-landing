@@ -481,7 +481,7 @@
         aria-label="Previous step"
       >← Back</button>
 
-      <div class="modal-dots" role="tablist" aria-label="Walkthrough steps">
+      <div class="modal-dots" aria-label="Walkthrough steps">
         {#each modalSteps as _, i}
           <button
             class="modal-dot"
