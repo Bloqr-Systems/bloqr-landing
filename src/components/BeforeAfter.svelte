@@ -136,7 +136,7 @@
         </p>
       </div>
 
-      <div class="diagrams-grid" role="img" aria-label="Side-by-side journey diagrams: without Bloqr all requests go through unchecked; with Bloqr known bad actors are blocked before the lookup is sent.">
+      <div class="diagrams-grid" role="group" aria-label="Side-by-side journey diagrams: without Bloqr all requests go through unchecked; with Bloqr known bad actors are blocked before the lookup is sent.">
         <!-- Without Bloqr diagram -->
         <div class="diagram-panel diagram-panel--bad">
           <div class="diagram-panel-header">
