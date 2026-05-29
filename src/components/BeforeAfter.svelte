@@ -487,9 +487,8 @@
             class="modal-dot"
             class:modal-dot--active={i === modalStep}
             onclick={() => goStep(i)}
-            role="tab"
-            aria-selected={i === modalStep}
-            aria-label="Go to step {i + 1}"
+            aria-pressed={i === modalStep}
+            aria-label={`Go to step ${i + 1}`}
           ></button>
         {/each}
       </div>
