@@ -1,4 +1,4 @@
-<!-- Features grid: 6 key capabilities -->
+<!-- Features grid -->
 
 <script>
   import { LINKS } from '../config';
