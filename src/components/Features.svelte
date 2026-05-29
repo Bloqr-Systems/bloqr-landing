@@ -1,8 +1,6 @@
 <!-- Features grid -->
 
 <script>
-  import { LINKS } from '../config';
-
   const features = [
     {
       icon: '⚡',
@@ -13,13 +11,6 @@
       icon: '🤖',
       title: 'AI-powered threat intelligence',
       desc: 'AI continuously monitors emerging malware domains, phishing campaigns, and trackers — surfacing and blocking all threats in real time, before the bad guys finish their morning coffee.',
-    },
-    {
-      icon: '🛡️',
-      title: 'Radar-powered master block list',
-      desc: 'Cloudflare Radar feeds live threat intelligence directly into a canonical master block list — malware, phishing, trackers, and ad domains — auto-compiled to AdGuard, Pi-hole, hosts, and dnsmasq formats, with real-time SSE updates and point-in-time snapshot diffs.',
-      link: LINKS.radarBlockListPr,
-      linkText: 'In-depth technical overview →',
     },
     {
       icon: '🔄',
