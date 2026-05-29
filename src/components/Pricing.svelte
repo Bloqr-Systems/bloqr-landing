@@ -33,7 +33,7 @@
       <p class="section-sub">
         Every tier ships with a meaningful set of features at a flat monthly rate —
         managed compilation, curated threat intelligence, DNS integrations, and more.
-        Go beyond your plan's included limits and usage-based pricing kicks in
+        When you go beyond your plan's included limits, usage-based pricing kicks in
         automatically: pay only for the extra compiles and rules you actually need.
         Early access locks in your rate for the life of the account.
       </p>
@@ -113,7 +113,7 @@
       <div class="addons-header">
         <p class="section-label">Add-ons</p>
         <h3 class="addons-title">Extend any plan with exactly what you need.</h3>
-        <p class="addons-sub">Each add-on unlocks a specific capability à la carte. Many are already bundled into higher tiers — check the comparison table to see what's included before adding.</p>
+        <p class="addons-sub">Each add-on unlocks a specific capability à la carte. Many are already bundled into higher tiers — check the comparison table to see what's included in your plan before purchasing separately.</p>
       </div>
 
       <div class="addons-grid">
