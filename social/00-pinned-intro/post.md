@@ -35,6 +35,7 @@ We're in early access. Come build this with us.
 
 🌐 [bloqr.dev](https://bloqr.dev)
 📸 [instagram.com/bloqr.ai](https://www.instagram.com/bloqr.ai)
+📘 [facebook.com//bloqr](https://www.facebook.com//bloqr)
 🧵 [threads.com/@bloqr.ai](https://www.threads.com/@bloqr.ai)
 
 ---

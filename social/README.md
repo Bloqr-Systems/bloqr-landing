@@ -9,12 +9,14 @@ Each subdirectory contains:
 Content is **platform-agnostic** — identical copy for Instagram, Facebook, Threads, and Reddit.
 Adapt hashtag usage per platform before publishing (see notes below).
 
+All posts must include the Facebook profile link exactly as: `https://www.facebook.com//bloqr`.
+
 ## Official Accounts
 
 | Platform | URL | Handle |
 |---|---|---|
 | Instagram | https://www.instagram.com/bloqr.ai | @bloqr.ai |
-| Facebook | https://www.facebook.com/ | ⚠️ Handle TBD — update when available |
+| Facebook | https://www.facebook.com//bloqr | /bloqr |
 | Threads | https://www.threads.com/@bloqr.ai | @bloqr.ai |
 | Website | https://bloqr.dev | — |
 
