@@ -72,11 +72,6 @@
     scheduleTick();
   }
 
-  /** @param {MouseEvent} e */
-  function handleDialogClick(e) {
-    if (e.target === dialogEl) closeModal();
-  }
-
   function handleDialogClose() {
     if (autoTimer) clearTimeout(autoTimer);
     modalOpen = false;
@@ -217,7 +212,7 @@
       items: null,
       stats: [
         { label: 'Without Bloqr', value: '4.2s', bad: true,  good: false },
-        { label: 'With Bloqr',    value: '1.1s', bad: false, good: true  },
+        { label: 'With Bloqr',    value: '1.1s', bad: false, good: true },
       ],
     },
   ];
@@ -424,13 +419,11 @@
 </section>
 
 <!-- ── Modal: step-by-step walkthrough ───────────────────────────────────── -->
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <dialog
   bind:this={dialogEl}
   class="flow-modal"
   aria-labelledby="modal-title"
   aria-modal="true"
-  onclick={handleDialogClick}
   onclose={handleDialogClose}
 >
   <div class="modal-inner">
@@ -588,7 +581,7 @@
     gap: 6px;
     padding: 12px 22px;
     background: var(--cyan);
-    color: #070B14;
+    color: var(--bg-base);
     font-weight: 800;
     font-size: 0.9rem;
     border: none;
@@ -1170,14 +1163,14 @@
 
   .modal-nav__btn--next {
     background: var(--cyan);
-    color: #070B14;
+    color: var(--bg-base);
     border-color: transparent;
   }
   .modal-nav__btn--next:hover { opacity: 0.9; }
 
   .modal-nav__btn--done {
     background: var(--color-success, #4ade80);
-    color: #070B14;
+    color: var(--bg-base);
     border-color: transparent;
   }
   .modal-nav__btn--done:hover { opacity: 0.9; }
