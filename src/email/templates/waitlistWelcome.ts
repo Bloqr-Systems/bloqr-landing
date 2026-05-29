@@ -32,9 +32,7 @@ export function renderWaitlistWelcome(
     '',
     "We'll reach out when your spot opens. No spam. One email when it's ready.",
     '',
-    'Internet Hygiene. Automated.',
-    '',
-    `— The Bloqr team`,
+    "The privacy you didn't know you needed.",
     `${SITE_URL}`,
   ].join('\n');
 
@@ -61,7 +59,7 @@ export function renderWaitlistWelcome(
   <h1>You're on the waitlist.</h1>
   <p>${personalizedLine}</p>
   <p>We'll reach out when your spot opens. No spam. One email when it's ready.</p>
-  <p class="tagline">Internet Hygiene. Automated.</p>
+  <p class="tagline">The privacy you didn't know you needed.</p>
   <div class="footer">
     <p>The Bloqr team &mdash; <a href="${SITE_URL}">${SITE_URL}</a></p>
     <p>You're receiving this because ${email} signed up at ${SITE_URL}.</p>
