@@ -147,6 +147,7 @@
     font-weight: 600;
     color: var(--cyan);
     text-decoration: none;
+    cursor: pointer;
   }
 
   .cell-link:hover {
