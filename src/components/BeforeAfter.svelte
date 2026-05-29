@@ -1,15 +1,88 @@
-<!-- BeforeAfter: animated waterfall chart showing page load with/without Bloqr -->
+<!-- BeforeAfter: "how blocking works" explainer + animated waterfall chart -->
 <script>
   import { onMount } from 'svelte';
 
-  let visible = $state(true);
+  // ── Reactive state ──────────────────────────────────────────────────────────
+  let visible = $state(false);
+  let sectionVisible = $state(false);
+  let modalOpen = $state(false);
+  let modalStep = $state(0);
+
+  /** @type {HTMLDialogElement | null} */
+  let dialogEl = null;
+  /** @type {ReturnType<typeof setTimeout> | null} */
+  let autoTimer = null;
+
+  const STEP_MS = 1900;
 
   onMount(() => {
-    // Reset to false first so the animation plays on mount/hydration
     visible = false;
-    const t = setTimeout(() => { visible = true; }, 120);
-    return () => clearTimeout(t);
+    const t = setTimeout(() => (visible = true), 120);
+
+    const target = document.getElementById('how-blocking-works');
+    /** @type {IntersectionObserver | undefined} */
+    let obs;
+    if (target) {
+      obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            sectionVisible = true;
+            obs?.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      obs.observe(target);
+    }
+
+    return () => {
+      clearTimeout(t);
+      if (autoTimer) clearTimeout(autoTimer);
+      obs?.disconnect();
+    };
   });
+
+  function openModal() {
+    modalStep = 0;
+    modalOpen = true;
+    dialogEl?.showModal();
+    scheduleTick();
+  }
+
+  function closeModal() {
+    if (autoTimer) clearTimeout(autoTimer);
+    modalOpen = false;
+    if (dialogEl?.open) dialogEl.close();
+  }
+
+  function scheduleTick() {
+    if (autoTimer) clearTimeout(autoTimer);
+    if (modalStep < modalSteps.length - 1) {
+      autoTimer = setTimeout(() => {
+        modalStep++;
+        scheduleTick();
+      }, STEP_MS);
+    }
+  }
+
+  /** @param {number} n */
+  function goStep(n) {
+    if (autoTimer) clearTimeout(autoTimer);
+    modalStep = Math.max(0, Math.min(n, modalSteps.length - 1));
+    scheduleTick();
+  }
+
+  /** @param {MouseEvent} e */
+  function handleDialogClick(e) {
+    if (e.target === dialogEl) closeModal();
+  }
+
+  function handleDialogClose() {
+    if (autoTimer) clearTimeout(autoTimer);
+    modalOpen = false;
+  }
+
+  // ── Waterfall data ─────────────────────────────────────────────────────────
 
   // Without Bloqr bars: type = 'content' | 'tracker' | 'ad' | 'malware'
   const barsWithout = [
@@ -37,12 +110,132 @@
   const barsWith = barsWithout.map((b) => ({
     ...b,
     blocked: b.type !== 'content',
-    delay: b.delay + 20, // slight offset so animation feels independent
+    delay: b.delay + 20,
   }));
+
+  // ── Inline flow diagram data ────────────────────────────────────────────────
+
+  const stepsWithout = [
+    {
+      icon: '🌐',
+      title: 'You visit a site',
+      desc: 'Browser gets the page — plus a list of 18 things to load',
+    },
+    {
+      icon: '📞',
+      title: '"Where is each thing?"',
+      desc: 'DNS lookup — like calling directory assistance for every address',
+    },
+    {
+      icon: '🌊',
+      title: 'Everything floods in',
+      desc: '5 trackers, 4 ad auctions, 3 suspicious scripts — nobody says no',
+      variant: 'warn',
+    },
+    {
+      icon: '⏱️',
+      title: '4.2 seconds',
+      desc: 'Slow. Watched. Exposed.',
+      variant: 'bad',
+    },
+  ];
+
+  const stepsWith = [
+    {
+      icon: '🌐',
+      title: 'You visit a site',
+      desc: 'Same start — browser gets the page',
+    },
+    {
+      icon: '🛡️',
+      title: 'Bloqr answers the phone first',
+      desc: 'Sits right at that moment of asking — checks every domain before the call connects',
+      variant: 'shield',
+    },
+    {
+      icon: '🚫',
+      title: '12 bad actors — never called',
+      desc: 'Blocked at DNS. Zero bytes downloaded. Zero milliseconds waited.',
+      variant: 'blocked',
+    },
+    {
+      icon: '⚡',
+      title: '1.1 seconds',
+      desc: 'Fast. Private. Clean.',
+      variant: 'good',
+    },
+  ];
+
+  // ── Modal walkthrough data ──────────────────────────────────────────────────
+
+  const modalSteps = [
+    {
+      icon: '🌐',
+      title: 'You open a website',
+      body: 'Your browser fetches the page and finds a shopping list of 18 things to load — images, fonts, scripts, and more. Each one lives at a different address.',
+      variant: 'neutral',
+      items: null,
+      stats: null,
+    },
+    {
+      icon: '📋',
+      title: 'Every item needs a phone number',
+      body: 'Your browser asks "where is each thing?" — a process called a DNS lookup. Like calling directory assistance to get a phone number. Your browser does this for every single item.',
+      variant: 'neutral',
+      items: null,
+      stats: null,
+    },
+    {
+      icon: '⚠️',
+      title: 'Without protection, everyone answers',
+      body: 'Trackers that log everything you read. Ad auction scripts that run a bidding war and slow your page. Malware that could record passwords or mine crypto. All of them get through.',
+      variant: 'bad',
+      items: ['👁️  analytics.js — logs what you read', '💰  doubleclick.js — runs an ad auction', '☠️  cryptominer.js — mines on your device'],
+      stats: null,
+    },
+    {
+      icon: '🛡️',
+      title: 'Bloqr sits right at the phone',
+      body: 'Before your browser can even dial "analytics.js", Bloqr intercepts. It checks: "Is this a known bad actor?" If yes — the call is cancelled. The request never starts.',
+      variant: 'shield',
+      items: null,
+      stats: null,
+    },
+    {
+      icon: '🚫',
+      title: '12 domains. Zero bytes. Zero wait.',
+      body: 'analytics.js, fb-pixel.js, doubleclick.js, hotjar.js, prebid.js, cryptominer.js — all stopped. Your browser never waited. They were never even asked.',
+      variant: 'blocked',
+      items: ['🚫  analytics.js', '🚫  fb-pixel.js', '🚫  doubleclick.js', '🚫  hotjar.js', '🚫  prebid.js', '🚫  cryptominer.js'],
+      stats: null,
+    },
+    {
+      icon: '⚡',
+      title: '74% faster. Every page.',
+      body: "Not a side effect of better privacy — privacy is the performance boost. Every blocked domain is loading time you get back.",
+      variant: 'result',
+      items: null,
+      stats: [
+        { label: 'Without Bloqr', value: '4.2s', bad: true,  good: false },
+        { label: 'With Bloqr',    value: '1.1s', bad: false, good: true  },
+      ],
+    },
+  ];
+
+  // ── Legend data ─────────────────────────────────────────────────────────────
+
+  const legendItems = [
+    { swatch: 'content', label: 'Your content',    desc: 'HTML, images, fonts — what you asked for' },
+    { swatch: 'tracker', label: 'Tracker',          desc: 'Scripts that log what you read' },
+    { swatch: 'ad',      label: 'Ad script',        desc: 'Background auction — slows your page' },
+    { swatch: 'malware', label: 'Malware / miner',  desc: 'Could steal passwords or mine crypto' },
+  ];
 </script>
 
 <section class="before-after" id="before-after" aria-labelledby="ba-title">
   <div class="container">
+
+    <!-- ── Section header ──────────────────────────────────────────────────── -->
     <div class="section-header">
       <p class="section-label">Performance</p>
       <h2 class="section-title" id="ba-title">Privacy and speed aren't a tradeoff.</h2>
@@ -52,6 +245,92 @@
       </p>
     </div>
 
+    <!-- ── How blocking actually works ────────────────────────────────────── -->
+    <div class="how-blocking" id="how-blocking-works" aria-labelledby="hb-title">
+      <div class="hb-header">
+        <div>
+          <p class="section-label">Under the hood</p>
+          <h3 id="hb-title">How blocking actually works</h3>
+          <p class="hb-intro">
+            Every website visit starts with your browser asking "where is each thing?"
+            Bloqr sits right at that moment — and says no to the bad actors before they even get a chance.
+          </p>
+        </div>
+        <button class="walkthrough-btn" onclick={openModal} aria-haspopup="dialog">
+          See it happen →
+        </button>
+      </div>
+
+      <div class="flow-comparison" class:flow-comparison--visible={sectionVisible}>
+
+        <!-- Without Bloqr flow -->
+        <div class="flow flow--bad" aria-label="Page load journey without Bloqr">
+          <div class="flow-col-header flow-col-header--bad">
+            <span class="flow-pill flow-pill--bad">Without Bloqr</span>
+          </div>
+          {#each stepsWithout as step, i}
+            <div
+              class="flow-step flow-step--{step.variant ?? 'neutral'}"
+              style="--step-i: {i}"
+            >
+              <span class="flow-step__icon" aria-hidden="true">{step.icon}</span>
+              <span class="flow-step__text">
+                <strong class="flow-step__title">{step.title}</strong>
+                <span class="flow-step__desc">{step.desc}</span>
+              </span>
+            </div>
+            {#if i < stepsWithout.length - 1}
+              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true">↓</div>
+            {/if}
+          {/each}
+        </div>
+
+        <!-- VS divider -->
+        <div class="flow-vs" aria-hidden="true">vs</div>
+
+        <!-- With Bloqr flow -->
+        <div class="flow flow--good" aria-label="Page load journey with Bloqr">
+          <div class="flow-col-header flow-col-header--good">
+            <span class="flow-pill flow-pill--good">With Bloqr <span aria-hidden="true">✓</span></span>
+          </div>
+          {#each stepsWith as step, i}
+            <div
+              class="flow-step flow-step--{step.variant ?? 'neutral'}"
+              style="--step-i: {i}"
+            >
+              <span class="flow-step__icon" aria-hidden="true">{step.icon}</span>
+              <span class="flow-step__text">
+                <strong class="flow-step__title">{step.title}</strong>
+                <span class="flow-step__desc">{step.desc}</span>
+              </span>
+            </div>
+            {#if i < stepsWith.length - 1}
+              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true">↓</div>
+            {/if}
+          {/each}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Chart intro + legend ───────────────────────────────────────────── -->
+    <div class="chart-intro">
+      <p class="chart-intro__text">
+        Each bar below is one network request — the longer the bar, the longer your browser
+        waited. Ghost bars on the right show what Bloqr stopped.
+      </p>
+      <div class="legend" role="list" aria-label="Chart colour key">
+        {#each legendItems as item}
+          <div class="legend-item" role="listitem">
+            <span class="legend-swatch legend-swatch--{item.swatch}" aria-hidden="true"></span>
+            <strong class="legend-label">{item.label}</strong>
+            <span class="legend-desc">{item.desc}</span>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- ── Waterfall panels ───────────────────────────────────────────────── -->
     <p id="ba-panels-desc" class="sr-only">
       Side-by-side page load comparison: without Bloqr shows 18 requests including 5 trackers,
       4 ad scripts, and 3 suspicious domains; with Bloqr shows only 6 legitimate content
@@ -65,7 +344,7 @@
           <span class="load-time bad-time" aria-label="Page load time: 4.2 seconds">4.2s</span>
         </div>
         <div class="waterfall" aria-hidden="true">
-          {#each barsWithout as bar, i}
+          {#each barsWithout as bar}
             <div class="bar-row">
               <span class="bar-name">{bar.label}</span>
               <div class="bar-track">
@@ -100,7 +379,7 @@
           <span class="load-time good-time" aria-label="Page load time: 1.1 seconds">1.1s</span>
         </div>
         <div class="waterfall" aria-hidden="true">
-          {#each barsWith as bar, i}
+          {#each barsWith as bar}
             <div class="bar-row">
               <span class="bar-name" class:bar-name--blocked={bar.blocked}>{bar.label}</span>
               <div class="bar-track">
@@ -144,6 +423,101 @@
   </div>
 </section>
 
+<!-- ── Modal: step-by-step walkthrough ───────────────────────────────────── -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<dialog
+  bind:this={dialogEl}
+  class="flow-modal"
+  aria-labelledby="modal-title"
+  aria-modal="true"
+  onclick={handleDialogClick}
+  onclose={handleDialogClose}
+>
+  <div class="modal-inner">
+
+    <!-- Progress bar + close -->
+    <div class="modal-top">
+      <div class="modal-progress" role="progressbar" aria-valuenow={modalStep + 1} aria-valuemin={1} aria-valuemax={modalSteps.length}>
+        <div
+          class="modal-progress__fill"
+          style="width: {((modalStep + 1) / modalSteps.length * 100).toFixed(1)}%"
+        ></div>
+      </div>
+      <button class="modal-close" onclick={closeModal} aria-label="Close walkthrough">✕</button>
+    </div>
+
+    <!-- Step content (keyed so it re-mounts and re-animates on step change) -->
+    {#key modalStep}
+      <div class="modal-step modal-step--{modalSteps[modalStep].variant}" aria-live="polite">
+        <div class="modal-step__emoji" aria-hidden="true">{modalSteps[modalStep].icon}</div>
+        <p class="modal-step__counter" aria-label="Step {modalStep + 1} of {modalSteps.length}">
+          {String(modalStep + 1).padStart(2, '0')} / {String(modalSteps.length).padStart(2, '0')}
+        </p>
+        <h2 class="modal-step__title" id="modal-title">{modalSteps[modalStep].title}</h2>
+        <p class="modal-step__body">{modalSteps[modalStep].body}</p>
+        {#if modalSteps[modalStep].items}
+          <ul class="modal-step__list">
+            {#each modalSteps[modalStep].items as item}
+              <li>{item}</li>
+            {/each}
+          </ul>
+        {/if}
+        {#if modalSteps[modalStep].stats}
+          <div class="modal-step__stats">
+            {#each modalSteps[modalStep].stats as stat}
+              <div
+                class="modal-stat"
+                class:modal-stat--bad={stat.bad}
+                class:modal-stat--good={stat.good}
+              >
+                <span class="modal-stat__label">{stat.label}</span>
+                <span class="modal-stat__value">{stat.value}</span>
+              </div>
+            {/each}
+          </div>
+        {/if}
+      </div>
+    {/key}
+
+    <!-- Step navigation -->
+    <div class="modal-nav">
+      <button
+        class="modal-nav__btn"
+        onclick={() => goStep(modalStep - 1)}
+        disabled={modalStep === 0}
+        aria-label="Previous step"
+      >← Back</button>
+
+      <div class="modal-dots" role="tablist" aria-label="Walkthrough steps">
+        {#each modalSteps as _, i}
+          <button
+            class="modal-dot"
+            class:modal-dot--active={i === modalStep}
+            onclick={() => goStep(i)}
+            role="tab"
+            aria-selected={i === modalStep}
+            aria-label="Go to step {i + 1}"
+          ></button>
+        {/each}
+      </div>
+
+      {#if modalStep < modalSteps.length - 1}
+        <button
+          class="modal-nav__btn modal-nav__btn--next"
+          onclick={() => goStep(modalStep + 1)}
+          aria-label="Next step"
+        >Next →</button>
+      {:else}
+        <button
+          class="modal-nav__btn modal-nav__btn--done"
+          onclick={closeModal}
+        >Close ✓</button>
+      {/if}
+    </div>
+
+  </div>
+</dialog>
+
 <style>
   .sr-only {
     position: absolute;
@@ -172,7 +546,249 @@
     margin: 0 auto;
   }
 
-  /* ── Two-panel layout ── */
+  /* ── How blocking works ───────────────────────────────────────────────────── */
+
+  .how-blocking {
+    margin-bottom: 56px;
+    padding: 40px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .hb-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .hb-header h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 800;
+    color: var(--text-1);
+    margin: 6px 0 10px;
+    letter-spacing: -0.03em;
+  }
+
+  .hb-intro {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    max-width: 540px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .walkthrough-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 22px;
+    background: var(--cyan);
+    color: #070B14;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: transform 0.18s, opacity 0.18s;
+    white-space: nowrap;
+    align-self: center;
+  }
+  .walkthrough-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+  .walkthrough-btn:active { transform: none; }
+
+  /* ── Flow comparison grid ─────────────────────────────────────────────────── */
+
+  .flow-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 720px) {
+    .flow-comparison { grid-template-columns: 1fr; }
+    .flow-vs { display: none; }
+  }
+
+  /* ── Flow column header ───────────────────────────────────────────────────── */
+
+  .flow-col-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .flow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .flow-pill--bad  { background: rgba(239,68,68,0.12);  color: var(--color-error);   border: 1px solid rgba(239,68,68,0.2); }
+  .flow-pill--good { background: rgba(0,212,255,0.1);   color: var(--cyan);           border: 1px solid rgba(0,212,255,0.2); }
+
+  /* ── Flow step card ───────────────────────────────────────────────────────── */
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.4s var(--ease-out, cubic-bezier(0.16,1,0.3,1)),
+                transform 0.4s var(--ease-out, cubic-bezier(0.16,1,0.3,1));
+    transition-delay: calc(var(--step-i, 0) * 80ms + 100ms);
+  }
+
+  .flow-comparison--visible .flow-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .flow-step--warn    { border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.07); }
+  .flow-step--bad     { border-color: rgba(239,68,68,0.35); background: rgba(239,68,68,0.09); }
+  .flow-step--shield  { border-color: rgba(0,212,255,0.35); background: rgba(0,212,255,0.08); }
+  .flow-step--blocked { border-color: rgba(0,212,255,0.2);  background: rgba(0,212,255,0.05); }
+  .flow-step--good    { border-color: rgba(74,222,128,0.4); background: rgba(74,222,128,0.08); }
+
+  .flow-step__icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .flow-step__text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .flow-step__title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-1);
+    line-height: 1.25;
+  }
+
+  .flow-step__desc {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* ── Flow arrow connector ─────────────────────────────────────────────────── */
+
+  .flow-arrow {
+    text-align: center;
+    color: var(--text-3);
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 4px 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transition-delay: calc(var(--step-i, 0) * 80ms + 200ms);
+  }
+
+  .flow-comparison--visible .flow-arrow { opacity: 1; }
+
+  /* ── VS divider ───────────────────────────────────────────────────────────── */
+
+  .flow-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    padding-top: 56px;
+    opacity: 0.5;
+  }
+
+  /* ── Shield icon pulse (only used in flow-step--shield) ──────────────────── */
+
+  .flow-step--shield .flow-step__icon {
+    animation: shield-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes shield-pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.12); }
+  }
+
+  /* ── Chart intro + legend ─────────────────────────────────────────────────── */
+
+  .chart-intro {
+    margin-bottom: 28px;
+    padding: 24px 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .chart-intro__text {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    margin: 0 0 16px;
+    line-height: 1.6;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .legend-swatch {
+    flex-shrink: 0;
+    width: 14px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .legend-swatch--content { background: rgba(148,163,184,0.5); }
+  .legend-swatch--tracker { background: rgba(239,68,68,0.5); }
+  .legend-swatch--ad      { background: rgba(251,146,60,0.6); }
+  .legend-swatch--malware { background: rgba(220,38,38,0.65); }
+
+  .legend-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+
+  .legend-desc {
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  /* ── Two-panel layout ───────────────────────────────────────────────────── */
   .panels {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -342,5 +958,261 @@
     font-style: italic;
     border-top: 1px solid var(--border);
     padding-top: 32px;
+  }
+
+  /* ── Modal dialog ─────────────────────────────────────────────────────────── */
+
+  :global(.flow-modal::backdrop) {
+    background: rgba(7, 11, 20, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  .flow-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(540px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-2, var(--border));
+    border-radius: 20px;
+    padding: 0;
+    color: var(--text-1);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,255,0.06);
+  }
+
+  .modal-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px 24px;
+    min-height: 400px;
+  }
+
+  /* Progress bar */
+  .modal-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .modal-progress {
+    flex: 1;
+    height: 3px;
+    background: var(--bg-elevated);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .modal-progress__fill {
+    height: 100%;
+    background: var(--cyan);
+    border-radius: 2px;
+    transition: width 0.4s var(--ease-out, cubic-bezier(0.16,1,0.3,1));
+  }
+
+  .modal-close {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-3);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: var(--bg-elevated); color: var(--text-1); }
+
+  /* Step content */
+  .modal-step {
+    flex: 1;
+    animation: step-in 0.35s var(--ease-out, cubic-bezier(0.16,1,0.3,1)) both;
+  }
+
+  @keyframes step-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .modal-step__emoji {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  /* Pulse shield in modal */
+  .modal-step--shield .modal-step__emoji {
+    display: inline-block;
+    animation: shield-pulse 2s ease-in-out infinite;
+  }
+
+  .modal-step__counter {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+  }
+
+  .modal-step__title {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 12px;
+    color: var(--text-1);
+  }
+
+  .modal-step--bad    .modal-step__title { color: var(--color-error); }
+  .modal-step--shield .modal-step__title { color: var(--cyan); }
+  .modal-step--blocked .modal-step__title { color: var(--cyan); }
+  .modal-step--result .modal-step__title { color: var(--color-success, #4ade80); }
+
+  .modal-step__body {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-2);
+    margin: 0 0 14px;
+  }
+
+  .modal-step__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .modal-step__list li {
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    color: var(--text-2);
+    background: var(--bg-elevated);
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .modal-step--blocked .modal-step__list li {
+    color: var(--text-3);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  /* Stats comparison */
+  .modal-step__stats {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .modal-stat {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    text-align: center;
+  }
+
+  .modal-stat--bad  { border-color: rgba(239,68,68,0.3);   background: rgba(239,68,68,0.07); }
+  .modal-stat--good { border-color: rgba(0,212,255,0.3);   background: rgba(0,212,255,0.07); }
+
+  .modal-stat__label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-bottom: 4px;
+  }
+
+  .modal-stat__value {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    letter-spacing: -0.04em;
+  }
+
+  .modal-stat--bad  .modal-stat__value { color: var(--color-error); }
+  .modal-stat--good .modal-stat__value { color: var(--cyan); }
+
+  /* Navigation */
+  .modal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 20px;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .modal-nav__btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text-2);
+    transition: background 0.15s, color 0.15s, transform 0.15s;
+    min-width: 84px;
+  }
+  .modal-nav__btn:hover:not(:disabled) { background: var(--bg-surface); color: var(--text-1); transform: translateY(-1px); }
+  .modal-nav__btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .modal-nav__btn--next {
+    background: var(--cyan);
+    color: #070B14;
+    border-color: transparent;
+  }
+  .modal-nav__btn--next:hover { opacity: 0.9; }
+
+  .modal-nav__btn--done {
+    background: var(--color-success, #4ade80);
+    color: #070B14;
+    border-color: transparent;
+  }
+  .modal-nav__btn--done:hover { opacity: 0.9; }
+
+  .modal-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .modal-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  .modal-dot:hover    { background: var(--text-3); }
+  .modal-dot--active  { background: var(--cyan); transform: scale(1.3); }
+  .modal-dot:focus-visible { outline-color: var(--cyan); }
+
+  /* ── Reduced motion ───────────────────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow-step,
+    .flow-arrow,
+    .modal-step         { transition: none; animation: none; }
+    .bar                { transition: none; }
+    .modal-progress__fill { transition: none; }
+    .flow-step--shield .flow-step__icon,
+    .modal-step--shield .modal-step__emoji { animation: none; }
   }
 </style>
