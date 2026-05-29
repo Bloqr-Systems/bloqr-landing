@@ -15,11 +15,11 @@
     B --> D["🕵️ A hidden tracker also loads\\nit quietly logs what you read"]:::bad
     B --> E["📢 An ad network loads too\\nbidding slows your page down"]:::warn
     B --> F["⚠️ A suspicious script sneaks in\\ncould record passwords or mine crypto"]:::danger
-    classDef node  fill:#1e2738,stroke:#334155,color:#e2e8f0
-    classDef good  fill:#14532d,stroke:#22c55e,color:#dcfce7
-    classDef bad   fill:#7f1d1d,stroke:#ef4444,color:#fee2e2
-    classDef warn  fill:#7c2d12,stroke:#f97316,color:#ffedd5
-    classDef danger fill:#7f1d1d,stroke:#dc2626,color:#fee2e2`;
+    classDef node   fill:var(--bg-elevated),stroke:var(--border-2),color:var(--text-1)
+    classDef good   fill:var(--color-success-dim),stroke:var(--color-success-border),color:var(--color-success)
+    classDef bad    fill:var(--color-error-dim),stroke:var(--color-error-border),color:var(--color-error)
+    classDef warn   fill:var(--color-warning-dim),stroke:var(--color-warning-border),color:var(--color-warning)
+    classDef danger fill:var(--color-error-dim),stroke:var(--color-error-border),color:var(--color-error)
 
   const diagramWith = `flowchart TD
     A["🖥️ You open a webpage"]:::node --> B["🛡️ Bloqr checks every address\\nagainst a list of known bad actors\\n— before your device even asks"]:::bloqr
