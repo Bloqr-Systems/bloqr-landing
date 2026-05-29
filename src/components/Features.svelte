@@ -1,4 +1,4 @@
-<!-- Features grid: 6 key capabilities -->
+<!-- Features grid -->
 
 <script>
   const features = [
@@ -61,6 +61,9 @@
           </div>
           <h4>{f.title}</h4>
           <p>{f.desc}</p>
+          {#if f.link && f.linkText}
+            <a class="cell-link" href={f.link} target="_blank" rel="noopener noreferrer">{f.linkText}</a>
+          {/if}
         </div>
       {/each}
     </div>
@@ -144,5 +147,19 @@
     font-size: 0.825rem;
     color: var(--text-2);
     line-height: 1.6;
+  }
+
+  .cell-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cyan);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .cell-link:hover {
+    text-decoration: underline;
   }
 </style>
