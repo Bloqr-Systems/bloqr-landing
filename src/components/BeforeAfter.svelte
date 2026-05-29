@@ -443,7 +443,7 @@
     {#key modalStep}
       <div class="modal-step modal-step--{modalSteps[modalStep].variant}" aria-live="polite">
         <div class="modal-step__emoji" aria-hidden="true">{modalSteps[modalStep].icon}</div>
-        <p class="modal-step__counter" aria-label="Step {modalStep + 1} of {modalSteps.length}">
+        <p class="modal-step__counter" aria-label={`Step ${modalStep + 1} of ${modalSteps.length}`}>
           {String(modalStep + 1).padStart(2, '0')} / {String(modalSteps.length).padStart(2, '0')}
         </p>
         <h2 class="modal-step__title" id="modal-title">{modalSteps[modalStep].title}</h2>
