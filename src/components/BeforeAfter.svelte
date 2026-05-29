@@ -163,13 +163,12 @@
   }
 
   .section-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 48px;
   }
 
   .section-header .section-desc {
-    max-width: 520px;
-    margin: 0 auto;
+    max-width: 640px;
   }
 
   /* ── Two-panel layout ── */

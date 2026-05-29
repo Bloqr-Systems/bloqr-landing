@@ -4,31 +4,37 @@
   const features = [
     {
       icon: '⚡',
+      accentColor: 'cyan',
       title: 'Edge-first architecture',
       desc: 'Runs natively at the edge — 300+ global PoPs, zero cold starts, zero server overhead. Your VPN has data centers. We have everywhere.',
     },
     {
       icon: '🤖',
+      accentColor: 'cyan',
       title: 'AI-powered threat intelligence',
       desc: 'AI continuously monitors emerging malware domains, phishing campaigns, and trackers — surfacing and blocking all threats in real time, before the bad guys finish their morning coffee.',
     },
     {
       icon: '🔄',
+      accentColor: null,
       title: '11 composable transformations',
       desc: 'Deduplicate, validate, compress, strip comments, convert to ASCII, invert allow rules — stack them however you like, per source.',
     },
     {
       icon: '📡',
+      accentColor: null,
       title: 'Three compilation modes',
       desc: 'Real-time streaming via SSE, batch processing up to 10 lists, or async queue-based compilation for the truly ambitious.',
     },
     {
       icon: '📋',
+      accentColor: 'orange',
       title: 'OpenAPI + TypeScript',
       desc: 'Fully typed interfaces, a proper OpenAPI spec, and a JSR package. Slot it in, don\'t fight it.',
     },
     {
       icon: '🔐',
+      accentColor: 'orange',
       title: 'Production hardened',
       desc: 'Rate limiting, circuit breakers, structured JSON logging, OpenTelemetry, and RBAC. Boring? Yes. Essential? Absolutely.',
     },
@@ -50,7 +56,9 @@
     <div class="grid">
       {#each features as f}
         <div class="cell">
-          <div class="cell-icon">{f.icon}</div>
+          <div class="cell-icon" class:cell-icon--cyan={f.accentColor === 'cyan'} class:cell-icon--orange={f.accentColor === 'orange'}>
+            {f.icon}
+          </div>
           <h4>{f.title}</h4>
           <p>{f.desc}</p>
         </div>
@@ -114,6 +122,16 @@
     margin-bottom: 16px;
     background: var(--bg-elevated);
     border: 1px solid var(--border-2);
+  }
+
+  .cell-icon--cyan {
+    background: var(--cyan-dim);
+    border-color: rgba(0,212,255,0.2);
+  }
+
+  .cell-icon--orange {
+    background: var(--orange-dim);
+    border-color: rgba(255,85,0,0.2);
   }
 
   h4 {
