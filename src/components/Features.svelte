@@ -1,6 +1,8 @@
 <!-- Features grid: 6 key capabilities -->
 
 <script>
+  import { LINKS } from '../config';
+
   const features = [
     {
       icon: '⚡',
@@ -11,6 +13,13 @@
       icon: '🤖',
       title: 'AI-powered threat intelligence',
       desc: 'AI continuously monitors emerging malware domains, phishing campaigns, and trackers — surfacing and blocking all threats in real time, before the bad guys finish their morning coffee.',
+    },
+    {
+      icon: '🛡️',
+      title: 'Radar-powered master block list',
+      desc: 'Cloudflare Radar feeds live threat intelligence directly into a canonical master block list — malware, phishing, trackers, and ad domains — auto-compiled to AdGuard, Pi-hole, hosts, and dnsmasq formats, with real-time SSE updates and point-in-time snapshot diffs.',
+      link: LINKS.radarBlockListPr,
+      linkText: 'In-depth technical overview →',
     },
     {
       icon: '🔄',
@@ -53,6 +62,9 @@
           <div class="cell-icon">{f.icon}</div>
           <h4>{f.title}</h4>
           <p>{f.desc}</p>
+          {#if f.link}
+            <a class="cell-link" href={f.link} target="_blank" rel="noopener noreferrer">{f.linkText}</a>
+          {/if}
         </div>
       {/each}
     </div>
@@ -126,5 +138,18 @@
     font-size: 0.825rem;
     color: var(--text-2);
     line-height: 1.6;
+  }
+
+  .cell-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cyan);
+    text-decoration: none;
+  }
+
+  .cell-link:hover {
+    text-decoration: underline;
   }
 </style>

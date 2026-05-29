@@ -97,6 +97,7 @@ export const LINKS = {
   github:  'https://github.com/jaypatrick/adblock-compiler',
   jsr:     'https://jsr.io/@jk-com/adblock-compiler',
   author:  'https://jaysonknight.com',
+  radarBlockListPr: 'https://github.com/jaypatrick/bloqr-compiler/pull/1922',
   // ── Internal routes ───────────────────────────────────────────────────────
   vpnMyths:      '/vpn-myths',
   whyNotPrivate: '/why-not-private',
