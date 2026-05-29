@@ -20,6 +20,7 @@
     classDef bad    fill:var(--color-error-dim),stroke:var(--color-error-border),color:var(--color-error)
     classDef warn   fill:var(--color-warning-dim),stroke:var(--color-warning-border),color:var(--color-warning)
     classDef danger fill:var(--color-error-dim),stroke:var(--color-error-border),color:var(--color-error)
+  `;
 
   const diagramWith = `flowchart TD
     A["🖥️ You open a webpage"]:::node --> B["🛡️ Bloqr checks every address\\nagainst a list of known bad actors\\n— before your device even asks"]:::bloqr
@@ -30,6 +31,7 @@
     classDef bloqr   fill:var(--orange-dim),stroke:var(--orange),color:var(--orange)
     classDef blocked fill:var(--cyan-dim),stroke:var(--cyan-border),color:var(--cyan)
     classDef good    fill:var(--color-success-dim),stroke:var(--color-success-border),color:var(--color-success)
+  `;
 
   onMount(() => {
     // Reset so waterfall animation plays on mount
