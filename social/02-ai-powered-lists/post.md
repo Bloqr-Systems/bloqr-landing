@@ -31,6 +31,7 @@ Your lists. Your rules. Maintained automatically.
 
 🌐 <a href="https://bloqr.dev">bloqr.dev</a>
 📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
 🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---
