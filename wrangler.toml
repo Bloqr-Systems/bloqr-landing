@@ -327,3 +327,19 @@ database_id   = "662fc37a-9246-476a-ac5c-2bf0c52124c3"
 binding = "BLOQR_CONFIG_CACHE_DB"
 database_name = "bloqr-landing-config-cache-db"
 database_id = "8d6153e2-9be1-470a-980b-9532a1850378"
+
+# ─── D1: bloqr-landing-social-db (local social content store) ─────────────────
+# Stores canonical social profile links plus one row per post in /social.
+# This database is intended for local authoring workflows.
+#
+# Setup (local only):
+#   ./scripts/setup-d1-social.sh
+#
+# Apply schema manually:
+#   wrangler d1 execute bloqr-landing-social-db --local \
+#     --file scripts/migrations/002_social_posts_db.sql
+#
+[[d1_databases]]
+binding       = "SOCIAL_DB"
+database_name = "bloqr-landing-social-db"
+database_id   = "4ad37bc5-8ed9-4d97-89d2-16cb8e2bb7d1"

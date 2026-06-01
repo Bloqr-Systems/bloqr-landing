@@ -35,6 +35,7 @@ AI builds the list. AI keeps it current. You flip one switch.
 
 🔗 <a href="https://bloqr.dev/why-not-private">bloqr.dev/why-not-private</a>
 📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
 🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---

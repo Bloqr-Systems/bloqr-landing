@@ -143,6 +143,19 @@ export interface Env {
    */
   BLOQR_CONFIG_CACHE_DB: D1Database;
 
+  /**
+   * D1 database binding — local social content store.
+   *
+   * Tables:
+   *   - `social_links`         — canonical profile links per platform
+   *   - `social_posts`         — one row per post in /social
+   *   - `social_post_channels` — platform link snapshot per post
+   *
+   * Create/apply locally:
+   *   ./scripts/setup-d1-social.sh
+   */
+  SOCIAL_DB?: D1Database;
+
   // ─── Cloudflare Queues ─────────────────────────────────────────────────────
   //
   // Activate by uncommenting the queue blocks in wrangler.toml and running:
