@@ -28,7 +28,7 @@
       <p class="section-label">Pricing</p>
       <h2 class="section-title">
         Pick your plan.<br />
-        <em>No free tier. No surprises.</em>
+        <em>No surprises.</em>
       </h2>
       <p class="section-sub">
         Transparent subscription pricing for every audience. Usage above your plan's
