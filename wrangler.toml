@@ -74,6 +74,7 @@ enabled = true
 head_sampling_rate = 1   # TODO: reduce before high-traffic production
 persist = true            # TODO: disable if long-term log retention is not needed
 invocation_logs = true    # TODO: disable once Worker behaviour is confirmed stable
+destinations = [ "sentry-logs" ]
 
 [observability.traces]
 enabled = true
@@ -81,6 +82,10 @@ enabled = true
 # not in wrangler.toml — the `destinations` field is not part of the Wrangler schema.
 persist = true            # TODO: disable if long-term trace retention is not needed
 head_sampling_rate = 1   # TODO: reduce before high-traffic production
+destinations = [ "sentry-traces" ]
+
+[[tail_consumers]]
+service = "bloqr-tail"
 
 # ─── Browser Rendering ────────────────────────────────────────────────────────
 # Provides a headless Chromium instance at the edge via Cloudflare Browser Rendering.
