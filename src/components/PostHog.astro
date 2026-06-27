@@ -4,8 +4,8 @@
  * Uses the posthog-js npm package (bundled by Vite) so the snippet is always
  * current and correctly handles the ph_authorize toolbar hash flow.
  *
- * The <script> is an unconditional top-level template element so Astro/Vite
- * can hoist and bundle it as an ES module. A <script> inside a JSX conditional
+ * The script is an unconditional top-level template element so Astro Vite
+ * can hoist and bundle it as an ES module. A script inside a JSX conditional
  * is not processed by Vite as a module — the import statement would silently
  * fail, preventing PostHog and the toolbar from ever loading.
  *
