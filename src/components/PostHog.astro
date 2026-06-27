@@ -1,4 +1,3 @@
----
 /**
  * PostHog.astro — PostHog analytics integration.
  *
@@ -35,7 +34,6 @@
  *
  * posthog-js is dynamically imported — no network request outside production.
  */
----
 
 /**
 <script>
@@ -63,9 +61,7 @@
 </script>
 */
 
----
 // src/components/posthog.astro
----
 <script is:inline>
   if (!window.__posthog_initialized) {
     window.__posthog_initialized = true;
