@@ -94,7 +94,7 @@ export const LINKS = {
   api:    EXTERNAL_URLS.api,
   docs:   EXTERNAL_URLS.docs,
   // ── Third-party ─────────────────────────────────────────────────────────
-  github:  'https://github.com/jaypatrick/adblock-compiler',
+  github:  'https://github.com/Bloqr-Systems/bloqr-compiler',
   jsr:     'https://jsr.io/@jk-com/adblock-compiler',
   author:  'https://jaysonknight.com',
   // ── Internal routes ───────────────────────────────────────────────────────
@@ -115,7 +115,7 @@ export const LINKS = {
  * Centralised here so a repo move only requires a single edit.
  */
 export const CHANGELOG_URL =
-  'https://raw.githubusercontent.com/jaypatrick/adblock-compiler/main/CHANGELOG.md';
+  'https://raw.githubusercontent.com/Bloqr-Systems/bloqr-compiler/refs/heads/main/CHANGELOG.md?token=GHSAT0AAAAAAEA7GST7GHTWUAWPF3IKVFEQ2SABVAQ';
 
 /**
  * PAGE_META — canonical title and description for static content pages.
@@ -202,7 +202,7 @@ export async function getConfig(databaseUrl?: string): Promise<SiteConfig> {
     DOCS_URL:        EXTERNAL_URLS.docs,
     API_URL:         EXTERNAL_URLS.api,
     JSR_URL:         'https://jsr.io/@jk-com/adblock-compiler',
-    GITHUB_URL:      'https://github.com/jaypatrick/adblock-compiler',
+    GITHUB_URL:      'https://github.com/Bloqr-Systems/bloqr-compiler',
     AUTHOR_URL:      'https://jaysonknight.com',
     PRODUCT_NAME:    'Bloqr AI',
     PRODUCT_TAGLINE: "The privacy you didn't know you needed.",
