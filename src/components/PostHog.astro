@@ -36,7 +36,6 @@
  * posthog-js is dynamically imported — no network request outside production.
  */
 ---
-
 /**
 <script>
   import { POSTHOG_HOST, POSTHOG_UI_HOST } from '../config';
@@ -63,9 +62,7 @@
 </script>
 */
 
----
 // src/components/posthog.astro
----
 <script is:inline>
   if (!window.__posthog_initialized) {
     window.__posthog_initialized = true;
