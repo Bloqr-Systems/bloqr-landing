@@ -82,7 +82,7 @@ export const POSTHOG_HOST = 'https://f.bloqr.dev';
  * This value must stay in sync with:
  *   - src/components/PostHog.astro  ui_host (consumed via define:vars)
  */
-export const POSTHOG_UI_HOST = 'https://us.posthog.com';
+export const POSTHOG_UI_HOST = 'https://us.i.posthog.com';
 
 /**
  * LINKS — all external and internal URLs consumed by components and pages.
