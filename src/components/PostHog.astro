@@ -1,40 +1,6 @@
-/**
- * PostHog.astro — PostHog analytics integration.
- *
- * Uses the posthog-js npm package (bundled by Vite) so the snippet is always
- * current and correctly handles the ph_authorize toolbar hash flow.
- *
- * The script is an unconditional top-level template element so Astro Vite
- * can hoist and bundle it as an ES module. A script inside a JSX conditional
- * is not processed by Vite as a module — the import statement would silently
- * fail, preventing PostHog and the toolbar from ever loading.
- *
- * posthog-js is loaded via a runtime-gated dynamic import so no module chunk
- * is fetched outside production or when PUBLIC_POSTHOG_KEY is absent. The
- * config module (POSTHOG_HOST / POSTHOG_UI_HOST) is statically imported — it
- * contains only constants and adds negligible weight to the bundle.
- *
- * api_host: POSTHOG_HOST (src/config.ts) — routes event ingestion through the
- * first-party proxy (keeps analytics first-party, bypasses ad blockers).
- * Worker routes all f.bloqr.dev traffic to handlePostHogProxy
- * (functions/posthog-proxy.ts).
- *
- * ui_host: POSTHOG_UI_HOST (src/config.ts) — must point at PostHog cloud so
- * the toolbar, session replay links, and OAuth callbacks resolve correctly.
- * Without it, PostHog uses api_host for toolbar assets, which the proxy does
- * not serve, causing the toolbar to silently fail to load.
- *
- * capture_pageview: false — $pageview is fired manually via astro:page-load
- * so every ClientRouter soft navigation is tracked, not just the initial load.
- *
- * Server-side tracking (posthog-node) is already wired in:
- *   - src/lib/posthog-server.ts  — Worker singleton (flushAt:1, flushInterval:0)
- *   - functions/waitlist.ts      — waitlist_signup_server capture
- *   Requires: wrangler secret put POSTHOG_PROJECT_TOKEN
- *
- * posthog-js is dynamically imported — no network request outside production.
- */
-
+---
+// src/components/posthog.astro
+---
 <script>
   import { POSTHOG_HOST, POSTHOG_UI_HOST } from '../config';
 
