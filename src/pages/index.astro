@@ -22,6 +22,7 @@ import AudienceWizard from '../components/AudienceWizard.svelte';
 import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
+import PostHogLayout from '../layouts/PostHogLayout.astro';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
 import { PRICING_TIERS_BY_AUDIENCE } from '../lib/pricing';
 
@@ -130,7 +131,6 @@ const homeSchema = {
   ]
 };
 ---
-
 <!doctype html>
 <html lang="en">
 <head>
