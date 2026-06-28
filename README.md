@@ -80,6 +80,37 @@ Before running `preview`, copy `.dev.vars.example` to `.dev.vars` and fill in yo
 
 ---
 
+## Design system
+
+Visual assets, design tokens, fonts, and component primitives have moved to the
+standalone [`Bloqr-Systems/bloqr-design-system`](https://github.com/Bloqr-Systems/bloqr-design-system)
+repository, published as [`@bloqr/design-system`](https://github.com/Bloqr-Systems/bloqr-design-system).
+The local `brand/` folder has been removed — all brand documentation now lives there.
+
+**Consuming the design system in this repo:**
+
+```sh
+npm i @bloqr/design-system
+```
+
+Then in your Astro/Svelte entry point:
+
+```js
+import '@bloqr/design-system/styles.css';
+```
+
+Import primitives:
+
+```js
+import { Button, Badge, Icon, Mark } from '@bloqr/design-system';
+```
+
+Tokens (`--orange-500`, `--bg-base`, `--font-display`, etc.) are available globally
+once `styles.css` is linked. See the [design system README](https://github.com/Bloqr-Systems/bloqr-design-system)
+for the full token reference, component usage notes, and brand guidelines.
+
+---
+
 ## API Routes
 
 The Worker handles a small set of server-side routes. Everything else falls through to the static site.
