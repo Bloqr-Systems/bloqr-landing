@@ -1,24 +1,50 @@
 {
   "name": "bloqr-landing",
+  "version": "0.1.0",
+  "description": "Bloqr landing page — Astro + Svelte, deployed to Cloudflare Workers",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
-  "description": "Bloqr landing site — Astro 5 + Svelte 5, deployed to Cloudflare Workers.",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "icons": "node scripts/generate-icons.mjs",
+    "prebuild": "node scripts/generate-icons.mjs",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "wrangler dev",
+    "deploy": "astro build && wrangler deploy",
+    "sync-blog": "npx tsx scripts/sync-blog-from-db.ts",
+    "migrate-blog": "npx tsx scripts/migrate-blog-posts.ts",
+    "migrate:auth": "tsx scripts/migrate-better-auth.ts",
+    "migrate:email": "npx tsx scripts/migrate-email-schema.ts",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.0.4",
+    "@astrojs/cloudflare": "^13.1.10",
+    "@astrojs/compiler-rs": "^0.1.6",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/svelte": "^8.0.4",
     "@bloqr/design-system": "github:Bloqr-Systems/bloqr-design-system",
-    "astro": "^5.10.1",
-    "svelte": "^5.33.14"
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
+    "@neondatabase/serverless": "^1.0.2",
+    "astro": "^6.3.3",
+    "better-auth": "^1.6.11",
+    "mermaid": "^11.15.0",
+    "posthog-js": "^1.364.7",
+    "posthog-node": "^5.32.0",
+    "svelte": "^5.55.7",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@astrojs/cloudflare": "^12.5.3",
-    "@cloudflare/workers-types": "^4.20260627.1",
-    "wrangler": "^4.20.0"
+    "@cloudflare/puppeteer": "^1.0.6",
+    "@cloudflare/workers-types": "^4.20260405.1",
+    "@types/node": "^22.0.0",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
+    "vitest": "^4.1.5",
+    "wrangler": "^4.95.0"
+  },
+  "engines": {
+    "node": "^20.20.0 || >=22.22.0"
   }
 }
