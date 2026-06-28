@@ -13,12 +13,29 @@ Astro site served via a Cloudflare Worker with static assets.
 
 | Field           | Value                                                               |
 | --------------- | ------------------------------------------------------------------- |
-| Product tagline | "Internet Hygiene. Automated."                                  |
-| Repo            | `adblock-compiler.landing` (`bloqr-landing`)                        |
-| Owner           | `jaypatrick`                                                        |
+| Product tagline | "The privacy you didn't know you needed."                           |
+| Repo            | `bloqr-landing`                                                     |
+| Owner           | `Bloqr-Systems`                                                     |
 | Default branch  | `main`                                                              |
 | Deploy target   | Cloudflare Worker with static assets (`src/worker.ts`)              |
-| Production URL  | `https://bloqr.dev` (worker: `https://adblock-landing.jk-com.workers.dev`) |
+| Production URL  | `https://bloqr.dev`                                                 |
+
+---
+
+## Design System
+
+**All visual design, tokens, fonts, assets, and brand documentation are centralized in `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`). Do not add local brand copies.**
+
+| Rule | Detail |
+|---|---|
+| CSS tokens | Import `@bloqr/design-system/styles.css`; never hardcode hex or font-family values |
+| Logos & favicons | Reference `@bloqr/design-system/assets/` — no local copies |
+| Fonts | Self-hosted via `@bloqr/design-system/fonts/` — never Google Fonts CDN |
+| Brand prose | Read `guidelines/BLOQR_BRAND_HANDOFF.md` and `guidelines/BLOQR_DESIGN_LANGUAGE.md` in the design-system repo |
+| Dark-first | **Never** use white or light-mode backgrounds — Bloqr is exclusively dark |
+| No local brand dir | The `brand/` directory has been removed; do not recreate it |
+
+Runtime CSS custom properties are aliased in `src/styles/global.css`. When styling components, use the `var(--token)` values defined there. If a token is missing, add it to `global.css` as an alias of the corresponding `@bloqr/design-system` property.
 
 ---
 
@@ -30,12 +47,13 @@ Astro site served via a Cloudflare Worker with static assets.
 | Components     | Svelte 5 (runes syntax)                                |
 | Language       | TypeScript (strict mode)                               |
 | Styling        | Plain CSS + CSS custom properties (`src/styles/global.css`) |
+| Design tokens  | `@bloqr/design-system/styles.css` (canonical source)   |
 | Edge runtime   | Cloudflare Worker (`src/worker.ts`) + handler modules in `functions/` |
 | Database       | Neon Postgres (waitlist signups)                       |
 | CRM            | Apollo.io (contact enrichment, fire-and-forget)        |
-| Fonts          | Space Grotesk + JetBrains Mono — self-hosted via Astro 6 Fonts API (`fontProviders.fontsource()`) |
-| CSP            | SHA-256 auto-hashing via `security.csp` (meta CSP); `applyCSP()` in `src/worker.ts` adds `frame-ancestors`/`base-uri`/`form-action` hardening headers |
-| Code highlighting | Shiki 4 dual themes (`houston`/`vitesse-light`), `defaultColor:false` — CSS variable output via inline `style` attributes; style policy handled by Astro's meta CSP |
+| Fonts          | Space Grotesk + JetBrains Mono — self-hosted via `@bloqr/design-system/fonts/` |
+| CSP            | SHA-256 auto-hashing via `security.csp` (meta CSP); `applyCSP()` in `src/worker.ts` adds hardening headers |
+| Code highlighting | Shiki 4 dual themes (`houston`/`vitesse-light`)     |
 
 ---
 
@@ -43,24 +61,18 @@ Astro site served via a Cloudflare Worker with static assets.
 
 ```
 .
-├── astro.config.mjs          # Astro 6 config: SSR adapter, Fonts API, CSP, Shiki dual themes, experimental features
-├── wrangler.toml             # Cloudflare Worker config: name, assets dir, worker entry, nodejs_compat, secrets
+├── astro.config.mjs          # Astro 6 config: SSR adapter, Fonts API, CSP, Shiki dual themes
+├── wrangler.toml             # Cloudflare Worker config
 ├── tsconfig.json
-├── package.json
-│
-├── brand/                    # All brand assets and guidelines (keep co-located here)
-│   ├── tokens.css            # CSS design token reference (values mirrored in src/styles/global.css)
-│   ├── logo.svg
-│   ├── BLOQR_DESIGN_LANGUAGE.md  # Personas, voice, page architecture, product strategy
-│   └── BLOQR_ETHOS.md            # Core promises, privacy philosophy, origin story
+├── package.json              # includes @bloqr/design-system dependency
 │
 ├── functions/                # Handler modules imported by src/worker.ts (not auto-routed)
 │   ├── waitlist.ts           # POST /waitlist — writes to Neon, enriches via Apollo.io
 │   ├── config.ts             # GET /config — site_config reader (public, cached)
 │   ├── waitlist/
-│   │   └── count.ts          # GET /waitlist/count — waitlist count handler
+│   │   └── count.ts          # GET /waitlist/count
 │   └── admin/
-│       ├── config.ts         # POST /admin/config — site_config writer (requires ADMIN_SECRET)
+│       ├── config.ts         # POST /admin/config (requires ADMIN_SECRET)
 │       └── blog.ts           # /admin/blog — blog post CRUD handler
 │
 ├── public/                   # Static assets copied verbatim to dist/
@@ -69,16 +81,14 @@ Astro site served via a Cloudflare Worker with static assets.
 │   ├── gen-og.mjs            # OG image generation
 │   └── setup-github.sh       # Repo initialisation utility
 │
-├── sessions/                 # Agent/conversation session artifacts (reference only)
-│
 └── src/
-    ├── worker.ts             # Cloudflare Worker entry point — routes requests + injects CSP headers
+    ├── worker.ts             # Cloudflare Worker entry point
     ├── config.ts             # SITE_URL, LINKS, META — single source of truth
-    ├── content.config.ts     # Astro 6 Content Layer API: blog (glob loader) + changelog (live loader)
+    ├── content.config.ts     # Astro 6 Content Layer API: blog + changelog
     ├── env.d.ts              # Astro environment type declarations
     │
     ├── components/           # Svelte 5 components, one per landing page section
-    │   ├── BaseHead.astro    # Shared <head>: Fonts API <Font> tags, analytics, ClientRouter
+    │   ├── BaseHead.astro
     │   ├── Hero.svelte
     │   ├── Problem.svelte
     │   ├── Features.svelte
@@ -88,37 +98,25 @@ Astro site served via a Cloudflare Worker with static assets.
     │   ├── Pricing.svelte
     │   ├── CtaBanner.svelte
     │   ├── WaitlistSignup.svelte
-    │   ├── ComingSoon.svelte
-    │   ├── DynamicWorkers.svelte
-    │   ├── WhyCloudflare.svelte
-    │   ├── SocialProof.svelte
-    │   ├── FAQ.svelte
-    │   ├── FounderNote.svelte
-    │   ├── PrivacyCommitments.svelte
-    │   ├── BeforeAfter.svelte
     │   ├── Nav.svelte
     │   └── Footer.svelte
     │
     ├── content/
-    │   └── blog/             # Blog posts as Markdown (post ID = filename without extension)
+    │   └── blog/             # Blog posts as Markdown
     │
-    ├── pages/                # File-based routing — all pages have `export const prerender = true`
-    │   ├── index.astro       # Main landing page
+    ├── pages/                # File-based routing — all pages prerendered
+    │   ├── index.astro
     │   ├── about.astro
-    │   ├── changelog.astro   # Renders live `changelog` Content Layer collection
+    │   ├── changelog.astro
     │   ├── vpn-myths.astro
-    │   ├── why-not-private.astro
     │   ├── privacy.astro
     │   ├── terms.astro
-    │   ├── rss.xml.ts        # RSS feed
-    │   ├── admin/            # Protected admin pages (Better Auth SSO required)
+    │   ├── rss.xml.ts
+    │   ├── admin/
     │   └── blog/
-    │       ├── index.astro   # Blog listing (includes <Font> tags — no BaseHead)
-    │       └── [slug].astro  # Blog post (includes <Font> tags — no BaseHead)
     │
     └── styles/
-        └── global.css        # Design tokens (:root), global resets, Shiki CSS variable mappings
-                              # --font-display / --font-mono fallbacks set here; Fonts API overrides at build time
+        └── global.css        # Runtime CSS custom properties — aliases @bloqr/design-system tokens
 ```
 
 ---
@@ -128,14 +126,11 @@ Astro site served via a Cloudflare Worker with static assets.
 | Command             | Description                                                            |
 | ------------------- | ---------------------------------------------------------------------- |
 | `npm install`       | Install dependencies                                                   |
-| `npm run dev`       | Astro dev server (HMR; uses Node.js adapter locally — does not emulate CF Worker runtime) |
+| `npm run dev`       | Astro dev server (HMR; uses Node.js adapter locally)                   |
 | `npm run build`     | Build static output to `dist/`                                         |
-| `npm run preview`   | Wrangler dev using `wrangler.toml` + `dist/` assets — includes Worker routes/functions |
-| `npm run astro ...` | Astro CLI passthrough                                                  |
-
-> Use `npm run dev` for normal Astro UI work and fast HMR. Use
-> `npm run preview` when you need Cloudflare Worker runtime behaviour or
-> access to local secrets from `.dev.vars` (gitignored). See below.
+| `npm run preview`   | Wrangler dev using `wrangler.toml` + `dist/` assets                    |
+| `npm run deploy`    | `astro build && wrangler deploy`                                       |
+| `npm test`          | Vitest                                                                 |
 
 ---
 
@@ -147,27 +142,12 @@ Astro site served via a Cloudflare Worker with static assets.
 | `APOLLO_API_KEY`       | `.dev.vars` | ✅        | Apollo.io contact enrichment                             |
 | `ADMIN_SECRET`         | `.dev.vars` | ✅        | Required for admin-protected Worker flows                |
 | `BETTER_AUTH_SECRET`   | `.dev.vars` | ✅        | Better Auth signing/encryption secret                    |
-| `BETTER_AUTH_URL`      | `.dev.vars` | CF env var | Base URL for Better Auth callbacks and session endpoints |
+| `BETTER_AUTH_URL`      | `.dev.vars` | CF env var | Base URL for Better Auth callbacks                      |
 | `GITHUB_CLIENT_ID`     | `.dev.vars` | ✅        | GitHub OAuth application client ID                       |
 | `GITHUB_CLIENT_SECRET` | `.dev.vars` | ✅        | GitHub OAuth application client secret                   |
 | `SITE_URL`             | `.env`      | CF env var | Overrides default in `src/config.ts`                    |
 
-**Never commit `.dev.vars` or any secret.** Use `.dev.vars.example` as the
-committed template, then copy it locally to `.dev.vars` for `npm run preview`.
-Only `.dev.vars.example` belongs in Git; `.dev.vars` must remain untracked.
-
-If a `.dev.vars` file is ever found tracked in the repository, immediately
-remove it from the index (`git rm --cached .dev.vars`), purge it from Git
-history using `git filter-repo` or BFG Repo-Cleaner, rotate every secret that
-was exposed, and recreate `.dev.vars` locally from `.dev.vars.example`.
-
-### Neon branch → `DATABASE_URL` mapping
-
-| Branch       | Neon endpoint                           |
-| ------------ | --------------------------------------- |
-| `production` | `ep-winter-term-a8rxh2a9-pooler`        |
-| `staging`    | `ep-polished-resonance-a8mefek3-pooler` |
-| `dev/jayson` | `ep-round-recipe-a8b3d3bd-pooler`       |
+**Never commit `.dev.vars` or any secret.**
 
 ---
 
@@ -181,9 +161,6 @@ was exposed, and recreate `.dev.vars` locally from `.dev.vars.example`.
 import { SITE_URL, LINKS, META } from "../config";
 ```
 
-`LINKS` includes `app`, `github`, `docs`, `api`, `jsr`, `author`, and all
-internal page paths.
-
 ### Svelte Components
 
 - Svelte 5 runes only: `$props()`, `$state()`, `$derived()`, `$effect()`.
@@ -194,9 +171,8 @@ internal page paths.
 
 ### CSS
 
-- All design tokens are defined as CSS custom properties in `src/styles/global.css`
-  (the `:root` block). The `brand/tokens.css` file is the design reference, but
-  the variables actually used by components come from `global.css`.
+- All design tokens originate from `@bloqr/design-system/styles.css` and are
+  re-aliased as CSS custom properties in `src/styles/global.css` (the `:root` block).
 - Class names: BEM-adjacent descriptive names (`.hero__title`, `.features__grid`).
 - Do **not** introduce Tailwind, UnoCSS, or any utility-class framework.
 
@@ -208,39 +184,33 @@ internal page paths.
 
 ### Cloudflare Worker Routing
 
-- All API routes are wired in `src/worker.ts` — add new endpoints there to make
-  them reachable. Handler files in `functions/*.ts` are imported by the Worker,
-  not auto-routed by Cloudflare.
+- All API routes are wired in `src/worker.ts`.
 - Keep handlers thin: validate input → write to service → return `Response`.
 - Read secrets from the `env` binding passed by the Worker, **not** `process.env`.
 - Always set `Content-Type: application/json` and return correct HTTP status codes.
-- `applyCSP()` in `src/worker.ts` injects a `Content-Security-Policy` header on every `text/html` response. It sets `frame-ancestors 'none'`, `base-uri 'self'`, and `form-action 'self'`, and deliberately does **not** set `style-src` or `script-src` — those are left to Astro's auto-generated hash-based meta CSP (`security.csp`). Inline style allowances for Shiki are handled at the document level, not in the Worker header.
-- `wrangler.toml` sets `compatibility_flags = ["nodejs_compat"]` — required by `better-auth`'s `node:async_hooks` import. Do not remove this flag.
+- `applyCSP()` in `src/worker.ts` injects a `Content-Security-Policy` header on every `text/html` response.
+- `wrangler.toml` sets `compatibility_flags = ["nodejs_compat"]` — do not remove.
 
 ### Astro 6 Fonts API
 
-- Fonts are declared in `astro.config.mjs` (`fonts: [...]`) using `fontProviders.fontsource()`.
-- The `<Font cssVariable="--font-display" preload />` and `<Font cssVariable="--font-mono" preload />` components (from `astro/components/Font.astro`) inject `@font-face` rules, `<link rel="preload">` tags, and the CSS custom property assignments at build time.
-- `BaseHead.astro` includes these `<Font>` tags. Pages with a **custom `<head>`** (currently `blog/index.astro` and `blog/[slug].astro`) must include the `Font` import and tags directly.
-- `src/styles/global.css` defines `--font-display: system-ui, sans-serif` and `--font-mono: monospace` as fallbacks in `:root`. The Fonts API overrides these with the hashed font stacks. Never hardcode a font family; always use `var(--font-display)` or `var(--font-mono)`.
+- Fonts are declared in `astro.config.mjs` using `fontProviders.fontsource()`.
+- `<Font cssVariable="--font-display" preload />` tags inject `@font-face` rules at build time.
+- `src/styles/global.css` defines fallbacks in `:root`. The Fonts API overrides these.
+- **Never hardcode a font family; always use `var(--font-display)` or `var(--font-mono)`.**
 
-### Astro Compiler and Caching
-
-- `astro.config.mjs` enables `experimental.rustCompiler: true` (uses `@astrojs/compiler-rs` for faster `.astro` compilation) and `experimental.queuedRendering: { enabled: true, contentCache: true }` (batches rendering tasks and caches content collection queries). Do **not** add `experimental.routeRules` — it has no effect since pages are served via `env.ASSETS.fetch()` in `src/worker.ts`, bypassing adapter route rule evaluation.
-- Route caching is handled in the Cloudflare Worker layer, not via Astro route rules. If caching behaviour changes, update the Worker implementation and its documentation rather than `astro.config.mjs`.
 ### Blog / Content Collections
 
-- The content config is at `src/content.config.ts` (project root) — **not** `src/content/config.ts`.
-- Blog posts live in `src/content/blog/` as Markdown files. Frontmatter must match the schema defined in `src/content.config.ts`.
-- In Astro 6, blog post identifiers use `post.id` (not `post.slug`). The ID is the filename without the `.md` extension.
-- The `changelog` collection uses a custom async loader that fetches `CHANGELOG.md` from the upstream GitHub repo at build time. It is an Astro 6 **live content collection** — external data consumed through the Content Layer API with full type-safety and Astro's content cache.
-- Use `getCollection('blog')` / `getCollection('changelog')` to query collections in page frontmatter.
+- The content config is at `src/content.config.ts` (project root).
+- Blog posts live in `src/content/blog/` as Markdown files.
+- In Astro 6, blog post identifiers use `post.id` (not `post.slug`).
+- Use `getCollection('blog')` / `getCollection('changelog')` to query.
 
 ---
 
 ## Brand Voice — Quick Reference
 
-Full detail: `brand/BLOQR_DESIGN_LANGUAGE.md` → _Voice & Tone Guidelines_
+Full detail: `guidelines/BLOQR_DESIGN_LANGUAGE.md` and `guidelines/BLOQR_COPY_PATTERNS.md`
+in `Bloqr-Systems/bloqr-design-system`.
 
 ### Core Mantras
 
@@ -248,7 +218,7 @@ Full detail: `brand/BLOQR_DESIGN_LANGUAGE.md` → _Voice & Tone Guidelines_
 | ---------------------------------- | ----------------------------------- |
 | "Set it. Bloqr it. Forget it."     | Consumer promise — zero maintenance |
 | "Bring your own. Or use ours."     | Vendor philosophy — no lock-in      |
-| "Internet Hygiene. Automated."     | Tagline — applies to all personas   |
+| "The privacy you didn't know you needed." | Tagline — universal          |
 | "Browsing Hygiene"                 | Our coined concept — not "security" |
 
 ### Write
@@ -273,9 +243,6 @@ Full detail: `brand/BLOQR_DESIGN_LANGUAGE.md` → _Voice & Tone Guidelines_
 | 3   | Builder     | Developer / list maker — API, library, CLI user     |
 | 4   | Ally        | DNS vendor / partner (AdGuard, NextDNS, Pi-hole)    |
 
-When writing copy, identify which persona is addressed and match the voice.
-Full persona profiles are in `brand/BLOQR_DESIGN_LANGUAGE.md`.
-
 ---
 
 ## Sensitive Areas — Do Not Get These Wrong
@@ -294,10 +261,9 @@ Full persona profiles are in `brand/BLOQR_DESIGN_LANGUAGE.md`.
 
 Merging to `main` triggers a Cloudflare Worker deployment automatically via CI.
 
-Worker entrypoint: `src/worker.ts`  
-Deploy command: `npm run deploy`  
-Static assets (ASSETS binding): `./dist/client/` — Worker bundle: `./dist/server/`  
-Build command: `npm run build`
+Worker entrypoint: `src/worker.ts`
+Deploy command: `npm run deploy`
+Static assets (ASSETS binding): `./dist/client/` — Worker bundle: `./dist/server/`
 
 To deploy manually:
 
@@ -311,14 +277,12 @@ npm run deploy   # astro build && wrangler deploy
 
 **NEVER add, edit, or delete variables or secrets in the Cloudflare Workers dashboard for adblock-landing.**
 
-Doing so creates a new Worker version with **NO static assets** — the ASSETS binding becomes empty and every request returns "Page not found" immediately. The Worker code is present but `env.ASSETS.fetch()` has nothing to serve.
-
-This is not a bug; it is how Cloudflare Workers works: assets are only attached to a Worker version during a `wrangler deploy` upload. A dashboard-only change (add/edit/delete variable or secret) creates a new version that inherits the Worker script but carries zero assets.
+Doing so creates a new Worker version with **NO static assets** — the ASSETS binding becomes empty and every request returns "Page not found" immediately.
 
 ### Safe alternatives
 
-- **To change plain vars** (`ENVIRONMENT`, `CANONICAL_DOMAIN`, `PUBLIC_POSTHOG_KEY`, etc.): edit `wrangler.toml` `[vars]` and merge to `main` — CI will deploy with assets attached.
-- **To add or rotate secrets**: use the CLI only — this updates the secret value without creating an asset-less version:
+- **To change plain vars**: edit `wrangler.toml` `[vars]` and merge to `main`.
+- **To add or rotate secrets**: use the CLI only:
   ```bash
   wrangler secret put SECRET_NAME
   ```
@@ -326,33 +290,19 @@ This is not a bug; it is how Cloudflare Workers works: assets are only attached 
 ### Emergency recovery
 
 If the dashboard was used accidentally and the site is broken:
-
 1. CF dashboard → **adblock-landing** → **Deployments**
-2. Find the last entry labelled **"Manually deployed"** — that is what Cloudflare calls a `wrangler deploy` from CI (as opposed to a dashboard-only change)
+2. Find the last entry labelled **"Manually deployed"** (a `wrangler deploy` from CI)
 3. Click `...` → **Rollback**
 4. Re-run CI (`main` branch) to restore the latest code with assets attached
-
-### Where each config value lives
-
-| Variable               | Lives in              | How to change                                 |
-| ---------------------- | --------------------- | --------------------------------------------- |
-| `ENVIRONMENT`          | `wrangler.toml [vars]` | Edit file, push to main                      |
-| `CANONICAL_DOMAIN`     | `wrangler.toml [vars]` | Edit file, push to main                      |
-| `PUBLIC_POSTHOG_KEY`   | `wrangler.toml [vars]` | Edit file, push to main                      |
-| `DATABASE_URL`         | CF secret             | `wrangler secret put DATABASE_URL`            |
-| `APOLLO_API_KEY`       | CF secret             | `wrangler secret put APOLLO_API_KEY`          |
-| `ADMIN_SECRET`         | CF secret             | `wrangler secret put ADMIN_SECRET`            |
-| `BETTER_AUTH_SECRET`   | CF secret             | `wrangler secret put BETTER_AUTH_SECRET`      |
-| `BETTER_AUTH_URL`      | CF secret             | `wrangler secret put BETTER_AUTH_URL`         |
-| `GITHUB_CLIENT_ID`     | CF secret             | `wrangler secret put GITHUB_CLIENT_ID`        |
-| `GITHUB_CLIENT_SECRET` | CF secret             | `wrangler secret put GITHUB_CLIENT_SECRET`    |
 
 ---
 
 ## References
 
-- `brand/BLOQR_DESIGN_LANGUAGE.md` — product strategy, personas, page architecture, voice
-- `brand/BLOQR_ETHOS.md` — privacy philosophy, core promises, origin story
-- `brand/tokens.css` — design token reference (values are mirrored in `src/styles/global.css`)
-- `src/styles/global.css` — runtime CSS custom properties used by all components
+- `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`) — canonical brand assets, tokens, fonts, guidelines
+- `guidelines/BLOQR_DESIGN_LANGUAGE.md` (in design-system repo) — product strategy, personas, voice
+- `guidelines/BLOQR_ETHOS.md` (in design-system repo) — privacy philosophy, core promises
+- `guidelines/BLOQR_BRAND_HANDOFF.md` (in design-system repo) — visual design spec, canonical `:root` block
+- `@bloqr/design-system/styles.css` — CSS entry point; the source of all runtime tokens
+- `src/styles/global.css` — runtime CSS custom properties (aliases from design-system)
 - `src/config.ts` — canonical URLs, links, and site metadata
