@@ -1,7 +1,7 @@
 {
-  "name": "adblock-compiler-landing",
+  "name": "bloqr-landing",
   "version": "0.1.0",
-  "description": "AdBlock Compiler landing page — Astro + Svelte, deployed to Cloudflare Workers",
+  "description": "Bloqr landing page — Astro + Svelte, deployed to Cloudflare Workers",
   "private": true,
   "type": "module",
   "scripts": {

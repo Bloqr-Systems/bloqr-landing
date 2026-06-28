@@ -7,10 +7,27 @@ applyTo: "**"
 This is the marketing landing site for **Bloqr** — an AI-powered DNS filter
 list compiler and real-time threat intelligence service.
 
-- Full brand strategy and personas: `brand/BLOQR_DESIGN_LANGUAGE.md`
-- Privacy philosophy and core promises: `brand/BLOQR_ETHOS.md`
-- Canonical URLs, links, and site metadata: `src/config.ts`
-- CSS design tokens (`:root` vars): `src/styles/global.css`
+- **Brand strategy and personas:** `guidelines/BLOQR_DESIGN_LANGUAGE.md` in [`Bloqr-Systems/bloqr-design-system`](https://github.com/Bloqr-Systems/bloqr-design-system)
+- **Privacy philosophy and core promises:** `guidelines/BLOQR_ETHOS.md` in `bloqr-design-system`
+- **Visual design spec and tokens:** `guidelines/BLOQR_BRAND_HANDOFF.md` in `bloqr-design-system`
+- **Canonical CSS entry point:** `@bloqr/design-system/styles.css`
+- **Runtime CSS custom properties:** `src/styles/global.css`
+- **Canonical URLs, links, and site metadata:** `src/config.ts`
+
+---
+
+## Design System — Mandatory
+
+This repo consumes `@bloqr/design-system` for all visual design.
+
+| Anti-pattern | Correct approach |
+|---|---|
+| Local `brand/` directory | Removed — do not recreate |
+| Hardcoded hex/rgb values in CSS | `var(--color-*)` from `src/styles/global.css` |
+| Hardcoded font-family strings | `var(--font-display)` / `var(--font-mono)` |
+| Google Fonts CDN links | Self-hosted via `@bloqr/design-system/fonts/` |
+| Light or white backgrounds | Bloqr is dark-first — `#070B14` canvas, always |
+| Local logo/favicon copies | Reference `@bloqr/design-system/assets/` |
 
 ---
 
@@ -18,10 +35,11 @@ list compiler and real-time threat intelligence service.
 
 | Layer          | Technology                                               |
 | -------------- | -------------------------------------------------------- |
-| Framework      | Astro 5 — `output: 'static'`, file-based routing         |
+| Framework      | Astro 6 — `output: 'server'`, all pages prerendered      |
 | Components     | Svelte 5 — runes syntax (`$state`, `$props`, `$derived`) |
 | Language       | TypeScript — strict mode                                 |
 | Styling        | Plain CSS + CSS custom properties (`src/styles/global.css`) |
+| Design tokens  | `@bloqr/design-system/styles.css` (canonical)            |
 | Edge runtime   | Cloudflare Worker (`src/worker.ts`) + handlers in `functions/` |
 | Database       | Neon Postgres (waitlist)                                 |
 
@@ -51,19 +69,16 @@ list compiler and real-time threat intelligence service.
 - Keep styles in the component's `<style>` block (scoped by default).
 - Use `var(--token-name)` from `src/styles/global.css` for **all** colours,
   spacing, and typography values — never hardcode hex or rgb values.
-- One component = one major landing page section. Create sub-components
-  for patterns repeated within a section, not across sections.
+- One component = one major landing page section.
 
 ### CSS
 
-- Design tokens are defined as CSS custom properties in `src/styles/global.css`
-  (the `:root` block). The `brand/tokens.css` file is the design reference, but
-  the variables actually used by components come from `global.css`.
+- Design tokens originate from `@bloqr/design-system/styles.css` and are
+  re-aliased in `src/styles/global.css` (the `:root` block).
 - Class naming convention: BEM-adjacent, descriptive names
   (`.hero__subtitle`, `.features__card`, `.nav__link--active`).
 - Do **not** introduce Tailwind, UnoCSS, or any utility-class framework.
-- Media query breakpoints should use the token values already established
-  in `src/styles/global.css`.
+- Media query breakpoints use the token values established in `src/styles/global.css`.
 
 ### Astro Pages
 
@@ -71,28 +86,23 @@ list compiler and real-time threat intelligence service.
 - Set `<head>` metadata using `META.title`, `META.description`, and
   `META.ogImage` from `src/config.ts`.
 - Blog posts are Astro Content Collections in `src/content/blog/`.
-  Frontmatter must match the schema in `src/content/config.ts`.
-  Slugs are derived from filenames automatically.
-- Do not render content exclusively on the client side via toggled state —
-  all SEO-relevant content must be present in the server-rendered HTML.
+  Frontmatter must match the schema in `src/content.config.ts`.
+- Do not render content exclusively on the client side — all SEO-relevant
+  content must be present in the server-rendered HTML.
 
 ### Cloudflare Worker Routing
 
-- New API routes must be added to `src/worker.ts` — handler files in
-  `functions/*.ts` are imported by the Worker, not auto-routed by Cloudflare.
+- New API routes must be added to `src/worker.ts`.
 - Keep handlers thin: **validate input → call service → return Response**.
-- Read secrets from the `env` parameter (CF Workers binding) — never from
-  `process.env`.
-- Always set `Content-Type: application/json` and return the correct
-  HTTP status code.
-- Errors from non-critical integrations (e.g. Apollo.io enrichment) must
-  not block the primary response — handle them fire-and-forget.
+- Read secrets from the `env` parameter (CF Workers binding) — never from `process.env`.
+- Always set `Content-Type: application/json` and return the correct HTTP status code.
+- Errors from non-critical integrations (e.g. Apollo.io) must not block the primary response.
 
 ---
 
 ## Brand Voice
 
-> Full guidelines: `brand/BLOQR_DESIGN_LANGUAGE.md` → _Voice & Tone_
+> Full guidelines: `guidelines/BLOQR_DESIGN_LANGUAGE.md` in `Bloqr-Systems/bloqr-design-system`
 
 ### Write
 
@@ -103,12 +113,9 @@ list compiler and real-time threat intelligence service.
 
 ### Do Not Write
 
-- "Leveraging", "seamlessly", "best-in-class", "enterprise-grade",
-  "game-changing".
+- "Leveraging", "seamlessly", "best-in-class", "enterprise-grade", "game-changing".
 - Passive voice when active is possible.
 - Interchangeable use of "privacy" and "anonymity" — they are distinct.
-  Bloqr improves privacy (controls data exposure); it does not provide
-  anonymity (hiding identity from all parties).
 
 ### Core Mantras — Use These, Don't Paraphrase
 
@@ -116,7 +123,7 @@ list compiler and real-time threat intelligence service.
 | ---------------------------------- | -------------------------- |
 | "Set it. Bloqr it. Forget it."     | Consumer-facing CTAs       |
 | "Bring your own. Or use ours."     | Vendor / integration copy  |
-| "Internet Hygiene. Automated."     | Tagline — universal        |
+| "The privacy you didn't know you needed." | Tagline — universal  |
 | "Browsing Hygiene"                 | Our coined concept for DNS |
 
 ---
@@ -132,7 +139,7 @@ When writing copy or UI labels, identify which persona is addressed:
 | 3   | Builder     | Developer or list maker — API, library, CLI user          |
 | 4   | Ally        | DNS vendor / partner (AdGuard, NextDNS, Pi-hole)          |
 
-Full persona profiles in `brand/BLOQR_DESIGN_LANGUAGE.md`.
+Full persona profiles in `guidelines/BLOQR_DESIGN_LANGUAGE.md` (design-system repo).
 
 ---
 
@@ -140,9 +147,10 @@ Full persona profiles in `brand/BLOQR_DESIGN_LANGUAGE.md`.
 
 | Anti-pattern                              | Preferred alternative                         |
 | ----------------------------------------- | --------------------------------------------- |
-| Hardcoding `bloqr.ai` or any URL          | Import from `src/config.ts` (`LINKS`, `META`) |
+| Hardcoding `bloqr.dev` or any URL         | Import from `src/config.ts` (`LINKS`, `META`) |
 | Svelte 4 `export let` prop syntax         | Svelte 5 `$props()` rune                      |
 | Hardcoded hex/rgb/spacing values          | `var(--token-name)` from `src/styles/global.css` |
+| Local `brand/` directory                  | Removed — use `@bloqr/design-system`          |
 | `process.env` inside CF functions         | `env.VARIABLE_NAME` (CF Workers binding)      |
 | `any` TypeScript type                     | `unknown` + type narrowing                    |
 | Client-side-only content rendering        | SSR-present HTML, progressively enhanced      |
@@ -153,13 +161,6 @@ Full persona profiles in `brand/BLOQR_DESIGN_LANGUAGE.md`.
 
 ## UI Interaction Patterns
 
-- **Code / UI toggle:** Code blocks on the landing page pair with a UI
-  mockup. The "Show code" toggle reveals the underlying JSON/YAML/API
-  call. Always include the companion message:
-  _"You'll never write a line of this. The UI builds it for you."_
-- **Progressive disclosure:** The product has two modes — "Do it for me"
-  (AI-configured) and "Let me drive" (full JSON/YAML/API). Copy and UI
-  should never assume one mode over the other.
-- **Non-technical copy alongside code:** Whenever code is visible to the
-  user, accompany it with reassurance that it is auto-generated by the UI
-  and requires no manual editing.
+- **Code / UI toggle:** Code blocks pair with a UI mockup. The "Show code" toggle reveals the underlying JSON/YAML/API call. Always include: _"You'll never write a line of this. The UI builds it for you."_
+- **Progressive disclosure:** Two modes — "Do it for me" and "Let me drive". Copy never assumes one mode.
+- **Non-technical copy alongside code:** Whenever code is visible, accompany it with reassurance that it is auto-generated.
