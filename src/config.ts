@@ -95,7 +95,7 @@ export const LINKS = {
   docs:   EXTERNAL_URLS.docs,
   // ── Third-party ─────────────────────────────────────────────────────────
   github:  'https://github.com/Bloqr-Systems/bloqr-compiler',
-  jsr:     'https://jsr.io/@jk-com/adblock-compiler',
+  jsr:     'https://jsr.io/@bloqr-systems/bloqr-bloqr-compiler',
   author:  'https://jaysonknight.com',
   // ── Internal routes ───────────────────────────────────────────────────────
   vpnMyths:      '/vpn-myths',
@@ -201,7 +201,7 @@ export async function getConfig(databaseUrl?: string): Promise<SiteConfig> {
     APP_URL:         EXTERNAL_URLS.app,
     DOCS_URL:        EXTERNAL_URLS.docs,
     API_URL:         EXTERNAL_URLS.api,
-    JSR_URL:         'https://jsr.io/@jk-com/adblock-compiler',
+    JSR_URL:         'https://jsr.io/@bloqr-systems/bloqr-bloqr-compiler',
     GITHUB_URL:      'https://github.com/Bloqr-Systems/bloqr-compiler',
     AUTHOR_URL:      'https://jaysonknight.com',
     PRODUCT_NAME:    'Bloqr AI',
