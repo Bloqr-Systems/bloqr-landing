@@ -4,11 +4,11 @@
  *
  * Renders charset, viewport, title, description, Open Graph, Twitter/X card,
  * canonical link, RSS link, favicon, PWA manifest, theme-color, font preloads
- * (via Astro 6 Fonts API), OG image preload, ClientRouter (View Transitions),
+ * (via Astro 7 Fonts API), OG image preload, ClientRouter (View Transitions),
  * Plausible analytics, PostHog analytics, Cloudflare Web Analytics,
  * Google Analytics 4, and Apollo.io website tracker.
  */
-import { ClientRouter } from 'astro:transitions'; // Astro 6 replacement for ViewTransitions
+import { ClientRouter } from 'astro:transitions'; // Astro 7 replacement for ViewTransitions
 import Font from 'astro/components/Font.astro';
 import { PLAUSIBLE_HOST, PLAUSIBLE_HOSTNAME, SITE_URL } from '../config';
 import Analytics from './Analytics.astro';
@@ -126,7 +126,7 @@ const canonical = canonicalURL.toString();
 <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 <link rel="dns-prefetch" href="//assets.apollo.io" />
 
-<!-- Astro 6 Fonts API — self-hosted via fontsource, with preload links -->
+<!-- Astro 7 Fonts API — self-hosted via fontsource, with preload links -->
 <Font cssVariable="--font-display" preload />
 <Font cssVariable="--font-mono" preload />
 
