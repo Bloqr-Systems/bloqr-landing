@@ -12,14 +12,14 @@ Version 0.80 landed today. Here's what changed, why, and what it means for anyon
 
 ## tRPC + API versioning
 
-We added tRPC v1 with an `X-API-Version` header for the full type-safe RPC surface. If you're integrating from a TypeScript client, the `@jk-com/adblock-compiler` JSR package ships the router types — import them, get full end-to-end type safety without a codegen step.
+We added tRPC v1 with an `X-API-Version` header for the full type-safe RPC surface. If you're integrating from a TypeScript client, the `@bloqr-systems/bloqr-bloqr-compiler` JSR package ships the router types — import them, get full end-to-end type safety without a codegen step.
 
 The existing REST surface (`POST /compile`, `POST /compile/stream`, etc.) is unchanged. tRPC is additive.
 
 ```typescript
 // Zero codegen. Just types.
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
-import type { AppRouter } from '@jk-com/adblock-compiler';
+import type { AppRouter } from '@bloqr-systems/bloqr-bloqr-compiler';
 
 const client = createTRPCClient<AppRouter>({
   links: [httpBatchLink({ url: 'https://api.bloqr.ai/trpc' })],
@@ -61,4 +61,4 @@ The schemas are exported from the JSR package if you want to validate on the cli
 
 ---
 
-The full changelog is at [bloqr.ai/changelog](/changelog). If you're running into anything, open an issue on [GitHub](https://github.com/jaypatrick/adblock-compiler).
+The full changelog is at [bloqr.ai/changelog](/changelog). If you're running into anything, open an issue on [GitHub](https://github.com/bloqr-systems/bloqr-compiler).

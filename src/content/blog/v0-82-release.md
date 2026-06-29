@@ -56,4 +56,4 @@ The feature requires a Personal or Team subscription.
 
 ---
 
-Full changelog at [bloqr.ai/changelog](/changelog). The [GitHub repo](https://github.com/jaypatrick/adblock-compiler) has the tRPC API changes if you're building on the type-safe client.
+Full changelog at [bloqr.ai/changelog](/changelog). The [GitHub repo](https://github.com/bloqr-systems/bloqr-compiler) has the tRPC API changes if you're building on the type-safe client.

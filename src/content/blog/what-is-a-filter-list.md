@@ -59,7 +59,7 @@ Managing list hygiene across multiple instances (your home Pi-hole, the AdGuard 
 
 ## What Bloqr's compiler does about this
 
-The adblock-compiler at the core of Bloqr — which is [open source on GitHub](https://github.com/jaypatrick/adblock-compiler) — is specifically designed to solve the list management problem.
+The bloqr-compiler at the core of Bloqr — which is [open source on GitHub](https://github.com/bloqr-systems/bloqr-compiler) — is specifically designed to solve the list management problem.
 
 It pulls from authoritative source lists, deduplicates across sources, validates entries, and produces a clean merged list optimized for DNS resolver performance. It runs on a schedule. When a new tracker domain appears in Hagezi's list, it propagates to your filtering setup automatically.
 
