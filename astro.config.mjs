@@ -147,7 +147,39 @@ export default defineConfig({
 
   integrations: [
     svelte(),
-    sitemap(),
+    sitemap({
+      // Exclude admin, OG image generation, and RSS feed paths.
+      filter: (page) =>
+        !page.includes('/admin/') &&
+        !page.includes('/og/') &&
+        !page.endsWith('/rss.xml'),
+
+      // Normalise each URL: set priority and changefreq by section.
+      serialize(item) {
+        const url = item.url.replace(/\/$/, '');
+        const path = url.replace(/^https?:\/\/[^/]+/, '');
+
+        if (path === '') {
+          return { ...item, priority: 1.0, changefreq: 'daily' };
+        }
+        if (path === '/pricing' || path === '/about') {
+          return { ...item, priority: 0.9, changefreq: 'weekly' };
+        }
+        if (path === '/blog') {
+          return { ...item, priority: 0.85, changefreq: 'daily' };
+        }
+        if (path.startsWith('/blog/')) {
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
+        }
+        if (path === '/changelog') {
+          return { ...item, priority: 0.75, changefreq: 'weekly' };
+        }
+        if (path === '/privacy' || path === '/terms') {
+          return { ...item, priority: 0.4, changefreq: 'yearly' };
+        }
+        return { ...item, priority: 0.6, changefreq: 'weekly' };
+      },
+    }),
   ],
 
   vite: {
