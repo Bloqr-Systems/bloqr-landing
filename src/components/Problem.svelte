@@ -146,7 +146,7 @@
     color: var(--orange);
     text-decoration: none;
     font-weight: 600;
-    transition: opacity 150ms;
+    transition: opacity var(--transition-normal) var(--ease-in-out);
   }
   .myth-link:hover { opacity: 0.75; }
 
@@ -164,7 +164,7 @@
     text-decoration: none;
     font-size: 0.875rem;
     color: var(--text-2);
-    transition: border-color 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out);
   }
 
   .myths-banner:hover {

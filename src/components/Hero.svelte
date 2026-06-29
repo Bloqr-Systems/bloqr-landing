@@ -287,7 +287,8 @@
     cursor: pointer;
     white-space: nowrap;
     margin-top: 2px;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: background var(--transition-fast) var(--ease-in-out),
+      border-color var(--transition-fast) var(--ease-in-out);
   }
 
   .byo-tile__toggle:hover {
@@ -297,7 +298,7 @@
 
   .byo-tile__chevron {
     display: inline-block;
-    transition: transform 0.2s ease;
+    transition: transform var(--transition-normal) var(--ease-in-out);
     transform: rotate(0deg);
     font-size: 1rem;
     line-height: 1;

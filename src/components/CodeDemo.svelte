@@ -286,7 +286,8 @@ console.log(\`Compiled \${result.rules.length} rules\`);
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 150ms, color 150ms;
+    transition: background var(--transition-normal) var(--ease-in-out),
+      color var(--transition-normal) var(--ease-in-out);
     white-space: nowrap;
     font-family: inherit;
   }
@@ -350,7 +351,9 @@ console.log(\`Compiled \${result.rules.length} rules\`);
     background: transparent;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: color 150ms, border-color 150ms, background 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out),
+      border-color var(--transition-normal) var(--ease-in-out),
+      background var(--transition-normal) var(--ease-in-out);
   }
 
   .copy-btn:hover {

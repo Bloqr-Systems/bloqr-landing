@@ -169,7 +169,7 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     text-decoration: none;
-    transition: border-color 150ms, background 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out), background var(--transition-normal) var(--ease-in-out);
   }
 
   .public-link:hover {

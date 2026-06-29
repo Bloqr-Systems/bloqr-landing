@@ -215,7 +215,7 @@
     line-height: 1.4;
     font-family: var(--font-display);
     outline: none;
-    transition: border-color 150ms, box-shadow 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out), box-shadow var(--transition-normal) var(--ease-in-out);
   }
 
   input[type="email"]::placeholder { color: var(--text-3); }

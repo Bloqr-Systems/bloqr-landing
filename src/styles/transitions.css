@@ -1,0 +1,172 @@
+/* Modern Transitions & Animations - Best Practices */
+
+:root {
+  /* Transition timing - using CSS custom properties for consistency */
+  --transition-fast: 100ms;
+  --transition-normal: 150ms;
+  --transition-standard: 200ms;
+  --transition-slow: 300ms;
+  --transition-slower: 400ms;
+
+  /* Easing functions - semantic naming */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* Modern transition properties with better defaults */
+  --transition-default: all var(--transition-normal) var(--ease-in-out);
+  --transition-color: color var(--transition-normal) var(--ease-in-out);
+  --transition-background: background var(--transition-normal) var(--ease-in-out);
+  --transition-transform: transform var(--transition-normal) var(--ease-in-out);
+  --transition-border: border-color var(--transition-normal) var(--ease-in-out);
+  --transition-opacity: opacity var(--transition-normal) var(--ease-in-out);
+  --transition-shadow: box-shadow var(--transition-normal) var(--ease-in-out);
+}
+
+/* Reduced motion support - respects user preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-standard: 0ms;
+    --transition-slow: 0ms;
+    --transition-slower: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keyframe animations with best practices */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Base animation classes */
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-slide-in {
+  animation: slideIn var(--transition-standard) var(--ease-out);
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-standard) var(--ease-out);
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-standard) var(--ease-out);
+}
+
+/* Transition utility classes */
+.transition-all {
+  transition: var(--transition-default);
+}
+
+.transition-colors {
+  transition: background var(--transition-normal) var(--ease-in-out),
+    color var(--transition-normal) var(--ease-in-out),
+    border-color var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-transform {
+  transition: transform var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-opacity {
+  transition: opacity var(--transition-normal) var(--ease-in-out);
+}
+
+.transition-shadow {
+  transition: box-shadow var(--transition-normal) var(--ease-in-out);
+}
+
+/* Common interactive patterns */
+.interactive-default {
+  transition: background var(--transition-normal) var(--ease-in-out),
+    color var(--transition-normal) var(--ease-in-out),
+    border-color var(--transition-normal) var(--ease-in-out),
+    box-shadow var(--transition-normal) var(--ease-in-out);
+}
+
+.hover-lift {
+  transition: transform var(--transition-normal) var(--ease-in-out),
+    box-shadow var(--transition-normal) var(--ease-in-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth page transitions */
+@supports (view-transition-name: initial) {
+  ::view-transition-old(root) {
+    animation: fadeOut 0.3s var(--ease-out) forwards;
+  }
+
+  ::view-transition-new(root) {
+    animation: fadeIn 0.3s var(--ease-out) forwards;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}

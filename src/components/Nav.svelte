@@ -275,7 +275,7 @@
     top: 0;
     z-index: 100;
     border-bottom: 1px solid transparent;
-    transition: border-color 200ms, background 200ms, backdrop-filter 200ms;
+    transition: border-color var(--transition-standard) var(--ease-in-out), background var(--transition-standard) var(--ease-in-out), backdrop-filter var(--transition-standard) var(--ease-in-out);
   }
 
   .skip-to-content {
@@ -290,7 +290,7 @@
     font-weight: 600;
     text-decoration: none;
     z-index: 9999;
-    transition: top 150ms;
+    transition: top var(--transition-normal) var(--ease-in-out);
   }
 
   .skip-to-content:focus {
@@ -332,7 +332,7 @@
     height: 3px;
     border-radius: 2px;
     background: var(--text-1);
-    transition: width 200ms var(--ease-out);
+    transition: width var(--transition-standard) var(--ease-out);
   }
 
   .bar-1 { width: 20px; }
@@ -377,7 +377,7 @@
     font-size: 14px;
     color: var(--text-2);
     text-decoration: none;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
     white-space: nowrap;
   }
 
@@ -428,7 +428,7 @@
     background: transparent;
     color: var(--text-2);
     cursor: pointer;
-    transition: color 150ms, border-color 150ms, background 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out), border-color var(--transition-normal) var(--ease-in-out), background var(--transition-normal) var(--ease-in-out);
     flex-shrink: 0;
   }
 
@@ -469,7 +469,7 @@
     height: 2px;
     border-radius: 2px;
     background: var(--text-2);
-    transition: transform 200ms, opacity 200ms;
+    transition: transform var(--transition-standard) var(--ease-in-out), opacity var(--transition-standard) var(--ease-in-out);
   }
 
   /* ── Mobile menu ── */
@@ -516,7 +516,7 @@
     color: var(--text-2);
     text-decoration: none;
     border-radius: 8px;
-    transition: background 150ms, color 150ms;
+    transition: background var(--transition-normal) var(--ease-in-out), color var(--transition-normal) var(--ease-in-out);
   }
 
   .mobile-links a:hover,
@@ -561,7 +561,7 @@
   .nav-myths {
     font-size: 14px;
     text-decoration: none;
-    transition: opacity 150ms;
+    transition: opacity var(--transition-normal) var(--ease-in-out);
     white-space: nowrap;
   }
   .nav-news:hover,

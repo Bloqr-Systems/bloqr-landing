@@ -77,7 +77,7 @@
   .copy a {
     color: var(--text-2);
     text-decoration: none;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
   }
 
   .footer-ai {
@@ -97,7 +97,7 @@
     font-size: 13px;
     color: var(--text-3);
     text-decoration: none;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
   }
 
   a:hover { color: var(--text-2); }

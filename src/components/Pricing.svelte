@@ -198,7 +198,7 @@
     font-weight: 600;
     color: var(--text-2);
     cursor: pointer;
-    transition: all 150ms;
+    transition: all var(--transition-normal) var(--ease-in-out);
   }
 
   .tab-btn:hover {
@@ -231,7 +231,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    transition: border-color 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out),
+      box-shadow var(--transition-normal) var(--ease-in-out);
   }
 
   .tier:hover { border-color: var(--border-2); }
@@ -346,7 +347,7 @@
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 150ms;
+    transition: all var(--transition-normal) var(--ease-in-out);
     cursor: pointer;
   }
 

@@ -318,7 +318,7 @@
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
-    transition: border-color 250ms;
+    transition: border-color 250ms var(--ease-in-out);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -379,7 +379,7 @@
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 150ms, color 150ms;
+    transition: background var(--transition-normal) var(--ease-in-out), color var(--transition-normal) var(--ease-in-out);
     white-space: nowrap;
   }
 

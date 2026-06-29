@@ -133,7 +133,7 @@
     font-weight: 600;
     color: var(--text-1);
     line-height: 1.4;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
   }
 
   .trigger:hover {
@@ -150,7 +150,7 @@
     color: var(--text-3);
     flex-shrink: 0;
     line-height: 1;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
   }
 
   .item.open .icon {
@@ -180,7 +180,7 @@
     color: var(--orange);
     text-decoration: none;
     font-weight: 600;
-    transition: color 150ms;
+    transition: color var(--transition-normal) var(--ease-in-out);
   }
 
   .answer-link:hover {

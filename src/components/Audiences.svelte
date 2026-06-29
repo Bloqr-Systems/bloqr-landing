@@ -506,7 +506,7 @@
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 200ms, color 200ms;
+    transition: background var(--transition-standard) var(--ease-in-out), color var(--transition-standard) var(--ease-in-out);
     white-space: nowrap;
     justify-content: center;
   }

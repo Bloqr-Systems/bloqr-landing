@@ -212,7 +212,7 @@
     background: var(--bg-elevated);
     cursor: pointer;
     text-align: left;
-    transition: border-color 150ms, background 150ms, box-shadow 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out), background var(--transition-normal) var(--ease-in-out), box-shadow var(--transition-normal) var(--ease-in-out);
   }
 
   .wizard__tile:hover {

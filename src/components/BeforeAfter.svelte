@@ -591,7 +591,7 @@
     border-radius: 10px;
     cursor: pointer;
     letter-spacing: 0.01em;
-    transition: transform 0.18s, opacity 0.18s;
+    transition: transform 180ms var(--ease-in-out), opacity 180ms var(--ease-in-out);
     white-space: nowrap;
     align-self: center;
   }

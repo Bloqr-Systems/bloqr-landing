@@ -1,3 +1,6 @@
+/* Import modern transitions and animations */
+@import './transitions.css';
+
 /* Brand tokens — mirrors /brand/tokens.css */
 :root {
   color-scheme: dark;

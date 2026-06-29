@@ -261,7 +261,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: border-color 0.2s;
+    transition: border-color var(--transition-standard) var(--ease-in-out);
   }
 
   .claim-card:hover {
@@ -359,7 +359,7 @@
     margin-top: auto;
     padding-top: 4px;
     display: inline-block;
-    transition: opacity 0.15s;
+    transition: opacity 150ms var(--ease-in-out);
   }
 
   .claim-source:hover {

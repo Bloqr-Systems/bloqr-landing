@@ -100,7 +100,7 @@
     font-size: 18px;
     line-height: 1;
     cursor: pointer;
-    transition: background 150ms, border-color 150ms;
+    transition: background var(--transition-normal) var(--ease-in-out), border-color var(--transition-normal) var(--ease-in-out);
     flex-shrink: 0;
   }
 

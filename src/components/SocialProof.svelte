@@ -85,7 +85,7 @@
     font-weight: 500;
     color: var(--text-3);
     white-space: nowrap;
-    transition: border-color 150ms, color 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out), color var(--transition-normal) var(--ease-in-out);
   }
 
   .badge:hover {

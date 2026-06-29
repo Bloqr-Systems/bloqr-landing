@@ -107,7 +107,9 @@
   .cell {
     background: var(--bg-surface);
     padding: 32px;
-    transition: background 200ms, transform 200ms, border-color 200ms;
+    transition: background var(--transition-standard) var(--ease-in-out),
+      transform var(--transition-standard) var(--ease-in-out),
+      border-color var(--transition-standard) var(--ease-in-out);
     cursor: default;
     position: relative;
   }

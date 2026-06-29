@@ -150,7 +150,7 @@
 
   tbody tr {
     border-bottom: 1px solid var(--border);
-    transition: background 100ms;
+    transition: background var(--transition-fast) var(--ease-in-out);
   }
 
   tbody tr:last-child { border-bottom: none; }

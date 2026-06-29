@@ -275,7 +275,7 @@
     border: 1px solid var(--border-2);
     background: var(--bg-elevated);
     color: var(--text-2);
-    transition: border-color 150ms, background 150ms, color 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out), background var(--transition-normal) var(--ease-in-out), color var(--transition-normal) var(--ease-in-out);
   }
 
   .pill:hover {
@@ -312,7 +312,7 @@
     font-size: 14px;
     font-family: var(--font-sans);
     outline: none;
-    transition: border-color 150ms;
+    transition: border-color var(--transition-normal) var(--ease-in-out);
   }
 
   input[type="email"]::placeholder { color: var(--text-3); }
