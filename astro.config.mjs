@@ -10,7 +10,7 @@ export default defineConfig({
   // at build time and served from the ASSETS binding.  The SSR runtime
   // exists only to serve the custom API routes in src/worker.ts.
   //
-  // prerenderEnvironment:'node' is set explicitly even though the Astro 6
+  // prerenderEnvironment:'node' is set explicitly even though the Astro 7
   // default is 'workerd'.  The reason: src/worker.ts is a custom Cloudflare
   // Worker entry that routes unmatched requests to env.ASSETS.fetch() rather
   // than the Astro SSR handler.  When prerenderEnvironment:'workerd' is used,
@@ -58,7 +58,7 @@ export default defineConfig({
   // Cloudflare dashboard (or .env / .dev.vars locally) when migrating to a new domain.
   site: process.env.SITE_URL ?? 'https://bloqr.dev',
 
-  // ── Astro 6 Fonts API ──────────────────────────────────────────────────
+  // ── Astro 7 Fonts API ──────────────────────────────────────────────────
   // Uses the fontsource() provider to self-host fonts from the installed
   // @fontsource npm packages.  The Font component in BaseHead injects
   // @font-face rules, preload <link> tags, and the CSS custom properties
@@ -84,7 +84,7 @@ export default defineConfig({
     },
   ],
 
-  // ── Astro 6 Security ───────────────────────────────────────────────────
+  // ── Astro 7 Security ───────────────────────────────────────────────────
   // checkOrigin guards against CSRF on form actions.
   // Astro's CSP meta policy remains disabled because Shiki emits inline style
   // attributes for syntax tokens.  Production hardening directives are
@@ -95,7 +95,7 @@ export default defineConfig({
   },
 
   // ── Markdown / Code Highlighting ──────────────────────────────────────
-  // Uses Shiki 4 (bundled with Astro 6) with dual dark/light themes so that
+  // Uses Shiki 4 (bundled with Astro 7) with dual dark/light themes so that
   // highlighted code blocks emit CSS custom properties (--shiki-dark / --shiki-light)
   // via inline `style` attributes on each token element.  The global.css Shiki
   // section maps these CSS vars to actual colours based on prefers-color-scheme.
@@ -136,29 +136,14 @@ export default defineConfig({
     remotePatterns: [{ protocol: 'https' }],
   },
 
-  // ── Astro 6 Experimental features ─────────────────────────────────────
-  experimental: {
-    // Use the Rust-based .astro compiler from @astrojs/compiler-rs for
-    // faster builds.  Requires the @astrojs/compiler-rs package (already
-    // in dependencies).
-    rustCompiler: true,
-
-    // Queue and batch rendering tasks to improve build throughput.
-    // contentCache caches content collection query results across renders
-    // so identical collection reads don't re-fetch from disk/network.
-    queuedRendering: {
-      enabled: true,
-      contentCache: true,
-    },
-
-    // Route-level caching for SSR API endpoints.
-    // memoryCache() is a safe cross-platform in-memory LRU fallback.
-    // On Cloudflare, the adapter can wire the CF Cache API automatically
-    // when this flag is present.
-    cache: {
-      provider: memoryCache(),
-    },
+  // ── Astro 7: Route-level caching (stable, moved from experimental) ────
+  // memoryCache() is a safe cross-platform in-memory LRU fallback.
+  // rustCompiler and queuedRendering are now stable defaults in Astro 7.
+  cache: {
+    provider: memoryCache(),
   },
+
+  experimental: {},
 
   integrations: [
     svelte(),

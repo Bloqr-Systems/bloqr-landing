@@ -26,7 +26,7 @@ const blog = defineCollection({
 
 // -- Changelog ---------------------------------------------------------------
 // Fetches CHANGELOG.md from bloqr-compiler at build time and parses it into
-// typed entries via the Astro 6 Content Layer API loader object signature.
+// typed entries via the Astro 7 Content Layer API loader object signature.
 // Uses the { load(ctx) } object form so Astro treats it as a custom loader
 // (not the simpleLoader/glob path) and calls store.set() directly.
 // CHANGELOG_URL is imported from src/config.ts — the single source of truth

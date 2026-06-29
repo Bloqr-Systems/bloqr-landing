@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 /// <reference types="@cloudflare/workers-types" />
 
-// ─── Cloudflare Workers runtime type augmentation (Astro 6 pattern) ───────────
+// ─── Cloudflare Workers runtime type augmentation (Astro 7 pattern) ───────────
 // This gives any Astro page/component type-safe access to Cloudflare bindings
 // via `Astro.locals.runtime.env` when needed in the future.
 // See: https://docs.astro.build/en/guides/integrations-guide/cloudflare/#runtime

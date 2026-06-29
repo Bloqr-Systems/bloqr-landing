@@ -18,21 +18,21 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.1.10",
-    "@astrojs/compiler-rs": "^0.1.6",
+    "@astrojs/cloudflare": "^14.0.1",
+    "@astrojs/compiler-rs": "^0.2.3",
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/svelte": "^8.0.4",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/svelte": "^9.0.0",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@fontsource/space-grotesk": "^5.2.10",
-    "@neondatabase/serverless": "^1.0.2",
-    "astro": "^6.3.3",
-    "better-auth": "^1.6.11",
-    "mermaid": "^11.15.0",
-    "posthog-js": "^1.364.7",
-    "posthog-node": "^5.32.0",
-    "svelte": "^5.55.7",
-    "zod": "^4.0.0"
+    "@neondatabase/serverless": "^1.1.0",
+    "astro": "^7.0.3",
+    "better-auth": "^1.6.22",
+    "mermaid": "^11.16.0",
+    "posthog-js": "^1.395.0",
+    "posthog-node": "^5.38.6",
+    "svelte": "^5.56.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@cloudflare/puppeteer": "^1.0.6",
