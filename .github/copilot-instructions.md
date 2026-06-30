@@ -7,6 +7,7 @@ applyTo: "**"
 This is the marketing landing site for **Bloqr** — an AI-powered DNS filter
 list compiler and real-time threat intelligence service.
 
+- **Design system name:** **Filter** — published as `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`)
 - **Brand strategy and personas:** `guidelines/BLOQR_DESIGN_LANGUAGE.md` in [`Bloqr-Systems/bloqr-design-system`](https://github.com/Bloqr-Systems/bloqr-design-system)
 - **Privacy philosophy and core promises:** `guidelines/BLOQR_ETHOS.md` in `bloqr-design-system`
 - **Visual design spec and tokens:** `guidelines/BLOQR_BRAND_HANDOFF.md` in `bloqr-design-system`
@@ -18,7 +19,7 @@ list compiler and real-time threat intelligence service.
 
 ## Design System — Mandatory
 
-This repo consumes `@bloqr/design-system` for all visual design.
+This repo consumes **Filter** (the `@bloqr/design-system` package) for all visual design.
 
 | Anti-pattern | Correct approach |
 |---|---|
