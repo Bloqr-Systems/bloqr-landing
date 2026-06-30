@@ -24,7 +24,7 @@ Astro site served via a Cloudflare Worker with static assets.
 
 ## Design System
 
-**All visual design, tokens, fonts, assets, and brand documentation are centralized in `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`). Do not add local brand copies.**
+**Filter** is the official name of the Bloqr design system. All visual design, tokens, fonts, assets, and brand documentation are centralized in Filter, published as the `@bloqr/design-system` package (`Bloqr-Systems/bloqr-design-system`). Do not add local brand copies. Refer to it as "Filter" in docs and comments — never just "the design system" in prose.
 
 | Rule | Detail |
 |---|---|
@@ -299,7 +299,7 @@ If the dashboard was used accidentally and the site is broken:
 
 ## References
 
-- `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`) — canonical brand assets, tokens, fonts, guidelines
+- **Filter** — `@bloqr/design-system` (`Bloqr-Systems/bloqr-design-system`) — canonical brand assets, tokens, fonts, guidelines
 - `guidelines/BLOQR_DESIGN_LANGUAGE.md` (in design-system repo) — product strategy, personas, voice
 - `guidelines/BLOQR_ETHOS.md` (in design-system repo) — privacy philosophy, core promises
 - `guidelines/BLOQR_BRAND_HANDOFF.md` (in design-system repo) — visual design spec, canonical `:root` block

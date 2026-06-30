@@ -52,13 +52,11 @@ src/
 │   └── ...
 └── styles/
     └── global.css        # Design tokens (:root vars), global resets
+```
 
-brand/
-├── BLOQR_DESIGN_LANGUAGE.md   # Personas, voice, page architecture
-├── BLOQR_ETHOS.md             # Product philosophy and core promises
-├── tokens.css                 # Design token reference
-└── logo.svg
-``` 
+There is no local `brand/` folder — it has been removed. All brand documentation,
+design tokens, fonts, and assets live in **Filter**, the Bloqr design system (see
+[Design system](#design-system) below). 
 
 ---
 
@@ -82,12 +80,13 @@ Before running `preview`, copy `.dev.vars.example` to `.dev.vars` and fill in yo
 
 ## Design system
 
-Visual assets, design tokens, fonts, and component primitives have moved to the
-standalone [`Bloqr-Systems/bloqr-design-system`](https://github.com/Bloqr-Systems/bloqr-design-system)
+**Filter** is the official name of the Bloqr design system. Visual assets, design
+tokens, fonts, and component primitives live in the standalone
+[`Bloqr-Systems/bloqr-design-system`](https://github.com/Bloqr-Systems/bloqr-design-system)
 repository, published as [`@bloqr/design-system`](https://github.com/Bloqr-Systems/bloqr-design-system).
 The local `brand/` folder has been removed — all brand documentation now lives there.
 
-**Consuming the design system in this repo:**
+**Consuming Filter in this repo:**
 
 ```sh
 npm i @bloqr/design-system
@@ -106,7 +105,7 @@ import { Button, Badge, Icon, Mark } from '@bloqr/design-system';
 ```
 
 Tokens (`--orange-500`, `--bg-base`, `--font-display`, etc.) are available globally
-once `styles.css` is linked. See the [design system README](https://github.com/Bloqr-Systems/bloqr-design-system)
+once `styles.css` is linked. See the [Filter README](https://github.com/Bloqr-Systems/bloqr-design-system)
 for the full token reference, component usage notes, and brand guidelines.
 
 ---
@@ -164,10 +163,11 @@ Cloudflare Email Routing forwards inbound messages to your personal inbox. Confi
 
 ## Brand and Voice
 
-Bloqr has a specific voice. Before writing copy, UI labels, or any user-facing text, read:
+Bloqr has a specific voice. Before writing copy, UI labels, or any user-facing text, read
+these guidelines in Filter (`Bloqr-Systems/bloqr-design-system`):
 
-- `brand/BLOQR_DESIGN_LANGUAGE.md` — personas, tone guidelines, page architecture decisions
-- `brand/BLOQR_ETHOS.md` — why Bloqr exists, what we will never do, the promises we keep
+- `guidelines/BLOQR_DESIGN_LANGUAGE.md` — personas, tone guidelines, page architecture decisions
+- `guidelines/BLOQR_ETHOS.md` — why Bloqr exists, what we will never do, the promises we keep
 
 The short version:
 
@@ -182,7 +182,7 @@ The short version:
 
 The authoritative guide for contributors and AI agents working in this repo is `AGENTS.md`.
 
-For design token values, see `brand/tokens.css`. The variables used by components come from `src/styles/global.css`.
+For design token values, see Filter's `tokens/` (`Bloqr-Systems/bloqr-design-system`). The variables used by components come from `src/styles/global.css`.
 
 ---
 
