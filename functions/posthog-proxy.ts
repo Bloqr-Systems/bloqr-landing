@@ -6,13 +6,13 @@
  * Supports two proxy modes:
  *
  *   Subdomain proxy (preferred) — f.bloqr.dev:
- *     f.bloqr.dev/static/*  →  https://us-assets.posthog.com/static/*
- *     f.bloqr.dev/array/*   →  https://us-assets.posthog.com/array/*
+ *     f.bloqr.dev/static/*  →  https://us-assets.i.posthog.com/static/*
+ *     f.bloqr.dev/array/*   →  https://us-assets.i.posthog.com/array/*
  *     f.bloqr.dev/*         →  https://us.i.posthog.com/*
  *
  *   Path proxy (legacy fallback) — bloqr.dev/ingest:
- *     /ingest/static/*      →  https://us-assets.posthog.com/static/*
- *     /ingest/array/*       →  https://us-assets.posthog.com/array/*
+ *     /ingest/static/*      →  https://us-assets.i.posthog.com/static/*
+ *     /ingest/array/*       →  https://us-assets.i.posthog.com/array/*
  *     /ingest/*             →  https://us.i.posthog.com/*
  *
  * Why: proxying PostHog through the site's own origin prevents
@@ -22,7 +22,7 @@
  */
 
 const POSTHOG_INGEST_HOST  = 'us.i.posthog.com';
-const POSTHOG_ASSETS_HOST  = 'us-assets.posthog.com';
+const POSTHOG_ASSETS_HOST  = 'us-assets.i.posthog.com';
 const POSTHOG_PROXY_DOMAIN = 'f.bloqr.dev';
 
 /**
