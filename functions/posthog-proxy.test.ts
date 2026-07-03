@@ -2,7 +2,7 @@
  * functions/posthog-proxy.test.ts — Unit tests for the PostHog reverse proxy handler.
  *
  * Tests verify:
- *   1. URL rewrite — /ingest prefix is stripped; static assets route to us-assets.posthog.com
+ *   1. URL rewrite — /ingest prefix is stripped; static assets route to us-assets.i.posthog.com
  *   2. Sensitive header stripping — cookie, authorization, CF Access headers are not forwarded
  *   3. Hop-by-hop response header removal — connection and transfer-encoding are stripped
  *   4. Request body forwarding — POST body is passed through; GET has no body
@@ -61,30 +61,30 @@ describe('handlePostHogProxy', () => {
       expect(url.search).toBe('?v=1');
     });
 
-    it('routes /ingest/static/* to us-assets.posthog.com and strips /ingest prefix', async () => {
+    it('routes /ingest/static/* to us-assets.i.posthog.com and strips /ingest prefix', async () => {
       await handlePostHogProxy(makeRequest('/ingest/static/array.js'));
 
       const forwarded = fetchSpy.mock.calls[0][0] as Request;
       const url = new URL(forwarded.url);
-      expect(url.hostname).toBe('us-assets.posthog.com');
+      expect(url.hostname).toBe('us-assets.i.posthog.com');
       expect(url.pathname).toBe('/static/array.js');
     });
 
-    it('routes /ingest/array/* to us-assets.posthog.com and strips /ingest prefix', async () => {
+    it('routes /ingest/array/* to us-assets.i.posthog.com and strips /ingest prefix', async () => {
       await handlePostHogProxy(makeRequest('/ingest/array/toolbar.js'));
 
       const forwarded = fetchSpy.mock.calls[0][0] as Request;
       const url = new URL(forwarded.url);
-      expect(url.hostname).toBe('us-assets.posthog.com');
+      expect(url.hostname).toBe('us-assets.i.posthog.com');
       expect(url.pathname).toBe('/array/toolbar.js');
     });
 
-    it('routes subdomain /array/toolbar.js to us-assets.posthog.com with path preserved', async () => {
+    it('routes subdomain /array/toolbar.js to us-assets.i.posthog.com with path preserved', async () => {
       await handlePostHogProxy(makeRequest('/array/toolbar.js', { host: 'f.bloqr.dev' }));
 
       const forwarded = fetchSpy.mock.calls[0][0] as Request;
       const url = new URL(forwarded.url);
-      expect(url.hostname).toBe('us-assets.posthog.com');
+      expect(url.hostname).toBe('us-assets.i.posthog.com');
       expect(url.pathname).toBe('/array/toolbar.js');
     });
 
@@ -103,11 +103,11 @@ describe('handlePostHogProxy', () => {
       expect(forwarded.headers.get('host')).toBe('us.i.posthog.com');
     });
 
-    it('sets the host header to us-assets.posthog.com for static assets', async () => {
+    it('sets the host header to us-assets.i.posthog.com for static assets', async () => {
       await handlePostHogProxy(makeRequest('/ingest/static/array.js'));
 
       const forwarded = fetchSpy.mock.calls[0][0] as Request;
-      expect(forwarded.headers.get('host')).toBe('us-assets.posthog.com');
+      expect(forwarded.headers.get('host')).toBe('us-assets.i.posthog.com');
     });
   });
 
