@@ -1,5 +1,13 @@
 <script>
   import { LINKS } from '../config';
+  import Sparkles from '@lucide/svelte/icons/sparkles';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
+  import Shield from '@lucide/svelte/icons/shield';
+  import Play from '@lucide/svelte/icons/play';
+  import Smartphone from '@lucide/svelte/icons/smartphone';
+  import Zap from '@lucide/svelte/icons/zap';
+  import ArrowLeft from '@lucide/svelte/icons/arrow-left';
+
   let showCode = $state([false, false, false]);
   function toggle(i) {
     showCode = showCode.map((val, idx) => idx === i ? !val : val);
@@ -27,12 +35,12 @@
           No code required — ever. The UI builds everything for you.
           Curious what's under the hood?
           <button class="reveal-all" onclick={allShowingCode ? showAllUI : showAll}>
-            {allShowingCode ? '← Show all UI' : 'Show all code →'}
+            {#if allShowingCode}<ArrowLeft size={13} strokeWidth={2.5} style="display:inline;vertical-align:-2px" /> Show all UI{:else}Show all code <ArrowRight size={13} strokeWidth={2.5} style="display:inline;vertical-align:-2px" />{/if}
           </button>
         </p>
       </div>
       <a href={LINKS.docs} class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank">
-        Read the docs →
+        Read the docs <ArrowRight size={13} strokeWidth={2.5} style="display:inline;vertical-align:-2px" />
       </a>
     </div>
 
@@ -68,7 +76,7 @@
               <label class="mock-label">Source URL or AI suggestion</label>
               <div class="mock-field-row">
                 <div class="mock-input-box flex-1">
-                  <span class="ai-icon">✦</span>
+                  <span class="ai-icon"><Sparkles size={13} strokeWidth={2} /></span>
                   <span class="mock-placeholder">Paste a URL, or ask AI: "best ad-blocking lists"</span>
                 </div>
                 <div class="mock-select-box">adblock ▾</div>
@@ -112,7 +120,7 @@
         {/if}
       </div>
 
-      <div class="connector" aria-hidden="true">→</div>
+      <div class="connector" aria-hidden="true"><ArrowRight size={18} strokeWidth={2.5} /></div>
 
       <!-- ── Step 2 ────────────────────────────────── -->
       <div class="step">
@@ -187,7 +195,7 @@
         {/if}
       </div>
 
-      <div class="connector" aria-hidden="true">→</div>
+      <div class="connector" aria-hidden="true"><ArrowRight size={18} strokeWidth={2.5} /></div>
 
       <!-- ── Step 3 ────────────────────────────────── -->
       <div class="step">
@@ -218,11 +226,11 @@
             <div class="mock-field-group">
               <label class="mock-label">Deploy to provider</label>
               <div class="mock-select-full">
-                🛡️ &nbsp;DNS provider — Home network ▾
+                <Shield size={13} strokeWidth={2} style="display:inline;vertical-align:-2px" /> &nbsp;DNS provider — Home network ▾
               </div>
             </div>
             <button class="mock-deploy-btn">
-              <span class="deploy-icon">▶</span> Deploy now
+              <span class="deploy-icon"><Play size={11} strokeWidth={2} fill="currentColor" /></span> Deploy now
             </button>
             <div class="mock-deploy-status">
               <div class="status-row">
@@ -230,11 +238,11 @@
                 <span class="status-text">Last deployed: just now</span>
               </div>
               <div class="status-row">
-                <span class="status-icon">📱</span>
+                <span class="status-icon"><Smartphone size={13} strokeWidth={2} /></span>
                 <span class="status-text">7 devices updated</span>
               </div>
               <div class="status-row">
-                <span class="status-icon">⚡</span>
+                <span class="status-icon"><Zap size={13} strokeWidth={2} /></span>
                 <span class="status-text">Propagated in 1.2s</span>
               </div>
             </div>
@@ -436,7 +444,7 @@
     color: var(--text-3);
   }
 
-  .ai-icon { color: var(--orange); font-size: 12px; flex-shrink: 0; }
+  .ai-icon { display: inline-flex; color: var(--orange); flex-shrink: 0; }
   .mock-placeholder { font-style: italic; }
 
   .mock-select-box {
@@ -609,7 +617,7 @@
     gap: 8px;
   }
 
-  .deploy-icon { font-size: 10px; }
+  .deploy-icon { display: inline-flex; }
 
   .mock-deploy-status {
     display: flex;
@@ -648,7 +656,7 @@
     .status-dot.pulse { animation: none; }
   }
 
-  .status-icon { font-size: 12px; }
+  .status-icon { display: inline-flex; }
   .status-text { color: var(--text-2); }
 
   /* ── Code block ─────────────────────────────── */

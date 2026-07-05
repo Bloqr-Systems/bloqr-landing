@@ -1,4 +1,11 @@
 <script lang="ts">
+  import Cloud from '@lucide/svelte/icons/cloud';
+  import FileText from '@lucide/svelte/icons/file-text';
+  import Database from '@lucide/svelte/icons/database';
+  import Layers from '@lucide/svelte/icons/layers';
+  import Package from '@lucide/svelte/icons/package';
+  import LockOpen from '@lucide/svelte/icons/lock-open';
+
   // Fetch the waitlist count from the edge function
   let count = $state<number | null>(null);
   let loaded = $state(false);
@@ -22,17 +29,17 @@
   <!-- A) Technology trust badges -->
   <div class="container inner">
     <ul class="logos" role="list" aria-label="Built on">
-      <li class="badge"><span class="badge-icon" aria-hidden="true">☁️</span> Cloudflare Workers</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><Cloud size={13} strokeWidth={2} /></span> Cloudflare Workers</li>
       <li class="sep" aria-hidden="true">·</li>
-      <li class="badge"><span class="badge-icon" aria-hidden="true">📄</span> Cloudflare Pages</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><FileText size={13} strokeWidth={2} /></span> Cloudflare Pages</li>
       <li class="sep" aria-hidden="true">·</li>
-      <li class="badge"><span class="badge-icon" aria-hidden="true">🐘</span> Neon</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><Database size={13} strokeWidth={2} /></span> Neon</li>
       <li class="sep" aria-hidden="true">·</li>
-      <li class="badge"><span class="badge-icon" aria-hidden="true">🦕</span> Deno</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><Layers size={13} strokeWidth={2} /></span> Deno</li>
       <li class="sep" aria-hidden="true">·</li>
-      <li class="badge"><span class="badge-icon" aria-hidden="true">📦</span> JSR</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><Package size={13} strokeWidth={2} /></span> JSR</li>
       <li class="sep" aria-hidden="true">·</li>
-      <li class="badge"><span class="badge-icon" aria-hidden="true">🔓</span> Open Source</li>
+      <li class="badge"><span class="badge-icon" aria-hidden="true"><LockOpen size={13} strokeWidth={2} /></span> Open Source</li>
     </ul>
   </div>
 
@@ -94,8 +101,8 @@
   }
 
   .badge-icon {
-    font-size: 11px;
-    line-height: 1;
+    display: inline-flex;
+    vertical-align: -2px;
   }
 
   .sep {

@@ -1,3 +1,13 @@
+<script>
+  import Box from '@lucide/svelte/icons/box';
+  import Construction from '@lucide/svelte/icons/construction';
+  import Zap from '@lucide/svelte/icons/zap';
+  import Microscope from '@lucide/svelte/icons/microscope';
+  import Sparkles from '@lucide/svelte/icons/sparkles';
+  import Landmark from '@lucide/svelte/icons/landmark';
+  import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
+</script>
+
 <section class="dw-section" id="dynamic-workers" aria-labelledby="dw-heading">
   <div class="container">
 
@@ -16,7 +26,7 @@
     <div class="dw-grid">
 
       <div class="dw-main-card">
-        <div class="card-icon" aria-hidden="true">🏗️</div>
+        <div class="card-icon" aria-hidden="true"><Sparkles size={26} strokeWidth={2} /></div>
         <h3>Spins up. Runs. Vanishes.</h3>
         <p>
           A traditional server sits on the internet 24 hours a day, waiting — which means
@@ -26,7 +36,7 @@
           risk between your requests.
         </p>
         <div class="analogy-box" role="note">
-          <span class="analogy-icon" aria-hidden="true">🏧</span>
+          <span class="analogy-icon" aria-hidden="true"><Landmark size={18} strokeWidth={2} /></span>
           <span>
             <strong>Like an ATM.</strong> It doesn't remember the person before you.
             It doesn't keep a running log of which accounts were accessed.
@@ -40,7 +50,7 @@
       <div class="dw-cards-right">
 
         <article class="dw-card">
-          <div class="card-icon-sm" aria-hidden="true">🧊</div>
+          <div class="card-icon-sm" aria-hidden="true"><Box size={20} strokeWidth={2} /></div>
           <h4>V8 isolate sandboxing</h4>
           <p>
             Each Worker runs inside a V8 isolate — the same technology Chrome uses to
@@ -51,7 +61,7 @@
         </article>
 
         <article class="dw-card">
-          <div class="card-icon-sm" aria-hidden="true">🚧</div>
+          <div class="card-icon-sm" aria-hidden="true"><Construction size={20} strokeWidth={2} /></div>
           <h4>Egress control</h4>
           <p>
             Every outbound network call a Worker makes can be restricted, intercepted, or
@@ -63,7 +73,7 @@
         </article>
 
         <article class="dw-card">
-          <div class="card-icon-sm" aria-hidden="true">⚡</div>
+          <div class="card-icon-sm" aria-hidden="true"><Zap size={20} strokeWidth={2} /></div>
           <h4>Patched before breakfast</h4>
           <p>
             Cloudflare maintains a patch gap of under 24 hours for V8 security
@@ -74,7 +84,7 @@
         </article>
 
         <article class="dw-card dw-card--highlight">
-          <div class="card-icon-sm" aria-hidden="true">🔬</div>
+          <div class="card-icon-sm" aria-hidden="true"><Microscope size={20} strokeWidth={2} /></div>
           <h4>We're stress-testing this right now</h4>
           <p>
             Dynamic Workers is a relatively new Cloudflare capability. Bloqr is among the
@@ -95,7 +105,7 @@
         rel="noopener noreferrer"
         aria-label="Cloudflare Dynamic Workers documentation (opens in new tab)"
       >
-        Cloudflare Dynamic Workers docs →
+        Cloudflare Dynamic Workers docs <ArrowUpRight size={13} strokeWidth={2.5} style="display:inline;vertical-align:-2px" />
       </a>
       <a
         href="https://developers.cloudflare.com/workers/learning/security-model/"
@@ -104,7 +114,7 @@
         rel="noopener noreferrer"
         aria-label="Workers security model (opens in new tab)"
       >
-        Workers security model →
+        Workers security model <ArrowUpRight size={13} strokeWidth={2.5} style="display:inline;vertical-align:-2px" />
       </a>
     </div>
 
@@ -188,7 +198,7 @@
 
   .dw-main-card:hover { border-color: rgba(255, 85, 0, 0.3); }
 
-  .card-icon { font-size: 2rem; line-height: 1; }
+  .card-icon { display: inline-flex; color: var(--orange); }
 
   .dw-main-card h3 {
     font-size: 1.2rem;
@@ -219,7 +229,7 @@
   }
 
   .analogy-box strong { color: var(--text-1); }
-  .analogy-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 1px; }
+  .analogy-icon { display: inline-flex; flex-shrink: 0; padding-top: 1px; color: var(--orange); }
 
   /* Right column of 4 smaller cards */
   .dw-cards-right {
@@ -250,7 +260,7 @@
     background: rgba(255, 85, 0, 0.03);
   }
 
-  .card-icon-sm { font-size: 1.3rem; line-height: 1; }
+  .card-icon-sm { display: inline-flex; color: var(--orange); }
 
   .dw-card h4 {
     font-size: 0.9rem;

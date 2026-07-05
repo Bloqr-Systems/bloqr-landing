@@ -1,6 +1,10 @@
 <!-- Interactive PAYG vs Pro conversion calculator -->
 
 <script lang="ts">
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
+  import Equal from '@lucide/svelte/icons/equal';
+  import Check from '@lucide/svelte/icons/check';
+
   const PRO_PRICE      = 9;      // dollars/month
   const PAYG_RATE      = 0.01;   // dollars per compile
   const THRESHOLD      = 900;    // compiles/month where PAYG === Pro
@@ -62,13 +66,13 @@
 
       <div class="verdict" class:switch={shouldSwitch} class:equal={atThreshold} class:stay={!shouldSwitch && !atThreshold} role="status" aria-live="polite">
         {#if shouldSwitch}
-          <span class="verdict-icon" aria-hidden="true">→</span>
+          <span class="verdict-icon" aria-hidden="true"><ArrowRight size={18} strokeWidth={2.5} /></span>
           Switch to Pro and save <strong>${savings.toFixed(2)}/month</strong>
         {:else if atThreshold}
-          <span class="verdict-icon" aria-hidden="true">≈</span>
+          <span class="verdict-icon" aria-hidden="true"><Equal size={18} strokeWidth={2.5} /></span>
           Same price either way — pick whichever suits you
         {:else}
-          <span class="verdict-icon" aria-hidden="true">✓</span>
+          <span class="verdict-icon" aria-hidden="true"><Check size={18} strokeWidth={2.5} /></span>
           Pay As You Go is cheaper — no subscription needed
         {/if}
       </div>
@@ -274,7 +278,7 @@
   }
 
   .verdict-icon {
-    font-size: 1.1rem;
+    display: inline-flex;
     flex-shrink: 0;
   }
 

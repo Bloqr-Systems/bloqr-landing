@@ -54,6 +54,7 @@ Runtime CSS custom properties are aliased in `src/styles/global.css`. When styli
 | Fonts          | Space Grotesk + JetBrains Mono — self-hosted via `@bloqr/design-system/fonts/` |
 | CSP            | SHA-256 auto-hashing via `security.csp` (meta CSP); `applyCSP()` in `src/worker.ts` adds hardening headers |
 | Code highlighting | Shiki 4 dual themes (`houston`/`vitesse-light`)     |
+| Icons          | `@lucide/svelte` — import icons individually (`import Check from '@lucide/svelte/icons/check'`), never inline `<svg>` markup or emoji as UI icons |
 
 ---
 

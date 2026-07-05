@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
   import { LINKS } from '../config';
+  import Check from '@lucide/svelte/icons/check';
+  import Copy from '@lucide/svelte/icons/copy';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
 
   let copied = $state(false);
   let showCode = $state(true);  // Default to code view
@@ -82,7 +85,7 @@ console.log(\`Compiled \${result.rules.length} rules\`);
 
         <div class="links">
           <a href={LINKS.docs} class="btn btn-primary" rel="noopener noreferrer" target="_blank">
-            View full docs <span aria-hidden="true">→</span>
+            View full docs <span class="arrow-icon" aria-hidden="true"><ArrowRight size={16} strokeWidth={2.5} /></span>
           </a>
           <a
             href={LINKS.pricing}
@@ -138,15 +141,10 @@ console.log(\`Compiled \${result.rules.length} rules\`);
                 aria-label={copied ? 'Copied!' : 'Copy code'}
               >
                 {#if copied}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
+                  <Check size={14} strokeWidth={2.5} aria-hidden="true" />
                   Copied
                 {:else}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
+                  <Copy size={14} strokeWidth={2} aria-hidden="true" />
                   Copy
                 {/if}
               </button>
@@ -189,7 +187,7 @@ console.log(\`Compiled \${result.rules.length} rules\`);
               </div>
               <div class="mock-deploy-btn">
                 <span>Deploy now</span>
-                <span aria-hidden="true">→</span>
+                <span class="arrow-icon" aria-hidden="true"><ArrowRight size={14} strokeWidth={2.5} /></span>
               </div>
             </div>
           </div>
@@ -522,5 +520,10 @@ console.log(\`Compiled \${result.rules.length} rules\`);
     font-style: italic;
     line-height: 1.5;
     text-align: center;
+  }
+
+  .arrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
   }
 </style>

@@ -1,5 +1,8 @@
 <script lang="ts">
   import { LINKS } from '../config';
+  import Sun from '@lucide/svelte/icons/sun';
+  import Moon from '@lucide/svelte/icons/moon';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
 
   type Theme = 'dark' | 'light';
   type StoredTheme = Theme | null;
@@ -194,7 +197,7 @@
       <a href={LINKS.blog} class="nav-news" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a>
       <a href={LINKS.docs} class="btn btn-ghost btn-sm" rel="noopener noreferrer" target="_blank">Docs</a>
       <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank">
-        Join Beta <span aria-hidden="true">→</span>
+        Join Beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.5} /></span>
       </a>
     </div>
 
@@ -205,7 +208,7 @@
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-pressed={theme === 'light'}
     >
-      <span class="theme-toggle__icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+      <span class="theme-toggle__icon" aria-hidden="true">{#if theme === 'dark'}<Sun size={16} strokeWidth={2} />{:else}<Moon size={16} strokeWidth={2} />{/if}</span>
       <span class="sr-only">{theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}</span>
     </button>
 
@@ -247,7 +250,7 @@
         <li><a href={LINKS.changelog} onclick={closeMenu} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
         <li><a href={LINKS.about}     onclick={closeMenu} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
         <li class="mobile-divider" aria-hidden="true"></li>
-        <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join the Beta →</a></li>
+        <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join the Beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.5} /></span></a></li>
       </ul>
       <div class="mobile-footer">
         <button
@@ -257,12 +260,12 @@
           aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           aria-pressed={theme === 'light'}
         >
-          <span class="theme-toggle__icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+          <span class="theme-toggle__icon" aria-hidden="true">{#if theme === 'dark'}<Sun size={16} strokeWidth={2} />{:else}<Moon size={16} strokeWidth={2} />{/if}</span>
           <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
         </button>
         <a href={LINKS.docs} class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>Docs</a>
         <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank" onclick={closeMenu}>
-          Join Beta →
+          Join Beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.5} /></span>
         </a>
       </div>
     </div>
@@ -443,8 +446,12 @@
   }
 
   .theme-toggle__icon {
-    font-size: 18px;
-    line-height: 1;
+    display: inline-flex;
+  }
+
+  .arrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
   }
 
   /* ── Hamburger button ── */

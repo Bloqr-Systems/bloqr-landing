@@ -1,5 +1,8 @@
 <script lang="ts">
   import { LINKS } from '../config';
+  import ChevronRight from '@lucide/svelte/icons/chevron-right';
+  import Zap from '@lucide/svelte/icons/zap';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
 
   let expanded = $state(false);
 
@@ -47,7 +50,7 @@
           onclick={() => (expanded = !expanded)}
         >
           {expanded ? 'Less' : 'How?'}
-          <span class="byo-tile__chevron" class:flipped={expanded} aria-hidden="true">›</span>
+          <span class="byo-tile__chevron" class:flipped={expanded} aria-hidden="true"><ChevronRight size={16} strokeWidth={2.5} /></span>
         </button>
       </div>
 
@@ -60,7 +63,7 @@
       >
         <div class="byo-detail__grid">
           <div class="byo-detail__item">
-            <span class="byo-detail__icon" aria-hidden="true">⚡</span>
+            <span class="byo-detail__icon" aria-hidden="true"><Zap size={16} strokeWidth={2} /></span>
             <div>
               <strong>Your rules work everywhere, instantly.</strong>
               Behind the scenes, your rules run inside Cloudflare Workers across Cloudflare's global edge network — the same
@@ -113,7 +116,7 @@
 
     <div class="actions">
       <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackHeroCta('join_the_beta')}>
-        Join the beta <span aria-hidden="true">→</span>
+        Join the beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={16} strokeWidth={2.5} /></span>
       </a>
       <a href={LINKS.docs} class="btn btn-outline" rel="noopener noreferrer" target="_blank" onclick={() => trackHeroCta('read_the_docs')}>
         Read the docs
@@ -296,11 +299,9 @@
   }
 
   .byo-tile__chevron {
-    display: inline-block;
+    display: inline-flex;
     transition: transform 0.2s ease;
     transform: rotate(0deg);
-    font-size: 1rem;
-    line-height: 1;
   }
 
   .byo-tile__chevron.flipped {
@@ -348,8 +349,9 @@
   }
 
   .byo-detail__icon {
-    font-size: 1rem;
+    display: inline-flex;
     flex-shrink: 0;
+    color: var(--orange);
     margin-top: 1px;
   }
 
@@ -412,5 +414,10 @@
     text-transform: uppercase;
     display: block;
     margin-top: 4px;
+  }
+
+  .arrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
   }
 </style>

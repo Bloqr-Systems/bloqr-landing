@@ -1,6 +1,29 @@
 <!-- BeforeAfter: "how blocking works" explainer + animated waterfall chart -->
 <script>
   import { onMount } from 'svelte';
+  import Globe from '@lucide/svelte/icons/globe';
+  import Phone from '@lucide/svelte/icons/phone';
+  import Waves from '@lucide/svelte/icons/waves';
+  import Timer from '@lucide/svelte/icons/timer';
+  import Shield from '@lucide/svelte/icons/shield';
+  import Ban from '@lucide/svelte/icons/ban';
+  import Zap from '@lucide/svelte/icons/zap';
+  import Clipboard from '@lucide/svelte/icons/clipboard';
+  import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+  import ArrowDown from '@lucide/svelte/icons/arrow-down';
+  import Check from '@lucide/svelte/icons/check';
+
+  const STEP_ICONS = {
+    '🌐': Globe,
+    '📞': Phone,
+    '🌊': Waves,
+    '⏱️': Timer,
+    '🛡️': Shield,
+    '🚫': Ban,
+    '⚡': Zap,
+    '📋': Clipboard,
+    '⚠️': TriangleAlert,
+  };
 
   // ── Reactive state ──────────────────────────────────────────────────────────
   let visible = $state(true);
@@ -273,14 +296,19 @@
               class="flow-step flow-step--{step.variant ?? 'neutral'}"
               style="--step-i: {i}"
             >
-              <span class="flow-step__icon" aria-hidden="true">{step.icon}</span>
+              <span class="flow-step__icon" aria-hidden="true">
+                {#if STEP_ICONS[step.icon]}
+                  {@const Icon = STEP_ICONS[step.icon]}
+                  <Icon size={16} strokeWidth={2} />
+                {/if}
+              </span>
               <span class="flow-step__text">
                 <strong class="flow-step__title">{step.title}</strong>
                 <span class="flow-step__desc">{step.desc}</span>
               </span>
             </div>
             {#if i < stepsWithout.length - 1}
-              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true">↓</div>
+              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true"><ArrowDown size={16} strokeWidth={2.5} /></div>
             {/if}
           {/each}
         </div>
@@ -291,21 +319,26 @@
         <!-- With Bloqr flow -->
         <div class="flow flow--good" aria-label="Page load journey with Bloqr">
           <div class="flow-col-header flow-col-header--good">
-            <span class="flow-pill flow-pill--good">With Bloqr <span aria-hidden="true">✓</span></span>
+            <span class="flow-pill flow-pill--good">With Bloqr <span aria-hidden="true"><Check size={12} strokeWidth={3} /></span></span>
           </div>
           {#each stepsWith as step, i}
             <div
               class="flow-step flow-step--{step.variant ?? 'neutral'}"
               style="--step-i: {i}"
             >
-              <span class="flow-step__icon" aria-hidden="true">{step.icon}</span>
+              <span class="flow-step__icon" aria-hidden="true">
+                {#if STEP_ICONS[step.icon]}
+                  {@const Icon = STEP_ICONS[step.icon]}
+                  <Icon size={16} strokeWidth={2} />
+                {/if}
+              </span>
               <span class="flow-step__text">
                 <strong class="flow-step__title">{step.title}</strong>
                 <span class="flow-step__desc">{step.desc}</span>
               </span>
             </div>
             {#if i < stepsWith.length - 1}
-              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true">↓</div>
+              <div class="flow-arrow" style="--step-i: {i}" aria-hidden="true"><ArrowDown size={16} strokeWidth={2.5} /></div>
             {/if}
           {/each}
         </div>
@@ -374,7 +407,7 @@
         <div class="panel-header">
           <span class="panel-label">
             With Bloqr
-            <span class="check-badge" aria-label="Protected">✓</span>
+            <span class="check-badge" aria-label="Protected"><Check size={14} strokeWidth={3} /></span>
           </span>
           <span class="load-time good-time" aria-label="Page load time: 1.1 seconds">1.1s</span>
         </div>
@@ -447,7 +480,12 @@
     <!-- Step content (keyed so it re-mounts and re-animates on step change) -->
     {#key modalStep}
       <div class="modal-step modal-step--{modalSteps[modalStep].variant}" aria-live="polite">
-        <div class="modal-step__emoji" aria-hidden="true">{modalSteps[modalStep].icon}</div>
+        <div class="modal-step__emoji" aria-hidden="true">
+          {#if STEP_ICONS[modalSteps[modalStep].icon]}
+            {@const Icon = STEP_ICONS[modalSteps[modalStep].icon]}
+            <Icon size={28} strokeWidth={2} />
+          {/if}
+        </div>
         <p class="modal-step__counter" aria-label={`Step ${modalStep + 1} of ${modalSteps.length}`}>
           {String(modalStep + 1).padStart(2, '0')} / {String(modalSteps.length).padStart(2, '0')}
         </p>
@@ -664,8 +702,7 @@
   .flow-step--good    { border-color: var(--color-success-border); background: var(--color-success-dim); }
 
   .flow-step__icon {
-    font-size: 1.5rem;
-    line-height: 1;
+    display: inline-flex;
     flex-shrink: 0;
     margin-top: 1px;
   }
@@ -692,10 +729,9 @@
   /* ── Flow arrow connector ─────────────────────────────────────────────────── */
 
   .flow-arrow {
-    text-align: center;
+    display: flex;
+    justify-content: center;
     color: var(--text-3);
-    font-size: 1.1rem;
-    line-height: 1;
     padding: 4px 0;
     opacity: 0;
     transition: opacity 0.3s;
@@ -1037,8 +1073,7 @@
   }
 
   .modal-step__emoji {
-    font-size: 2.5rem;
-    line-height: 1;
+    display: inline-flex;
     margin-bottom: 10px;
   }
 

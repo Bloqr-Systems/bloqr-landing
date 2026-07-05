@@ -3,6 +3,7 @@
 <script lang="ts">
   import { PRICING_AUDIENCES, PRICING_TIERS_BY_AUDIENCE, PRICING_ADDONS } from '../lib/pricing';
   import type { AudienceId } from '../lib/pricing';
+  import Check from '@lucide/svelte/icons/check';
 
   function trackPricingCta(tierName: string, cta: string): void {
     if (typeof window !== 'undefined' && window.posthog) {
@@ -78,7 +79,7 @@
           <ul class="feature-list">
             {#each tier.items as item}
               <li>
-                <span class="check" aria-hidden="true">✓</span>
+                <span class="check" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>
                 {item}
               </li>
             {/each}
@@ -331,9 +332,8 @@
 
   .check {
     color: var(--orange);
-    font-weight: 700;
     flex-shrink: 0;
-    font-size: 0.875rem;
+    display: inline-flex;
     margin-top: 1px;
   }
 
