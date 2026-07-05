@@ -1,4 +1,10 @@
 <!-- PrivacyCommitments: inline, no-jargon data commitment block -->
+<script>
+  import Check from '@lucide/svelte/icons/check';
+  import X from '@lucide/svelte/icons/x';
+  import Scale from '@lucide/svelte/icons/scale';
+</script>
+
 <section class="privacy-commitments" id="privacy-commitments" aria-labelledby="pc-heading">
   <div class="container">
 
@@ -15,22 +21,22 @@
     <div class="commitments-grid">
       <!-- Left: what we do -->
       <div class="commitment-col" aria-label="What we do">
-        <p class="col-heading" aria-hidden="true">✅ What we do</p>
+        <p class="col-heading" aria-hidden="true"><Check size={13} strokeWidth={3} /> What we do</p>
         <ul class="commitment-list" aria-label="Things Bloqr does do">
           <li>
-            <span class="commit-icon" aria-hidden="true">✅</span>
+            <span class="commit-icon" aria-hidden="true"><Check size={15} strokeWidth={3} /></span>
             <span>Filter your DNS traffic to apply your rules</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">✅</span>
+            <span class="commit-icon" aria-hidden="true"><Check size={15} strokeWidth={3} /></span>
             <span>Store your account info — email, subscription status, your rule config</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">✅</span>
+            <span class="commit-icon" aria-hidden="true"><Check size={15} strokeWidth={3} /></span>
             <span>Document exactly what we store and why — no hidden data fields</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">✅</span>
+            <span class="commit-icon" aria-hidden="true"><Check size={15} strokeWidth={3} /></span>
             <span>Delete your data completely when you close your account — no retention</span>
           </li>
         </ul>
@@ -38,26 +44,26 @@
 
       <!-- Right: what we never do -->
       <div class="commitment-col" aria-label="What we never do">
-        <p class="col-heading" aria-hidden="true">❌ What we never do</p>
+        <p class="col-heading" aria-hidden="true"><X size={13} strokeWidth={3} /> What we never do</p>
         <ul class="commitment-list" aria-label="Things Bloqr never does">
           <li>
-            <span class="commit-icon" aria-hidden="true">❌</span>
+            <span class="commit-icon" aria-hidden="true"><X size={15} strokeWidth={3} /></span>
             <span>Log your DNS queries or browsing patterns</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">❌</span>
+            <span class="commit-icon" aria-hidden="true"><X size={15} strokeWidth={3} /></span>
             <span>Build a profile of your browsing behavior</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">❌</span>
+            <span class="commit-icon" aria-hidden="true"><X size={15} strokeWidth={3} /></span>
             <span>Sell, share, or license your data — ever, to anyone</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">❌</span>
+            <span class="commit-icon" aria-hidden="true"><X size={15} strokeWidth={3} /></span>
             <span>Make it hard to leave — export your config anytime, no contracts</span>
           </li>
           <li>
-            <span class="commit-icon" aria-hidden="true">❌</span>
+            <span class="commit-icon" aria-hidden="true"><X size={15} strokeWidth={3} /></span>
             <span>Use "no-log" as a marketing phrase without the architecture to back it up</span>
           </li>
         </ul>
@@ -66,7 +72,7 @@
 
     <!-- Callout box -->
     <div class="callout-box" role="note" aria-label="Why architecture matters more than policy">
-      <span class="callout-icon" aria-hidden="true">⚖️</span>
+      <span class="callout-icon" aria-hidden="true"><Scale size={22} strokeWidth={2} /></span>
       <p class="callout-text">
         The most effective legal protection isn't a favorable jurisdiction. It's not having
         the data in the first place. What's never logged can't be leaked, sold, or produced
@@ -113,6 +119,9 @@
   }
 
   .col-heading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -140,8 +149,13 @@
 
   .commit-icon {
     flex-shrink: 0;
-    font-size: 0.9rem;
-    line-height: 1.55;
+    display: inline-flex;
+    margin-top: 3px;
+    color: var(--text-3);
+  }
+
+  .commitment-col:first-child .commit-icon {
+    color: var(--orange);
   }
 
   /* ── Callout box ── */
@@ -156,9 +170,9 @@
   }
 
   .callout-icon {
-    font-size: 1.4rem;
+    display: inline-flex;
     flex-shrink: 0;
-    line-height: 1;
+    color: var(--orange);
     margin-top: 2px;
   }
 

@@ -1,5 +1,6 @@
 <script>
   import { LINKS } from '../config';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
 
   function trackCtaBanner(label) {
     if (typeof window !== 'undefined' && window.posthog) {
@@ -35,7 +36,7 @@
     </div>
     <div class="actions">
       <a href={LINKS.app} class="btn btn-primary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('join_the_beta')}>
-        Join the beta <span aria-hidden="true">→</span>
+        Join the beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={16} strokeWidth={2.5} /></span>
       </a>
       <a href={LINKS.docs} class="btn btn-outline cta-secondary" rel="noopener noreferrer" target="_blank" onclick={() => trackCtaBanner('view_docs')}>
         View docs
@@ -105,5 +106,11 @@
   .cta-secondary {
     color: var(--cyan);
     border-color: color-mix(in srgb, var(--cyan) 30%, var(--border-2));
+  }
+
+  .arrow-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 2px;
   }
 </style>

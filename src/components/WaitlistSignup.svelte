@@ -1,6 +1,10 @@
 <!-- Waitlist signup: segment pills + email, posts to /waitlist Pages Function -->
 <script>
+  import Check from '@lucide/svelte/icons/check';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
+
   let email   = $state('');
+
   let segment = $state('');
   let status  = $state('idle'); // idle | submitting | success | duplicate | error
   let errorMsg = $state('');
@@ -102,13 +106,13 @@
       <div class="form-wrap">
         {#if status === 'success'}
           <div class="success" role="status">
-            <div class="success-icon" aria-hidden="true">✓</div>
+            <div class="success-icon" aria-hidden="true"><Check size={26} strokeWidth={3} color="currentColor" /></div>
             <h3>You're on the list.</h3>
             <p>We'll reach out to <strong>{email}</strong> when your access is ready.</p>
           </div>
         {:else if status === 'duplicate'}
           <div class="success" role="status">
-            <div class="success-icon already" aria-hidden="true">→</div>
+            <div class="success-icon already" aria-hidden="true"><ArrowRight size={26} strokeWidth={3} color="currentColor" /></div>
             <h3>Already registered.</h3>
             <p>You're already on the list — we'll be in touch soon.</p>
           </div>

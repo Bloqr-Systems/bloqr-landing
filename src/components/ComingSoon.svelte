@@ -5,6 +5,9 @@
   Posts to the same /waitlist Pages Function as WaitlistSignup.
 -->
 <script>
+  import Check from '@lucide/svelte/icons/check';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
+
   let email   = $state('');
   let status  = $state('idle'); // idle | submitting | success | duplicate | error
   let errorMsg = $state('');
@@ -46,7 +49,7 @@
       {#if status === 'success'}
         <!-- ─── Confirmed ─── -->
         <div class="confirmed" role="status">
-          <span class="icon check" aria-hidden="true">✓</span>
+          <span class="icon check" aria-hidden="true"><Check size={20} strokeWidth={3} /></span>
           <div>
             <p class="confirmed-title">You're on the list.</p>
             <p class="confirmed-sub">
@@ -58,7 +61,7 @@
       {:else if status === 'duplicate'}
         <!-- ─── Already registered ─── -->
         <div class="confirmed" role="status">
-          <span class="icon arrow" aria-hidden="true">→</span>
+          <span class="icon arrow" aria-hidden="true"><ArrowRight size={20} strokeWidth={2.5} /></span>
           <div>
             <p class="confirmed-title">Already registered.</p>
             <p class="confirmed-sub">You're already on the list — we'll be in touch soon.</p>

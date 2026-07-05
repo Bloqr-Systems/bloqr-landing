@@ -1,6 +1,8 @@
 <!-- Problem section: consumer VPN reality vs Bloqr approach -->
 <script>
   import { LINKS } from '../config';
+  import BookOpen from '@lucide/svelte/icons/book-open';
+  import ArrowRight from '@lucide/svelte/icons/arrow-right';
 </script>
 
 <section class="problem" id="why">
@@ -48,9 +50,9 @@
     </div><!-- /grid -->
 
     <a href={LINKS.vpnMyths} class="myths-banner" aria-label="Read 8 consumer VPN myths, sourced and examined">
-      <span class="banner-book" aria-hidden="true">📖</span>
+      <span class="banner-book" aria-hidden="true"><BookOpen size={18} strokeWidth={2} /></span>
       Not convinced? Read 8 consumer VPN myths, sourced and examined.
-      <span class="banner-arrow" aria-hidden="true">→</span>
+      <span class="banner-arrow" aria-hidden="true"><ArrowRight size={16} strokeWidth={2.5} /></span>
     </a>
 
   </div>
@@ -172,13 +174,13 @@
     color: var(--text-1);
   }
 
-  .banner-book { font-size: 1rem; flex-shrink: 0; }
+  .banner-book { display: inline-flex; flex-shrink: 0; }
 
   .myths-banner span.banner-book { margin-right: 2px; }
 
   .banner-arrow {
+    display: inline-flex;
     margin-left: auto;
     color: var(--orange);
-    font-size: 1rem;
     flex-shrink: 0;
   }</style>

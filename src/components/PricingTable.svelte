@@ -2,6 +2,8 @@
 
 <script lang="ts">
   import { PRICING_FEATURE_ROWS } from '../lib/pricing';
+  import Check from '@lucide/svelte/icons/check';
+  import X from '@lucide/svelte/icons/x';
 
   const features = PRICING_FEATURE_ROWS;
 </script>
@@ -51,9 +53,9 @@
 
 {#snippet cell(value)}
   {#if value === true}
-    <span class="check" aria-label="Included">✓</span>
+    <span class="check" aria-label="Included"><Check size={16} strokeWidth={3} /></span>
   {:else if value === false}
-    <span class="cross" aria-label="Not included">✕</span>
+    <span class="cross" aria-label="Not included"><X size={14} strokeWidth={2.5} /></span>
   {:else}
     {value}
   {/if}
@@ -177,13 +179,12 @@
 
   .check {
     color: var(--orange);
-    font-weight: 700;
-    font-size: 0.9rem;
+    display: inline-flex;
   }
 
   .cross {
     color: var(--text-3);
-    font-size: 0.8rem;
+    display: inline-flex;
   }
 
   .table-note {

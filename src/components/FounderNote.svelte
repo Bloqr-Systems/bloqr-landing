@@ -1,6 +1,9 @@
 <!-- FounderNote: personal credibility section with "built in public" card -->
 <script>
   import { LINKS } from '../config';
+  import Terminal from '@lucide/svelte/icons/terminal';
+  import Package from '@lucide/svelte/icons/package';
+  import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
 </script>
 
 <section class="founder-note" id="founder" aria-labelledby="founder-heading">
@@ -45,12 +48,12 @@
                 rel="noopener noreferrer"
                 aria-label="Compiler on GitHub (opens in new tab)"
               >
-                <span class="link-icon" aria-hidden="true">⌥</span>
+                <span class="link-icon" aria-hidden="true"><Terminal size={18} strokeWidth={2} /></span>
                 <span class="link-body">
                   <span class="link-title">Compiler</span>
                   <span class="link-sub">GitHub</span>
                 </span>
-                <span class="link-arrow" aria-hidden="true">↗</span>
+                <span class="link-arrow" aria-hidden="true"><ArrowUpRight size={15} strokeWidth={2.5} /></span>
               </a>
             </li>
             <li>
@@ -61,12 +64,12 @@
                 rel="noopener noreferrer"
                 aria-label="@jk-com/adblock-compiler on JSR (opens in new tab)"
               >
-                <span class="link-icon" aria-hidden="true">📦</span>
+                <span class="link-icon" aria-hidden="true"><Package size={18} strokeWidth={2} /></span>
                 <span class="link-body">
                   <span class="link-title">@jk-com/adblock-compiler</span>
                   <span class="link-sub">JSR</span>
                 </span>
-                <span class="link-arrow" aria-hidden="true">↗</span>
+                <span class="link-arrow" aria-hidden="true"><ArrowUpRight size={15} strokeWidth={2.5} /></span>
               </a>
             </li>
           </ul>
@@ -178,7 +181,8 @@
   }
 
   .link-icon {
-    font-size: 1.1rem;
+    display: inline-flex;
+    color: var(--text-2);
     flex-shrink: 0;
   }
 
@@ -208,7 +212,7 @@
   }
 
   .link-arrow {
-    font-size: 13px;
+    display: inline-flex;
     color: var(--orange);
     flex-shrink: 0;
   }

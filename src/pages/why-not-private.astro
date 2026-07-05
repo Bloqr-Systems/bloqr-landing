@@ -7,6 +7,12 @@ import Footer from '../components/Footer.svelte';
 import BaseHead from '../components/BaseHead.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
+import Mail from '@lucide/svelte/icons/mail';
+import Lock from '@lucide/svelte/icons/lock';
+import ArrowRight from '@lucide/svelte/icons/arrow-right';
+import Ban from '@lucide/svelte/icons/ban';
+import Check from '@lucide/svelte/icons/check';
+import Mailbox from '@lucide/svelte/icons/mailbox';
 
 const meta = {
   title:       PAGE_META['why-not-private'].title,
@@ -96,7 +102,7 @@ const whyNotPrivateSchema = {
   <SchemaOrg schema={whyNotPrivateSchema} />
 </head>
 <body>
-  <ClosedBetaBanner client:load />
+  <ClosedBetaBanner />
   <Nav client:idle transition:persist="nav" />
 
   <main id="main-content" class="wnp-page">
@@ -124,7 +130,7 @@ const whyNotPrivateSchema = {
         <div class="primer-grid" role="list">
 
           <div class="primer-card" role="listitem">
-            <div class="primer-icon" aria-hidden="true">✉️</div>
+            <div class="primer-icon" aria-hidden="true"><Mail size={20} strokeWidth={2} /></div>
             <h3>HTTPS</h3>
             <p class="primer-headline">Seals the envelope.</p>
             <p>
@@ -137,7 +143,7 @@ const whyNotPrivateSchema = {
           <div class="primer-divider" aria-hidden="true">+</div>
 
           <div class="primer-card primer-card--problem" role="listitem">
-            <div class="primer-icon" aria-hidden="true">📬</div>
+            <div class="primer-icon" aria-hidden="true"><Mailbox size={20} strokeWidth={2} /></div>
             <h3>Website lookups</h3>
             <p class="primer-headline">Shouts the address out loud.</p>
             <p>
@@ -148,10 +154,10 @@ const whyNotPrivateSchema = {
             </p>
           </div>
 
-          <div class="primer-divider" aria-hidden="true">→</div>
+          <div class="primer-divider" aria-hidden="true"><ArrowRight size={20} strokeWidth={2.5} /></div>
 
           <div class="primer-card primer-card--solution" role="listitem">
-            <div class="primer-icon" aria-hidden="true">🔒</div>
+            <div class="primer-icon" aria-hidden="true"><Lock size={20} strokeWidth={2} /></div>
             <h3>Private website lookups</h3>
             <p class="primer-headline">Seals both.</p>
             <p>
@@ -188,7 +194,7 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-arrow" aria-hidden="true">
               <div class="arrow-line"></div>
-              <div class="arrow-tag bad-arrow-tag">📬 Plain text</div>
+              <div class="arrow-tag bad-arrow-tag"><Mailbox size={13} strokeWidth={2} style="display:inline;vertical-align:-2px" /> Plain text</div>
             </div>
             <div class="flow-node bad-node" role="listitem">
               <span class="node-icon" aria-hidden="true">📡</span>
@@ -197,7 +203,7 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-arrow" aria-hidden="true">
               <div class="arrow-line"></div>
-              <div class="arrow-tag bad-arrow-tag">📬 Still plain text</div>
+              <div class="arrow-tag bad-arrow-tag"><Mailbox size={13} strokeWidth={2} style="display:inline;vertical-align:-2px" /> Still plain text</div>
             </div>
             <div class="flow-node bad-node" role="listitem">
               <span class="node-icon" aria-hidden="true">🏢</span>
@@ -206,7 +212,7 @@ const whyNotPrivateSchema = {
             </div>
             <div class="flow-arrow" aria-hidden="true">
               <div class="arrow-line"></div>
-              <div class="arrow-tag bad-arrow-tag">📬 Still plain text</div>
+              <div class="arrow-tag bad-arrow-tag"><Mailbox size={13} strokeWidth={2} style="display:inline;vertical-align:-2px" /> Still plain text</div>
             </div>
             <div class="flow-node bad-node" role="listitem">
               <span class="node-icon" aria-hidden="true">📖</span>
@@ -338,7 +344,7 @@ const whyNotPrivateSchema = {
           </div>
 
           <div class="benefit-card">
-            <div class="benefit-icon" aria-hidden="true">🚫</div>
+            <div class="benefit-icon" aria-hidden="true"><Ban size={20} strokeWidth={2} /></div>
             <h3>Blocks before they reach you</h3>
             <p>
               Domains that serve ads, trackers, and malware are blocked at the lookup
@@ -348,7 +354,7 @@ const whyNotPrivateSchema = {
           </div>
 
           <div class="benefit-card">
-            <div class="benefit-icon" aria-hidden="true">✓</div>
+            <div class="benefit-icon" aria-hidden="true"><Check size={20} strokeWidth={2.5} /></div>
             <h3>Works on every device</h3>
             <p>
               One account, one set of rules, every device on your network. Change a
@@ -521,9 +527,9 @@ const whyNotPrivateSchema = {
   }
 
   .primer-icon {
-    font-size: 1.6rem;
+    color: var(--orange);
     margin-bottom: 12px;
-    display: block;
+    display: inline-flex;
   }
 
   .primer-card h3 {
@@ -772,8 +778,8 @@ const whyNotPrivateSchema = {
   .benefit-card:hover { border-color: rgba(255,85,0,0.3); }
 
   .benefit-icon {
-    font-size: 1.5rem;
-    line-height: 1;
+    display: inline-flex;
+    color: var(--orange);
   }
 
   .benefit-card h3 {

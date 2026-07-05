@@ -9,6 +9,9 @@ import SchemaOrg from '../components/SchemaOrg.astro';
 import Pricing from '../components/Pricing.svelte';
 import PricingTable from '../components/PricingTable.svelte';
 import { SITE_URL, LINKS, PAGE_META } from '../config';
+import Cloud from '@lucide/svelte/icons/cloud';
+import Package from '@lucide/svelte/icons/package';
+import Settings from '@lucide/svelte/icons/settings';
 
 const meta = {
   title:       PAGE_META.pricing.title,
@@ -146,21 +149,21 @@ const pricingSchema = {
           <!-- Access model cards -->
           <div class="access-cards">
             <div class="access-card">
-              <div class="access-icon" aria-hidden="true">☁️</div>
+              <div class="access-icon" aria-hidden="true"><Cloud size={20} strokeWidth={2} /></div>
               <div class="access-body">
                 <strong>Web API / SaaS</strong>
                 <p>Fully managed, hosted by Bloqr. No local install required. All plans.</p>
               </div>
             </div>
             <div class="access-card">
-              <div class="access-icon" aria-hidden="true">📦</div>
+              <div class="access-icon" aria-hidden="true"><Package size={20} strokeWidth={2} /></div>
               <div class="access-body">
                 <strong>Local SDK embedding</strong>
                 <p>Embed the compiler locally via licensed SDKs (JSR / npm). Web API calls from the SDK are usage-billed and entitlement-checked. Dev Pro and above, and Vendor plans.</p>
               </div>
             </div>
             <div class="access-card">
-              <div class="access-icon" aria-hidden="true">⚙️</div>
+              <div class="access-icon" aria-hidden="true"><Settings size={20} strokeWidth={2} /></div>
               <div class="access-body">
                 <strong>CLI build tools</strong>
                 <p>Use the compiler as part of local CI/CD pipelines and build processes. Available as a standalone add-on or included in Dev and developer plans.</p>
@@ -540,8 +543,8 @@ const pricingSchema = {
   }
 
   .access-icon {
-    font-size: 1.5rem;
-    line-height: 1;
+    display: inline-flex;
+    color: var(--orange);
     flex-shrink: 0;
     margin-top: 2px;
   }
