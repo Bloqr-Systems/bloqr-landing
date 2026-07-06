@@ -97,6 +97,7 @@ export const LINKS = {
   github:  'https://github.com/Bloqr-Systems/bloqr-compiler',
   jsr:     'https://jsr.io/@bloqr-systems/bloqr-bloqr-compiler',
   author:  'https://jaysonknight.com',
+  bloqrSystems: 'https://bloqr.systems', // TODO(jayson): update once the Bloqr Systems site URL is finalized
   // ── Internal routes ───────────────────────────────────────────────────────
   vpnMyths:      '/vpn-myths',
   whyNotPrivate: '/why-not-private',
