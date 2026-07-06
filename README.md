@@ -1,4 +1,4 @@
-# Bloqr — Landing Page Source
+# Bloqr™ — Landing Page Source
 
 > **Internet Hygiene. Automated.**
 

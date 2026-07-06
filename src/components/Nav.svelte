@@ -175,7 +175,7 @@
         <span class="bar bar-3"></span>
       </div>
       <div class="logo-text">
-        <span class="logo-name">BLOQR<span class="logo-ai">AI</span></span>
+        <span class="logo-name">BLOQR<span class="logo-ai">AI</span><span class="logo-tm" aria-hidden="true">&trade;</span></span>
       </div>
     </a>
 
@@ -366,6 +366,15 @@
     margin-left: 4px;
     vertical-align: super;
     opacity: 0.9;
+  }
+
+  .logo-tm {
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: normal;
+    margin-left: 1px;
+    vertical-align: super;
+    opacity: 0.7;
   }
 
   /* ── Desktop nav links ── */

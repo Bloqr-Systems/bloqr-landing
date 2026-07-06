@@ -147,6 +147,9 @@ export async function generateOgImage(
   <text x="116" y="106"
     font-family="system-ui, -apple-system, 'Helvetica Neue', sans-serif"
     font-size="13" font-weight="700" fill="${WHITE}" letter-spacing="2">BLOQR</text>
+  <text x="180" y="101"
+    font-family="system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+    font-size="7" font-weight="600" fill="${WHITE}" opacity="0.7">&#8482;</text>
   <text x="116" y="120"
     font-family="system-ui, -apple-system, 'Helvetica Neue', sans-serif"
     font-size="10" font-weight="400" fill="${MUTED}" letter-spacing="3">INTERNET </text>
