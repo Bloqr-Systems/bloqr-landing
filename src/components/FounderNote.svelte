@@ -62,11 +62,11 @@
                 class="public-link"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="@jk-com/adblock-compiler on JSR (opens in new tab)"
+                aria-label="@bloqr/compiler on JSR (opens in new tab)"
               >
                 <span class="link-icon" aria-hidden="true"><Package size={18} strokeWidth={2} /></span>
                 <span class="link-body">
-                  <span class="link-title">@jk-com/adblock-compiler</span>
+                  <span class="link-title">@bloqr/compiler</span>
                   <span class="link-sub">JSR</span>
                 </span>
                 <span class="link-arrow" aria-hidden="true"><ArrowUpRight size={15} strokeWidth={2.5} /></span>
