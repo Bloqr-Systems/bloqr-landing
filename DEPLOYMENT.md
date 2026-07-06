@@ -115,7 +115,7 @@ When adding a new Bloqr app:
 From another Worker, forward the incoming `Cookie` header to `GET /api/auth/session` on the landing page:
 
 ```typescript
-const sessionRes = await fetch('https://adblock-landing.jk-com.workers.dev/api/auth/session', {
+const sessionRes = await fetch('https://bloqr-landing.bloqr-systems.workers.dev/api/auth/session', {
   headers: { cookie: request.headers.get('cookie') ?? '' },
 });
 const { session } = await sessionRes.json();

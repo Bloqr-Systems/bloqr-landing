@@ -10,11 +10,11 @@
   let copyTimeout;
 
   const code = `// SDK access requires Dev Pro or above — see /pricing
-// Once subscribed: deno add @jk-com/adblock-compiler
+// Once subscribed: deno add @bloqr/compiler
 import {
   FilterCompiler,
   TransformationType,
-} from "@jk-com/adblock-compiler";
+} from "@bloqr/compiler";
 
 const compiler = new FilterCompiler();
 

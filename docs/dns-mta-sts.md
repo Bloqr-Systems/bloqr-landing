@@ -8,7 +8,7 @@ These records must be added in the Cloudflare DNS dashboard for the `bloqr.dev` 
 |-------|--------------|---------------------------------------------------------------|------|----------|
 | TXT   | `_mta-sts`   | `v=STSv1; id=20190425085700`                                  | Auto | DNS only |
 | TXT   | `_smtp._tls` | `v=TLSRPTv1; rua=mailto:smtp-tls-reports@bloqr.dev;`          | Auto | DNS only |
-| CNAME | `mta-sts`    | `adblock-landing.jk-com.workers.dev`                          | Auto | Proxied  |
+| CNAME | `mta-sts`    | `bloqr-landing.bloqr-systems.workers.dev`                          | Auto | Proxied  |
 
 ## Notes
 

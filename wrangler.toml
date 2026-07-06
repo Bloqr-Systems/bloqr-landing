@@ -123,7 +123,7 @@ custom_domain = true
 # manually-created CNAME record (CF error 100117).
 #
 # Instead, routing works via the existing CNAME:
-#   f CNAME bloqr-landing.jk-com.workers.dev  (Proxied)
+#   f CNAME bloqr-landing.bloqr-systems.workers.dev  (Proxied)
 #
 # Cloudflare routes f.bloqr.dev requests to this Worker via the CNAME.
 # src/worker.ts detects url.hostname === 'f.bloqr.dev' and calls handlePostHogProxy().
