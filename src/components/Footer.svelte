@@ -11,7 +11,7 @@
 <footer>
   <div class="container inner">
     <span class="copy">
-      © 2026 Bloqr <span class="footer-ai">AI</span> ·
+      © 2026 Bloqr <span class="footer-ai">AI</span><span class="footer-tm" aria-hidden="true">&trade;</span> ·
       Made by <a href={LINKS.author} rel="noopener">Jayson Knight</a>
     </span>
     <p class="hygiene-def">
@@ -83,6 +83,13 @@
   .footer-ai {
     color: var(--cyan);
     margin-left: 4px;
+  }
+
+  .footer-tm {
+    font-size: 9px;
+    vertical-align: super;
+    margin-left: 1px;
+    opacity: 0.8;
   }
 
   .copy a:hover { color: var(--text-1); }
