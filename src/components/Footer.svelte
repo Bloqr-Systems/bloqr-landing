@@ -11,8 +11,9 @@
 <footer>
   <div class="container inner">
     <span class="copy">
-      © 2026 Bloqr <span class="footer-ai">AI</span><span class="footer-tm" aria-hidden="true">&trade;</span> ·
-      Made by <a href={LINKS.author} rel="noopener">Jayson Knight</a>
+      © 2026 Bloqr <span class="footer-ai">AI</span><span class="footer-tm" aria-hidden="true">&trade;</span>, a trademark of
+      <a href={LINKS.bloqrSystems} rel="noopener" target="_blank">Bloqr Systems</a> ·
+      Made by <a href={LINKS.author} rel="noopener" target="_blank">Jayson Knight</a>
     </span>
     <p class="hygiene-def">
       <strong
