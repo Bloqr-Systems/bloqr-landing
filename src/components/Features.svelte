@@ -1,39 +1,46 @@
 <!-- Features grid -->
 
 <script>
+  import Globe from '@lucide/svelte/icons/globe';
+  import ShieldCheck from '@lucide/svelte/icons/shield-check';
+  import Layers from '@lucide/svelte/icons/layers';
+  import Workflow from '@lucide/svelte/icons/workflow';
+  import Code from '@lucide/svelte/icons/code';
+  import Lock from '@lucide/svelte/icons/lock';
+
   const features = [
     {
-      icon: '',
+      icon: Globe,
       accentColor: 'cyan',
       title: 'Edge-first architecture',
       desc: 'Runs natively at the edge — 300+ global PoPs, zero cold starts, zero server overhead. Your VPN has data centers. We have everywhere.',
     },
     {
-      icon: '',
+      icon: ShieldCheck,
       accentColor: 'cyan',
       title: 'AI-powered threat intelligence',
       desc: 'AI continuously monitors emerging malware domains, phishing campaigns, and trackers — surfacing and blocking all threats in real time, before the bad guys finish their morning coffee.',
     },
     {
-      icon: '',
+      icon: Layers,
       accentColor: null,
       title: '11 composable transformations',
       desc: 'Deduplicate, validate, compress, strip comments, convert to ASCII, invert allow rules — stack them however you like, per source.',
     },
     {
-      icon: '',
+      icon: Workflow,
       accentColor: null,
       title: 'Three compilation modes',
       desc: 'Real-time streaming via SSE, batch processing up to 10 lists, or async queue-based compilation for the truly ambitious.',
     },
     {
-      icon: '',
+      icon: Code,
       accentColor: 'orange',
       title: 'OpenAPI + TypeScript',
       desc: 'Fully typed interfaces, a proper OpenAPI spec, and a JSR package. Slot it in, don\'t fight it.',
     },
     {
-      icon: '',
+      icon: Lock,
       accentColor: 'orange',
       title: 'Production hardened',
       desc: 'Rate limiting, circuit breakers, structured JSON logging, OpenTelemetry, and RBAC. Boring? Yes. Essential? Absolutely.',
@@ -57,7 +64,7 @@
       {#each features as f}
         <div class="cell">
           <div class="cell-icon" class:cell-icon--cyan={f.accentColor === 'cyan'} class:cell-icon--orange={f.accentColor === 'orange'}>
-            {f.icon}
+            <f.icon size={18} strokeWidth={2} />
           </div>
           <h4>{f.title}</h4>
           <p>{f.desc}</p>
