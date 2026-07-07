@@ -1,0 +1,64 @@
+BLOQR AI — INTERNET HYGIENE. AUTOMATED. 🧵
+
+Every second, your device sends requests to ad networks, trackers, and malware domains. Most never reach the browser. But they happen. And they leak.
+
+We built Bloqr to stop that.
+
+---
+
+THREAD: WHAT IS DNS FILTERING?
+
+Your browser encrypts what you read on a page. Great.
+
+But your device reaches out to trackers, ad networks, and bad actors *before* your browser even loads the page.
+
+DNS filtering blocks those requests at the source — before they leave your device.
+
+No traffic routed through servers. No VPN. Just local blocking.
+
+---
+
+HOW IT WORKS (IN 30 SECONDS)
+
+Your device: "Hey, can I reach tracker.com?"
+DNS: "Nope, that's blocked."
+Request never happens. Your privacy stays intact.
+
+The tricky part? Maintaining the blocklist. It changes daily. New threats emerge constantly.
+
+That's where we come in.
+
+---
+
+BLOQR DOES THE WORK FOR YOU
+
+→ AI builds and maintains your block list in real-time
+→ Works with AdGuard, NextDNS, Pi-hole — or just use ours
+→ One account. Every device. Automatic.
+→ Nothing logged. Nothing sold. Nothing hidden.
+
+Set it. Bloqr it. Forget it.
+
+---
+
+ALREADY RUNNING PI-HOLE OR NEXTDNS?
+
+You can keep them. Bloqr integrates — we manage the lists, you control the blocking.
+
+No setup. No maintenance. No learning curve.
+
+---
+
+WANT IN?
+
+We're in early access. Come help us build the internet privacy layer that should have existed years ago.
+
+→ https://bloqr.dev
+
+#InternetPrivacy #BrowsingHygiene #DNS #Cybersecurity #PrivacyTools #AdBlock
+
+---
+
+SINGLE TWEET VERSION (FOR QUICK PIN)
+
+Every second, your device phones home to trackers, ad networks, and malware domains. DNS filtering blocks them at the source—before they even leave your device. We built Bloqr to automate that. AI-powered. Real-time. Set it. Bloqr it. Forget it. https://bloqr.dev #InternetPrivacy #BrowsingHygiene
