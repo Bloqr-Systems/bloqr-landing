@@ -4,6 +4,8 @@
   import Send from '@lucide/svelte/icons/send';
   import Mail from '@lucide/svelte/icons/mail';
   import Rss from '@lucide/svelte/icons/rss';
+  import Share from '@lucide/svelte/icons/share';
+  import Play from '@lucide/svelte/icons/play';
 
   const SOCIAL_LINKS = [
     {
@@ -20,6 +22,16 @@
       name: 'Twitter',
       url: 'https://twitter.com/bloqr_ai',
       icon: Send,
+    },
+    {
+      name: 'Facebook',
+      url: 'https://facebook.com/bloqr.ai',
+      icon: Share,
+    },
+    {
+      name: 'YouTube',
+      url: 'https://youtube.com/@bloqr-ai',
+      icon: Play,
     },
     {
       name: 'Email',
