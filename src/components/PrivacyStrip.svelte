@@ -6,9 +6,9 @@
   <div class="container">
     <h2 class="sr-only" id="privacy-strip-heading">Privacy commitments summary</h2>
     <ul class="privacy-points" aria-label="Top privacy commitments">
-      <li>🚫 We never see your DNS queries</li>
-      <li>🗄️ No logs, no retention, no resale</li>
-      <li>📦 Export everything, leave any time</li>
+      <li>We never see your DNS queries</li>
+      <li>No logs, no retention, no resale</li>
+      <li>Export everything, leave any time</li>
     </ul>
     <a href={LINKS.privacy} class="privacy-link">Read our full privacy commitments →</a>
   </div>

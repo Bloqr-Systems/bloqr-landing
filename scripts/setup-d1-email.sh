@@ -26,7 +26,7 @@ MIGRATION_FILE="scripts/migrations/001_email_db.sql"
 DB_NAME="bloqr-landing-email-db"
 
 if [ ! -f "$MIGRATION_FILE" ]; then
-  echo "❌ Migration file not found: $MIGRATION_FILE"
+  echo "Migration file not found: $MIGRATION_FILE"
   echo "   Run this script from the repo root."
   exit 1
 fi
@@ -38,7 +38,7 @@ echo ""
 wrangler d1 create "${DB_NAME}"
 
 echo ""
-echo "  ⚠  ACTION REQUIRED"
+echo "  ACTION REQUIRED"
 echo "  Copy the 'database_id' value printed above into wrangler.toml:"
 echo ""
 echo "    [[d1_databases]]"

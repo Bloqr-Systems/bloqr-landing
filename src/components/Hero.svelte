@@ -19,7 +19,7 @@
 
   <div class="container">
     <div class="badge beta-status">
-      🔒 Closed beta — Q3 '26 launch
+      Closed beta — Q3 '26 launch
     </div>
     <div class="badge">
       <span class="badge-dot" aria-hidden="true"></span>
@@ -37,7 +37,7 @@
     <!-- ── BYO / Managed vendor tile ───────────────────────────────────── -->
     <div class="byo-tile" aria-label="Vendor flexibility">
       <div class="byo-tile__summary">
-        <span class="byo-icon" aria-hidden="true">🔌</span>
+        <span class="byo-icon" aria-hidden="true"></span>
         <div class="byo-tile__text">
           <strong>Bring your own vendor.</strong>
           Already using a privacy or filtering service? Keep it.
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="byo-detail__item">
-            <span class="byo-detail__icon" aria-hidden="true">🔒</span>
+            <span class="byo-detail__icon" aria-hidden="true"></span>
             <div>
               <strong>Strong security, built in from day one.</strong>
               Bloqr's managed hosting is built on Cloudflare One — enterprise
@@ -84,7 +84,7 @@
             </div>
           </div>
           <div class="byo-detail__item">
-            <span class="byo-detail__icon" aria-hidden="true">🌐</span>
+            <span class="byo-detail__icon" aria-hidden="true"></span>
             <div>
               <strong>Every device, covered by the same rules.</strong>
               Laptops, phones, tablets, servers — all enrolled, all covered by
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="byo-detail__item">
-            <span class="byo-detail__icon" aria-hidden="true">🛠️</span>
+            <span class="byo-detail__icon" aria-hidden="true"></span>
             <div>
               <strong>Rule updates run safely in isolation.</strong>
               List compilation, rule transformation, and sync jobs run as

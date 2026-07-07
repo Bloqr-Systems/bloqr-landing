@@ -6,7 +6,7 @@ suggested_image: "https://bloqr.dev/og-image.png"
 platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 ---
 
-# ✋ No Code Required. Ever.
+# No Code Required. Ever.
 
 The internet hygiene that protects privacy experts looks intimidating:
 
@@ -36,10 +36,10 @@ That's it. One switch. You're done.
 The code exists. The servers exist. The AI is running.
 *You'll never see any of it.*
 
-🌐 <a href="https://bloqr.dev">bloqr.dev</a>
-📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
-📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
-🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
+<a href="https://bloqr.dev">bloqr.dev</a>
+<a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+<a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
+<a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---
 

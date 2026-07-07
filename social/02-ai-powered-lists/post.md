@@ -6,7 +6,7 @@ suggested_image: "https://bloqr.dev/og-image.png"
 platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 ---
 
-# 🤖 Your Filter List, Maintained by AI
+# Your Filter List, Maintained by AI
 
 Public adblock lists are built by volunteers.
 They're incredible. They're also updated manually, on someone else's schedule.
@@ -29,10 +29,10 @@ And if you want to go further:
 Your lists. Your rules. Maintained automatically.
 *That's what AI-first internet hygiene looks like.*
 
-🌐 <a href="https://bloqr.dev">bloqr.dev</a>
-📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
-📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
-🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
+<a href="https://bloqr.dev">bloqr.dev</a>
+<a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+<a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
+<a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---
 

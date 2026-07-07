@@ -16,7 +16,7 @@
 
       <!-- 1. Serverless = no persistent attack surface -->
       <article class="claim-card" aria-label="Serverless security model">
-        <div class="claim-icon" aria-hidden="true">🧱</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <h3>No servers to compromise</h3>
         <p>
           Bloqr runs on <strong>Cloudflare Workers</strong> — serverless functions that spin up
@@ -42,7 +42,7 @@
 
       <!-- 2. The Six Never-Dones -->
       <article class="claim-card" aria-label="Cloudflare's six never-done commitments">
-        <div class="claim-icon" aria-hidden="true">🔒</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <h3>Six things Cloudflare has <em>never</em> done</h3>
         <p>
           Cloudflare publishes a semi-annual transparency report. In it, they make six explicit
@@ -70,7 +70,7 @@
 
       <!-- 3. Single jurisdiction / governance -->
       <article class="claim-card" aria-label="Single jurisdiction governance">
-        <div class="claim-icon" aria-hidden="true">🌐</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <h3>One company. One set of rules.</h3>
         <p>
           Most VPN providers operate servers in 60+ countries, each subject to different
@@ -96,7 +96,7 @@
 
       <!-- 4. DNS no-logging -->
       <article class="claim-card" aria-label="DNS resolver no-logging">
-        <div class="claim-icon" aria-hidden="true">🚫</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <h3>What's never logged can't be produced</h3>
         <p>
           Cloudflare's 1.1.1.1 DNS resolver — the same infrastructure Bloqr's DNS hygiene
@@ -122,7 +122,7 @@
 
       <!-- 5. API security (Page Shield / API Shield teaser) -->
       <article class="claim-card claim-card--teaser" aria-label="API security coming soon">
-        <div class="claim-icon" aria-hidden="true">🛡️</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <div class="teaser-badge">Coming with bloqr.ai</div>
         <h3>API-level security — baked in, not bolted on</h3>
         <p>
@@ -149,7 +149,7 @@
 
       <!-- 6. Zero Trust -->
       <article class="claim-card" aria-label="Zero Trust architecture">
-        <div class="claim-icon" aria-hidden="true">🔑</div>
+        <div class="claim-icon" aria-hidden="true"></div>
         <h3>Zero Trust isn't a buzzword here</h3>
         <p>
           Cloudflare built its platform on <strong>Zero Trust</strong> principles: every

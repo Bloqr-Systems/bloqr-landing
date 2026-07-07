@@ -6,7 +6,7 @@ suggested_image: "https://bloqr.dev/og-image.png"
 platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 ---
 
-# 🔐 Your VPN Probably Isn't Solving the Problem You Think It Is
+# Your VPN Probably Isn't Solving the Problem You Think It Is
 
 Most people buy a VPN for one of these reasons:
 - Block ads and trackers
@@ -33,10 +33,10 @@ We wrote a full breakdown: <a href="https://bloqr.dev/vpn-myths">bloqr.dev/vpn-m
 
 *Bloqr AI isn't a VPN. It's what most people actually needed instead.*
 
-🌐 <a href="https://bloqr.dev">bloqr.dev</a>
-📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
-📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
-🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
+<a href="https://bloqr.dev">bloqr.dev</a>
+<a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+<a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
+<a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---
 

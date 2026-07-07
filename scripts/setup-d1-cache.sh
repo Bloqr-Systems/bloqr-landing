@@ -14,7 +14,7 @@ echo "═══ Step 1: Create D1 database ════════════�
 wrangler d1 create bloqr-landing-config-cache-db
 
 echo ""
-echo "  ⚠  ACTION REQUIRED"
+echo "  ACTION REQUIRED"
 echo "  Copy the 'database_id' value printed above into wrangler.toml:"
 echo ""
 echo "    [[d1_databases]]"

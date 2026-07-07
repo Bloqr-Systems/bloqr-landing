@@ -139,13 +139,13 @@ Runtime CSS custom properties are aliased in `src/styles/global.css`. When styli
 
 | Variable               | Local file  | CF secret | Notes                                                    |
 | ---------------------- | ----------- | --------- | -------------------------------------------------------- |
-| `DATABASE_URL`         | `.dev.vars` | ✅        | Neon connection string, branch-specific                  |
-| `APOLLO_API_KEY`       | `.dev.vars` | ✅        | Apollo.io contact enrichment                             |
-| `ADMIN_SECRET`         | `.dev.vars` | ✅        | Required for admin-protected Worker flows                |
-| `BETTER_AUTH_SECRET`   | `.dev.vars` | ✅        | Better Auth signing/encryption secret                    |
+| `DATABASE_URL`         | `.dev.vars` |        | Neon connection string, branch-specific                  |
+| `APOLLO_API_KEY`       | `.dev.vars` |        | Apollo.io contact enrichment                             |
+| `ADMIN_SECRET`         | `.dev.vars` |        | Required for admin-protected Worker flows                |
+| `BETTER_AUTH_SECRET`   | `.dev.vars` |        | Better Auth signing/encryption secret                    |
 | `BETTER_AUTH_URL`      | `.dev.vars` | CF env var | Base URL for Better Auth callbacks                      |
-| `GITHUB_CLIENT_ID`     | `.dev.vars` | ✅        | GitHub OAuth application client ID                       |
-| `GITHUB_CLIENT_SECRET` | `.dev.vars` | ✅        | GitHub OAuth application client secret                   |
+| `GITHUB_CLIENT_ID`     | `.dev.vars` |        | GitHub OAuth application client ID                       |
+| `GITHUB_CLIENT_SECRET` | `.dev.vars` |        | GitHub OAuth application client secret                   |
 | `SITE_URL`             | `.env`      | CF env var | Overrides default in `src/config.ts`                    |
 
 **Never commit `.dev.vars` or any secret.**
@@ -274,7 +274,7 @@ npm run deploy   # astro build && wrangler deploy
 
 ---
 
-## ⚠️ Critical: Cloudflare Dashboard Is Dangerous
+## Critical: Cloudflare Dashboard Is Dangerous
 
 **NEVER add, edit, or delete variables or secrets in the Cloudflare Workers dashboard for adblock-landing.**
 

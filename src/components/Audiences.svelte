@@ -21,10 +21,10 @@
   });
 
   const tabs = [
-    { id: 'consumers',  label: 'Just starting out', short: 'Consumers',  icon: '🛡️' },
-    { id: 'powerusers', label: 'Power users',        short: 'Power users', icon: '⚡' },
-    { id: 'developers', label: 'Developers & list makers', short: 'Developers', icon: '🛠️' },
-    { id: 'vendors',    label: 'Vendors & partners', short: 'Vendors',    icon: '🤝' },
+    { id: 'consumers',  label: 'Just starting out', short: 'Consumers',  icon: '' },
+    { id: 'powerusers', label: 'Power users',        short: 'Power users', icon: '' },
+    { id: 'developers', label: 'Developers & list makers', short: 'Developers', icon: '' },
+    { id: 'vendors',    label: 'Vendors & partners', short: 'Vendors',    icon: '' },
   ];
 </script>
 
@@ -78,7 +78,7 @@
           </p>
           <ul class="benefit-list">
             <li>
-              <span class="bl-icon">🤖</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>AI builds your list for you.</strong>
                 We keep your blocking list updated automatically based on emerging threats.
@@ -86,7 +86,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🔗</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>We connect to your filtering service.</strong>
                 Pick from our curated list of trusted services — or let us choose.
@@ -94,7 +94,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">📱</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Works on every device, everywhere.</strong>
                 Same protection at home, at work, at the coffee shop.
@@ -102,7 +102,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">📈</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>We'll teach you, on your schedule.</strong>
                 Start simple. Unlock more as you get curious.
@@ -111,7 +111,7 @@
             </li>
           </ul>
           <div class="panel-note">
-            💡 Not sure which service to use? We'll walk you through it. No technical
+            Not sure which service to use? We'll walk you through it. No technical
             knowledge required — we promise.
           </div>
         </div>
@@ -178,7 +178,7 @@
           </p>
           <ul class="benefit-list">
             <li>
-              <span class="bl-icon">🖥️</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Single pane of glass.</strong>
                 One dashboard. Every device, every instance, every rule.
@@ -186,7 +186,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">💬</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Natural language rule building.</strong>
                 "Block everything related to AWS." Bloqr finds the endpoints,
@@ -194,7 +194,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">👨‍👩‍👧</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Manage multiple instances.</strong>
                 Your setup, your family's setup, a friend's setup.
@@ -202,7 +202,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🔎</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Full transparency. Full control.</strong>
                 Every blocked domain is visible and auditable.
@@ -243,7 +243,7 @@
                 </div>
               </div>
               <div class="mock-ai-input">
-                <span class="ai-sparkle">✦</span>
+                <span class="ai-sparkle"></span>
                 <input type="text" readonly value="Block everything related to AWS" class="mock-input" />
               </div>
               <div class="mock-stat-row">
@@ -286,7 +286,7 @@
           </p>
           <ul class="benefit-list">
             <li>
-              <span class="bl-icon">📦</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Library, CLI, or API — you choose.</strong>
                 Embed directly with zero network dependency, or hit the REST API from
@@ -294,7 +294,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🔧</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Fully extensible transformation pipeline.</strong>
                 11 built-in transformations. Write your own.
@@ -302,7 +302,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">📋</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>List makers: included in Vendor plans.</strong>
                 Automate your build. Keep your curation process.
@@ -310,7 +310,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🔄</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>CI/CD native.</strong>
                 Runs in GitHub Actions, any pipeline, any container.
@@ -374,7 +374,7 @@
           </p>
           <ul class="benefit-list">
             <li>
-              <span class="bl-icon">🔌</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>API-first integration.</strong>
                 Your UI stays your UI. We hook into your API on behalf of shared users.
@@ -382,7 +382,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">📢</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>We drive users to your platform.</strong>
                 Everyday consumers who would never have found you get a Bloqr account
@@ -390,7 +390,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🏷️</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>Co-marketing and referral program.</strong>
                 "Powered by Bloqr" or "Secured by Bloqr" — we're working toward
@@ -398,7 +398,7 @@
               </div>
             </li>
             <li>
-              <span class="bl-icon">🛡️</span>
+              <span class="bl-icon"></span>
               <div>
                 <strong>We never undercut your core value.</strong>
                 Your filtering engine is your product. We don't compete with that.
@@ -425,7 +425,7 @@
             <div class="mock-body">
               <div class="vendor-list">
                 <div class="vendor-row connected">
-                  <span class="vr-logo">🛡️</span>
+                  <span class="vr-logo"></span>
                   <div class="vr-info">
                     <span class="vr-name">AdGuard DNS</span>
                     <span class="vr-status connected-status">● Connected · 3 instances</span>
@@ -433,7 +433,7 @@
                   <span class="vr-badge">Primary</span>
                 </div>
                 <div class="vendor-row">
-                  <span class="vr-logo">⚡</span>
+                  <span class="vr-logo"></span>
                   <div class="vr-info">
                     <span class="vr-name">NextDNS</span>
                     <span class="vr-status">Not connected</span>
@@ -441,7 +441,7 @@
                   <span class="vr-connect">Connect →</span>
                 </div>
                 <div class="vendor-row">
-                  <span class="vr-logo">🕳️</span>
+                  <span class="vr-logo"></span>
                   <div class="vr-info">
                     <span class="vr-name">Pi-hole</span>
                     <span class="vr-status">Self-hosted · Docker</span>

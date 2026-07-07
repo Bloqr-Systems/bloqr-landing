@@ -249,7 +249,7 @@ export const prerender = true;
 
   <!-- ── Auth gate ── -->
   <div id="auth-gate">
-    <h2>🔐 Admin — Email</h2>
+    <h2>Admin — Email</h2>
     <label for="token-input">Admin secret</label>
     <input id="token-input" type="password" placeholder="Enter ADMIN_SECRET…" autocomplete="current-password" />
     <button class="btn-primary" id="auth-btn" style="width:100%">Unlock</button>
@@ -278,7 +278,7 @@ export const prerender = true;
           Send strategy: <span id="strategy-badge" class="strategy-badge">—</span>
         </p>
         <p id="not-ready-msg" style="font-size:0.82rem;color:var(--red);display:none;">
-          ⚠ <code>FROM_EMAIL</code> is not configured. Set it in
+          <code>FROM_EMAIL</code> is not configured. Set it in
           <code>wrangler.toml [vars]</code> and redeploy before sending emails.
         </p>
         <p style="font-size:0.78rem;color:var(--text-3);margin-top:8px;">
