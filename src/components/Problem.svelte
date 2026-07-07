@@ -22,7 +22,7 @@
     <div class="grid">
       <div class="card bad">
         <span class="card-label">Consumer VPNs</span>
-        <div class="icon bad-icon">🔒</div>
+        <div class="icon bad-icon"></div>
         <h3>The VPN promise vs. reality</h3>
         <ul>
           <li>$10–20/month for servers you can't audit or verify</li>
@@ -36,7 +36,7 @@
 
       <div class="card good">
         <span class="card-label">Bloqr</span>
-        <div class="icon good-icon">⚡</div>
+        <div class="icon good-icon"></div>
         <h3>What actually works</h3>
         <ul>
           <li>Tiered subscription — priced by scale, not per-seat VPN math</li>

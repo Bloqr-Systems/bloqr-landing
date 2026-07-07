@@ -33,7 +33,7 @@ All posts must include the Facebook profile link exactly as: `https://www.facebo
 
 | Directory | Status | Topic |
 |---|---|---|
-| `00-pinned-intro/` | 📌 **PIN THIS** | What is Bloqr AI — high-level overview |
+| `00-pinned-intro/` | **PIN THIS** | What is Bloqr AI — high-level overview |
 | `01-browsing-hygiene/` | Ready | What is browsing hygiene and why it matters |
 | `02-ai-powered-lists/` | Ready | AI builds and maintains your filter lists |
 | `03-no-code-required/` | Ready | Anyone can use Bloqr — no tech skills needed |

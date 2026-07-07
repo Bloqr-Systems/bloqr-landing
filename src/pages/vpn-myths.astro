@@ -48,7 +48,7 @@ The more durable tracking mechanisms — browser fingerprinting, first-party coo
 More importantly: a VPN doesn't hide you from the VPN provider. You've simply moved your visibility from your internet provider to a third-party company whose entire business model depends on you believing you're invisible.`,
     note: 'True anonymity — hiding your identity from everyone, including the tools you use — requires routing through multiple independent parties with no single point of knowledge. That\'s what Tor does. Bloqr is a privacy tool. Tor is an anonymity tool. They solve different problems.',
     highlight: {
-      icon: '🍪',
+      icon: '',
       title: 'You clicked "Reject All." They\'re still tracking you.',
       body: 'Those cookie consent popups required by EU law give many people a false sense of control. When you reject tracking cookies, some website operators simply switch to fingerprinting instead — and fingerprinting is legal in most jurisdictions, requires no consent banner, leaves no trace in your browser, and is often more accurate than cookies. Clicking "reject" stopped one method. It didn\'t stop tracking.',
       variant: 'warning',
@@ -71,7 +71,7 @@ PureVPN's own marketing claimed "we keep absolutely no logs." Court documents sh
 
 The pattern is consistent: "no-log" is a marketing claim. Without audited, published technical architecture showing what data is physically impossible to collect, it's unverifiable. You are trusting their word against a backdrop of documented cases where their word was wrong.`,
     highlight: {
-      icon: '🔍',
+      icon: '',
       title: 'What Bloqr actually stores — and what we don\'t.',
       body: 'We\'ve designed around data minimization from the start, not as an afterthought. What we collect: account identifiers (hashed where technically feasible), subscription status, and your filter rule configuration. What we don\'t collect: DNS queries, domain visit history, timestamps tied to individual lookups, or behavioral patterns of any kind. The full list is published. Every data element has a documented retention period. You can delete your data instantly, down to the row level, from your account dashboard. "No-log" as a technical architecture is different from "no-log" as a slogan — we intend to be the former, and our legal counsel is reviewing every claim on this page to make sure we mean it.',
       variant: 'bloqr',
@@ -98,7 +98,7 @@ That lookup — "where is this website?" — travels in plain text, like a postc
 A VPN solves this by routing your lookups through the VPN's server instead. But so does encrypted DNS — without routing all your traffic through a stranger's proxy.`,
     showDiagram: true,
     highlight: {
-      icon: '📡',
+      icon: '',
       title: 'Even password-protected WiFi doesn\'t protect your lookups from the router owner.',
       body: 'A WiFi password keeps outsiders off the network. It doesn\'t hide your traffic from the person running the router. The coffee shop owner, the hotel IT team, whoever set up that airport hotspot — they all have the keys to the WiFi encryption layer. They can see every domain name your device looks up, even if they can\'t read the actual page content. This is the threat most VPN ads visualize but almost none of them explain accurately.',
       variant: 'warning',
@@ -125,7 +125,7 @@ VPN providers also maintain physical infrastructure in dozens of countries. Thos
 
 Bloqr runs on Cloudflare's network — the same infrastructure that handles roughly 20% of all internet traffic globally. Cloudflare's data governance, privacy commitments, and legal framework are unified, published, and backed by the same company that provides infrastructure for millions of businesses. We inherit that framework. We don't have 47 sets of laws to navigate. Neither do you.`,
     highlight: {
-      icon: '🌍',
+      icon: '',
       title: 'One jurisdiction. No legal treasure hunt.',
       body: 'Consumer VPN providers often advertise their incorporation in "privacy-friendly" countries as a selling point. In practice, their servers are physically located in dozens of countries, each with its own laws about what can be demanded from infrastructure operators. Your traffic may exit through a server in a country you\'ve never thought about, subject to laws you\'ve never read. Bloqr operates on Cloudflare\'s network under a single, published privacy framework. You\'re not buying a legal mystery. You\'re buying something we can actually explain.',
       variant: 'info',
@@ -149,7 +149,7 @@ Here's what the ads don't mention: if blocking trackers and ads is your actual g
 
 When Bloqr blocks those domains at the network level, your browser doesn't wait for them. The request never leaves your device. Pages load faster as a direct byproduct of better privacy hygiene. Speed is the dividend of filtering, not a tradeoff against it.`,
     highlight: {
-      icon: '⚡',
+      icon: '',
       title: 'Filtering doesn\'t slow your internet. It unclogs it.',
       body: 'Independent testing consistently shows that ad and tracker blocking at the website lookup layer reduces page load times by 20–40% on media-heavy websites. The resources that aren\'t blocked don\'t have to wait for the ones that are. Every tracker that never loads is milliseconds back in your life — multiplied by every page, every day. A VPN adds a toll booth. Good hygiene removes the traffic jam.',
       variant: 'bloqr',
@@ -189,7 +189,7 @@ Monthly plans run $12-20 depending on provider and current promotion. Annual con
 
 Bloqr's model is the inverse of this: your rules, your lists, your vendor. Every blocked domain is visible to you. False positives are whitelistable instantly, and the change propagates to every device you own in seconds. If you already use AdGuard, NextDNS, Pi-hole, or another filtering provider, we integrate with their API — you don't lose your configuration, your lists, or your institutional knowledge. If you don't have a provider, we handle it, and you can switch to your own later without starting over. No long-term contracts. Monthly and annual pricing, with no penalty for leaving.`,
     highlight: {
-      icon: '🔒',
+      icon: '',
       title: 'Vendor lock-in is a privacy risk too.',
       body: 'When your privacy tool controls your rules and you can\'t export them, you\'re dependent on that company\'s continued existence, continued trustworthiness, and continued pricing. Privacy tools shouldn\'t create new dependencies. Bloqr is built around portability: your lists, your vendor, your configuration — and we\'re here to make all of it work better together, not to replace it all with ours.',
       variant: 'warning',
@@ -214,7 +214,7 @@ Our situation is different. Bloqr runs on Cloudflare's infrastructure — a publ
 
 More relevantly: the most effective legal protection isn't a favorable jurisdiction. It's not having the data in the first place. We do not log DNS queries. We do not record your browsing behavior. What is architecturally impossible to collect cannot be produced in response to any legal request, regardless of jurisdiction. We\'re having our attorneys verify the precise framing of that claim — because we want to say it accurately, not just reassuringly.`,
     highlight: {
-      icon: '⚖️',
+      icon: '',
       title: 'What\'s never logged in the first place can\'t be produced.',
       body: 'This is the only airtight answer to the jurisdiction question, and it\'s one most VPN providers can\'t honestly give because they do log — they just claim not to. Our architecture is designed so that the data most likely to be requested (browsing history, DNS query logs) is never recorded. Note: we\'re working with legal counsel to validate the specific technical and legal claims on this page. We\'ll update them if the answer is more nuanced than the principle. That\'s what we mean by transparency.',
       variant: 'bloqr',
@@ -322,19 +322,19 @@ const vpnMythsSchema = {
       <div class="container">
         <div class="primer-grid">
           <div class="primer-card">
-            <div class="primer-icon">🔐</div>
+            <div class="primer-icon"></div>
             <h3>Privacy</h3>
             <p>Controlling who can see your data and what they can do with it. Blocking ads, trackers, and malware domains. Managing what you share and with whom. <strong>This is what Bloqr does.</strong></p>
           </div>
           <div class="primer-divider" aria-hidden="true">≠</div>
           <div class="primer-card">
-            <div class="primer-icon">👤</div>
+            <div class="primer-icon"></div>
             <h3>Anonymity</h3>
             <p>Hiding your identity entirely — from everyone, including the tools you use. Requires routing through multiple independent parties with no single point of knowledge. <strong>This is what Tor does.</strong></p>
           </div>
           <div class="primer-divider" aria-hidden="true">≠</div>
           <div class="primer-card">
-            <div class="primer-icon">🛡️</div>
+            <div class="primer-icon"></div>
             <h3>Consumer VPNs</h3>
             <p>Encrypted proxies that route your traffic through a third-party server, masking your IP. They borrowed the "VPN" acronym from enterprise networking to add legitimacy to what is, technically, a paid middleman service.</p>
           </div>
@@ -364,33 +364,33 @@ const vpnMythsSchema = {
                   <div class="diagram-label">Where your "what's the address for this website?" request is visible:</div>
                   <div class="diagram-flow">
                     <div class="diagram-node you">
-                      <span class="node-icon">💻</span>
+                      <span class="node-icon"></span>
                       <span class="node-name">Your Device</span>
                     </div>
                     <div class="diagram-arrow">
                       <div class="arrow-line"></div>
-                      <div class="arrow-tag visible">📬 Plain text</div>
+                      <div class="arrow-tag visible">Plain text</div>
                     </div>
                     <div class="diagram-node router">
-                      <span class="node-icon">📡</span>
+                      <span class="node-icon"></span>
                       <span class="node-name">Router<br/><small>(café / hotel / home)</small></span>
                       <div class="node-sees">Can read it</div>
                     </div>
                     <div class="diagram-arrow">
                       <div class="arrow-line"></div>
-                      <div class="arrow-tag visible">📬 Still plain text</div>
+                      <div class="arrow-tag visible">Still plain text</div>
                     </div>
                     <div class="diagram-node isp">
-                      <span class="node-icon">🏢</span>
+                      <span class="node-icon"></span>
                       <span class="node-name">Your internet provider</span>
                       <div class="node-sees">Can read &amp; sell it</div>
                     </div>
                     <div class="diagram-arrow">
                       <div class="arrow-line"></div>
-                      <div class="arrow-tag visible">📬 Still plain text</div>
+                      <div class="arrow-tag visible">Still plain text</div>
                     </div>
                     <div class="diagram-node dns">
-                      <span class="node-icon">📖</span>
+                      <span class="node-icon"></span>
                       <span class="node-name">Website lookup service</span>
                       <div class="node-sees">Logs your queries</div>
                     </div>
@@ -411,7 +411,7 @@ const vpnMythsSchema = {
 
               {myth.note && (
                 <div class="myth-note">
-                  <span class="note-icon">💡</span>
+                  <span class="note-icon"></span>
                   {myth.note}
                 </div>
               )}
@@ -507,7 +507,7 @@ const vpnMythsSchema = {
 
         <div class="fp-analogy">
           <div class="fp-analogy-card">
-            <div class="fp-analogy-icon">✍️</div>
+            <div class="fp-analogy-icon"></div>
             <h3>The handwriting analogy</h3>
             <p>Imagine a letter with no signature and no return address. You still might recognize the handwriting — the way someone forms their letters, their spacing, their pressure on the pen. Handwriting is unique without being labeled.</p>
             <p>Your browser has handwriting. Every website you visit receives a detailed technical profile of your browser and device: the exact browser version, your operating system, your screen resolution, your installed fonts, your timezone, your graphics card capabilities, your language settings, the plugins you've installed, and dozens of other attributes. Individually, most are common. Combined, the profile is statistically unique to you — across sessions, across websites, and across IP addresses.</p>
@@ -517,17 +517,17 @@ const vpnMythsSchema = {
 
         <div class="fp-how-grid">
           <div class="fp-how-card">
-            <div class="fp-how-icon">🧩</div>
+            <div class="fp-how-icon"></div>
             <h4>How they collect it</h4>
             <p>JavaScript running on any webpage can query your browser for hundreds of attributes. Canvas fingerprinting renders invisible graphics and reads how your specific hardware renders them — the output varies subtly between GPU models, driver versions, and operating systems. Audio fingerprinting does the same with sound processing. These run silently, in milliseconds, every time you load a page.</p>
           </div>
           <div class="fp-how-card">
-            <div class="fp-how-icon">📌</div>
+            <div class="fp-how-icon"></div>
             <h4>Why it's more durable than cookies</h4>
             <p>Cookies can be deleted, blocked, or rejected. Fingerprints are derived from your hardware and software — things you can't easily change. Clearing your cookies doesn't change your screen resolution or your GPU. A fingerprint can persist across browser restarts, private browsing sessions, and even different browsers on the same machine. It survives the "reject all" button entirely.</p>
           </div>
           <div class="fp-how-card">
-            <div class="fp-how-icon">📋</div>
+            <div class="fp-how-icon"></div>
             <h4>What the EU cookie law actually covers</h4>
             <p>The GDPR and ePrivacy Directive require consent for cookies and similar tracking technologies. Courts are still debating whether fingerprinting requires consent — and many operators have concluded the legal risk is lower than the business cost of not tracking. When you click "reject all" on a cookie banner, you've addressed one specific technology. The fingerprinting script loading alongside the cookie consent manager may have already run.</p>
           </div>
@@ -535,7 +535,7 @@ const vpnMythsSchema = {
 
         <div class="fp-test-box">
           <div class="fp-test-content">
-            <div class="fp-test-icon">🔬</div>
+            <div class="fp-test-icon"></div>
             <div>
               <h3>See your own fingerprint</h3>
               <p>The Electronic Frontier Foundation runs a free tool called Cover Your Tracks that shows you exactly how unique your browser's fingerprint is and which tracking protections you have in place.</p>
@@ -551,7 +551,7 @@ const vpnMythsSchema = {
         </div>
 
         <div class="fp-bloqr-box">
-          <div class="fp-bloqr-icon">🚧</div>
+          <div class="fp-bloqr-icon"></div>
           <div>
             <h3>Anti-fingerprinting is coming in Bloqr v2.</h3>
             <p>

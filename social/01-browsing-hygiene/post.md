@@ -6,7 +6,7 @@ suggested_image: "https://bloqr.dev/og-image.png"
 platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 ---
 
-# 🧹 What Is Browsing Hygiene?
+# What Is Browsing Hygiene?
 
 You wash your hands before eating.
 You don't drink water straight from a river.
@@ -33,10 +33,10 @@ That's exactly the gap Bloqr AI closes.
 AI builds the list. AI keeps it current. You flip one switch.
 *The privacy you didn't know you needed — automatically.*
 
-🔗 <a href="https://bloqr.dev/why-not-private">bloqr.dev/why-not-private</a>
-📸 <a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
-📘 <a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
-🧵 <a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
+<a href="https://bloqr.dev/why-not-private">bloqr.dev/why-not-private</a>
+<a href="https://www.instagram.com/bloqr.ai">instagram.com/bloqr.ai</a>
+<a href="https://www.facebook.com//bloqr">facebook.com//bloqr</a>
+<a href="https://www.threads.com/@bloqr.ai">threads.com/@bloqr.ai</a>
 
 ---
 

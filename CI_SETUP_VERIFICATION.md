@@ -1,7 +1,7 @@
 # CI Setup Verification for Cloudflare Deployment
 
 **Date**: 2026-04-08
-**Status**: ⚠️ **CONFIGURED BUT BLOCKED** (pending critical security remediation: token rotation/history purge)
+**Status**: **CONFIGURED BUT BLOCKED** (pending critical security remediation: token rotation/history purge)
 
 ## Summary
 
@@ -10,33 +10,33 @@ The CI/CD pipeline is correctly configured for Cloudflare Workers deployment. Th
 - Deploys to Cloudflare Workers using Wrangler
 - Uses proper job dependencies and artifact passing
 
-## ✅ Verified Components
+## Verified Components
 
 ### 1. GitHub Actions Workflow (`.github/workflows/ci.yml`)
 
 **Build Job**:
-- ✅ Runs on PRs and pushes to `main`
-- ✅ Node.js 22 (matches project requirements)
-- ✅ Generates PWA icons before build
-- ✅ Runs `npm run build` with placeholder env vars
-- ✅ Uploads `dist/` artifact for deployment
+- Runs on PRs and pushes to `main`
+- Node.js 22 (matches project requirements)
+- Generates PWA icons before build
+- Runs `npm run build` with placeholder env vars
+- Uploads `dist/` artifact for deployment
 
 **Deploy Job**:
-- ✅ Only runs on push to `main` (not on PRs)
-- ✅ Depends on build job (`needs: build`)
-- ✅ Uses concurrency control to prevent parallel deploys
-- ✅ Downloads build artifact
-- ✅ Runs `npx wrangler deploy` with `CLOUDFLARE_API_TOKEN`
+- Only runs on push to `main` (not on PRs)
+- Depends on build job (`needs: build`)
+- Uses concurrency control to prevent parallel deploys
+- Downloads build artifact
+- Runs `npx wrangler deploy` with `CLOUDFLARE_API_TOKEN`
 
 ### 2. Wrangler Configuration (`wrangler.toml`)
 
-- ✅ Worker name: `adblock-landing`
-- ✅ Compatibility date: 2026-01-01
-- ✅ Static assets directory: `./dist`
-- ✅ Worker entry point: `src/worker.ts`
-- ✅ Smart placement enabled
-- ✅ Observability configured (with TODOs for production)
-- ✅ Account ID section added (commented with instructions)
+- Worker name: `adblock-landing`
+- Compatibility date: 2026-01-01
+- Static assets directory: `./dist`
+- Worker entry point: `src/worker.ts`
+- Smart placement enabled
+- Observability configured (with TODOs for production)
+- Account ID section added (commented with instructions)
 
 ### 3. Required GitHub Secrets
 
@@ -44,7 +44,7 @@ The following secret **must be configured** in GitHub:
 
 | Secret | Status | Notes |
 |--------|--------|-------|
-| `CLOUDFLARE_API_TOKEN` | ⚠️ **MUST BE ROTATED** | See SECURITY_INCIDENT.md - exposed token must be replaced |
+| `CLOUDFLARE_API_TOKEN` | **MUST BE ROTATED** | See SECURITY_INCIDENT.md - exposed token must be replaced |
 
 **Optional GitHub Secrets**:
 - `CLOUDFLARE_ACCOUNT_ID` - Not required if `account_id` is set in `wrangler.toml` or if the API token has access to only one account
@@ -60,38 +60,38 @@ The following **runtime secrets** must be configured in the Cloudflare dashboard
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `DATABASE_URL` | ✅ Yes | Neon PostgreSQL connection string (production) |
-| `APOLLO_API_KEY` | ✅ Yes | Apollo.io contact enrichment |
-| `ADMIN_SECRET` | ✅ Yes | Legacy admin auth (until Better Auth migration complete) |
-| `BETTER_AUTH_SECRET` | ✅ Yes | Better Auth JWT signing key |
-| `BETTER_AUTH_URL` | ✅ Yes | Canonical app URL for OAuth callbacks |
-| `GITHUB_CLIENT_ID` | ✅ Yes | GitHub OAuth app client ID |
-| `GITHUB_CLIENT_SECRET` | ✅ Yes | GitHub OAuth app client secret |
+| `DATABASE_URL` | Yes | Neon PostgreSQL connection string (production) |
+| `APOLLO_API_KEY` | Yes | Apollo.io contact enrichment |
+| `ADMIN_SECRET` | Yes | Legacy admin auth (until Better Auth migration complete) |
+| `BETTER_AUTH_SECRET` | Yes | Better Auth JWT signing key |
+| `BETTER_AUTH_URL` | Yes | Canonical app URL for OAuth callbacks |
+| `GITHUB_CLIENT_ID` | Yes | GitHub OAuth app client ID |
+| `GITHUB_CLIENT_SECRET` | Yes | GitHub OAuth app client secret |
 
 **Note**: These are runtime secrets accessed by the Worker at execution time. They are **not** passed during the `wrangler deploy` command.
 
-## 🔴 Critical Security Issue
+## Critical Security Issue
 
 ### Exposed `.dev.vars` File
 
-**Status**: 🚨 **OPEN SECURITY INCIDENT — DO NOT MERGE UNTIL REMEDIATED**
+**Status**: **OPEN SECURITY INCIDENT — DO NOT MERGE UNTIL REMEDIATED**
 
 A `.dev.vars` file containing a full Cloudflare API token is still present in the repository state under review. The earlier claim that it was removed from the Git index is not accurate for this PR, so this incident must be treated as uncontained until the file is removed, history is rewritten, and the exposed secrets are rotated.
 
 **Current State**:
-- 🚨 `.dev.vars` is still present in the repository content reviewed by this PR
-- 🚨 `CLOUDFLARE_API_TOKEN` must be considered compromised
-- ✅ Incident details are documented in `SECURITY_INCIDENT.md`
-- ✅ `.gitignore` includes `.dev.vars` (line 15)
+- `.dev.vars` is still present in the repository content reviewed by this PR
+- `CLOUDFLARE_API_TOKEN` must be considered compromised
+- Incident details are documented in `SECURITY_INCIDENT.md`
+- `.gitignore` includes `.dev.vars` (line 15)
 
 **Required Actions** (see `SECURITY_INCIDENT.md` for details):
-1. 🔴 **URGENT**: Remove `.dev.vars` from the current repository contents and Git index in this PR
-2. 🔴 **URGENT**: Rotate the exposed Cloudflare API token and any other secrets stored in `.dev.vars`
-3. 🔴 **REQUIRED**: Purge `.dev.vars` from Git history using `git-filter-repo` or BFG
-4. 🔴 **REQUIRED**: Update GitHub/Cloudflare configured secrets with the rotated values
-5. 🔴 **REQUIRED**: Verify the rewritten history and force-push only after secret rotation is complete
+1. **URGENT**: Remove `.dev.vars` from the current repository contents and Git index in this PR
+2. **URGENT**: Rotate the exposed Cloudflare API token and any other secrets stored in `.dev.vars`
+3. **REQUIRED**: Purge `.dev.vars` from Git history using `git-filter-repo` or BFG
+4. **REQUIRED**: Update GitHub/Cloudflare configured secrets with the rotated values
+5. **REQUIRED**: Verify the rewritten history and force-push only after secret rotation is complete
 
-## ✅ How Deployment Works
+## How Deployment Works
 
 ### On Push to `main`:
 
@@ -125,7 +125,7 @@ wrangler deploy
             2. Default account associated with API token
 ```
 
-## 📋 Deployment Checklist
+## Deployment Checklist
 
 Before the next deployment, ensure:
 
@@ -139,7 +139,7 @@ Before the next deployment, ensure:
 - [ ] Create GitHub OAuth app for Better Auth (see DEPLOYMENT.md)
 - [ ] Test deployment by pushing to `main` branch
 
-## 🔗 Related Documentation
+## Related Documentation
 
 - **Main Deployment Guide**: `DEPLOYMENT.md`
 - **Security Incident Report**: `SECURITY_INCIDENT.md`
@@ -147,7 +147,7 @@ Before the next deployment, ensure:
 - **CI Workflow**: `.github/workflows/ci.yml`
 - **Wrangler Config**: `wrangler.toml`
 
-## 🔧 Local Development Testing
+## Local Development Testing
 
 To test the deployment setup locally:
 
@@ -163,7 +163,7 @@ npm run preview  # Uses wrangler dev
 npx wrangler deploy --dry-run
 ```
 
-## 📊 CI Workflow Status
+## CI Workflow Status
 
 Current workflow configuration:
 - **Triggers**: PRs and pushes to `main`
@@ -172,19 +172,19 @@ Current workflow configuration:
 - **Concurrency**: Deploy jobs do not run in parallel; a new push cancels any in-progress deploy
 - **Node version**: 22 (matches engine requirement >=20.18.1)
 
-## ✅ Conclusion
+## Conclusion
 
 The CI setup is **correctly configured** for Cloudflare deployment, with the following status:
 
 **Ready to deploy after**:
-1. ⚠️ Cloudflare API token rotation (CRITICAL)
-2. ⚠️ Git history cleanup (CRITICAL)
-3. ℹ️ Optional: Set `account_id` in wrangler.toml for explicitness
+1. Cloudflare API token rotation (CRITICAL)
+2. Git history cleanup (CRITICAL)
+3. Optional: Set `account_id` in wrangler.toml for explicitness
 
 **No changes needed for**:
-- ✅ GitHub Actions workflow structure
-- ✅ Build process and artifact handling
-- ✅ Wrangler configuration
-- ✅ Environment variable passing
+- GitHub Actions workflow structure
+- Build process and artifact handling
+- Wrangler configuration
+- Environment variable passing
 
 The deployment will work once the security issue is resolved and the required Cloudflare Workers secrets are configured in the dashboard.

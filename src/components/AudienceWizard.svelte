@@ -6,28 +6,28 @@
   const tiles: { persona: Persona; icon: string; label: string; tagline: string; sub: string }[] = [
     {
       persona: 'consumer',
-      icon: '🛡️',
+      icon: '',
       label: 'Just browsing',
       tagline: 'Set it. Bloqr it. Forget it.',
       sub: 'The internet you always thought you had. No setup.',
     },
     {
       persona: 'poweruser',
-      icon: '⚡',
+      icon: '',
       label: 'Power user',
       tagline: 'Keep your vendor. Stop doing it in 12 places.',
       sub: 'Already using a blocking or filtering service? Great. Stay.',
     },
     {
       persona: 'developer',
-      icon: '🛠️',
+      icon: '',
       label: 'Developer / list maker',
       tagline: 'Your pipeline. Our engine.',
       sub: 'Build tools or maintain filter lists. API-first.',
     },
     {
       persona: 'vendor',
-      icon: '🤝',
+      icon: '',
       label: 'Vendor / partner',
       tagline: 'Bring your own. Or use ours.',
       sub: 'Your users trust you. We make that trust more powerful.',

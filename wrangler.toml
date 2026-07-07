@@ -15,7 +15,7 @@ account_id = "07a1f8d207654fe5d838174af4813126"
 main = "src/worker.ts"
 
 # ─── Static Assets (Workers — replaces pages_build_output_dir) ────────────────
-# ⚠️  DO NOT MODIFY THIS LINE — both `directory` AND `binding` are required.
+# DO NOT MODIFY THIS LINE — both `directory` AND `binding` are required.
 # `binding = "ASSETS"` injects env.ASSETS into the Worker so env.ASSETS.fetch()
 # works in src/worker.ts. Removing `binding` causes a 0 KB download on every
 # request. The `assets = { ... }` inline form is correct — do NOT switch to the
@@ -28,7 +28,7 @@ main = "src/worker.ts"
 # Pointing at ./dist would upload an empty/wrong directory — ASSETS binding would
 # show "—" in the CF dashboard and env.ASSETS.fetch() would return 404 on every request.
 #
-# ⚠️  DASHBOARD DANGER — Adding, editing, or deleting any variable or secret in
+# DASHBOARD DANGER — Adding, editing, or deleting any variable or secret in
 # the Cloudflare Workers dashboard creates a new Worker version with NO assets
 # attached. The site will return 'Page not found' on every request.
 # NEVER change variables/secrets from the CF dashboard UI.
@@ -50,7 +50,7 @@ mode = "smart"
 # Enables Workers Trace Events / Logpush and built-in request metrics in the
 # Cloudflare dashboard. No extra code changes required.
 #
-# ⚠️  SAMPLING NOTE — these settings capture 100 % of telemetry (head_sampling_rate = 1)
+# SAMPLING NOTE — these settings capture 100 % of telemetry (head_sampling_rate = 1)
 # with persistence enabled.  This is intentional for the initial Worker rollout so
 # that every request is visible while the deployment is stabilised.  Before this
 # Worker handles significant production traffic you SHOULD:

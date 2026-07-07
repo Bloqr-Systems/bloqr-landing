@@ -6,7 +6,7 @@ suggested_image: "https://bloqr.dev/og-image.png"
 platforms: ["Instagram", "Facebook", "Threads", "Reddit"]
 ---
 
-# 📌 Welcome to Bloqr AI — Internet Hygiene. Automated.
+# Welcome to Bloqr AI — Internet Hygiene. Automated.
 
 Hey — we're **Bloqr AI**, and we're building the internet privacy layer that should have existed for the past decade.
 
@@ -33,10 +33,10 @@ Whether you have no idea what DNS is or you're already running a Pi-hole cluster
 
 We're in early access. Come build this with us.
 
-🌐 [bloqr.dev](https://bloqr.dev)
-📸 [instagram.com/bloqr.ai](https://www.instagram.com/bloqr.ai)
-📘 [facebook.com//bloqr](https://www.facebook.com//bloqr)
-🧵 [threads.com/@bloqr.ai](https://www.threads.com/@bloqr.ai)
+[bloqr.dev](https://bloqr.dev)
+[instagram.com/bloqr.ai](https://www.instagram.com/bloqr.ai)
+[facebook.com//bloqr](https://www.facebook.com//bloqr)
+[threads.com/@bloqr.ai](https://www.threads.com/@bloqr.ai)
 
 ---
 

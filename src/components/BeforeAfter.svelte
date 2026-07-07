@@ -14,15 +14,15 @@
   import Check from '@lucide/svelte/icons/check';
 
   const STEP_ICONS = {
-    '🌐': Globe,
-    '📞': Phone,
-    '🌊': Waves,
-    '⏱️': Timer,
-    '🛡️': Shield,
-    '🚫': Ban,
-    '⚡': Zap,
-    '📋': Clipboard,
-    '⚠️': TriangleAlert,
+    'globe': Globe,
+    'phone': Phone,
+    'waves': Waves,
+    'timer': Timer,
+    'shield': Shield,
+    'ban': Ban,
+    'zap': Zap,
+    'clipboard': Clipboard,
+    'warning': TriangleAlert,
   };
 
   // ── Reactive state ──────────────────────────────────────────────────────────
@@ -140,23 +140,23 @@
 
   const stepsWithout = [
     {
-      icon: '🌐',
+      icon: 'globe',
       title: 'You visit a site',
       desc: 'Your browser loads the page — then discovers a list of 18 extra things to fetch: images, fonts, ads, scripts, trackers.',
     },
     {
-      icon: '📞',
+      icon: 'phone',
       title: '"Where does each thing live?"',
       desc: 'Your browser asks the DNS phone book for the address of every single item — one lookup per resource.',
     },
     {
-      icon: '🌊',
+      icon: 'waves',
       title: 'The whole list floods in',
       desc: '5 trackers silently logging your session. 4 ad-auction scripts bidding on your attention. 3 suspicious domains nobody invited.',
       variant: 'warn',
     },
     {
-      icon: '⏱️',
+      icon: 'timer',
       title: '4.2 seconds to load',
       desc: 'Slow because your browser waited for all of it. Watched because trackers got everything they wanted.',
       variant: 'bad',
@@ -165,24 +165,24 @@
 
   const stepsWith = [
     {
-      icon: '🌐',
+      icon: 'globe',
       title: 'You visit a site',
       desc: 'Same page, same browser — Bloqr is running quietly in the background.',
     },
     {
-      icon: '🛡️',
+      icon: 'shield',
       title: 'Bloqr answers the phone book first',
       desc: 'At the DNS lookup step, Bloqr intercepts every address request and checks it against known threats — before the connection is ever opened.',
       variant: 'shield',
     },
     {
-      icon: '🚫',
+      icon: 'ban',
       title: '12 bad actors turned away at the door',
       desc: 'Blocked at DNS. No connection opened. No bytes downloaded. No milliseconds wasted waiting for them.',
       variant: 'blocked',
     },
     {
-      icon: '⚡',
+      icon: 'zap',
       title: '1.1 seconds to load',
       desc: 'Fast because your browser never waited for junk. Private because trackers were never given the chance.',
       variant: 'good',
@@ -193,7 +193,7 @@
 
   const modalSteps = [
     {
-      icon: '🌐',
+      icon: 'globe',
       title: 'You open a website',
       body: 'You click a link and your browser starts loading the page. But getting a webpage isn\'t just one download — your browser discovers a list of 18 separate things it needs to fetch: images, fonts, layout files, and scripts. Each one lives at a completely different address on the internet.',
       variant: 'neutral',
@@ -201,7 +201,7 @@
       stats: null,
     },
     {
-      icon: '📋',
+      icon: 'clipboard',
       title: 'Every item needs an address lookup',
       body: 'Before your browser can fetch anything, it has to ask: "Where does this live?" That\'s called a DNS lookup — think of it as the internet\'s phone book. Your browser looks up the address for every single item on that list. This happens in milliseconds, but each lookup is a door that can be opened to things you never wanted.',
       variant: 'neutral',
@@ -209,15 +209,15 @@
       stats: null,
     },
     {
-      icon: '⚠️',
+      icon: 'warning',
       title: 'Without protection, everyone gets in',
       body: 'Of those 18 items, only 6 are things you actually asked for. The other 12 are uninvited: trackers that build a profile of what you read, ad-auction scripts that run a real-time bidding war in the background, and malware that could record your keystrokes or silently mine cryptocurrency using your device\'s power.',
       variant: 'bad',
-      items: ['👁️  analytics.js — logs your reading habits', '💰  doubleclick.js — runs a background ad auction', '☠️  cryptominer.js — burns your CPU to mine crypto'],
+      items: ['analytics.js — logs your reading habits', 'doubleclick.js — runs a background ad auction', 'cryptominer.js — burns your CPU to mine crypto'],
       stats: null,
     },
     {
-      icon: '🛡️',
+      icon: 'shield',
       title: 'Bloqr steps in at the phone book',
       body: 'Bloqr works at the DNS layer — right at that address-lookup step. Before your browser can even open a connection to analytics.js, Bloqr checks: "Is this a known bad actor?" If it is, the lookup fails instantly. No connection is opened. The request simply never happens — in under a millisecond.',
       variant: 'shield',
@@ -225,15 +225,15 @@
       stats: null,
     },
     {
-      icon: '🚫',
+      icon: 'ban',
       title: '12 domains blocked. Zero bytes. Zero wait.',
       body: 'Because Bloqr said no during the lookup phase, your browser never opened a connection to any of them. It didn\'t download a single byte from trackers, ad scripts, or malware. And since it never waited for those 12 requests, your page loads as if they were never on the list.',
       variant: 'blocked',
-      items: ['🚫  analytics.js', '🚫  fb-pixel.js', '🚫  doubleclick.js', '🚫  hotjar.js', '🚫  prebid.js', '🚫  cryptominer.js'],
+      items: ['analytics.js', 'fb-pixel.js', 'doubleclick.js', 'hotjar.js', 'prebid.js', 'cryptominer.js'],
       stats: null,
     },
     {
-      icon: '⚡',
+      icon: 'zap',
       title: '74% faster. Every page. No trade-off.',
       body: 'Privacy and performance aren\'t opposites — they\'re the same thing here. Every domain Bloqr blocks is load time you get back, CPU cycles saved, and data you keep to yourself. It happens automatically, on every page, every visit. You don\'t configure anything. You don\'t click anything. It just works.',
       variant: 'result',
@@ -423,7 +423,7 @@
                     style="--w: {bar.w}%; --delay: {bar.delay}ms"
                     aria-hidden="true"
                   >
-                    <span class="block-icon">🚫</span>
+                    <span class="block-icon">✗</span>
                   </div>
                 {:else}
                   <div
