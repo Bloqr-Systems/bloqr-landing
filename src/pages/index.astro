@@ -2,6 +2,7 @@
 export const prerender = true;
 import '../styles/global.css';
 import Nav from '../components/Nav.svelte';
+import SocialLinks from '../components/SocialLinks.svelte';
 import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
 import Hero from '../components/Hero.svelte';
 import SocialProof from '../components/SocialProof.svelte';
@@ -144,6 +145,7 @@ const homeSchema = {
 <body>
   <ClosedBetaBanner client:load />
   <Nav client:idle transition:persist="nav" />
+  <SocialLinks client:idle />
   <main id="main-content">
     <Hero client:idle />
     <section id="audience-wizard">
