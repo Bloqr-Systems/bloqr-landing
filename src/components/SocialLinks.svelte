@@ -153,6 +153,10 @@
 
   /* Accessibility: hide tooltips on mobile and respect reduced motion */
   @media (max-width: 768px) {
+    .social-links {
+      display: none;
+    }
+
     .tooltip {
       display: none;
     }
