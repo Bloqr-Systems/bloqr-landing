@@ -45,7 +45,7 @@
  * export default {
  *   async fetch(request, env, ctx) { ... },
  *   async queue(batch, env, ctx) { return handleEmailQueue(batch, env); },
- * } satisfies ExportedHandler<Env, EmailQueueMessage>;
+ * } satisfies ExportedHandler<Env, EmailQueueMessage>; // Env narrows to IEmailConsumerEnv inside handleEmailQueue
  * ```
  *
  * @see src/types/emailQueue.ts — message envelope type
@@ -60,8 +60,23 @@ import { WaitlistWelcomeParamsSchema } from '../../src/services/emailSchemas';
 import { renderWaitlistWelcome } from '../../src/email/templates/waitlistWelcome';
 import { logEmailSend, getEmailTemplate } from '../../src/db/emailDb';
 import type { EmailSendStatus } from '../../src/db/emailDb';
-import type { Env } from '../../src/types/env';
 import { SITE_URL } from '../../src/config';
+
+/**
+ * Narrow environment interface for the email queue consumer — only the
+ * bindings `handleEmailQueue`/`processMessage` actually touch, rather than
+ * the full `Env` from `src/types/env.ts`.
+ */
+export interface IEmailConsumerEnv {
+  EMAIL_DEDUP_KV?: KVNamespace;
+  EMAIL_DB?: D1Database;
+  FROM_EMAIL?: string;
+  SEND_EMAIL?: {
+    send(message: unknown): Promise<void>;
+  };
+  EMAIL_WORKER?: Fetcher;
+  ANALYTICS?: AnalyticsEngineDataset;
+}
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 
@@ -148,7 +163,7 @@ const CONSUMER_PARAMS_SCHEMA_REGISTRY: Record<string, z.ZodTypeAny> = {
  */
 export async function handleEmailQueue(
   batch: MessageBatch<EmailQueueMessage>,
-  env: Env,
+  env: IEmailConsumerEnv,
 ): Promise<void> {
   for (const message of batch.messages) {
     await processMessage(message, env);
@@ -159,7 +174,7 @@ export async function handleEmailQueue(
 
 async function processMessage(
   message: Message<EmailQueueMessage>,
-  env: Env,
+  env: IEmailConsumerEnv,
 ): Promise<void> {
   // ── 1. Schema validation ────────────────────────────────────────────────────
   let parsed: EmailQueueMessage;

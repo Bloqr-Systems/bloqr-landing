@@ -53,8 +53,19 @@
 
 import { WorkflowEntrypoint } from 'cloudflare:workers';
 import type { WorkflowEvent, WorkflowStep } from 'cloudflare:workers';
-import type { Env } from '../types/env';
 import type { EmailQueueMessage } from '../types/emailQueue';
+
+/**
+ * Narrow environment interface for `WaitlistSignupWorkflow` — only the
+ * bindings the workflow steps actually touch, rather than the full `Env`
+ * from `src/types/env.ts`.
+ */
+export interface IWaitlistWorkflowEnv {
+  EMAIL_QUEUE?: Queue<EmailQueueMessage>;
+  FROM_EMAIL?: string;
+  APOLLO_API_KEY?: string;
+  ANALYTICS?: AnalyticsEngineDataset;
+}
 
 // ─── Workflow parameters ───────────────────────────────────────────────────────
 
@@ -119,7 +130,7 @@ const SEGMENT_LABELS: Record<string, string> = {
  * ```
  */
 export class WaitlistSignupWorkflow
-  extends WorkflowEntrypoint<Env, WaitlistWorkflowParams>
+  extends WorkflowEntrypoint<IWaitlistWorkflowEnv, WaitlistWorkflowParams>
 {
   /**
    * Workflow entry point — called once per workflow instance.
