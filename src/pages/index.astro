@@ -11,6 +11,7 @@ import BeforeAfter from '../components/BeforeAfter.svelte';
 import HowItWorks from '../components/HowItWorks.svelte';
 import AudiencesTeaser from '../components/AudiencesTeaser.svelte';
 import Features from '../components/Features.svelte';
+import DNSEncryption from '../components/DNSEncryption.svelte';
 import WaitlistSignup from '../components/WaitlistSignup.svelte';
 import CodeDemo from '../components/CodeDemo.svelte';
 import WhyCloudflareTeaser from '../components/WhyCloudflareTeaser.svelte';
@@ -158,6 +159,7 @@ const homeSchema = {
     <HowItWorks client:visible />
     <AudiencesTeaser />
     <div class="animate-on-scroll"><Features /></div>
+    <DNSEncryption />
     <WhyCloudflareTeaser />
     <PrivacyStrip />
     <div class="animate-on-scroll"><Pricing client:visible /></div>
