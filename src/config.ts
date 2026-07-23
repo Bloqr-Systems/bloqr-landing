@@ -105,6 +105,7 @@ export const LINKS = {
   blog:          '/blog',
   changelog:     '/changelog',
   pricing:       '/pricing',
+  test:          '/test',
   rss:           '/rss.xml',
   privacy:       '/privacy',
   terms:         '/terms',
