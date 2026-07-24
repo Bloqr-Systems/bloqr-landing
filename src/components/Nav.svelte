@@ -190,8 +190,8 @@
       <li><a href="/#features">Features</a></li>
       <li><a href="/#dns-encryption">DNS Encryption</a></li>
       <li><a href={LINKS.pricing} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
-      <li class="learn-dropdown" aria-expanded={learnDropdown}>
-        <button class="learn-toggle" onclick={toggleLearnDropdown} aria-expanded={learnDropdown} aria-haspopup="true">Learn</button>
+      <li class="learn-dropdown" aria-expanded={learnDropdown ? "true" : "false"}>
+        <button class="learn-toggle" onclick={toggleLearnDropdown} aria-expanded={learnDropdown ? "true" : "false"} aria-haspopup="true">Learn</button>
         <ul class="learn-menu" role="menu">
           <li role="none"><a href={LINKS.blog} role="menuitem" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>Blog</a></li>
           <li role="none"><a href={LINKS.changelog} role="menuitem" class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
