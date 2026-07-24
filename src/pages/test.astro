@@ -1,0 +1,443 @@
+---
+export const prerender = true;
+import '../styles/global.css';
+import Nav from '../components/Nav.svelte';
+import ClosedBetaBanner from '../components/ClosedBetaBanner.svelte';
+import Footer from '../components/Footer.svelte';
+import BaseHead from '../components/BaseHead.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { SITE_URL, LINKS, PAGE_META } from '../config';
+import TestStats from '../components/TestStats.svelte';
+import TestComparison from '../components/TestComparison.svelte';
+
+const meta = {
+  title:       PAGE_META.test.title,
+  description: PAGE_META.test.description,
+  url:         `${SITE_URL}/test`,
+  image:       `${SITE_URL}/og/test.png`,
+};
+
+const testSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": meta.title,
+      "url": meta.url,
+      "description": meta.description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bloqr AI",
+        "url": SITE_URL
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL },
+        { "@type": "ListItem", "position": 2, "name": "Test", "item": meta.url }
+      ]
+    }
+  ]
+};
+
+const testMetrics = {
+  bloqrDisabled: {
+    score: 14,
+    blocked: 54,
+    notBlocked: 328,
+    avgResponseTime: 385,
+    totalWasted: 12450
+  },
+  bloqrEnabled: {
+    score: 99,
+    blocked: 382,
+    notBlocked: 0,
+    avgResponseTime: 54,
+    totalWasted: 200
+  }
+};
+
+const timeSaved = testMetrics.bloqrDisabled.totalWasted - testMetrics.bloqrEnabled.totalWasted;
+const percentageFaster = Math.round(((testMetrics.bloqrDisabled.totalWasted - testMetrics.bloqrEnabled.totalWasted) / testMetrics.bloqrDisabled.totalWasted) * 100);
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <BaseHead
+    title={meta.title}
+    description={meta.description}
+    canonicalURL={meta.url}
+    ogImage={meta.image}
+  />
+  <SchemaOrg schema={testSchema} />
+</head>
+<body>
+  <ClosedBetaBanner client:load />
+  <Nav client:idle transition:persist="nav" />
+
+  <main id="main-content" class="test-page">
+
+    <!-- ── Hero Section ── -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-label eyebrow">Ad Blocker Test</div>
+        <h1 class="h1-hero">How Exposed Are You?</h1>
+        <p class="hero-sub">
+          See real metrics showing your exposure to ads, trackers, and internet nuisances.
+          Test how much Bloqr AI can protect you.
+        </p>
+        <div class="hero-cta">
+          <a href="https://adblocktester.pages.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Start Test
+          </a>
+          <a href="https://superadblocktest.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            Alternative Test
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Test Metrics & Comparison ── -->
+    <TestStats
+      client:load
+      timeSaved={timeSaved}
+      percentageFaster={percentageFaster}
+      bloqrDisabled={testMetrics.bloqrDisabled}
+      bloqrEnabled={testMetrics.bloqrEnabled}
+    />
+
+    <!-- ── Interactive Comparison ── -->
+    <TestComparison
+      client:load
+      bloqrDisabled={testMetrics.bloqrDisabled}
+      bloqrEnabled={testMetrics.bloqrEnabled}
+    />
+
+    <!-- ── How It Works ── -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-label eyebrow">How to Test</div>
+        <h2 class="h2-section">See the Impact Yourself</h2>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Disable Bloqr</h3>
+            <p>Turn off Bloqr AI temporarily in your browser settings.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Run the Test</h3>
+            <p>Visit one of the test sites below and run a full ad blocker test.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Enable Bloqr</h3>
+            <p>Re-enable Bloqr AI and run the test again on the same site.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Compare</h3>
+            <p>See the difference in performance, blocked domains, and response times.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Test Sites ── -->
+    <section class="test-sites">
+      <div class="container">
+        <div class="section-label eyebrow">Popular Test Sites</div>
+        <h2 class="h2-section">Run Your Own Tests</h2>
+
+        <div class="sites-grid">
+          <a href="https://adblocktester.pages.dev" target="_blank" rel="noopener noreferrer" class="test-site-card">
+            <div class="card-icon">🧪</div>
+            <h3>AdBlock Tester</h3>
+            <p>
+              Comprehensive ad blocker diagnostic tool. Shows real-time network requests,
+              response times in milliseconds, and exactly which domains are blocked.
+            </p>
+            <span class="link-arrow">Visit Test →</span>
+          </a>
+
+          <a href="https://superadblocktest.com" target="_blank" rel="noopener noreferrer" class="test-site-card">
+            <div class="card-icon">🛡️</div>
+            <h3>Super Ad Block Test</h3>
+            <p>
+              Alternative ad blocker testing platform. Provides detailed reports on
+              ad and tracker blocking effectiveness across different blocking levels.
+            </p>
+            <span class="link-arrow">Visit Test →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why Test? ── -->
+    <section class="why-test">
+      <div class="container">
+        <h2 class="h2-section">Why Test Your Ad Blocker?</h2>
+
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">⏱️</div>
+            <h3>Measure Speed Impact</h3>
+            <p>See exactly how much time is wasted fetching ads and trackers on every page load.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">🔍</div>
+            <h3>Visibility into Threats</h3>
+            <p>Understand your exposure to tracking domains and where your data goes.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">📊</div>
+            <h3>Compare Protection</h3>
+            <p>See how different blockers perform and what gets through.</p>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">🛡️</div>
+            <h3>Confirm Bloqr Works</h3>
+            <p>Verify that Bloqr AI is actually protecting you in real-time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</body>
+</html>
+
+<style>
+  .test-page {
+    background: var(--bg-base);
+  }
+
+  .hero-section {
+    padding: var(--space-24) 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 85, 0, 0.08) 0%,
+      rgba(0, 212, 255, 0.04) 100%
+    );
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .hero-label {
+    color: var(--orange-500);
+    margin-bottom: var(--space-4);
+    display: inline-block;
+  }
+
+  .h1-hero {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--fg-1);
+    margin-bottom: var(--space-6);
+    line-height: 1.1;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--fg-2);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .how-it-works,
+  .test-sites,
+  .why-test {
+    padding: var(--space-24) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .section-label {
+    color: var(--orange-500);
+    margin-bottom: var(--space-2);
+    display: inline-block;
+  }
+
+  .h2-section {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--fg-1);
+    margin-bottom: var(--space-12);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .step-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-8);
+    text-align: center;
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .step-card:hover {
+    background: var(--bg-elevated);
+    border-color: var(--border-accent);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--orange-500), rgba(255, 85, 0, 0.8));
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border-radius: 12px;
+    margin-bottom: var(--space-4);
+  }
+
+  .step-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--fg-1);
+    margin-bottom: var(--space-2);
+  }
+
+  .step-card p {
+    font-size: 0.95rem;
+    color: var(--fg-2);
+    line-height: 1.5;
+  }
+
+  .sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .test-site-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-8);
+    text-decoration: none;
+    color: inherit;
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .test-site-card:hover {
+    background: var(--bg-elevated);
+    border-color: var(--orange-500);
+    transform: translateY(-2px);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .test-site-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--fg-1);
+    margin-bottom: var(--space-2);
+  }
+
+  .test-site-card p {
+    font-size: 0.95rem;
+    color: var(--fg-2);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .link-arrow {
+    color: var(--orange-500);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 150ms ease;
+  }
+
+  .test-site-card:hover .link-arrow {
+    color: var(--orange-400);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .benefit-item {
+    text-align: center;
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    display: block;
+  }
+
+  .benefit-item h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--fg-1);
+    margin-bottom: var(--space-2);
+  }
+
+  .benefit-item p {
+    font-size: 0.95rem;
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .hero-section {
+      padding: var(--space-12) 0;
+    }
+
+    .how-it-works,
+    .test-sites,
+    .why-test {
+      padding: var(--space-12) 0;
+    }
+
+    .h1-hero {
+      font-size: 2rem;
+    }
+
+    .h2-section {
+      font-size: 1.5rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+    }
+
+    .hero-cta a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

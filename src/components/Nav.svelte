@@ -11,10 +11,11 @@
   const THEME_MEDIA_QUERY = '(prefers-color-scheme: light)';
   const SCROLL_THRESHOLD = 10;
 
-  let scrolled    = $state(false);
-  let menuOpen    = $state(false);
-  let currentPath = $state('/');
-  let theme       = $state<Theme>('dark');
+  let scrolled      = $state(false);
+  let menuOpen      = $state(false);
+  let learnDropdown = $state(false);
+  let currentPath   = $state('/');
+  let theme         = $state<Theme>('dark');
 
   /** Bound to the hamburger <button> so focus can return there on menu close. */
   let hamburgerEl = $state<HTMLButtonElement | null>(null);
@@ -46,6 +47,7 @@
       currentPath = window.location.pathname;
       updateScrolledState(); // re-sync scroll state — View Transitions don't fire a scroll event
       menuOpen    = false;                 // always close mobile menu after navigation
+      learnDropdown = false;               // close dropdown after navigation
       syncTheme();
     };
     const handleThemeChange = (): void => {
@@ -154,8 +156,9 @@
     persistTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
-  function closeMenu(): void { menuOpen = false; }
+  function closeMenu(): void { menuOpen = false; learnDropdown = false; }
   function toggleMenu(): void { menuOpen = !menuOpen; }
+  function toggleLearnDropdown(): void { learnDropdown = !learnDropdown; }
 
   function isActive(href: string): boolean {
     if (!href || href.startsWith('/#')) return false;
@@ -187,15 +190,21 @@
       <li><a href="/#features">Features</a></li>
       <li><a href="/#dns-encryption">DNS Encryption</a></li>
       <li><a href={LINKS.pricing} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
-      <li><a href={LINKS.changelog} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
-      <li><a href={LINKS.about} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
+      <li class="learn-dropdown" aria-expanded={learnDropdown ? "true" : "false"}>
+        <button class="learn-toggle" onclick={toggleLearnDropdown} aria-expanded={learnDropdown ? "true" : "false"} aria-haspopup="true">Learn</button>
+        <ul class="learn-menu" role="menu">
+          <li role="none"><a href={LINKS.blog} role="menuitem" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>Blog</a></li>
+          <li role="none"><a href={LINKS.changelog} role="menuitem" class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
+          <li role="none"><a href={LINKS.test} role="menuitem" class:active={isActive(LINKS.test)} aria-current={isActive(LINKS.test) ? 'page' : undefined}>Ad Test</a></li>
+          <li role="none"><a href={LINKS.about} role="menuitem" class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
+        </ul>
+      </li>
       <li><a href="/#waitlist" class="nav-highlight">Closed Beta</a></li>
     </ul>
 
     <!-- Desktop CTA -->
     <div class="nav-cta">
       <a href={LINKS.vpnMyths} class="nav-myths" class:active={isActive(LINKS.vpnMyths)} aria-current={isActive(LINKS.vpnMyths) ? 'page' : undefined}>VPN Myths</a>
-      <a href={LINKS.blog} class="nav-news" class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a>
       <a href={LINKS.docs} class="btn btn-ghost btn-sm" rel="noopener noreferrer" target="_blank">Docs</a>
       <a href={LINKS.app} class="btn btn-primary btn-sm" rel="noopener noreferrer" target="_blank">
         Join Beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.5} /></span>
@@ -248,8 +257,9 @@
         <li><a href="/#dns-encryption" onclick={closeMenu}>DNS Encryption</a></li>
         <li><a href={LINKS.pricing} onclick={closeMenu} class:active={isActive(LINKS.pricing)} aria-current={isActive(LINKS.pricing) ? 'page' : undefined}>Pricing</a></li>
         <li><a href={LINKS.vpnMyths}  onclick={closeMenu} class:active={isActive(LINKS.vpnMyths)} aria-current={isActive(LINKS.vpnMyths) ? 'page' : undefined}>VPN Myths</a></li>
-        <li><a href={LINKS.blog}      onclick={closeMenu} class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>News</a></li>
+        <li><a href={LINKS.blog}      onclick={closeMenu} class:active={isActive(LINKS.blog)} aria-current={isActive(LINKS.blog) ? 'page' : undefined}>Blog</a></li>
         <li><a href={LINKS.changelog} onclick={closeMenu} class:active={isActive(LINKS.changelog)} aria-current={isActive(LINKS.changelog) ? 'page' : undefined}>Changelog</a></li>
+        <li><a href={LINKS.test}      onclick={closeMenu} class:active={isActive(LINKS.test)} aria-current={isActive(LINKS.test) ? 'page' : undefined}>Ad Test</a></li>
         <li><a href={LINKS.about}     onclick={closeMenu} class:active={isActive(LINKS.about)} aria-current={isActive(LINKS.about) ? 'page' : undefined}>About</a></li>
         <li class="mobile-divider" aria-hidden="true"></li>
         <li><a href="/#waitlist" class="mobile-highlight" onclick={closeMenu}>Join the Beta <span class="arrow-icon" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.5} /></span></a></li>
@@ -597,4 +607,75 @@
       0 0 24px color-mix(in srgb, var(--orange) 35%, transparent),
       0 0 18px color-mix(in srgb, var(--cyan) 25%, transparent);
   }
+
+  /* ── Learn Dropdown ── */
+  .learn-dropdown {
+    position: relative;
+  }
+
+  .learn-toggle {
+    font-size: 14px;
+    color: var(--text-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 150ms;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .learn-toggle:hover {
+    color: var(--text-1);
+  }
+
+  .learn-toggle[aria-expanded="true"] {
+    color: var(--cyan);
+  }
+
+  .learn-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    min-width: 160px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+
+  .learn-dropdown[aria-expanded="true"] .learn-menu {
+    display: block;
+  }
+
+  .learn-menu a {
+    display: block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: all 150ms;
+    white-space: nowrap;
+  }
+
+  .learn-menu a:hover {
+    background: var(--bg-elevated);
+    color: var(--text-1);
+  }
+
+  .learn-menu a.active {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  @media (max-width: 860px) {
+    .learn-menu {
+      display: none !important;
+    }
+  }
+
 </style>

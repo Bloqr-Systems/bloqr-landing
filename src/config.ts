@@ -105,6 +105,7 @@ export const LINKS = {
   blog:          '/blog',
   changelog:     '/changelog',
   pricing:       '/pricing',
+  test:          '/test',
   rss:           '/rss.xml',
   privacy:       '/privacy',
   terms:         '/terms',
@@ -155,6 +156,10 @@ export const PAGE_META = {
   pricing: {
     title:       'Pricing — Bloqr AI',
     description: 'Transparent subscription pricing for every audience — personal, developer, and vendor. Starting at $3.99/month. Usage above plan limits billed via Stripe.',
+  },
+  test: {
+    title:       'Ad Blocker Test — See How Exposed You Are — Bloqr AI',
+    description: 'Test your exposure to ads and trackers. Compare performance with and without Bloqr enabled. See real-time metrics showing how much time you save.',
   },
 } as const;
 
