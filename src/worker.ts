@@ -132,6 +132,7 @@ function applyCSP(response: Response): Response {
   headers.set('Content-Security-Policy', csp);
   headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   headers.set('X-Content-Type-Options', 'nosniff');
+  headers.append('Link', '</llms.txt>; rel="alternate"; type="text/markdown"');
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 

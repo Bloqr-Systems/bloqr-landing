@@ -1,0 +1,28 @@
+# Bloqr
+
+> Bloqr is DNS-level ad and tracker blocking with AI-powered filter lists and encrypted DNS (DoH/DoT), protecting every device on a network without installing per-device software.
+
+Bloqr sits at the network's DNS layer: it blocks ads, trackers, and malicious domains before they load, encrypts DNS queries end-to-end, and uses AI to continuously generate and update filter lists as new tracking and phishing domains appear. It works with any device that can point to a custom DNS resolver, and also supports bring-your-own-DNS-provider setups.
+
+## Product
+
+- [Home](https://bloqr.dev/): overview, pricing tiers, and how DNS-level filtering works
+- [Pricing](https://bloqr.dev/pricing): plan comparison for personal, family, and team use
+- [About](https://bloqr.dev/about): the Bloqr AI project and team
+- [Changelog](https://bloqr.dev/changelog): recent product updates
+
+## Learn
+
+- [Why not a private DNS resolver?](https://bloqr.dev/why-not-private): tradeoffs of running your own resolver vs. a managed encrypted DNS service
+- [VPN myths](https://bloqr.dev/vpn-myths): how DNS-level blocking differs from and complements a VPN
+- [Blog](https://bloqr.dev/blog): posts on DNS privacy, ad-tech tracking, and phishing infrastructure
+
+## Policies
+
+- [Privacy Policy](https://bloqr.dev/privacy)
+- [Terms of Service](https://bloqr.dev/terms)
+
+## Optional
+
+- [Sitemap](https://bloqr.dev/sitemap-index.xml): full URL index
+- [robots.txt](https://bloqr.dev/robots.txt): crawler and AI-bot access rules, including Content Signal preferences
